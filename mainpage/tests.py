@@ -1,3 +1,4 @@
+from django.contrib.messages import get_messages
 from django.test import TestCase, Client
 from django.urls import reverse
 from .models import CustomUser
@@ -148,3 +149,56 @@ class SignupViewsTest(TestCase):
         response = self.client.post(self.signup_url, data=self.valid_data)
         self.assertEqual(response.status_code, 200)  # Форма не прошла валидацию, страница отображается снова
         self.assertFalse(CustomUser.objects.filter(username='testuser').exists())
+
+
+class LoginViewTest(TestCase):
+    def setUp(self):
+        """Подготовка данных для тестов."""
+        self.client = Client()
+        self.login_url = reverse('login')
+        self.home_url = reverse('home')
+        self.user = CustomUser.objects.create_user(
+            username='testuser',
+            email='test@example.com',
+            password='testpass123'
+        )
+
+    def test_login_with_username(self):
+        """Тест успешного входа по username."""
+        response = self.client.post(self.login_url, {
+            'username': 'testuser',
+            'password': 'testpass123',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.home_url)
+
+    def test_login_with_email(self):
+        """Тест успешного входа по email."""
+        response = self.client.post(self.login_url, {
+            'username': 'test@example.com',
+            'password': 'testpass123',
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, self.home_url)
+
+    def test_login_with_invalid_username(self):
+        """Тест входа с неверным username."""
+        response = self.client.post(self.login_url, {
+            'username': 'wronguser',
+            'password': 'testpass123',
+        })
+        self.assertEqual(response.status_code, 200)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Invalid username/email or password.')
+
+    def test_login_with_invalid_password(self):
+        """Тест входа с неверным паролем."""
+        response = self.client.post(self.login_url, {
+            'username': 'testuser',
+            'password': 'wrongpassword',
+        })
+        self.assertEqual(response.status_code, 200)
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+        self.assertEqual(str(messages[0]), 'Invalid username/email or password.')

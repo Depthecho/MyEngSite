@@ -1,7 +1,7 @@
 import re
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.core.exceptions import ValidationError
 from .models import CustomUser
 
@@ -72,3 +72,14 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class CustomAuthenticationForm(AuthenticationForm):
+    username = forms.CharField(
+        label='Username or Email',
+        widget=forms.TextInput(attrs={'placeholder': 'Enter your email or username'})
+    )
+    password = forms.CharField(
+        label='Password',
+        widget=forms.PasswordInput(attrs={'placeholder': 'Enter your password'})
+    )
