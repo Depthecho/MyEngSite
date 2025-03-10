@@ -1,0 +1,175 @@
+/* Основные стили для body */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Контейнер для формы */
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Заголовок формы */
+.login-header {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Форма */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Группа полей формы */
+.form-group {
+    position: relative;
+}
+
+/* Поля ввода */
+.input {
+    width: 80%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #6a11cb;
+}
+
+/* Кнопка входа */
+.login-button {
+    background: #6a11cb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-button:hover {
+    background: #2575fc;
+}
+
+/* Ссылка "Forgot password?" */
+.forgot-password {
+    text-align: left
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.forgot-password-a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.forgot-password-a:hover {
+    color: #2575fc;
+}
+
+/* Ссылка "Don't have an account?" */
+.dont-have-account {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.dont-have-account-a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.dont-have-account-a:hover {
+    color: #2575fc;
+}
+
+/* Ошибки формы */
+.login-alert {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-alert ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.login-alert li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.close-alert {
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
+.close-alert:hover {
+    color: #333;
+}
+
+/* Анимация появления формы */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 20px;
+    }
+
+    .login-header {
+        font-size: 2rem;
+    }
+
+    .input {
+        padding: 10px;
+    }
+
+    .login-button {
+        padding: 10px;
+    }
+}
