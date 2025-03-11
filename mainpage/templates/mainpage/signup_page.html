@@ -1,90 +1,84 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
 
+{% block title %}Sign Up{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/signup.css' %}">
 {% endblock %}
 
-{% block title %}Log In{% endblock %}
 {% block content %}
 <div class="signup-body">
     <div class="signup-container">
         <h1 class="signup-header">Sign Up</h1>
         <form method="post" class="signup-form">
             {% csrf_token %}
-            <!-- Display Form Errors -->
-            {% if form.errors %}
-            <div class="signup-alert alert-danger">
-                <ul>
-                    {% for error in form.non_field_errors %}
-                    <li>{{ error }} <span class="close-alert">×</span></li>
-                    <script>
-                        // Close error messages when the close button is clicked
-                        $(document).on("click", ".close-alert", function () {
-                            $(this).parent("li").remove();
-                        });
-                    </script>
-                    {% endfor %}
-                    {% for field in form %}
-                    {% if field.errors %}
-                    {% for error in field.errors %}
-                    <li>{{ error }} <span class="close-alert">×</span></li>
-                    <script>
-                        // Close error messages when the close button is clicked
-                        $(document).on("click", ".close-alert", function () {
-                            $(this).parent("li").remove();
-                        });
-                    </script>
-                    {% endfor %}
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            {% endif %}
 
-            <!-- Username Field -->
+            <!-- Поле для email и кнопка "Отправить код" -->
+            <div class="form-group email-group">
+                <div class="email-input-container">
+                    <input type="email" id="id_email" name="email" class="input email-input" placeholder="E-mail" required>
+                    <button type="button" id="send-code-button" class="send-code-button">Send Code</button>
+                </div>
+            </div>
+
+            <!-- Поле для кода подтверждения -->
+            <div class="form-group">
+                <input type="text" id="id_verification_code" name="verification_code" class="input" placeholder="Verification Code" required>
+                <i class='bx bxs-key'></i>
+            </div>
+
+            <!-- Поле для username -->
             <div class="form-group">
                 <input type="text" id="id_username" name="username" class="input" placeholder="Username" required>
                 <i class='bx bxs-user-circle'></i>
             </div>
 
-            <!-- Email Field -->
-            <div class="form-group">
-                <input type="email" id="id_email" name="email" class="input" placeholder="E-mail" required>
-                <i class='bx bxs-envelope'></i>
-            </div>
-
-            <!-- Password Field -->
+            <!-- Поле для пароля -->
             <div class="form-group">
                 <input type="password" id="id_password1" name="password1" class="input" placeholder="Password" required>
                 <i class='bx bxs-lock-open-alt'></i>
             </div>
 
-            <!-- Confirm Password Field -->
+            <!-- Поле для подтверждения пароля -->
             <div class="form-group">
-                <input type="password" id="id_password2" name="password2" class="input" placeholder="Confirm Password"
-                       required>
+                <input type="password" id="id_password2" name="password2" class="input" placeholder="Confirm Password" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
-            <!-- Already registered -->
-            <div class="remember">
-                <label>
-                    <input type="checkbox">Remember me
-                </label>
-            </div>
-
+            <!-- Кнопка для регистрации -->
             <button type="submit" class="signup-button">Sign Up</button>
 
+            <!-- Ссылка "Already registered? Log in" -->
             <div class="already-registered">
-                <p class="already-registered-p">Already registered?
-                    <a href="{% url 'login' %}" class="already-registered-a">Log In</a>
-                </p>
+                <p>Already registered? <a href="{% url 'login' %}">Log in</a></p>
             </div>
-
         </form>
     </div>
-    <a class="swap-theme"><i class="fa-regular fa-moon fa-2xl"></i></a>
-    <!--<button class="btn"></button> -->
 </div>
+
+<script>
+    // Отправка кода на email
+    document.getElementById('send-code-button').addEventListener('click', function() {
+        const email = document.getElementById('id_email').value;
+        if (email) {
+            fetch('/send-code/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: `email=${encodeURIComponent(email)}`
+            }).then(response => {
+                if (response.ok) {
+                    alert('Код отправлен на ваш email.');
+                } else {
+                    alert('Ошибка при отправке кода.');
+                }
+            });
+        } else {
+            alert('Пожалуйста, введите email.');
+        }
+    });
+</script>
 {% endblock %}
