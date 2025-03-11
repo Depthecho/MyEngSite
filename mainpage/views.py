@@ -1,4 +1,6 @@
 import logging
+
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import render, redirect
@@ -54,8 +56,18 @@ def login_view(request):
             password = form.cleaned_data.get('password')
             user = authenticate(request, username=username, password=password)
             if user is not None:
-                user.backend = 'django.contrib.auth.backends.ModelBackend'
                 login(request, user)
+
+                # Обработка чекбокса "Remember me"
+                remember_me = request.POST.get('remember_me')
+                if remember_me:
+                    # Устанавливаем куки на 2 недели (14 дней)
+                    request.session.set_expiry(settings.REMEMBER_ME_AGE)
+                else:
+                    # Куки истекают при закрытии браузера
+                    request.session.set_expiry(0)
+
+                messages.success(request, 'You have been logged in successfully!')
                 return redirect('home')
             else:
                 messages.error(request, 'Invalid username/email or password.')

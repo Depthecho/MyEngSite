@@ -152,3 +152,5 @@ CACHES = {
         }
     }
 }
+
+REMEMBER_ME_AGE = 14 * 24 * 60 * 60

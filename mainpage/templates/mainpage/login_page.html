@@ -1,10 +1,11 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
 
+{% block title %}Log In{% endblock %}
+
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/signin.css' %}">
 {% endblock %}
-{% block title %}Log In{% endblock %}
 
 {% block content %}
 <div class="login-body">
@@ -12,39 +13,42 @@
         <h1 class="login-header">Log In</h1>
         <form method="post" class="login-form">
             {% csrf_token %}
-            {% if error_message %}
-            <div class="login-alert alert-danger">
-                <ul>
-                    <li>{{ error_message }}<span class="close-alert">×</span></li>
-                    <script>
-                        // Close error messages when the close button is clicked
-                        $(document).on("click", ".close-alert", function () {
-                            $(this).parent("li").remove();
-                        });
-                    </script>
-                </ul>
-            </div>
-            {% endif %}
+
+            <!-- Поле для username/email -->
             <div class="form-group">
-                <input type="username" name="username" class="input" placeholder="Username" required>
+                <input type="text" id="id_username" name="username" class="input" placeholder="Username or Email" required>
+                <i class='bx bxs-user-circle'></i>
             </div>
+
+            <!-- Поле для пароля -->
             <div class="form-group">
-                <input type="password" name="password" class="input" placeholder="Password" required>
+                <input type="password" id="id_password" name="password" class="input" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
             </div>
-            <div class="forgot-password">
-                <p class="forgot-password-p">
-                    <a class="forgot-password-a" href="#">Forgot password?</a>
-                </p>
+
+            <!-- Строка с "Reset password" и "Remember me" -->
+            <div class="form-options">
+                <!-- Чекбокс "Remember me" -->
+                <div class="remember-me">
+                    <label>
+                        <input type="checkbox" name="remember_me"> Remember me
+                    </label>
+                </div>
+
+                <!-- Ссылка "Reset password" -->
+                <div class="reset-password">
+                    <a href="#">Reset password</a>
+                </div>
             </div>
+
+            <!-- Кнопка для входа -->
             <button type="submit" class="login-button">Log In</button>
 
-            <div class="dont-have-account">
-                <p class="dont-have-account-p">Don't have an account?
-                    <a href="{% url 'signup' %}" class="dont-have-account-a">Sign Up</a>
-                </p>
+            <!-- Ссылка "Don't have an account? Sign up" -->
+            <div class="no-account">
+                <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
             </div>
         </form>
     </div>
-    <a class="swap-theme"><i class="fa-regular fa-moon fa-2xl"></i></a>
 </div>
 {% endblock %}
