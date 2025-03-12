@@ -178,3 +178,15 @@
         width: 100%;
     }
 }
+
+.timer {
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 5px;
+}
+
+/* Стили для заблокированной кнопки */
+.send-code-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

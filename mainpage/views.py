@@ -3,6 +3,7 @@ import logging
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from .utils import send_verification_code
@@ -38,12 +39,15 @@ def signup_view(request):
 def send_code_view(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        if email:
-            send_verification_code(email)
-            messages.success(request, 'Code was sent to your email.')
+
+        # Отправляем код
+        success, message = send_verification_code(email)
+
+        if success:
+            return JsonResponse({'status': 'success', 'message': message})
         else:
-            messages.error(request, 'Please. enter your email.')
-    return redirect('signup')
+            return JsonResponse({'status': 'error', 'message': message}, status=400)
+    return JsonResponse({'status': 'error', 'message': 'Недопустимый метод запроса.'}, status=405)
 
 def login_view(request):
     """
