@@ -1,0 +1,255 @@
+/* Основные стили для body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Герой-секция */
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 100px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.hero .cta-button {
+    background: white;
+    color: #6a11cb;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero .cta-button:hover {
+    background: #ffcc00;
+    color: white;
+}
+
+/* Секция с преимуществами */
+.features {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.feature {
+    text-align: center;
+    max-width: 250px;
+    margin: 20px;
+}
+
+.feature img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: #ddd;
+}
+
+/* Секция с отзывами */
+.testimonials {
+    text-align: center;
+    padding: 60px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.testimonial {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.testimonial p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: white;
+}
+
+/* Секция с призывом к действию */
+.cta {
+    text-align: center;
+    padding: 80px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin: 20px;
+}
+
+.cta h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.cta .cta-button {
+    background: white;
+    color: #6a11cb;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.cta .cta-button:hover {
+    background: #ffcc00;
+    color: white;
+}
+
+/* Стили для блока статистики */
+.user-stats {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px 0;
+}
+
+.user-stats .stat {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+}
+
+.user-stats .stat h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.user-stats .stat p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .features {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .testimonials h2 {
+        font-size: 1.8rem;
+    }
+
+    .cta h2 {
+        font-size: 1.8rem;
+    }
+
+    .user-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .user-stats .stat {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Стили для формы добавления отзыва */
+.add-testimonial {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.add-testimonial h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.add-testimonial textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.add-testimonial button {
+    background: white;
+    color: #6a11cb;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.add-testimonial button:hover {
+    background: #ffcc00;
+    color: white;
+}
