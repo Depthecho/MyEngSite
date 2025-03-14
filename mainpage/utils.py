@@ -1,9 +1,11 @@
 import random
+import logging
 from datetime import datetime, timedelta
-
 from django.core.mail import send_mail
 from django.conf import settings
 from django.core.cache import cache
+
+logger = logging.getLogger(__name__)
 
 def generate_code():
     """Генерирует 6-значный код."""
@@ -23,23 +25,24 @@ def can_send_code(email):
     return True
 
 def send_verification_code(email):
-    """Отправляет код на email и сохраняет его в Redis."""
     # Проверяем, можно ли отправить код
     if not can_send_code(email):
-        return False, "Пожалуйста, подождите минуту перед повторной отправкой."
+        return False, "Please wait a minute before resending.."
 
     # Генерируем новый код
     code = generate_code()
 
-    # Сохраняем код в Redis с TTL 5 минут (300 секунд)
+    # Сохраняем код в кэше
     cache.set(email, code, timeout=300)
+    logger.info(f"Code {code} cached for email {email}.")
 
-    # Сохраняем время последней отправки в Redis с TTL 1 минута (60 секунд)
+    # Сохраняем время последней отправки
     cache.set(f'last_sent_{email}', datetime.now().isoformat(), timeout=60)
+    logger.info(f"Sent time cached for email {email}.")
 
     # Отправляем email
     subject = 'Your verification code'
     message = f'Your verification code: {code}. The code is valid for 5 minutes.'
     send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
 
-    return True, "Код отправлен на ваш email."
+    return True, "Code was sent to your email."

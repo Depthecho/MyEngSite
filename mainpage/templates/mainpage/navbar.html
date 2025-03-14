@@ -1,0 +1,26 @@
+<!-- navbar.html -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <!-- Логотип слева -->
+        <div class="navbar-logo">
+            <a href="{% url 'home' %}">Logo</a>
+        </div>
+
+        <!-- Центральные разделы -->
+        <div class="navbar-links">
+            <a href="#" class="navbar-link">Cards</a>
+            <a href="#" class="navbar-link">Texts</a>
+            <a href="#" class="navbar-link">Grammar</a>
+            <a href="#" class="navbar-link">Test</a>
+        </div>
+
+        <!-- Кнопка Log In/Log Out справа -->
+        <div class="navbar-auth">
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="navbar-button">Log Out</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="navbar-button">Log In</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

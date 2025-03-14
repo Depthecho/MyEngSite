@@ -20,14 +20,7 @@
         <input type="email" id="id_email" name="email" class="input email-input" placeholder="E-mail" required>
         <button type="button" id="send-code-button" class="send-code-button">Send Code</button>
     </div>
-    <div id="timer" class="timer" style="display: none;">Resend code in: <span id="time-left">60</span> сек.</div>
 </div>
-
-            <!-- Поле для кода подтверждения -->
-            <div class="form-group">
-                <input type="text" id="id_verification_code" name="verification_code" class="input" placeholder="Verification Code" required>
-                <i class='bx bxs-key'></i>
-            </div>
 
             <!-- Поле для username -->
             <div class="form-group">
@@ -45,6 +38,13 @@
             <div class="form-group">
                 <input type="password" id="id_password2" name="password2" class="input" placeholder="Confirm Password" required>
                 <i class='bx bxs-lock-alt'></i>
+            </div>
+
+            <!-- Поле для кода подтверждения -->
+            <div class="form-group">
+                <input type="text" id="id_verification_code" name="verification_code" class="input" placeholder="Verification Code" required>
+                <i class='bx bxs-key'></i>
+                <div id="timer" class="timer" style="display: none;">Resend code in: <span id="time-left">60</span> сек.</div>
             </div>
 
             <!-- Кнопка для регистрации -->
