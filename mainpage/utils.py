@@ -7,42 +7,38 @@ from django.core.cache import cache
 
 logger = logging.getLogger(__name__)
 
+CODE_SENT_SUCCESS_MSG = "Code was sent to your email."
+CODE_SENT_TOO_SOON_MSG = "Please wait a minute before resending."
+
 def generate_code():
-    """Генерирует 6-значный код."""
     return str(random.randint(100000, 999999))
 
 def can_send_code(email):
-    """
-    Проверяет, можно ли отправить код.
-    Возвращает True, если прошло больше минуты с последней отправки.
-    """
     last_sent_time = cache.get(f'last_sent_{email}')
-    if last_sent_time:
-        # Преобразуем строку времени обратно в объект datetime
-        last_sent_time = datetime.fromisoformat(last_sent_time)
-        if datetime.now() - last_sent_time < timedelta(minutes=1):
-            return False
+    if last_sent_time and datetime.now() - last_sent_time < timedelta(minutes=1):
+        return False
     return True
 
-def send_verification_code(email):
-    # Проверяем, можно ли отправить код
-    if not can_send_code(email):
-        return False, "Please wait a minute before resending.."
-
-    # Генерируем новый код
-    code = generate_code()
-
-    # Сохраняем код в кэше
+def save_code_to_cache(email, code):
     cache.set(email, code, timeout=300)
     logger.info(f"Code {code} cached for email {email}.")
 
-    # Сохраняем время последней отправки
-    cache.set(f'last_sent_{email}', datetime.now().isoformat(), timeout=60)
+def save_sent_time_to_cache(email):
+    cache.set(f'last_sent_{email}', datetime.now(), timeout=60)
     logger.info(f"Sent time cached for email {email}.")
 
-    # Отправляем email
+def send_email_with_code(email, code):
     subject = 'Your verification code'
     message = f'Your verification code: {code}. The code is valid for 5 minutes.'
     send_mail(subject, message, settings.EMAIL_HOST_USER, [email])
 
-    return True, "Code was sent to your email."
+def send_verification_code(email):
+    if not can_send_code(email):
+        return False, CODE_SENT_TOO_SOON_MSG
+
+    code = generate_code()
+    save_code_to_cache(email, code)
+    save_sent_time_to_cache(email)
+    send_email_with_code(email, code)
+
+    return True, CODE_SENT_SUCCESS_MSG

@@ -11,11 +11,11 @@ html, body {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     padding: 10px 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    width: 100%; /* Растягиваем на всю ширину */
-    position: fixed; /* Фиксируем навбар вверху */
-    top: 0; /* Прижимаем к верхнему краю */
-    left: 0; /* Прижимаем к левому краю */
-    z-index: 1000; /* Убедимся, что навбар поверх других элементов */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
 }
 
 /* Контейнер навбара */
@@ -25,7 +25,7 @@ html, body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* Добавляем отступы по бокам внутри контейнера */
+    padding: 0 20px;
 }
 
 /* Логотип */
@@ -51,11 +51,84 @@ html, body {
 }
 
 .navbar-link:hover {
-    color: #ffcc00; /* Желтый цвет при наведении */
+    color: #ffcc00;
 }
 
-/* Кнопка Log In/Log Out */
-.navbar-auth .navbar-button {
+/* Блок авторизации/аватара */
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Аватар с выпадающим меню */
+.avatar-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+#avatar-img, #logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffcc00;
+    transition: transform 0.3s ease;
+}
+
+#avatar-img:hover {
+    transform: scale(1.1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: -50px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    text-align: center;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Кнопка Log Out */
+.dropdown-menu a[href*="logout"] {
+    background: #d9534f;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.dropdown-menu a[href*="logout"]:hover {
+    background: #c9302c;
+}
+
+/* Кнопка Log In и иконка настроек */
+.navbar-auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-button {
     background: white;
     color: #6a11cb;
     padding: 8px 16px;
@@ -66,25 +139,60 @@ html, body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-.navbar-auth .navbar-button:hover {
-    background: #ffcc00; /* Желтый цвет при наведении */
+.navbar-button:hover {
+    background: #ffcc00;
     color: white;
+}
+
+.settings-icon {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.settings-icon:hover {
+    color: #ffcc00;
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-    .navbar-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .navbar-links {
+        display: none;
         flex-direction: column;
         gap: 10px;
         margin: 10px 0;
     }
 
     .navbar-auth {
+        display: none;
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .avatar-dropdown {
         margin-top: 10px;
+    }
+
+    .dropdown-menu {
+        top: 50px;
+        right: -10px;
     }
 }

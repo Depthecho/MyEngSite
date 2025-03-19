@@ -1,11 +1,18 @@
-from django.contrib.messages import get_messages
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from django.urls import reverse
+from django.contrib.messages import get_messages
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from .models import CustomUser
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from .services import UserRegistrationService, UserAuthenticationService
+from .decorators import handle_errors
+
+User = get_user_model()
 
 
-class CustomUserModelText(TestCase):
+# Тесты для модели CustomUser
+class CustomUserModelTest(TestCase):
     def setUp(self):
         """Подготовка данных для тестов модели."""
         self.user_data = {
@@ -60,6 +67,7 @@ class CustomUserModelText(TestCase):
             )
 
 
+# Тесты для формы CustomUserCreationForm
 class CustomCreationFormTest(TestCase):
     def setUp(self):
         """Подготовка данных для тестов формы."""
@@ -117,6 +125,8 @@ class CustomCreationFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertIn('password2', form.errors)
 
+
+# Тесты для представления Signup
 class SignupViewsTest(TestCase):
     def setUp(self):
         """Подготовка данных для тестов представления."""
@@ -136,28 +146,29 @@ class SignupViewsTest(TestCase):
         self.assertTemplateUsed(response, 'mainpage/signup_page.html')
         self.assertIsInstance(response.context['form'], CustomUserCreationForm)
 
-
     def test_signup_view_post_valid_data(self):
         """Тест успешной регистрации с валидными данными."""
         response = self.client.post(self.signup_url, data=self.valid_data)
-        self.assertEqual(response.status_code, 302)  # Проверка перенаправления после успешной регистрации
-        self.assertTrue(CustomUser.objects.filter(username='testuser').exists())
+        self.assertEqual(response.status_code, 302)  # Проверка перенаправления
+        self.assertTrue(User.objects.filter(username='testuser').exists())
 
     def test_signup_view_post_invalid_data(self):
         """Тест регистрации с невалидными данными."""
-        self.valid_data['email'] = 'invalid-email'
-        response = self.client.post(self.signup_url, data=self.valid_data)
-        self.assertEqual(response.status_code, 200)  # Форма не прошла валидацию, страница отображается снова
-        self.assertFalse(CustomUser.objects.filter(username='testuser').exists())
+        invalid_data = self.valid_data.copy()
+        invalid_data['email'] = 'invalid-email'
+        response = self.client.post(self.signup_url, data=invalid_data)
+        self.assertEqual(response.status_code, 200)  # Форма не прошла валидацию
+        self.assertFalse(User.objects.filter(username='testuser').exists())
 
 
+# Тесты для представления Login
 class LoginViewTest(TestCase):
     def setUp(self):
         """Подготовка данных для тестов."""
         self.client = Client()
         self.login_url = reverse('login')
         self.home_url = reverse('home')
-        self.user = CustomUser.objects.create_user(
+        self.user = User.objects.create_user(
             username='testuser',
             email='test@example.com',
             password='testpass123'
@@ -202,3 +213,84 @@ class LoginViewTest(TestCase):
         messages = list(get_messages(response.wsgi_request))
         self.assertEqual(len(messages), 1)
         self.assertEqual(str(messages[0]), 'Invalid username/email or password.')
+
+
+# Тесты для сервиса UserRegistrationService
+class UserRegistrationServiceTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.valid_data = {
+            'username': 'testuser',
+            'email': 'test@example.com',
+            'password1': 'Testpass123',
+            'password2': 'Testpass123',
+        }
+
+    def test_register_user_valid_data(self):
+        """Тест успешной регистрации с валидными данными."""
+        form = CustomUserCreationForm(data=self.valid_data)
+        request = self.factory.post('/signup/')
+        user = UserRegistrationService.register_user(form, request)
+        self.assertIsNotNone(user)
+        self.assertEqual(user.username, 'testuser')
+        self.assertEqual(user.email, 'test@example.com')
+
+    def test_register_user_invalid_data(self):
+        """Тест регистрации с невалидными данными."""
+        invalid_data = self.valid_data.copy()
+        invalid_data['email'] = 'invalid-email'
+        form = CustomUserCreationForm(data=invalid_data)
+        request = self.factory.post('/signup/')
+        with self.assertRaises(ValueError):
+            UserRegistrationService.register_user(form, request)
+
+
+# Тесты для сервиса UserAuthenticationService
+class UserAuthenticationServiceTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(
+            username='testuser',
+            email='test@example.com',
+            password='testpass123'
+        )
+
+    def test_authenticate_user_valid_credentials(self):
+        """Тест успешной аутентификации с валидными данными."""
+        form_data = {
+            'username': 'testuser',
+            'password': 'testpass123',
+        }
+        form = CustomAuthenticationForm(data=form_data)
+        request = self.factory.post('/login/')
+        user = UserAuthenticationService.authenticate_user(request, form)
+        self.assertIsNotNone(user)
+        self.assertEqual(user.username, 'testuser')
+
+    def test_authenticate_user_invalid_credentials(self):
+        """Тест аутентификации с неверными данными."""
+        form_data = {
+            'username': 'testuser',
+            'password': 'wrongpassword',
+        }
+        form = CustomAuthenticationForm(data=form_data)
+        request = self.factory.post('/login/')
+        user = UserAuthenticationService.authenticate_user(request, form)
+        self.assertIsNone(user)
+
+
+# Тесты для декоратора handle_errors
+class HandleErrorsDecoratorTest(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+
+    @handle_errors
+    def faulty_view(self, request):
+        raise ValidationError('Test error')
+
+    def test_handle_errors_decorator(self):
+        """Тест обработки ошибок декоратором."""
+        request = self.factory.get('/fake-url/')
+        response = self.faulty_view(request)
+        self.assertEqual(response.status_code, 302)  # Проверка перенаправления
+        self.assertEqual(response.url, '/')  # Проверка redirect на home

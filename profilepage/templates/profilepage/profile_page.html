@@ -1,0 +1,65 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}My profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+<div class="main-container">
+    <div class="profile-container">
+        <!-- Боковые вкладки -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#" class="active">My Profile</a></li>
+                <li><a href="#">My Words</a></li>
+                <li><a href="#">My Texts</a></li>
+                <li><a href="#">My Tests</a></li>
+            </ul>
+        </div>
+
+        <!-- Основной контент профиля -->
+        <div class="profile-content-wrapper">
+            <h1>{{ profile.username }}'s Profile</h1>
+            <div class="profile-content">
+                <div class="avatar-container">
+                    <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
+                </div>
+                <div class="user-info">
+                    <p><strong>First Name:</strong> {{ profile.first_name }}</p>
+                    <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+                    <div class="buttons">
+                        <a href="#" class="cta-button">Update profile</a>
+                    </div>
+                </div>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <p><strong>Words Learned:</strong></p>
+                    <p class="number">{{ profile.words_learned }}</p>
+                </div>
+                <div class="stat-item">
+                    <p><strong>Texts Read:</strong></p>
+                    <p class="number">{{ profile.texts_read }}</p>
+                </div>
+                <div class="stat-item">
+                    <p><strong>Tests Completed:</strong></p>
+                    <p class="number">{{ profile.tests_completed }}</p>
+                </div>
+                <div class="stat-item">
+                    <p><strong>Current Streak:</strong></p>
+                    <p class="number">{{ profile.streak }} days</p>
+                </div>
+            </div>
+            <!-- Кнопка Share results -->
+            <div class="share-results-button">
+                <a href="#" class="cta-button">Share results</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

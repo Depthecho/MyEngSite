@@ -20,22 +20,19 @@ class CustomUserManager(BaseUserManager):
 
     # Function to add a superuser
     def create_superuser(self, username, email, password=None, **extra_fields):
-        """
-        Creates and saves a superuser with the given username, email and password.
-        """
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-        extra_fields.setdefault('is_active', True)
-
-        if not extra_fields.get('is_staff') or not extra_fields.get('is_superuser'):
-            raise ValueError('Superuser must have is_staff=True and is_superuser=True.')
-
+        extra_fields.update({
+            'is_staff': True,
+            'is_superuser': True,
+            'is_active': True,
+        })
         return self.create_user(username, email, password, **extra_fields)
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=150, unique=True, db_index=True, null=False)
     email = models.EmailField(unique=True, null=False)
+    first_name = models.CharField(max_length=30, blank=True, null=True)
+    last_name = models.CharField(max_length=150, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=timezone.now)
@@ -62,6 +59,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
+
+    def delete(self, *args, **kwargs):
+        profile = getattr(self, 'profile', None)
+        if profile:
+            profile.delete()
+        super().delete(*args, **kwargs)
 
     def __str__(self):
         return self.username

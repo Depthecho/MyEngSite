@@ -1,0 +1,261 @@
+/* Основные стили */
+body {
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #80A1D4;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1110px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Контейнер профиля */
+.profile-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Заголовок */
+.profile-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Блок с аватаром и инфо */
+.profile-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+/* Стили для боковой панели */
+.sidebar {
+    width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    margin-right: 20px; /* Смещаем сайдбар влево */
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar ul li a.active {
+    background-color: #6a11cb;
+    color: #fff;
+}
+
+/* Аватар */
+.avatar-container {
+    position: relative;
+}
+
+.avatar-img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border: 3px solid #6a11cb;
+    transition: 0.3s;
+}
+
+/* Информация о пользователе */
+.user-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.user-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: white;
+    display: block;
+}
+
+.user-info p strong {
+    color: #ffcc00;
+}
+
+/* Статистика */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #6a11cb; /* Добавлена рамка */
+    transition: transform 0.3s ease-in-out; /* Плавный эффект при наведении */
+}
+
+.stat-item:hover {
+    transform: scale(1.05); /* Увеличение карточки при наведении */
+}
+
+.stat-item p {
+    margin: 5px 0;
+    color: white;
+    font-size: 1rem;
+}
+
+.stat-item .number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00; /* Цвет цифры */
+    margin-top: 10px; /* Отступ между текстом и цифрой */
+}
+
+.stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Выравнивание текста и цифры по центру */
+}
+
+/* Кнопки */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start; /* Кнопка слева */
+    gap: 10px;
+}
+
+.cta-button, .delete-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta-button {
+    background: #6a11cb;
+    color: white;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background: #2575fc;
+}
+
+.delete-button {
+    background: #d9534f;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #c9302c;
+}
+
+/* Кнопка Share results */
+.share-results-button {
+    display: flex;
+    justify-content: flex-end; /* Кнопка справа */
+    margin-top: 20px;
+}
+
+.share-results-button .cta-button {
+    background: #ffcc00;
+    color: #6a11cb;
+}
+
+.share-results-button .cta-button:hover {
+    background: #ffdd33;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px;
+        margin: 20px;
+    }
+
+    .profile-container h1 {
+        font-size: 2rem;
+    }
+
+    .profile-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .avatar-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .share-results-button {
+        justify-content: center; /* Центрируем кнопку на мобильных */
+    }
+
+    .sidebar {
+        margin-right: 10px; /* Уменьшаем отступ на мобильных */
+    }
+}
