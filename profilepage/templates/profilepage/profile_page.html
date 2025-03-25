@@ -6,6 +6,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock %}
 
 {% block content %}
@@ -37,6 +38,206 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Social stats section -->
+            <div class="social-stats">
+                <div class="social-stat-item">
+                    <div class="social-stat-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="social-stat-info">
+                        <p class="social-stat-number">{{ profile.friends_count }}</p>
+                        <p class="social-stat-label">Friends</p>
+                    </div>
+                </div>
+                <div class="social-stat-item">
+                    <div class="social-stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="social-stat-info">
+                        <p class="social-stat-number">{{ profile.followers_count }}</p>
+                        <p class="social-stat-label">Followers</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="achievements-section">
+                <h2>Your Achievements</h2>
+
+                <!-- Words Badges -->
+                <div class="badge-category">
+                    <h3><i class="fas fa-book-open"></i> Words Mastery</h3>
+                    <div class="badges-row">
+                        <div class="badge {% if profile.words_learned >= 100 %}unlocked bronze{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Bronze</span>
+                                <span class="badge-name">Word Collector</span>
+                                <span class="badge-progress">
+                                    {% if profile.words_learned >= 100 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.words_learned }}/100 words
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.words_learned >= 500 %}unlocked silver{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Silver</span>
+                                <span class="badge-name">Word Expert</span>
+                                <span class="badge-progress">
+                                    {% if profile.words_learned >= 500 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.words_learned }}/500 words
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.words_learned >= 1500 %}unlocked gold{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Gold</span>
+                                <span class="badge-name">Word Master</span>
+                                <span class="badge-progress">
+                                    {% if profile.words_learned >= 1500 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.words_learned }}/1500 words
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texts Badges -->
+                <div class="badge-category">
+                    <h3><i class="fas fa-file-alt"></i> Texts Mastery</h3>
+                    <div class="badges-row">
+                        <div class="badge {% if profile.texts_read >= 50 %}unlocked bronze{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Bronze</span>
+                                <span class="badge-name">Text Reader</span>
+                                <span class="badge-progress">
+                                    {% if profile.texts_read >= 50 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.texts_read }}/50 texts
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.texts_read >= 150 %}unlocked silver{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Silver</span>
+                                <span class="badge-name">Text Explorer</span>
+                                <span class="badge-progress">
+                                    {% if profile.texts_read >= 150 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.texts_read }}/150 texts
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.texts_read >= 500 %}unlocked gold{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Gold</span>
+                                <span class="badge-name">Text Scholar</span>
+                                <span class="badge-progress">
+                                    {% if profile.texts_read >= 500 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.texts_read }}/500 texts
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tests Badges -->
+                <div class="badge-category">
+                    <h3><i class="fas fa-tasks"></i> Tests Mastery</h3>
+                    <div class="badges-row">
+                        <div class="badge {% if profile.tests_completed >= 50 %}unlocked bronze{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Bronze</span>
+                                <span class="badge-name">Test Beginner</span>
+                                <span class="badge-progress">
+                                    {% if profile.tests_completed >= 50 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.tests_completed }}/50 tests
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.tests_completed >= 150 %}unlocked silver{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Silver</span>
+                                <span class="badge-name">Test Challenger</span>
+                                <span class="badge-progress">
+                                    {% if profile.tests_completed >= 150 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.tests_completed }}/150 tests
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="badge {% if profile.tests_completed >= 500 %}unlocked gold{% else %}locked{% endif %}">
+                            <div class="badge-icon">
+                                <i class="fas fa-medal"></i>
+                            </div>
+                            <div class="badge-content">
+                                <span class="badge-level">Gold</span>
+                                <span class="badge-name">Test Master</span>
+                                <span class="badge-progress">
+                                    {% if profile.tests_completed >= 500 %}
+                                        Achieved!
+                                    {% else %}
+                                        {{ profile.tests_completed }}/500 tests
+                                    {% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Learning stats section -->
             <div class="stats">
                 <div class="stat-item">
                     <p><strong>Words Learned:</strong></p>
@@ -55,6 +256,7 @@
                     <p class="number">{{ profile.streak }} days</p>
                 </div>
             </div>
+
             <!-- Кнопка Share results -->
             <div class="share-results-button">
                 <a href="#" class="cta-button">Share results</a>
