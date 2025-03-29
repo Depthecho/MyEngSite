@@ -1,13 +1,10 @@
 {% load static %}
-<!-- navbar.html -->
 <nav class="navbar">
     <div class="navbar-container">
-        <!-- Логотип слева -->
         <div class="navbar-logo">
             <a href="{% url 'home' %}"><img src="{% static 'favicon/logo.svg' %}" id="logo-img"></a>
         </div>
 
-        <!-- Центральные разделы -->
         <div class="navbar-links">
             <a href="#" class="navbar-link">Cards</a>
             <a href="#" class="navbar-link">Texts</a>
@@ -15,10 +12,8 @@
             <a href="#" class="navbar-link">Test</a>
         </div>
 
-        <!-- Блок авторизации/аватара -->
         <div class="navbar-auth">
             {% if user.is_authenticated %}
-                <!-- Аватар с выпадающим меню -->
                 <div class="avatar-dropdown" id="avatarDropdown">
                     <img src="{{ user.profile.avatar.url }}" alt="User Avatar" class="avatar-img" id="avatar-img">
                     <div class="dropdown-menu" id="dropdownMenu">
@@ -28,7 +23,6 @@
                     </div>
                 </div>
             {% else %}
-                <!-- Кнопка Log In и иконка настроек -->
                 <div class="navbar-auth-buttons">
                     <a href="{% url 'login' %}" class="navbar-button">Log In</a>
                     <a href="#" class="settings-icon">⚙️</a>
@@ -36,7 +30,6 @@
             {% endif %}
         </div>
 
-        <!-- Бургер-меню для мобильных устройств -->
         <div class="burger-menu" id="burgerMenu">
             <span></span>
             <span></span>

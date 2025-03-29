@@ -6,6 +6,7 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
     <link rel="stylesheet" href="{% static 'style/main_page.css' %}">
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -86,4 +87,5 @@
         <a href="{% url 'signup' %}" class="cta-button">Join Now</a>
     </section>
 {% endif %}
+{% include 'mainpage/footer.html' %}
 {% endblock %}
