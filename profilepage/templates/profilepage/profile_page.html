@@ -75,6 +75,18 @@
         <i class="fas fa-user-plus"></i>
         Add Friend
     </button>
+<div class="invite-notification" id="inviteNotification">
+    <button class="close-invite-btn" id="closeInviteBtn">
+        <i class="fas fa-times"></i>
+    </button>
+    <div class="invite-content">
+        <i class="fas fa-envelope invite-icon"></i>
+        <p class="invite-text">
+            Your friend isn't here yet?
+            <a href="#" class="invite-link">Invite them</a>
+        </p>
+    </div>
+</div>
 </div>
 
             <!-- Achievements Section -->
@@ -284,11 +296,12 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar toggle functionality
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
         const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
 
-        // Проверяем, есть ли состояние в localStorage
+        // Проверяем состояние sidebar из localStorage
         const sidebarState = localStorage.getItem('sidebarState');
         if (sidebarState === 'closed') {
             sidebar.classList.add('closed');
@@ -308,9 +321,23 @@
             }
         }
 
-        // Обработчики событий для кнопок
-        sidebarToggle.addEventListener('click', toggleSidebar);
-        mobileSidebarToggle.addEventListener('click', toggleSidebar);
+        // Обработчики событий для кнопок sidebar
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', toggleSidebar);
+        }
+        if (mobileSidebarToggle) {
+            mobileSidebarToggle.addEventListener('click', toggleSidebar);
+        }
+
+        // Invite notification close functionality
+        const closeInviteBtn = document.getElementById('closeInviteBtn');
+        const inviteNotification = document.getElementById('inviteNotification');
+
+        if (closeInviteBtn && inviteNotification) {
+            closeInviteBtn.addEventListener('click', function() {
+                inviteNotification.style.display = 'none';
+            });
+        }
     });
 </script>
 {% endblock %}
