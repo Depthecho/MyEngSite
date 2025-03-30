@@ -15,7 +15,7 @@
 <div class="main-container">
     <div class="profile-container">
         <!-- Боковые вкладки -->
-        <div class="sidebar">
+        <div class="sidebar" id="sidebar">
             <ul>
                 <li><a href="#" class="active">My Profile</a></li>
                 <li><a href="#">My Words</a></li>
@@ -26,9 +26,18 @@
 
         <!-- Основной контент профиля -->
         <div class="profile-content-wrapper">
-            <h1>{{ profile.username }}'s Profile</h1>
+            <div class="header-with-toggle">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>{{ profile.username }}'s Profile</h1>
+            </div>
+
             <div class="profile-content">
                 <div class="avatar-container">
+                    <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
                     <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
                 </div>
                 <div class="user-info">
@@ -41,26 +50,32 @@
             </div>
 
             <!-- Social stats section -->
-            <div class="social-stats">
-                <div class="social-stat-item">
-                    <div class="social-stat-icon">
-                        <i class="fas fa-user-friends"></i>
-                    </div>
-                    <div class="social-stat-info">
-                        <p class="social-stat-number">{{ profile.friends_count }}</p>
-                        <p class="social-stat-label">Friends</p>
-                    </div>
-                </div>
-                <div class="social-stat-item">
-                    <div class="social-stat-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <div class="social-stat-info">
-                        <p class="social-stat-number">{{ profile.followers_count }}</p>
-                        <p class="social-stat-label">Followers</p>
-                    </div>
-                </div>
+<div class="social-stats">
+    <div class="social-stats-top">
+        <div class="social-stat-item">
+            <div class="social-stat-icon">
+                <i class="fas fa-user-friends"></i>
             </div>
+            <div class="social-stat-info">
+                <p class="social-stat-number">{{ profile.friends_count }}</p>
+                <p class="social-stat-label">Friends</p>
+            </div>
+        </div>
+        <div class="social-stat-item">
+            <div class="social-stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="social-stat-info">
+                <p class="social-stat-number">{{ profile.followers_count }}</p>
+                <p class="social-stat-label">Followers</p>
+            </div>
+        </div>
+    </div>
+    <button class="add-friend-button">
+        <i class="fas fa-user-plus"></i>
+        Add Friend
+    </button>
+</div>
 
             <!-- Achievements Section -->
             <div class="achievements-section">
@@ -266,4 +281,36 @@
     </div>
 </div>
 {% include 'mainpage/footer.html' %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const mobileSidebarToggle = document.getElementById('mobileSidebarToggle');
+
+        // Проверяем, есть ли состояние в localStorage
+        const sidebarState = localStorage.getItem('sidebarState');
+        if (sidebarState === 'closed') {
+            sidebar.classList.add('closed');
+            document.querySelector('.profile-container').classList.add('sidebar-closed');
+        }
+
+        // Функция для переключения sidebar
+        function toggleSidebar() {
+            sidebar.classList.toggle('closed');
+            document.querySelector('.profile-container').classList.toggle('sidebar-closed');
+
+            // Сохраняем состояние в localStorage
+            if (sidebar.classList.contains('closed')) {
+                localStorage.setItem('sidebarState', 'closed');
+            } else {
+                localStorage.setItem('sidebarState', 'open');
+            }
+        }
+
+        // Обработчики событий для кнопок
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        mobileSidebarToggle.addEventListener('click', toggleSidebar);
+    });
+</script>
 {% endblock %}
