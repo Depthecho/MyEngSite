@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from django.db import models
 from django.conf import settings
 
@@ -22,6 +23,14 @@ class Profile(models.Model):
         default='avatars/default_user.png',
         verbose_name='Avatar'
     )
+    birth_date = models.DateField(null=True, blank=True, verbose_name='Birth Date')
+    study_start_date = models.DateField(auto_now_add=True, verbose_name='Study Start Date', blank=True)
+    hide_first_name = models.BooleanField(default=False, verbose_name='Hide First Name')
+    hide_last_name = models.BooleanField(default=False, verbose_name='Hide Last Name')
+    hide_birth_date = models.BooleanField(default=False, verbose_name='Hide Birth Date')
+    bio = models.TextField(max_length=500, blank=True, verbose_name='Biography')
+    website = models.URLField(blank=True, verbose_name='Website')
+    location = models.CharField(max_length=100, blank=True, verbose_name='Location')
 
     def __str__(self):
         return f'{self.username} Profile'

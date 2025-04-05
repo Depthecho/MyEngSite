@@ -1,0 +1,146 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style/update_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<div class="main-update-container">
+    <div class="update-profile-container">
+        {% include 'profilepage/sidebar.html' %}
+
+        <div class="update-content-wrapper">
+            <div class="update-header-with-toggle">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Edit Profile</h1>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data" class="update-profile-form">
+                {% csrf_token %}
+
+                <!-- Avatar Section -->
+                <div class="update-avatar-section">
+                    <div class="update-avatar-container">
+                        <label for="id_avatar" class="update-avatar-label">
+                            <img src="{{ profile.avatar.url }}" alt="User Avatar" class="update-avatar-img">
+                            <div class="update-avatar-overlay">
+                                <i class="fas fa-camera"></i>
+                                <span>Change Photo</span>
+                            </div>
+                        </label>
+                        <input type="file" name="avatar" id="id_avatar" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Personal Info Section -->
+                <div class="update-form-section">
+                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+
+                    <div class="update-form-group">
+                        <label>Username</label>
+                        {{ profile_form.username }}
+                    </div>
+
+                    <div class="update-form-row">
+                        <div class="update-form-group">
+                            <label>First Name</label>
+                            {{ profile_form.first_name }}
+                            <div class="update-visibility-toggle">
+                                {{ profile_form.hide_first_name }}
+                                <label for="{{ profile_form.hide_first_name.id_for_label }}">Hide</label>
+                            </div>
+                        </div>
+
+                        <div class="update-form-group">
+                            <label>Last Name</label>
+                            {{ profile_form.last_name }}
+                            <div class="update-visibility-toggle">
+                                {{ profile_form.hide_last_name }}
+                                <label for="{{ profile_form.hide_last_name.id_for_label }}">Hide</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="update-form-group">
+                        <label>Birth Date</label>
+                        {{ profile_form.birth_date }}
+                        <div class="update-visibility-toggle">
+                            {{ profile_form.hide_birth_date }}
+                            <label for="{{ profile_form.hide_birth_date.id_for_label }}">Hide</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Info Section -->
+                <div class="update-form-section">
+                    <h2><i class="fas fa-info-circle"></i> Additional Information</h2>
+
+                    <div class="update-form-group">
+                        <label>Bio</label>
+                        {{ profile_form.bio }}
+                    </div>
+
+                    <div class="update-form-row">
+                        <div class="update-form-group">
+                            <label>Website</label>
+                            {{ profile_form.website }}
+                        </div>
+
+                        <div class="update-form-group">
+                            <label>Location</label>
+                            {{ profile_form.location }}
+                        </div>
+                    </div>
+
+                    <div class="update-form-group">
+                        <label>Study Start Date</label>
+                        <input type="text" value="{{ profile.study_start_date|date:'Y-m-d' }}" disabled>
+                    </div>
+                </div>
+
+                <button type="submit" name="update_profile" class="update-cta-button">Edit Profile</button>
+            </form>
+
+            <!-- Password Change Section -->
+            <form method="POST" class="update-password-form">
+                {% csrf_token %}
+                <div class="update-form-section">
+                    <h2><i class="fas fa-lock"></i> Change Password</h2>
+
+                    <div class="update-form-group">
+                        <label>Current Password</label>
+                        {{ password_form.old_password }}
+                    </div>
+
+                    <div class="update-form-group">
+                        <label>New Password</label>
+                        {{ password_form.new_password1 }}
+                    </div>
+
+                    <div class="update-form-group">
+                        <label>Confirm New Password</label>
+                        {{ password_form.new_password2 }}
+                    </div>
+
+                    <button type="submit" name="change_password" class="update-cta-button">Change Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'mainpage/footer.html' %}
+
+<script src="{% static 'js/profile.js' %}"></script>
+<script src="{% static 'js/update_profile.js' %}"></script>
+{% endblock %}

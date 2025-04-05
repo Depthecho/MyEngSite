@@ -34,8 +34,9 @@
                 <div class="user-info">
                     <p><strong>First Name:</strong> {{ profile.first_name }}</p>
                     <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+                    <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
                     <div class="buttons">
-                        <a href="#" class="cta-button">Update profile</a>
+                        <a href="{% url 'update_profile' %}" class="cta-button">Edit profile</a>
                     </div>
                 </div>
             </div>
