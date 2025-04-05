@@ -1,0 +1,16 @@
+<div class="badge {% if achieved %}unlocked {{ level_name|lower }}{% else %}locked{% endif %}">
+    <div class="badge-icon">
+        <i class="fas fa-medal"></i>
+    </div>
+    <div class="badge-content">
+        <span class="badge-level">{{ level_name }}</span>
+        <span class="badge-name">{{ badge_name }}</span>
+        <span class="badge-progress">
+            {% if achieved %}
+                Achieved!
+            {% else %}
+                {{ current_value }}/{{ required_value }} {{ badge_type }}
+            {% endif %}
+        </span>
+    </div>
+</div>

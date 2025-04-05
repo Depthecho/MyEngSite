@@ -1,0 +1,38 @@
+<div class="social-stats">
+    <div class="social-stats-top">
+        <div class="social-stat-item">
+            <div class="social-stat-icon">
+                <i class="fas fa-user-friends"></i>
+            </div>
+            <div class="social-stat-info">
+                <p class="social-stat-number">{{ profile.friends_count }}</p>
+                <p class="social-stat-label">Friends</p>
+            </div>
+        </div>
+        <div class="social-stat-item">
+            <div class="social-stat-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="social-stat-info">
+                <p class="social-stat-number">{{ profile.followers_count }}</p>
+                <p class="social-stat-label">Followers</p>
+            </div>
+        </div>
+    </div>
+    <button class="add-friend-button">
+        <i class="fas fa-user-plus"></i>
+        Add Friend
+    </button>
+    <div class="invite-notification" id="inviteNotification">
+        <button class="close-invite-btn" id="closeInviteBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="invite-content">
+            <i class="fas fa-envelope invite-icon"></i>
+            <p class="invite-text">
+                Your friend isn't here yet?
+                <a href="#" class="invite-link">Invite them</a>
+            </p>
+        </div>
+    </div>
+</div>

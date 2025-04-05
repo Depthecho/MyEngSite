@@ -98,6 +98,15 @@ class Profile(models.Model):
 
         return True
 
+    def get_achievements(self, badge_type=None):
+        achievements = Achievement.objects.filter(user=self.user)
+        if badge_type:
+            achievements = achievements.filter(badge_type=badge_type)
+        return achievements
+
+    def has_achievement(self, badge_type, level):
+        return self.get_achievements(badge_type).filter(level=level).exists()
+
 
 
 

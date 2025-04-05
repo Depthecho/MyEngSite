@@ -1,19 +1,17 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Profile
+from .services import ProfileService
 
 
 @login_required
 def profile_page(request):
-    try:
-        user_profile = Profile.objects.get(user=request.user)
-    except Profile.DoesNotExist:
-        user_profile = Profile.objects.create(
-            user=request.user,
-            username=request.user.username,
-            email=request.user.email,
-            first_name='',
-            last_name=''
-        )
+    """View для отображения профиля пользователя с достижениями."""
+    profile_service = ProfileService(request.user)
+    user_profile = profile_service.get_or_create_profile()
+    profile_service.check_achievements()
 
-    return render(request, 'profilepage/profile_page.html', {'profile': user_profile})
+    return render(request, 'profilepage/profile_page.html', {
+        'profile': user_profile,
+        'achievements': user_profile.get_achievements()
+    })
