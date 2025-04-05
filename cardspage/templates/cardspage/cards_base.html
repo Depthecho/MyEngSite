@@ -1,0 +1,60 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}My cards | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/cards.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'my_cards' %}" class="secondary-nav-link active">
+            <i class="fas fa-layer-group"></i> My cards
+        </a>
+        <a href="#" class="secondary-nav-link disabled">
+            <i class="fas fa-plus-circle"></i> Add cards
+        </a>
+        <a href="#" class="secondary-nav-link disabled">
+            <i class="fas fa-question-circle"></i> Quiz
+        </a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="cards-content-wrapper">
+        <div class="cards-grid">
+            {% for card in user_cards %}
+            <div class="card-item" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span>{{ card.english_word }}</span>
+                    </div>
+                    <div class="card-back">
+                        <span>{{ card.native_translation }}</span>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-cards-message">
+                <i class="fas fa-info-circle"></i>
+                <p>You do not have any cards. Add the first one!</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% include 'mainpage/footer.html' %}
+
+<script>
+    function flipCard(element) {
+        element.classList.toggle('flipped');
+    }
+</script>
+{% endblock %}

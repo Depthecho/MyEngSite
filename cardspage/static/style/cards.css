@@ -1,0 +1,202 @@
+/* Основные стили */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1110px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Второй навбар */
+.secondary-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 0;
+    margin-top: 70px; /* Учитываем фиксированный основной навбар */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.secondary-nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.secondary-nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.secondary-nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid #ffcc00;
+}
+
+.secondary-nav-link.disabled {
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+.secondary-nav-link i {
+    font-size: 0.9rem;
+}
+
+/* Контейнер карточек */
+.cards-content-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1s ease-in-out;
+}
+
+/* Сетка карточек */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Стили карточек */
+.card-item {
+    height: 150px; /* Уменьшенная высота */
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-item.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.card-front {
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.8));
+    color: white;
+}
+
+.card-back {
+    background: linear-gradient(135deg, rgba(37, 117, 252, 0.8), rgba(106, 17, 203, 0.8));
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.card-front span, .card-back span {
+    font-size: 1.2rem;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Сообщение об отсутствии карточек */
+.no-cards-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.no-cards-message i {
+    font-size: 2.5rem;
+    color: #ffcc00;
+    margin-bottom: 15px;
+}
+
+.no-cards-message p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .secondary-nav-container {
+        gap: 10px;
+    }
+
+    .secondary-nav-link {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .card-item {
+        height: 120px;
+    }
+
+    .card-front span, .card-back span {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .secondary-nav-container {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-item {
+        height: 100px;
+    }
+}

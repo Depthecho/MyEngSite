@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mainpage.apps.MainpageConfig',
-    'profilepage.apps.ProfilepageConfig'
+    'profilepage.apps.ProfilepageConfig',
+    'cardspage.apps.CardspageConfig',
 ]
 
 MIDDLEWARE = [

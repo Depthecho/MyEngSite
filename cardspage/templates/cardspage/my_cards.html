@@ -1,0 +1,30 @@
+{% extends 'cardspage/cards_base.html' %}
+
+{% block cards_content %}
+<div class="cards-container">
+    <h1>Мои карточки</h1>
+    
+    <div class="cards-grid">
+        {% for card in user_cards %}
+        <div class="card-item" onclick="flipCard(this)">
+            <div class="card-front">
+                <span>{{ card.english_word }}</span>
+            </div>
+            <div class="card-back">
+                <span>{{ card.native_translation }}</span>
+            </div>
+        </div>
+        {% empty %}
+        <p class="no-cards">У вас пока нет карточек. Добавьте первую!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function flipCard(element) {
+        element.classList.toggle('flipped');
+    }
+</script>
+{% endblock %}
