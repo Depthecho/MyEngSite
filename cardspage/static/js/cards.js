@@ -20,3 +20,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+    document.getElementById('addAnother').addEventListener('click', function() {
+        const form = document.querySelector('.card-form');
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'add_another';
+        hiddenInput.value = '1';
+        form.appendChild(hiddenInput);
+        form.submit();
+    });
+
+    function flipMiniCard(element) {
+        element.querySelector('.mini-card-inner').classList.toggle('flipped');
+    }

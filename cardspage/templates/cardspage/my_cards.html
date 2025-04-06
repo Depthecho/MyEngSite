@@ -2,7 +2,7 @@
 
 {% block cards_content %}
 <div class="cards-container">
-    <h1>Мои карточки</h1>
+    <h1>My cards</h1>
     
     <div class="cards-grid">
         {% for card in user_cards %}
@@ -15,7 +15,7 @@
             </div>
         </div>
         {% empty %}
-        <p class="no-cards">У вас пока нет карточек. Добавьте первую!</p>
+        <p class="no-cards">You do not have any cards. Add the first one!</p>
         {% endfor %}
     </div>
 </div>

@@ -1,0 +1,98 @@
+{% extends 'cardspage/cards_base.html' %}
+{% load static %}
+
+{% block title %}Add card | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'style/add_cards.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<!-- Второй навбар -->
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'my_cards' %}" class="secondary-nav-link">
+            <i class="fas fa-layer-group"></i> My cards
+        </a>
+        <a href="{% url 'add_cards' %}" class="secondary-nav-link active">
+            <i class="fas fa-plus-circle"></i> Add cards
+        </a>
+        <a href="#" class="secondary-nav-link disabled">
+            <i class="fas fa-question-circle"></i> Quiz
+        </a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="cards-content-wrapper">
+        <h2 class="section-title">Add new card</h2>
+        
+        <form method="post" class="card-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="id_english_word">
+                    <i class="fas fa-language"></i> English word
+                </label>
+                {{ form.english_word }}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_native_translation">
+                    <i class="fas fa-exchange-alt"></i> Translation
+                </label>
+                {{ form.native_translation }}
+            </div>
+            
+            <div class="form-group">
+                <label for="id_category">
+                    <i class="fas fa-tag"></i> Category (Optional)
+                </label>
+                {{ form.category }}
+            </div>
+            
+            <div class="form-actions">
+    <button type="submit" class="cta-button primary">
+        <i class="fas fa-save"></i> Save card
+    </button>
+    <button type="button" class="cta-button secondary" id="addAnother">
+        <i class="fas fa-plus-circle"></i> Save and add another one
+    </button>
+</div>
+        </form>
+        
+        <div class="recent-cards">
+            <h3 class="section-subtitle">Last added cards:</h3>
+            <div class="mini-cards-grid">
+                {% for card in recent_cards %}
+                <div class="mini-card" onclick="flipMiniCard(this)">
+                    <div class="mini-card-inner">
+                        <div class="mini-card-front">
+                            {{ card.english_word|truncatechars:15 }}
+                        </div>
+                        <div class="mini-card-back">
+                            {{ card.native_translation|truncatechars:15 }}
+                        </div>
+                    </div>
+                    <div class="mini-card-actions">
+                        <a href="#" class="mini-card-edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="no-cards-notice">U have not added cards yet</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="{% static 'js/cards.js' %}"></script>
+{% endblock %}
