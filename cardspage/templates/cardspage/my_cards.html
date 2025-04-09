@@ -1,22 +1,38 @@
 {% extends 'cardspage/cards_base.html' %}
+{% load static %}
+
+{% block title %}My Cards | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/cards.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
 
 {% block cards_content %}
-<div class="cards-container">
-    <h1>My cards</h1>
-    
-    <div class="cards-grid">
-        {% for card in user_cards %}
-        <div class="card-item" onclick="flipCard(this)">
-            <div class="card-front">
-                <span>{{ card.english_word }}</span>
+<div class="main-container">
+    <div class="cards-content-wrapper">
+        <h1 class="section-title">My Cards</h1>
+
+        <div class="cards-grid">
+            {% for card in user_cards %}
+            <div class="card-item" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <span>{{ card.english_word }}</span>
+                    </div>
+                    <div class="card-back">
+                        <span>{{ card.native_translation }}</span>
+                    </div>
+                </div>
             </div>
-            <div class="card-back">
-                <span>{{ card.native_translation }}</span>
+            {% empty %}
+            <div class="no-cards-message">
+                <i class="fas fa-inbox"></i>
+                <p>You don't have any cards yet. Add the first one!</p>
             </div>
+            {% endfor %}
         </div>
-        {% empty %}
-        <p class="no-cards">You do not have any cards. Add the first one!</p>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
@@ -24,7 +40,15 @@
 {% block extra_js %}
 <script>
     function flipCard(element) {
-        element.classList.toggle('flipped');
+        if (!event.target.closest('.card-edit-btn')) {
+            element.classList.toggle('flipped');
+        }
     }
+
+    document.querySelectorAll('.card-edit-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
 </script>
 {% endblock %}

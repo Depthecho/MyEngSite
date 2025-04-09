@@ -44,3 +44,14 @@ def edit_card(request, card_id):
         'form': form,
         'card': card
     })
+
+
+@login_required
+def delete_card(request, card_id):
+    if request.method == 'POST':
+        CardService.delete_card(card_id, request.user)
+        return redirect('my_cards')
+
+    # Для GET запроса показываем подтверждение удаления
+    card = get_object_or_404(Card, id=card_id, user=request.user)
+    return render(request, 'cardspage/confirm_card_delete.html', {'card': card})
