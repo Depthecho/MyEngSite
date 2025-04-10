@@ -1,13 +1,6 @@
 {% extends 'cardspage/cards_base.html' %}
-{% load static %}
 
 {% block title %}My Cards | ExdiEngSite{% endblock %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'style/cards.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-{% endblock %}
 
 {% block cards_content %}
 <div class="main-container">
@@ -23,6 +16,16 @@
                     </div>
                     <div class="card-back">
                         <span>{{ card.native_translation }}</span>
+                    </div>
+
+                    <!-- Редактирование и удаление карточки -->
+                    <div class="card-actions">
+                        <a href="{% url 'edit_card' card.id %}" class="card-edit-btn" title="Edit">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a href="{% url 'delete_card' card.id %}" class="card-delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this card?');">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -40,12 +43,12 @@
 {% block extra_js %}
 <script>
     function flipCard(element) {
-        if (!event.target.closest('.card-edit-btn')) {
+        if (!event.target.closest('.card-edit-btn') && !event.target.closest('.card-delete-btn')) {
             element.classList.toggle('flipped');
         }
     }
 
-    document.querySelectorAll('.card-edit-btn').forEach(btn => {
+    document.querySelectorAll('.card-edit-btn, .card-delete-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
         });
