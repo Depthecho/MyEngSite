@@ -1,0 +1,94 @@
+{% extends 'cardspage/cards_base.html' %}
+{% load static %}
+{% load quiz_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'style/cards.css' %}">
+<link rel="stylesheet" href="{% static 'style/quiz.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<!-- Второй навбар -->
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'my_cards' %}" class="secondary-nav-link">
+            <i class="fas fa-layer-group"></i> My cards
+        </a>
+        <a href="{% url 'add_cards' %}" class="secondary-nav-link">
+            <i class="fas fa-plus-circle"></i> Add cards
+        </a>
+        <a href="#" class="secondary-nav-link active">
+            <i class="fas fa-question-circle"></i> Quiz
+        </a>
+    </div>
+</div>
+
+<div class="quiz-start-container">
+    <h1 class="quiz-start-title">Start Quiz</h1>
+
+    <form method="get" action="{% url 'quiz' %}">
+        <div class="quiz-form-group">
+            <label class="quiz-form-label">Translation Direction:</label>
+            <div class="quiz-radio-group">
+                <label class="quiz-radio-label">
+                    <input type="radio" name="direction" value="en_to_native" checked>
+                    English → Native
+                </label>
+                <label class="quiz-radio-label">
+                    <input type="radio" name="direction" value="native_to_en">
+                    Native → English
+                </label>
+            </div>
+        </div>
+
+        <div class="quiz-form-group">
+            <label for="category" class="quiz-form-label">Category (optional):</label>
+            <select name="category" id="category" class="quiz-select">
+                <option value="">All Categories</option>
+                {% for category in categories %}
+                <option value="{{ category }}">{{ category }} ({{ card_counts.by_category|get_item:category }} cards)</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="quiz-form-group">
+            <label class="quiz-form-label">Number of questions:</label>
+            <div class="quiz-radio-group">
+                <label class="quiz-radio-label">
+                    <input type="radio" name="limit" value="10" checked>
+                    10
+                </label>
+                <label class="quiz-radio-label">
+                    <input type="radio" name="limit" value="25">
+                    25
+                </label>
+                <label class="quiz-radio-label">
+                    <input type="radio" name="limit" value="50">
+                    50
+                </label>
+                <label class="quiz-radio-label">
+                    <input type="radio" name="limit" value="all">
+                    All available
+                </label>
+            </div>
+            <div class="quiz-count-info">
+                {% if card_counts.total > 0 %}
+                    You have {{ card_counts.total }} cards total
+                    {% if categories %}and {{ card_counts.by_category|length }} categories{% endif %}
+                {% else %}
+                    You don't have any cards yet. Please add some first.
+                {% endif %}
+            </div>
+        </div>
+
+        <button type="submit" class="quiz-submit-btn" {% if card_counts.total == 0 %}disabled{% endif %}>
+            Start Quiz
+        </button>
+    </form>
+</div>
+
+{% include 'mainpage/footer.html' %}
+{% endblock %}

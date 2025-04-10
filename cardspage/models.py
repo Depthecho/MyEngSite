@@ -10,3 +10,8 @@ class Card(models.Model):
 
     def __str__(self):
         return f"{self.english_word} -> {self.native_translation}"
+
+    @classmethod
+    def get_user_categories(cls, user):
+        return cls.objects.filter(user=user).exclude(category__isnull=True).values_list('category',
+                                                                                        flat=True).distinct()

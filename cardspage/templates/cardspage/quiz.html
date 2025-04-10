@@ -1,0 +1,56 @@
+{% extends 'cardspage/cards_base.html' %}
+{% load static %}
+{% load quiz_tags %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'style/cards.css' %}">
+<link rel="stylesheet" href="{% static 'style/quiz.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<!-- Второй навбар -->
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'my_cards' %}" class="secondary-nav-link">
+            <i class="fas fa-layer-group"></i> My cards
+        </a>
+        <a href="{% url 'add_cards' %}" class="secondary-nav-link">
+            <i class="fas fa-plus-circle"></i> Add cards
+        </a>
+        <a href="#" class="secondary-nav-link active">
+            <i class="fas fa-question-circle"></i> Quiz
+        </a>
+    </div>
+</div>
+
+<div class="quiz-container">
+    <h1 class="quiz-title">Quiz</h1>
+
+    <form method="post" action="{% url 'quiz_results' %}">
+        {% csrf_token %}
+
+        {% for question in questions %}
+        <div class="quiz-question">
+            <h3 class="quiz-question-text">Question {{ forloop.counter }}: {{ question.question }}</h3>
+
+            <input type="hidden" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}">
+
+            <div class="quiz-answers-grid">
+                {% for answer in question.answers %}
+                <label class="quiz-answer-label">
+                    <input type="radio" name="question_{{ question.id }}" value="{{ answer }}" required class="quiz-answer-input">
+                    {{ answer }}
+                </label>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="quiz-submit-btn">Submit Answers</button>
+    </form>
+</div>
+{% include 'mainpage/footer.html' %}
+{% endblock %}

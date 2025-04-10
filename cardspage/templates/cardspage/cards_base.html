@@ -20,7 +20,7 @@
         <a href="{% url 'add_cards' %}" class="secondary-nav-link {% if request.path == '/add-cards/' %}active{% endif %}">
             <i class="fas fa-plus-circle"></i> Add cards
         </a>
-        <a href="#" class="secondary-nav-link disabled">
+        <a href="{% url 'quiz_start' %}" class="secondary-nav-link {% if '/quiz/' in request.path %}active{% endif %}">
             <i class="fas fa-question-circle"></i> Quiz
         </a>
     </div>
