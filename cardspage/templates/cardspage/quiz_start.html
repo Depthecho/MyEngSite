@@ -32,48 +32,54 @@
     <form method="get" action="{% url 'quiz' %}">
         <div class="quiz-form-group">
             <label class="quiz-form-label">Translation Direction:</label>
-            <div class="quiz-radio-group">
-                <label class="quiz-radio-label">
-                    <input type="radio" name="direction" value="en_to_native" checked>
-                    English → Native
-                </label>
-                <label class="quiz-radio-label">
-                    <input type="radio" name="direction" value="native_to_en">
-                    Native → English
-                </label>
-            </div>
+           <div class="quiz-radio-group">
+    <label class="quiz-radio-container">
+        <input type="radio" name="direction" value="en_to_native" checked>
+        <span class="radio-btn"></span>
+        English → Native
+    </label>
+    <label class="quiz-radio-container">
+        <input type="radio" name="direction" value="native_to_en">
+        <span class="radio-btn"></span>
+        Native → English
+    </label>
+</div>
         </div>
 
         <div class="quiz-form-group">
-            <label for="category" class="quiz-form-label">Category (optional):</label>
-            <select name="category" id="category" class="quiz-select">
-                <option value="">All Categories</option>
-                {% for category in categories %}
-                <option value="{{ category }}">{{ category }} ({{ card_counts.by_category|get_item:category }} cards)</option>
-                {% endfor %}
-            </select>
-        </div>
+    <label for="category" class="quiz-form-label">Category (optional):</label>
+    <select name="category" id="category" class="quiz-select">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+        <option value="{{ category }}">{{ category }} ({{ card_counts.by_category|get_item:category }} cards)</option>
+        {% endfor %}
+    </select>
+</div>
 
         <div class="quiz-form-group">
             <label class="quiz-form-label">Number of questions:</label>
-            <div class="quiz-radio-group">
-                <label class="quiz-radio-label">
-                    <input type="radio" name="limit" value="10" checked>
-                    10
-                </label>
-                <label class="quiz-radio-label">
-                    <input type="radio" name="limit" value="25">
-                    25
-                </label>
-                <label class="quiz-radio-label">
-                    <input type="radio" name="limit" value="50">
-                    50
-                </label>
-                <label class="quiz-radio-label">
-                    <input type="radio" name="limit" value="all">
-                    All available
-                </label>
-            </div>
+           <div class="quiz-radio-group">
+    <label class="quiz-radio-container">
+        <input type="radio" name="limit" value="10" checked>
+        <span class="radio-btn"></span>
+        10
+    </label>
+    <label class="quiz-radio-container">
+        <input type="radio" name="limit" value="25">
+        <span class="radio-btn"></span>
+        25
+    </label>
+    <label class="quiz-radio-container">
+        <input type="radio" name="limit" value="50">
+        <span class="radio-btn"></span>
+        50
+    </label>
+    <label class="quiz-radio-container">
+        <input type="radio" name="limit" value="all">
+        <span class="radio-btn"></span>
+        All available
+    </label>
+</div>
             <div class="quiz-count-info">
                 {% if card_counts.total > 0 %}
                     You have {{ card_counts.total }} cards total

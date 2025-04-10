@@ -28,9 +28,9 @@
 }
 
 .quiz-radio-group {
-    display: flex;
-    gap: 1.5rem;
-    margin: 1rem 0;
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
 }
 
 .quiz-radio-label {
@@ -55,8 +55,8 @@
     display: block;
     width: 100%;
     padding: 1rem;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: white;
+    background: #ffcc00;
+    color: #6a11cb;
     border: none;
     border-radius: 8px;
     font-size: 1.1rem;
@@ -256,4 +256,332 @@
     .quiz-radio-group.columns {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 10px
+}
+
+/* Эффект при наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(106, 17, 203, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.4s ease;
+    margin-left: -25px;
+}
+
+.quiz-radio-container input{
+    text-decoration: none
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 6px rgba(106, 17, 203, 0.8);
+    text-decoration: none
+}
+
+/* Состояние фокуса на радио-кнопке */
+.quiz-radio-container input:focus + .radio-btn {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.8);
+}
+
+/* Состояние фокуса */
+.quiz-radio-container input:focus + .radio-btn {
+    border-color: #2575fc;
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+    background-size: 200% 200%;
+    background-position: 100% 100%;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background-position: 0% 0%;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+/* При активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Состояние фокуса */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.8);
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(38, 117, 252, 0.5);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #6a11cb;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.7);
+}
+
+/* Визуальные эффекты при фокусе */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    list-style-type: none;  /* Убираем маркеры */
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(38, 117, 252, 0.5);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #6a11cb;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.7);
+}
+
+/* Визуальные эффекты при фокусе */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.quiz-radio-container input[type="radio"] {
+    list-style-type: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.quiz-select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #6a11cb;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.quiz-select:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.quiz-select option {
+    background: #9e98e8;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.quiz-select option:hover {
+    background: #6a11cb;
+    color: #fff;
 }
