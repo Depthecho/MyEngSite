@@ -29,8 +29,8 @@ def add_cards(request):
 
 
 @login_required
-def edit_card(request, card_id):
-    card = get_object_or_404(Card, id=card_id, user=request.user)
+def edit_card(request, user_card_id):
+    card = get_object_or_404(Card, user=request.user, user_card_id=user_card_id)
 
     if request.method == 'POST':
         form = CardForm(request.POST, instance=card)
@@ -47,13 +47,12 @@ def edit_card(request, card_id):
 
 
 @login_required
-def delete_card(request, card_id):
+def delete_card(request, user_card_id):
     if request.method == 'POST':
-        CardService.delete_card(card_id, request.user)
+        CardService.delete_card(user_card_id, request.user)
         return redirect('my_cards')
 
-    # Для GET запроса показываем подтверждение удаления
-    card = get_object_or_404(Card, id=card_id, user=request.user)
+    card = get_object_or_404(Card, user=request.user, user_card_id=user_card_id)
     return render(request, 'cardspage/confirm_card_delete.html', {'card': card})
 
 @login_required

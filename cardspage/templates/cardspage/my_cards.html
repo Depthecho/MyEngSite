@@ -20,10 +20,10 @@
 
                     <!-- Редактирование и удаление карточки -->
                     <div class="card-actions">
-                        <a href="{% url 'edit_card' card.id %}" class="card-edit-btn" title="Edit">
+                        <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{% url 'delete_card' card.id %}" class="card-delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this card?');">
+                        <a href="{% url 'delete_card' card.user_card_id %}" class="card-delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this card?');">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
