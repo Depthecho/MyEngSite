@@ -585,3 +585,26 @@
     background: #6a11cb;
     color: #fff;
 }
+
+.quiz-input {
+    width: 95%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #6a11cb;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.quiz-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.quiz-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(38, 117, 252, 0.5);
+}

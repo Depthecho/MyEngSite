@@ -74,8 +74,9 @@ def quiz_start(request):
 def quiz(request):
     if request.method == 'GET':
         direction = request.GET.get('direction', 'en_to_native')
-        category = request.GET.get('category', None)
-        limit = request.GET.get('limit', None)
+        category = request.GET.get('category')
+        mode = request.GET.get('mode', 'multiple_choice')
+        limit = request.GET.get('limit')
 
         try:
             limit = int(limit) if limit and limit != 'all' else None
@@ -93,30 +94,35 @@ def quiz(request):
             'questions': questions,
             'direction': direction,
             'category': category,
-            'limit': limit
+            'limit': limit,
+            'mode': mode
         })
     return redirect('quiz_start')
 
 
+@login_required
 @login_required
 def quiz_results(request):
     if request.method == 'POST':
         answers = {}
         correct = 0
         total = 0
+        mode = request.POST.get('mode', 'multiple_choice')
 
         for key, value in request.POST.items():
             if key.startswith('question_'):
                 question_id = key.split('_')[1]
                 correct_answer = request.POST.get(f'correct_answer_{question_id}')
 
+                is_correct = value.strip().lower() == correct_answer.strip().lower() if mode == 'spelling' else value == correct_answer
+
                 answers[question_id] = {
                     'user_answer': value,
                     'correct_answer': correct_answer,
-                    'is_correct': value == correct_answer
+                    'is_correct': is_correct
                 }
 
-                if value == correct_answer:
+                if is_correct:
                     correct += 1
                 total += 1
 
@@ -124,6 +130,8 @@ def quiz_results(request):
             'answers': answers,
             'correct': correct,
             'total': total,
+            'mode': mode,
             'percentage': round((correct / total) * 100) if total > 0 else 0
         })
+
     return redirect('quiz_start')

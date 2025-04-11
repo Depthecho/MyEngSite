@@ -28,7 +28,7 @@ class CardService:
         card.delete()
 
     @staticmethod
-    def get_quiz_questions(user, category=None, direction='en_to_native', limit=None):
+    def get_quiz_questions(user, category=None, direction='en_to_native', limit=None, mode='multiple_choice'):
         queryset = Card.objects.filter(user=user)
         if category:
             queryset = queryset.filter(category=category)
@@ -48,22 +48,30 @@ class CardService:
                 question = card.native_translation
                 correct_answer = card.english_word
 
-            wrong_answers = [
-                c.native_translation if direction == 'en_to_native' else c.english_word
-                for c in random.sample(
-                    [c for c in cards if c != card],
-                    min(3, len(cards) - 1)
-                )
-            ]
+            if mode == 'spelling':
+                # В spelling нет неправильных вариантов, только вопрос и правильный ответ
+                questions.append({
+                    'id': card.id,
+                    'question': question,
+                    'correct_answer': correct_answer
+                })
+            else:
+                # multiple choice
+                wrong_answers = [
+                    c.native_translation if direction == 'en_to_native' else c.english_word
+                    for c in random.sample(
+                        [c for c in cards if c != card],
+                        min(3, len(cards) - 1)
+                    )
+                ]
+                all_answers = wrong_answers + [correct_answer]
+                random.shuffle(all_answers)
 
-            all_answers = wrong_answers + [correct_answer]
-            random.shuffle(all_answers)
-
-            questions.append({
-                'id': card.id,
-                'question': question,
-                'answers': all_answers,
-                'correct_answer': correct_answer
-            })
+                questions.append({
+                    'id': card.id,
+                    'question': question,
+                    'answers': all_answers,
+                    'correct_answer': correct_answer
+                })
 
         return questions

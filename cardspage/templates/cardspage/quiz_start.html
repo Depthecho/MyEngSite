@@ -89,6 +89,22 @@
                 {% endif %}
             </div>
         </div>
+        <div class="quiz-form-group">
+    <label class="quiz-form-label">Quiz mode:</label>
+    <div class="quiz-radio-group">
+        <label class="quiz-radio-container">
+            <input type="radio" name="mode" value="multiple_choice" checked>
+            <span class="radio-btn"></span>
+            Multiple choice
+        </label>
+        <label class="quiz-radio-container">
+            <input type="radio" name="mode" value="spelling">
+            <span class="radio-btn"></span>
+            Spelling
+        </label>
+    </div>
+</div>
+
 
         <button type="submit" class="quiz-submit-btn" {% if card_counts.total == 0 %}disabled{% endif %}>
             Start Quiz

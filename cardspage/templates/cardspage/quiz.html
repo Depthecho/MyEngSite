@@ -31,6 +31,7 @@
 
     <form method="post" action="{% url 'quiz_results' %}">
         {% csrf_token %}
+        <input type="hidden" name="mode" value="{{ mode }}">
 
         {% for question in questions %}
         <div class="quiz-question">
@@ -38,19 +39,24 @@
 
             <input type="hidden" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}">
 
-            <div class="quiz-answers-grid">
-                {% for answer in question.answers %}
-                <label class="quiz-answer-label">
-                    <input type="radio" name="question_{{ question.id }}" value="{{ answer }}" required class="quiz-answer-input">
-                    {{ answer }}
-                </label>
-                {% endfor %}
-            </div>
+            {% if mode == "spelling" %}
+                <input type="text" name="question_{{ question.id }}" class="quiz-input" required>
+            {% else %}
+                <div class="quiz-answers-grid">
+                    {% for answer in question.answers %}
+                    <label class="quiz-answer-label">
+                        <input type="radio" name="question_{{ question.id }}" value="{{ answer }}" required class="quiz-answer-input">
+                        {{ answer }}
+                    </label>
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
         {% endfor %}
 
         <button type="submit" class="quiz-submit-btn">Submit Answers</button>
     </form>
 </div>
+
 {% include 'mainpage/footer.html' %}
 {% endblock %}
