@@ -9,9 +9,21 @@
         <span>My Cards</span>
     </nav>
 
-
     <div class="cards-content-wrapper">
         <h1 class="section-title">My Cards</h1>
+
+        <!-- Уведомления -->
+        {% if messages %}
+        <div class="notification-container">
+            {% for message in messages %}
+            <div class="notification {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+                <button class="notification-close">&times;</button>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
         <!-- Элементы управления с подсказками -->
         <div class="cards-controls-wrapper">
             <!-- Фильтрация по буквам -->
@@ -91,10 +103,18 @@
                         <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit card">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{% url 'delete_card' card.user_card_id %}" class="card-delete-btn" title="Delete card"
-                           onclick="return confirmDelete(event, '{{ card.english_word|escapejs }}')">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
+                        <form method="post" action="{% url 'delete_card' card.user_card_id %}" class="delete-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="letter" value="{{ active_letter }}">
+                            <input type="hidden" name="sort" value="{{ sort_order }}">
+                            <input type="hidden" name="category" value="{{ active_category|default:'' }}">
+                            <input type="hidden" name="per_page" value="{{ per_page }}">
+                            <input type="hidden" name="page" value="{{ page_obj.number }}">
+                            <button type="submit" class="card-delete-btn" title="Delete card"
+                                    onclick="return confirm('Are you sure you want to delete \'{{ card.english_word }}\'?')">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -147,23 +167,23 @@
 
 {% block extra_js %}
 <script>
+    // Функция для переворота карточки
     function flipCard(element) {
-        if (!event.target.closest('.card-edit-btn') && !event.target.closest('.card-delete-btn')) {
+        if (!event.target.closest('.card-edit-btn') &&
+            !event.target.closest('.card-delete-btn') &&
+            !event.target.closest('.delete-form')) {
             element.classList.toggle('flipped');
         }
     }
 
-    function confirmDelete(event, cardName) {
-        event.stopPropagation();
-        return confirm(`Are you sure you want to delete the card "${cardName}"?`);
-    }
-
-    document.querySelectorAll('.card-edit-btn, .card-delete-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
+    // Закрытие уведомлений
+    document.querySelectorAll('.notification-close').forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.parentElement.style.display = 'none';
         });
     });
 
+    // Кнопка "Наверх"
     const backToTopButton = document.getElementById('back-to-top');
     window.addEventListener('scroll', () => {
         if (window.pageYOffset > 300) {
@@ -177,6 +197,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Индикатор загрузки для ссылок
     document.addEventListener('DOMContentLoaded', function() {
         const links = document.querySelectorAll('a[href^="?"], a.pagination-link');
         const loadingIndicator = document.getElementById('loading-indicator');

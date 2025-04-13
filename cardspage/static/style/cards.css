@@ -899,3 +899,53 @@ body {
         height: 80px;
     }
 }
+
+/* Стили для уведомлений */
+.notification-container {
+    margin-bottom: 20px;
+}
+
+.notification {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+    border: 1px solid #d6e9c6;
+}
+
+.notification.error {
+    background-color: #f2dede;
+    color: #a94442;
+    border: 1px solid #ebccd1;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0 0 10px;
+}
+
+/* Стили для формы удаления */
+.delete-form {
+    display: inline;
+}
+
+.card-delete-btn {
+    border: none;
+}
+
+.card-delete-btn:hover {
+    color: White;
+    cursor: pointer
+}
+
+/* Остальные существующие стили остаются без изменений */

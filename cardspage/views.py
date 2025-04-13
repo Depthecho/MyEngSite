@@ -1,5 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
+
 from .models import Card
 from .forms import CardForm
 from .services import CardQueryService, CardCRUDService, QuizService
@@ -42,12 +45,37 @@ def edit_card(request, user_card_id):
 
 @login_required
 def delete_card(request, user_card_id):
-    if request.method == 'POST':
-        CardCRUDService.delete_card(user_card_id, request.user)
-        return redirect('my_cards')
+    # Получаем все параметры фильтрации из запроса
+    params = {
+        'letter': request.GET.get('letter', ''),
+        'sort': request.GET.get('sort', 'newest'),
+        'category': request.GET.get('category', ''),
+        'per_page': request.GET.get('per_page', '16'),
+        'page': request.GET.get('page', '1')
+    }
 
-    card = get_object_or_404(Card, user=request.user, user_card_id=user_card_id)
-    return render(request, 'cardspage/confirm_card_delete.html', {'card': card})
+    # Удаляем карточку
+    result = CardCRUDService.delete_card(user_card_id, request.user)
+
+    # Формируем URL для редиректа с сохранением параметров
+    redirect_url = reverse('my_cards')
+    query_params = []
+
+    if params['letter']:
+        query_params.append(f"letter={params['letter']}")
+    if params['sort']:
+        query_params.append(f"sort={params['sort']}")
+    if params['category']:
+        query_params.append(f"category={params['category']}")
+    if params['per_page']:
+        query_params.append(f"per_page={params['per_page']}")
+    if params['page']:
+        query_params.append(f"page={params['page']}")
+
+    if query_params:
+        redirect_url += f"?{'&'.join(query_params)}"
+
+    return redirect(redirect_url)
 
 
 @login_required

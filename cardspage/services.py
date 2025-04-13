@@ -90,11 +90,15 @@ class CardCRUDService:
         form.save()
 
     @staticmethod
-    def delete_card(card_id, user):
-        card = Card.objects.filter(id=card_id, user=user).first()
-        if not card:
-            raise PermissionDenied("Card not found or permission denied")
-        card.delete()
+    def delete_card(user_card_id, user):
+        try:
+            card = Card.objects.get(user_card_id=user_card_id, user=user)
+            card.delete()
+            return True
+        except Card.DoesNotExist:
+            return False
+        except Exception:
+            return False
 
 
 class QuestionBuilder:
