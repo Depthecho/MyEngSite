@@ -5,21 +5,59 @@ import random
 from .models import Card
 
 
+class CardFilterService:
+    @staticmethod
+    def apply_filters(queryset, filters):
+        """Применяет все фильтры к queryset"""
+        queryset = CardFilterService._apply_letter_filter(queryset, filters.get('letter'))
+        queryset = CardFilterService._apply_category_filter(queryset, filters.get('category'))
+        queryset = CardFilterService._apply_sort(queryset, filters.get('sort'))
+        return queryset
+
+    @staticmethod
+    def _apply_letter_filter(queryset, letter):
+        if letter and letter.lower() != 'all':
+            return queryset.filter(english_word__istartswith=letter)
+        return queryset
+
+    @staticmethod
+    def _apply_category_filter(queryset, category):
+        if category:
+            if category == 'uncategorized':
+                return queryset.filter(category__isnull=True)
+            return queryset.filter(category=category)
+        return queryset
+
+    @staticmethod
+    def _apply_sort(queryset, sort):
+        if sort == 'oldest':
+            return queryset.order_by('created_at')
+        return queryset.order_by('-created_at')
+
+
 class CardQueryService:
     @staticmethod
     def get_user_cards(user, **filters):
+        """Основной метод для получения карточек с фильтрами"""
         queryset = Card.objects.filter(user=user)
-        return CardQueryService._apply_filters(queryset, **filters)
+        return CardFilterService.apply_filters(queryset, filters)
 
     @staticmethod
     def get_recent_cards(user, limit=12):
-        return CardQueryService.get_user_cards(user, sort='newest', limit=limit)
+        return CardQueryService.get_user_cards(user, sort='newest')[:limit]
+
+    @staticmethod
+    def get_user_categories(user):
+        return Card.objects.filter(user=user).exclude(
+            category__isnull=True
+        ).order_by('category').values_list('category', flat=True).distinct()
 
     @staticmethod
     def build_my_cards_context(user, get_params):
         params = {
             'letter': get_params.get('letter', '').upper(),
             'sort': get_params.get('sort', 'newest'),
+            'category': get_params.get('category'),
             'per_page': int(get_params.get('per_page', 16)),
             'page_number': get_params.get('page', 1)
         }
@@ -31,22 +69,12 @@ class CardQueryService:
         return {
             'page_obj': page_obj,
             'active_letter': params['letter'],
+            'active_category': params['category'],
             'sort_order': params['sort'],
             'per_page': params['per_page'],
-            'letters': [chr(i) for i in range(65, 91)] + ['ALL']
+            'letters': [chr(i) for i in range(65, 91)] + ['ALL'],
+            'categories': CardQueryService.get_user_categories(user)
         }
-
-    @staticmethod
-    def _apply_filters(queryset, letter=None, sort='newest', **kwargs):
-        if letter and letter.lower() != 'all':
-            queryset = queryset.filter(english_word__istartswith=letter)
-
-        if sort == 'oldest':
-            queryset = queryset.order_by('created_at')
-        else:
-            queryset = queryset.order_by('-created_at')
-
-        return queryset
 
 
 class CardCRUDService:
@@ -58,11 +86,49 @@ class CardCRUDService:
         return card
 
     @staticmethod
+    def update_card(form):
+        form.save()
+
+    @staticmethod
     def delete_card(card_id, user):
         card = Card.objects.filter(id=card_id, user=user).first()
         if not card:
             raise PermissionDenied("Card not found or permission denied")
         card.delete()
+
+
+class QuestionBuilder:
+    @staticmethod
+    def create_question(card, direction, mode, all_cards):
+        question, correct_answer = QuestionBuilder._get_question_data(card, direction)
+
+        if mode == 'spelling':
+            return {
+                'id': card.id,
+                'question': question,
+                'correct_answer': correct_answer
+            }
+
+        wrong_answers = QuestionBuilder._get_wrong_answers(card, direction, all_cards)
+        return {
+            'id': card.id,
+            'question': question,
+            'answers': random.sample(wrong_answers + [correct_answer], len(wrong_answers) + 1),
+            'correct_answer': correct_answer
+        }
+
+    @staticmethod
+    def _get_question_data(card, direction):
+        if direction == 'en_to_native':
+            return (card.english_word, card.native_translation)
+        return (card.native_translation, card.english_word)
+
+    @staticmethod
+    def _get_wrong_answers(card, direction, all_cards):
+        return [
+            c.native_translation if direction == 'en_to_native' else c.english_word
+            for c in random.sample([c for c in all_cards if c != card], min(3, len(all_cards) - 1))
+        ]
 
 
 class QuizService:
@@ -139,37 +205,9 @@ class QuizService:
         cards = cards[:limit] if limit else cards
 
         return [
-            QuizService._create_question(card, direction, mode, cards)
+            QuestionBuilder.create_question(card, direction, mode, cards)
             for card in cards
         ]
-
-    @staticmethod
-    def _create_question(card, direction, mode, all_cards):
-        if direction == 'en_to_native':
-            question = card.english_word
-            correct_answer = card.native_translation
-        else:
-            question = card.native_translation
-            correct_answer = card.english_word
-
-        if mode == 'spelling':
-            return {
-                'id': card.id,
-                'question': question,
-                'correct_answer': correct_answer
-            }
-
-        wrong_answers = [
-            c.native_translation if direction == 'en_to_native' else c.english_word
-            for c in random.sample([c for c in all_cards if c != card], min(3, len(all_cards) - 1))
-        ]
-
-        return {
-            'id': card.id,
-            'question': question,
-            'answers': random.sample(wrong_answers + [correct_answer], len(wrong_answers) + 1),
-            'correct_answer': correct_answer
-        }
 
     @staticmethod
     def _check_answer(user_answer, correct_answer, mode):

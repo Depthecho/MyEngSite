@@ -20,11 +20,9 @@ def add_cards(request):
             return redirect('add_cards' if 'add_another' in request.POST else 'my_cards')
 
     form = form if request.method == 'POST' else CardForm()
-    recent_cards = CardQueryService.get_recent_cards(request.user, limit=12)
-
     return render(request, 'cardspage/add_cards.html', {
         'form': form,
-        'recent_cards': recent_cards
+        'recent_cards': CardQueryService.get_recent_cards(request.user)
     })
 
 
@@ -35,11 +33,10 @@ def edit_card(request, user_card_id):
     if request.method == 'POST':
         form = CardForm(request.POST, instance=card)
         if form.is_valid():
-            form.save()
+            CardCRUDService.update_card(form)
             return redirect('my_cards')
-    else:
-        form = CardForm(instance=card)
 
+    form = CardForm(instance=card)
     return render(request, 'cardspage/edit_card.html', {'form': form, 'card': card})
 
 

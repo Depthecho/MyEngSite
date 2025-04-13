@@ -4,57 +4,95 @@
 
 {% block cards_content %}
 <div class="main-container">
+    <nav class="breadcrumbs">
+        <a href="{% url 'home' %}">Home</a> &raquo;
+        <span>My Cards</span>
+    </nav>
+
     <h1 class="section-title">My Cards</h1>
 
     <div class="cards-content-wrapper">
-        <div class="cards-controls">
-            <div class="alphabet-filter">
+        <!-- Элементы управления с подсказками -->
+        <div class="cards-controls-wrapper">
+            <!-- Фильтрация по буквам -->
+            <div class="alphabet-filter" title="Filter by first letter">
                 {% for letter in letters %}
-                    <a href="?letter={{ letter }}&sort={{ sort_order }}&per_page={{ per_page }}"
-                       class="alphabet-letter {% if active_letter == letter %}active{% endif %}">
+                    <a href="?letter={{ letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                       class="alphabet-letter {% if active_letter == letter %}active{% endif %}"
+                       aria-label="Filter by letter {{ letter }}">
                         {{ letter }}
                     </a>
                 {% endfor %}
             </div>
 
+            <!-- Сортировка и выбор количества -->
             <div class="sorting-options">
-                <a href="?letter={{ active_letter }}&sort=newest&per_page={{ per_page }}"
-                   class="sort-option {% if sort_order == 'newest' %}active{% endif %}">
-                   Newest First
-                </a>
-                <a href="?letter={{ active_letter }}&sort=oldest&per_page={{ per_page }}"
-                   class="sort-option {% if sort_order == 'oldest' %}active{% endif %}">
-                   Oldest First
-                </a>
+                <div class="sorting-group" title="Sort cards by date">
+                    <a href="?letter={{ active_letter }}&sort=newest&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                       class="sort-option {% if sort_order == 'newest' %}active{% endif %}"
+                       aria-label="Sort newest first">
+                       <i class="fas fa-arrow-down"></i> Newest
+                    </a>
+                    <a href="?letter={{ active_letter }}&sort=oldest&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                       class="sort-option {% if sort_order == 'oldest' %}active{% endif %}"
+                       aria-label="Sort oldest first">
+                       <i class="fas fa-arrow-up"></i> Oldest
+                    </a>
+                </div>
 
-                <div class="per-page-selector">
+                <div class="per-page-selector" title="Cards per page">
                     <span>Show:</span>
-                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=16"
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=16{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="per-page-option {% if per_page == 16 %}active{% endif %}">16</a>
-                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=24"
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=24{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="per-page-option {% if per_page == 24 %}active{% endif %}">24</a>
-                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=32"
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=32{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="per-page-option {% if per_page == 32 %}active{% endif %}">32</a>
                 </div>
             </div>
+
+            <!-- Фильтрация по категориям через селект -->
+            <div class="category-select-wrapper" title="Filter by category">
+                <form method="get" id="categoryForm">
+                    <input type="hidden" name="letter" value="{{ active_letter }}">
+                    <input type="hidden" name="sort" value="{{ sort_order }}">
+                    <input type="hidden" name="per_page" value="{{ per_page }}">
+                    <label for="category-select">Category:</label>
+                    <select name="category" id="category-select" onchange="document.getElementById('categoryForm').submit()">
+                        <option value="" {% if not active_category %}selected{% endif %}>All Categories</option>
+                        {% for category in categories %}
+                            <option value="{{ category }}" {% if active_category == category %}selected{% endif %}>{{ category }}</option>
+                        {% endfor %}
+                        <option value="uncategorized" {% if active_category == 'uncategorized' %}selected{% endif %}>Uncategorized</option>
+                    </select>
+                </form>
+            </div>
         </div>
 
+        <!-- Основная сетка карточек -->
         <div class="cards-grid">
             {% for card in page_obj %}
             <div class="card-item" onclick="flipCard(this)">
                 <div class="card-inner">
                     <div class="card-front">
                         <span>{{ card.english_word }}</span>
+                        {% if card.category %}
+                        <span class="card-category">{{ card.category }}</span>
+                        {% endif %}
                     </div>
                     <div class="card-back">
                         <span>{{ card.native_translation }}</span>
+                        {% if card.category %}
+                        <span class="card-category">{{ card.category }}</span>
+                        {% endif %}
                     </div>
 
                     <div class="card-actions">
-                        <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit">
+                        <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit card">
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="{% url 'delete_card' card.user_card_id %}" class="card-delete-btn" title="Delete" onclick="return confirm('Are you sure you want to delete this card?');">
+                        <a href="{% url 'delete_card' card.user_card_id %}" class="card-delete-btn" title="Delete card"
+                           onclick="return confirmDelete(event, '{{ card.english_word|escapejs }}')">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </div>
@@ -63,16 +101,22 @@
             {% empty %}
             <div class="no-cards-message">
                 <i class="fas fa-inbox"></i>
-                <p>You don't have any cards yet. Add the first one!</p>
+                <p>You don't have any cards yet.</p>
+                <a href="{% url 'add_cards' %}" class="btn-add-first-card">
+                    <i class="fas fa-plus"></i> Add your first card
+                </a>
             </div>
             {% endfor %}
         </div>
 
+        <!-- Пагинация -->
         {% if page_obj.paginator.num_pages > 1 %}
         <div class="pagination">
             {% if page_obj.has_previous %}
-                <a href="?page=1&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">previous</a>
+                <a href="?page=1&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                   class="pagination-link" title="First page">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                   class="pagination-link" title="Previous page">previous</a>
             {% endif %}
 
             <span class="current-page">
@@ -80,12 +124,24 @@
             </span>
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                   class="pagination-link" title="Next page">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
+                   class="pagination-link" title="Last page">last &raquo;</a>
             {% endif %}
         </div>
         {% endif %}
+
+        <!-- Кнопка "Наверх" -->
+        <button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </div>
+</div>
+
+<!-- Индикатор загрузки -->
+<div class="loading-overlay" id="loading-indicator">
+    <div class="loading-spinner"></div>
 </div>
 {% endblock %}
 
@@ -97,9 +153,45 @@
         }
     }
 
+    function confirmDelete(event, cardName) {
+        event.stopPropagation();
+        return confirm(`Are you sure you want to delete the card "${cardName}"?`);
+    }
+
     document.querySelectorAll('.card-edit-btn, .card-delete-btn').forEach(btn => {
         btn.addEventListener('click', function(e) {
             e.stopPropagation();
+        });
+    });
+
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('a[href^="?"], a.pagination-link');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                loadingIndicator.style.display = 'flex';
+                setTimeout(() => {
+                    loadingIndicator.style.display = 'none';
+                }, 1000);
+            });
+        });
+
+        window.addEventListener('load', () => {
+            loadingIndicator.style.display = 'none';
         });
     });
 </script>

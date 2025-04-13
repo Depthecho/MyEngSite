@@ -170,7 +170,6 @@ body {
 .card-delete-btn {
     position: absolute;
     top: 10px;
-    right: 10px;
     width: 30px;
     height: 30px;
     background: rgba(255, 255, 255, 0.2);
@@ -213,78 +212,6 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-/* Media Queries for Responsiveness */
-
-/* Tablets and smaller devices */
-@media (max-width: 768px) {
-    .secondary-nav-container {
-        gap: 10px;
-    }
-
-    .secondary-nav-link {
-        font-size: 0.9rem;
-        padding: 5px 10px;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-
-    .card-item {
-        height: 120px;
-    }
-
-    .card-front span, .card-back span {
-        font-size: 1rem;
-    }
-}
-
-/* Mobile Devices */
-@media (max-width: 480px) {
-    .secondary-nav-container {
-        flex-direction: column;
-        gap: 5px;
-        align-items: center;
-    }
-
-    .cards-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .card-item {
-        height: 100px;
-    }
-
-.section-title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-    .section-subtitle {
-        font-size: 1.2rem;
-    }
-
-    .form-group label {
-        font-size: 1rem;
-    }
-
-    .card-form input[type="text"],
-    .card-form select {
-        padding: 12px 15px;
-        font-size: 1rem;
-    }
-
-    .mini-cards-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
-    }
-
-    .mini-card {
-        height: 80px;
-    }
 }
 
 /* Alphabet Filter */
@@ -356,6 +283,10 @@ body {
     font-weight: bold;
 }
 
+.sort-option i {
+    margin-right: 5px;
+}
+
 .per-page-selector {
     display: flex;
     align-items: center;
@@ -413,8 +344,171 @@ body {
     border-radius: 5px;
 }
 
-/* Responsive adjustments */
+/* Хлебные крошки */
+.breadcrumbs {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumbs a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumbs a:hover {
+    opacity: 0.8;
+}
+
+/* Индикатор загрузки */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-spinner {
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 5px solid #ffcc00;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Категория карточки */
+.card-category {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+}
+
+.card-back .card-category {
+    color: rgba(106, 17, 203, 0.7);
+}
+
+/* Кнопка "Наверх" */
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #ffcc00;
+    color: #6a11cb;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+    z-index: 99;
+}
+
+#back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Сообщение "нет карточек" */
+.btn-add-first-card {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ffcc00;
+    color: #6a11cb;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-add-first-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Селектор категории */
+.category-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#category-select {
+    font-size: 14px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+#category-select:hover,
+#category-select:focus {
+    border-color: #ffcc00;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#category-select option {
+    color: #555;
+}
+
+/* Обертка для всех элементов управления */
+.cards-controls-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+/* Media Queries for Responsiveness */
+
+/* Tablets and smaller devices */
 @media (max-width: 768px) {
+    .secondary-nav-container {
+        gap: 10px;
+    }
+
+    .secondary-nav-link {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .card-item {
+        height: 120px;
+    }
+
+    .card-front span, .card-back span {
+        font-size: 1rem;
+    }
+
     .cards-controls {
         flex-direction: column;
         align-items: flex-start;
@@ -430,9 +524,63 @@ body {
         width: 100%;
         justify-content: center;
     }
+
+    .cards-controls-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .pagination {
+        width: 100%;
+        justify-content: flex-start;
+    }
 }
 
+/* Mobile Devices */
 @media (max-width: 480px) {
+    .secondary-nav-container {
+        flex-direction: column;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .card-item {
+        height: 100px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .form-group label {
+        font-size: 1rem;
+    }
+
+    .card-form input[type="text"],
+    .card-form select {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+
+    .mini-cards-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    .mini-card {
+        height: 80px;
+    }
+
     .alphabet-letter {
         width: 28px;
         height: 28px;
@@ -442,5 +590,40 @@ body {
     .sort-option, .per-page-option {
         padding: 5px 8px;
         font-size: 0.9rem;
+    }
+
+    #back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .sort-option,
+    #category-select {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .pagination-link {
+        padding: 5px 10px;
+    }
+}
+
+/* Very small devices */
+@media (max-width: 576px) {
+    .cards-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .sorting-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .alphabet-filter {
+        justify-content: center;
     }
 }
