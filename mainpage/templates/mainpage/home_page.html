@@ -4,88 +4,168 @@
 {% block title %}ExdiEngSite{% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
-    <link rel="stylesheet" href="{% static 'style/main_page.css' %}">
-    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'style/main_page.css' %}">
 {% endblock %}
 
 {% block content %}
 {% include 'mainpage/navbar.html' %}
 
-{% if user.is_authenticated %}
-    <!-- Контент для авторизованных пользователей -->
-    <section class="hero">
-        <h1>Welcome back, {{ user.username }}!</h1>
-        <p>Continue your journey to mastering English.</p>
-        <div class="user-stats">
-            <div class="stat">
-                <h3>Words Learned</h3>
-                <p>150</p>
+<div class="main-content-container">
+    <!-- Hero Section -->
+    <section class="hero-section section">
+        <h1 class="hero-title">
+            {% if user.is_authenticated %}
+            Welcome back, {{ user.username }}!
+            {% else %}
+            Master English with ExdiEng
+            {% endif %}
+        </h1>
+        <p class="hero-subtitle">
+            {% if user.is_authenticated %}
+            Continue your journey to English fluency with personalized lessons and progress tracking.
+            {% else %}
+            The most effective way to learn English vocabulary, grammar and reading skills.
+            {% endif %}
+        </p>
+
+        <div class="hero-actions">
+            {% if user.is_authenticated %}
+            <a href="{% url 'my_cards' %}" class="btn btn-primary">
+                <i class="fas fa-book-open"></i> Continue Learning
+            </a>
+            {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-primary">
+                <i class="fas fa-user-plus"></i> Start Learning
+            </a>
+            <a href="{% url 'login' %}" class="btn btn-secondary">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </a>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-value">150</div>
+                <div class="stat-label">Words Learned</div>
             </div>
-            <div class="stat">
-                <h3>Tests Completed</h3>
-                <p>12</p>
+            <div class="stat-card">
+                <div class="stat-value">12</div>
+                <div class="stat-label">Tests Completed</div>
             </div>
-            <div class="stat">
-                <h3>Current Streak</h3>
-                <p>5 days</p>
+            <div class="stat-card">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Day Streak</div>
             </div>
         </div>
-        <a href="#" class="cta-button">Continue Learning</a>
+        {% endif %}
     </section>
-{% else %}
-    <!-- Контент для неавторизованных пользователей -->
-    <section class="hero">
-        <h1>Welcome to the English Learning Website!</h1>
-        <p>Learn new words, read texts, practice grammar, and take tests.</p>
-        <a href="{% url 'signup' %}" class="cta-button">Start Learning</a>
+
+    <!-- Features Section -->
+    <section class="features-section section">
+        <h2 class="section-title">Why Choose ExdiEng?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <h3 class="feature-title">Smart Flashcards</h3>
+                <p class="feature-description">Learn vocabulary with our spaced repetition system for maximum retention.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book-reader"></i>
+                </div>
+                <h3 class="feature-title">Reading Practice</h3>
+                <p class="feature-description">Improve comprehension with leveled articles and instant translations.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="feature-title">Progress Tracking</h3>
+                <p class="feature-description">Visualize your improvement with detailed statistics and milestones.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3 class="feature-title">Interactive Quizzes</h3>
+                <p class="feature-description">Test your knowledge with fun, gamified exercises.</p>
+            </div>
+        </div>
     </section>
-{% endif %}
 
-<section class="features">
-    <div class="feature">
-        <img src="{% static 'images/cards.svg' %}" alt="Cards">
-        <h3>Flashcards for Vocabulary</h3>
-        <p>Learn new words every day.</p>
-    </div>
-    <div class="feature">
-        <img src="{% static 'images/text.svg' %}" alt="Texts">
-        <h3>Reading Texts</h3>
-        <p>Read and translate interesting articles.</p>
-    </div>
-    <div class="feature">
-        <img src="{% static 'images/grammar.svg' %}" alt="Grammar">
-        <h3>Grammar Exercises</h3>
-        <p>Practice grammar with interactive exercises.</p>
-    </div>
-    <div class="feature">
-        <img src="{% static 'images/test.svg' %}" alt="Tests">
-        <h3>Knowledge Tests</h3>
-        <p>Test your knowledge with quizzes.</p>
-    </div>
-</section>
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section">
+        <h2 class="section-title">What Our Learners Say</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "ExdiEng helped me learn 500 new words in just one month! The flashcard system is incredibly effective."
+                </div>
+                <div class="testimonial-author">- Ivan, 28</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    "I can now read English articles without constantly reaching for a dictionary. The reading exercises are perfect!"
+                </div>
+                <div class="testimonial-author">- Maria, 32</div>
+            </div>
+        </div>
 
-<section class="testimonials">
-    <h2>What Our Users Say</h2>
-    <div class="testimonial">
-        <p>"The website helped me learn 500 new words in a month!" — Ivan.</p>
-    </div>
-    <div class="testimonial">
-        <p>"Now I can read articles in English without a dictionary!" — Maria.</p>
-    </div>
-    {% if user.is_authenticated %}
-        <!-- Форма для добавления отзыва -->
+        {% if user.is_authenticated %}
         <div class="add-testimonial">
-            <button type="submit" class="cta-button">Leave Your Feedback</button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-comment-alt"></i> Share Your Experience
+            </button>
         </div>
-    {% endif %}
-</section>
-
-{% if not user.is_authenticated %}
-    <section class="cta">
-        <h2>Start Learning English Today!</h2>
-        <a href="{% url 'signup' %}" class="cta-button">Join Now</a>
+        {% endif %}
     </section>
-{% endif %}
+
+    <!-- CTA Section -->
+    {% if not user.is_authenticated %}
+    <section class="cta-section section">
+        <h2 class="cta-title">Ready to Transform Your English?</h2>
+        <p class="cta-subtitle">Join thousands of learners who improved their English with ExdiEng</p>
+        <div class="cta-actions">
+            <a href="{% url 'signup' %}" class="btn btn-primary btn-large">
+                <i class="fas fa-rocket"></i> Start Free Trial
+            </a>
+        </div>
+    </section>
+    {% endif %}
+</div>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
 {% include 'mainpage/footer.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Back to top button functionality
+    const backToTopButton = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.opacity = '1';
+            backToTopButton.style.visibility = 'visible';
+        } else {
+            backToTopButton.style.opacity = '0';
+            backToTopButton.style.visibility = 'hidden';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+</script>
 {% endblock %}

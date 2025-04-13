@@ -3,6 +3,12 @@
 
 {% block title %}Add card | ExdiEngSite{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+<link rel="stylesheet" href="{% static 'style/cards.css' %}">
+<link rel="stylesheet" href="{% static 'style/add_cards.css' %}">
+{% endblock %}
+
 {% block cards_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
@@ -11,69 +17,85 @@
         <span>Add Card</span>
     </nav>
 
-    <div class="cards-content-wrapper">
-        <h1 class="section-title">Add New Card</h1>
+        <div class="add-cards-container">
+            <h1 class="section-title">Add New Card</h1>
 
-        <form method="post" class="card-form">
-            {% csrf_token %}
+            <form method="post" class="card-form">
+                {% csrf_token %}
 
-            <div class="form-group">
-                <label for="id_english_word">
-                    <i class="fas fa-language"></i> English word
-                </label>
-                {{ form.english_word }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_native_translation">
-                    <i class="fas fa-exchange-alt"></i> Translation
-                </label>
-                {{ form.native_translation }}
-            </div>
-
-            <div class="form-group">
-                <label for="id_category">
-                    <i class="fas fa-tag"></i> Category (Optional)
-                </label>
-                {{ form.category }}
-            </div>
-
-            <div class="form-actions">
-                <button type="submit" class="cta-button primary">
-                    <i class="fas fa-save"></i> Save card
-                </button>
-                <button type="button" class="cta-button secondary" id="addAnother">
-                    <i class="fas fa-plus-circle"></i> Save and add another
-                </button>
-            </div>
-        </form>
-
-        <div class="recent-cards">
-            <h2 class="section-subtitle">Last added cards</h2>
-            <div class="mini-cards-grid">
-                {% for card in recent_cards %}
-                <div class="mini-card" onclick="flipMiniCard(this)">
-                    <div class="mini-card-inner">
-                        <div class="mini-card-front">
-                            {{ card.english_word|truncatechars:15 }}
-                        </div>
-                        <div class="mini-card-back">
-                            {{ card.native_translation|truncatechars:15 }}
-                        </div>
-                    </div>
-                    <div class="mini-card-actions">
-                        <a href="{% url 'edit_card' card.user_card_id %}" class="mini-card-edit">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </div>
+                <div class="form-group">
+                    <label for="id_english_word">
+                        <i class="fas fa-language"></i> English word
+                    </label>
+                    {{ form.english_word }}
+                    <small class="form-help">Enter the word in English</small>
                 </div>
-                {% empty %}
-                <p class="no-cards-notice">You haven't added any cards yet</p>
+
+                <div class="form-group">
+                    <label for="id_native_translation">
+                        <i class="fas fa-exchange-alt"></i> Translation
+                    </label>
+                    {{ form.native_translation }}
+                    <small class="form-help">Enter the translation in your native language</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="id_category">
+                        <i class="fas fa-tag"></i> Category (Optional)
+                    </label>
+                    {{ form.category }}
+                    <small class="form-help">Choose or create a category</small>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="cta-button primary">
+                        <i class="fas fa-save"></i> Save card
+                    </button>
+                    <button type="button" class="cta-button secondary" id="addAnother">
+                        <i class="fas fa-plus-circle"></i> Save and add another
+                    </button>
+                </div>
+            </form>
+
+            {% if messages %}
+            <div class="alert alert-success">
+                {% for message in messages %}
+                {{ message }}
                 {% endfor %}
             </div>
+            {% endif %}
+
+            <div class="recent-cards-section">
+                <h2 class="section-subtitle">Last added cards</h2>
+                <div class="mini-cards-grid">
+                    {% for card in recent_cards %}
+                    <div class="mini-card" onclick="flipMiniCard(this)">
+                        <div class="mini-card-inner">
+                            <div class="mini-card-front">
+                                {{ card.english_word|truncatechars:15 }}
+                            </div>
+                            <div class="mini-card-back">
+                                {{ card.native_translation|truncatechars:15 }}
+                            </div>
+                        </div>
+                        <div class="mini-card-actions">
+                            <a href="{% url 'edit_card' card.user_card_id %}" class="mini-card-edit">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="no-cards-notice">You haven't added any cards yet</p>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-    </div>
 </div>
+
+<!-- Кнопка "Наверх" -->
+<button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
@@ -83,34 +105,71 @@
 
 {% block extra_js %}
 <script>
-    // Обработчик для кнопки "Save and add another"
-    document.getElementById('addAnother').addEventListener('click', function() {
-        const form = document.querySelector('.card-form');
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'add_another';
-        hiddenInput.value = 'true';
-        form.appendChild(hiddenInput);
-        form.submit();
-    });
+    // Автофокус на первое поле при загрузке
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('id_english_word').focus();
 
-    // Функция для переворота мини-карточек
-    function flipMiniCard(element) {
-        if (!event.target.closest('.mini-card-edit')) {
-            element.classList.toggle('flipped');
-        }
-    }
+        // Инициализация кнопки "Наверх"
+        const backToTopButton = document.getElementById('back-to-top');
 
-    // Обработчики для кнопки редактирования мини-карточек
-    document.querySelectorAll('.mini-card-edit').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-            e.stopPropagation();
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
         });
-    });
 
-    // Показ индикатора загрузки при отправке формы
-    document.querySelector('.card-form').addEventListener('submit', function() {
-        document.getElementById('loading-indicator').style.display = 'flex';
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Обработчик для кнопки "Save and add another"
+        document.getElementById('addAnother').addEventListener('click', function() {
+            const form = document.querySelector('.card-form');
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'add_another';
+            hiddenInput.value = 'true';
+            form.appendChild(hiddenInput);
+            form.submit();
+        });
+
+        // Функция для переворота мини-карточек
+        function flipMiniCard(element) {
+            if (!event.target.closest('.mini-card-edit')) {
+                element.classList.toggle('flipped');
+            }
+        }
+
+        // Обработчики для кнопки редактирования мини-карточек
+        document.querySelectorAll('.mini-card-edit').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
+        // Показ индикатора загрузки при отправке формы
+        document.querySelector('.card-form').addEventListener('submit', function() {
+            document.getElementById('loading-indicator').style.display = 'flex';
+        });
+
+        // Предупреждение о несохраненных данных
+        let formIsDirty = false;
+        const formInputs = document.querySelectorAll('.card-form input, .card-form select');
+
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                formIsDirty = true;
+            });
+        });
+
+        window.addEventListener('beforeunload', function(e) {
+            if (formIsDirty) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
     });
 </script>
 {% endblock %}
