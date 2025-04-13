@@ -8,55 +8,59 @@
 <link rel="stylesheet" href="{% static 'style/quiz.css' %}">
 {% endblock %}
 
-{% block content %}
-{% include 'mainpage/navbar.html' %}
+{% block cards_content %}
+    <div class="cards-content-wrapper">
+            <h1 class="quiz-title">Quiz</h1>
 
-<!-- Второй навбар -->
-<div class="secondary-navbar">
-    <div class="secondary-nav-container">
-        <a href="{% url 'my_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-layer-group"></i> My cards
-        </a>
-        <a href="{% url 'add_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-plus-circle"></i> Add cards
-        </a>
-        <a href="#" class="secondary-nav-link active">
-            <i class="fas fa-question-circle"></i> Quiz
-        </a>
-    </div>
-</div>
+            <form method="post" action="{% url 'quiz_results' %}">
+                {% csrf_token %}
+                <input type="hidden" name="mode" value="{{ mode }}">
 
-<div class="quiz-container">
-    <h1 class="quiz-title">Quiz</h1>
+                {% for question in questions %}
+                <div class="quiz-question">
+                    <h3 class="quiz-question-text">Question {{ forloop.counter }}: {{ question.question }}</h3>
 
-    <form method="post" action="{% url 'quiz_results' %}">
-        {% csrf_token %}
-        <input type="hidden" name="mode" value="{{ mode }}">
+                    <input type="hidden" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}">
 
-        {% for question in questions %}
-        <div class="quiz-question">
-            <h3 class="quiz-question-text">Question {{ forloop.counter }}: {{ question.question }}</h3>
-
-            <input type="hidden" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}">
-
-            {% if mode == "spelling" %}
-                <input type="text" name="question_{{ question.id }}" class="quiz-input" required>
-            {% else %}
-                <div class="quiz-answers-grid">
-                    {% for answer in question.answers %}
-                    <label class="quiz-answer-label">
-                        <input type="radio" name="question_{{ question.id }}" value="{{ answer }}" required class="quiz-answer-input">
-                        {{ answer }}
-                    </label>
-                    {% endfor %}
+                    {% if mode == "spelling" %}
+                        <input type="text" name="question_{{ question.id }}" class="quiz-input" required>
+                    {% else %}
+                        <div class="quiz-answers-grid">
+                            {% for answer in question.answers %}
+                            <label class="quiz-answer-label">
+                                <input type="radio" name="question_{{ question.id }}" value="{{ answer }}" required class="quiz-answer-input">
+                                {{ answer }}
+                            </label>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 </div>
-            {% endif %}
+                {% endfor %}
+
+                <button type="submit" class="quiz-submit-btn">Submit Answers</button>
+            </form>
         </div>
-        {% endfor %}
 
-        <button type="submit" class="quiz-submit-btn">Submit Answers</button>
-    </form>
+
+<!-- Индикатор загрузки -->
+<div class="loading-overlay" id="loading-indicator">
+    <div class="loading-spinner"></div>
 </div>
+{% endblock %}
 
-{% include 'mainpage/footer.html' %}
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        // Показать индикатор загрузки при отправке формы
+        document.querySelector('form').addEventListener('submit', function() {
+            loadingIndicator.style.display = 'flex';
+        });
+
+        window.addEventListener('load', () => {
+            loadingIndicator.style.display = 'none';
+        });
+    });
+</script>
 {% endblock %}

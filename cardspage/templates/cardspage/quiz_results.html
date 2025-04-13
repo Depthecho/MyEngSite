@@ -8,43 +8,64 @@
 <link rel="stylesheet" href="{% static 'style/quiz.css' %}">
 {% endblock %}
 
-{% block content %}
-{% include 'mainpage/navbar.html' %}
+{% block cards_content %}
+    <div class="cards-content-wrapper">
+            <h1 class="quiz-results-title">Quiz Results</h1>
 
-<!-- Второй навбар -->
-<div class="secondary-navbar">
-    <div class="secondary-nav-container">
-        <a href="{% url 'my_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-layer-group"></i> My cards
-        </a>
-        <a href="{% url 'add_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-plus-circle"></i> Add cards
-        </a>
-        <a href="#" class="secondary-nav-link active">
-            <i class="fas fa-question-circle"></i> Quiz
-        </a>
-    </div>
+            <div class="quiz-score">
+                You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%)
+            </div>
+
+            {% for question_id, answer in answers.items %}
+            <div class="quiz-result-item {% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
+                <div class="quiz-result-question">Question {{ forloop.counter }}</div>
+                <div class="quiz-result-answer">Your answer: {{ answer.user_answer }}</div>
+                <div class="quiz-result-answer">Correct answer: {{ answer.correct_answer }}</div>
+            </div>
+            {% endfor %}
+
+            <div class="quiz-results-buttons">
+                <a href="{% url 'quiz_start' %}" class="quiz-return-btn">Take Another Quiz</a>
+                <a href="{% url 'home' %}" class="quiz-home-btn">Return Home</a>
+            </div>
+        </div>
+
+<!-- Индикатор загрузки -->
+<div class="loading-overlay" id="loading-indicator">
+    <div class="loading-spinner"></div>
 </div>
+{% endblock %}
 
-<div class="quiz-results-container">
-    <h1 class="quiz-results-title">Quiz Results</h1>
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Анимация для результатов
+        const resultItems = document.querySelectorAll('.quiz-result-item');
+        resultItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 100);
+        });
 
-    <div class="quiz-score">
-        You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%)
-    </div>
+        // Кнопка "Наверх"
+        const backToTopButton = document.createElement('button');
+        backToTopButton.id = 'back-to-top';
+        backToTopButton.title = 'Go to top';
+        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        document.body.appendChild(backToTopButton);
 
-    {% for question_id, answer in answers.items %}
-    <div class="quiz-result-item {% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
-        <div class="quiz-result-question">Question {{ forloop.counter }}</div>
-        <div class="quiz-result-answer">Your answer: {{ answer.user_answer }}</div>
-        <div class="quiz-result-answer">Correct answer: {{ answer.correct_answer }}</div>
-    </div>
-    {% endfor %}
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
 
-    <div class="quiz-results-buttons">
-        <a href="{% url 'quiz_start' %}" class="quiz-return-btn">Take Another Quiz</a>
-        <a href="{% url 'home' %}" class="quiz-home-btn">Return Home</a>
-    </div>
-</div>
-{% include 'mainpage/footer.html' %}
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    });
+</script>
 {% endblock %}
