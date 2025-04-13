@@ -286,3 +286,161 @@ body {
         height: 80px;
     }
 }
+
+/* Alphabet Filter */
+.alphabet-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.alphabet-letter {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.alphabet-letter:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.alphabet-letter.active {
+    background: #ffcc00;
+    color: #6a11cb;
+    transform: scale(1.1);
+}
+
+/* Sorting and Pagination Controls */
+.cards-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.sorting-options {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.sort-option {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.sort-option:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.sort-option.active {
+    background: #ffcc00;
+    color: #6a11cb;
+    font-weight: bold;
+}
+
+.per-page-selector {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.per-page-selector span {
+    margin-right: 5px;
+}
+
+.per-page-option {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.per-page-option:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.per-page-option.active {
+    background: #ffcc00;
+    color: #6a11cb;
+    font-weight: bold;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.pagination-link {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.pagination-link:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.current-page {
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .cards-controls {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sorting-options {
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .alphabet-filter {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .alphabet-letter {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .sort-option, .per-page-option {
+        padding: 5px 8px;
+        font-size: 0.9rem;
+    }
+}

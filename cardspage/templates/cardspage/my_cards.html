@@ -4,11 +4,43 @@
 
 {% block cards_content %}
 <div class="main-container">
+    <h1 class="section-title">My Cards</h1>
+
     <div class="cards-content-wrapper">
-        <h1 class="section-title">My Cards</h1>
+        <div class="cards-controls">
+            <div class="alphabet-filter">
+                {% for letter in letters %}
+                    <a href="?letter={{ letter }}&sort={{ sort_order }}&per_page={{ per_page }}"
+                       class="alphabet-letter {% if active_letter == letter %}active{% endif %}">
+                        {{ letter }}
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="sorting-options">
+                <a href="?letter={{ active_letter }}&sort=newest&per_page={{ per_page }}"
+                   class="sort-option {% if sort_order == 'newest' %}active{% endif %}">
+                   Newest First
+                </a>
+                <a href="?letter={{ active_letter }}&sort=oldest&per_page={{ per_page }}"
+                   class="sort-option {% if sort_order == 'oldest' %}active{% endif %}">
+                   Oldest First
+                </a>
+
+                <div class="per-page-selector">
+                    <span>Show:</span>
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=16"
+                       class="per-page-option {% if per_page == 16 %}active{% endif %}">16</a>
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=24"
+                       class="per-page-option {% if per_page == 24 %}active{% endif %}">24</a>
+                    <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=32"
+                       class="per-page-option {% if per_page == 32 %}active{% endif %}">32</a>
+                </div>
+            </div>
+        </div>
 
         <div class="cards-grid">
-            {% for card in user_cards %}
+            {% for card in page_obj %}
             <div class="card-item" onclick="flipCard(this)">
                 <div class="card-inner">
                     <div class="card-front">
@@ -18,7 +50,6 @@
                         <span>{{ card.native_translation }}</span>
                     </div>
 
-                    <!-- Редактирование и удаление карточки -->
                     <div class="card-actions">
                         <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit">
                             <i class="fas fa-edit"></i>
@@ -36,6 +67,24 @@
             </div>
             {% endfor %}
         </div>
+
+        {% if page_obj.paginator.num_pages > 1 %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?page=1&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}" class="pagination-link">last &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
