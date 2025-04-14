@@ -1,7 +1,6 @@
 from django.core.paginator import Paginator
 from django.core.exceptions import PermissionDenied
 import random
-
 from .models import Card
 
 

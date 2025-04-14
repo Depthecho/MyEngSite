@@ -12,18 +12,6 @@
     <div class="cards-content-wrapper">
         <h1 class="section-title">My Cards</h1>
 
-        <!-- Уведомления -->
-        {% if messages %}
-        <div class="notification-container">
-            {% for message in messages %}
-            <div class="notification {% if message.tags %}{{ message.tags }}{% endif %}">
-                {{ message }}
-                <button class="notification-close">&times;</button>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
         <!-- Элементы управления с подсказками -->
         <div class="cards-controls-wrapper">
             <!-- Фильтрация по буквам -->

@@ -40,4 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    const closeInviteBtn = document.getElementById('closeInviteBtn');
+    const inviteNotification = document.getElementById('inviteNotification');
+
+    if (closeInviteBtn && inviteNotification) {
+        closeInviteBtn.addEventListener('click', function() {
+            inviteNotification.style.display = 'none';  //
+        });
+    }
 });

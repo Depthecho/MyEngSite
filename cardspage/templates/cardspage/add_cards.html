@@ -57,14 +57,6 @@
                 </div>
             </form>
 
-            {% if messages %}
-            <div class="alert alert-success">
-                {% for message in messages %}
-                {{ message }}
-                {% endfor %}
-            </div>
-            {% endif %}
-
             <div class="recent-cards-section">
                 <h2 class="section-subtitle">Last added cards</h2>
                 <div class="mini-cards-grid">
@@ -105,71 +97,69 @@
 
 {% block extra_js %}
 <script>
-    // Автофокус на первое поле при загрузке
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('id_english_word').focus();
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.card-form');
+    let formIsDirty = false;
 
-        // Инициализация кнопки "Наверх"
-        const backToTopButton = document.getElementById('back-to-top');
-
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.style.display = 'block';
-            } else {
-                backToTopButton.style.display = 'none';
-            }
-        });
-
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Обработчик для кнопки "Save and add another"
-        document.getElementById('addAnother').addEventListener('click', function() {
-            const form = document.querySelector('.card-form');
-            const hiddenInput = document.createElement('input');
-            hiddenInput.type = 'hidden';
-            hiddenInput.name = 'add_another';
-            hiddenInput.value = 'true';
-            form.appendChild(hiddenInput);
-            form.submit();
-        });
-
-        // Функция для переворота мини-карточек
-        function flipMiniCard(element) {
-            if (!event.target.closest('.mini-card-edit')) {
-                element.classList.toggle('flipped');
-            }
+    const beforeUnloadHandler = function(e) {
+        if (formIsDirty) {
+            e.preventDefault();
+            e.returnValue = '';
         }
+    };
 
-        // Обработчики для кнопки редактирования мини-карточек
-        document.querySelectorAll('.mini-card-edit').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.stopPropagation();
-            });
-        });
+    window.addEventListener('beforeunload', beforeUnloadHandler);
 
-        // Показ индикатора загрузки при отправке формы
-        document.querySelector('.card-form').addEventListener('submit', function() {
-            document.getElementById('loading-indicator').style.display = 'flex';
-        });
+    // Автофокус
+    document.getElementById('id_english_word').focus();
 
-        // Предупреждение о несохраненных данных
-        let formIsDirty = false;
-        const formInputs = document.querySelectorAll('.card-form input, .card-form select');
+    // Кнопка наверх
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        backToTopButton.style.display = window.pageYOffset > 300 ? 'block' : 'none';
+    });
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-        formInputs.forEach(input => {
-            input.addEventListener('input', () => {
-                formIsDirty = true;
-            });
-        });
-
-        window.addEventListener('beforeunload', function(e) {
-            if (formIsDirty) {
-                e.preventDefault();
-                e.returnValue = '';
-            }
+    // Отметка dirty
+    document.querySelectorAll('.card-form input, .card-form select').forEach(input => {
+        input.addEventListener('input', () => {
+            formIsDirty = true;
         });
     });
+
+    // Кнопка "Save and add another"
+    document.getElementById('addAnother').addEventListener('click', function() {
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = 'add_another';
+        hiddenInput.value = 'true';
+        form.appendChild(hiddenInput);
+        // Убираем beforeunload перед отправкой
+        window.removeEventListener('beforeunload', beforeUnloadHandler);
+        form.submit();
+    });
+
+    // Обычное сохранение формы
+    form.addEventListener('submit', function() {
+        // Убираем beforeunload перед обычной отправкой
+        window.removeEventListener('beforeunload', beforeUnloadHandler);
+        document.getElementById('loading-indicator').style.display = 'flex';
+    });
+
+    // Переворот карточек
+    window.flipMiniCard = function(element) {
+        if (!event.target.closest('.mini-card-edit')) {
+            element.classList.toggle('flipped');
+        }
+    };
+
+    document.querySelectorAll('.mini-card-edit').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    });
+});
 </script>
 {% endblock %}

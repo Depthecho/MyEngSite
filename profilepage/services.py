@@ -3,6 +3,7 @@ from .models import Profile, Achievement
 from .forms import ProfileUpdateForm, CustomPasswordChangeForm
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.contrib.auth import update_session_auth_hash
 
 
 class ProfileUpdateHandler:

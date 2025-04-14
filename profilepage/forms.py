@@ -1,6 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+
 from .models import Profile
 from django.contrib.auth import password_validation
 
@@ -20,6 +22,15 @@ class ProfileUpdateForm(BaseProfileForm):
         fields = ['username', 'first_name', 'last_name', 'birth_date',
                   'hide_first_name', 'hide_last_name', 'hide_birth_date',
                   'bio', 'website', 'location', 'avatar']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email:
+            try:
+                validate_email(email)
+            except ValidationError:
+                raise forms.ValidationError("Enter a valid email address.")
+        return email
 
 
 class CustomPasswordChangeForm(PasswordChangeForm):
