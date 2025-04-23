@@ -1,5 +1,4 @@
 from django.core.paginator import Paginator
-from django.core.exceptions import PermissionDenied
 import random
 from .models import Card
 
@@ -105,19 +104,12 @@ class QuestionBuilder:
     def create_question(card, direction, mode, all_cards):
         question, correct_answer = QuestionBuilder._get_question_data(card, direction)
 
-        if mode == 'spelling':
-            return {
-                'id': card.id,
-                'question': question,
-                'correct_answer': correct_answer
-            }
-
-        wrong_answers = QuestionBuilder._get_wrong_answers(card, direction, all_cards)
         return {
-            'id': card.id,
+            'id': card.id,  # Используем card.id
             'question': question,
-            'answers': random.sample(wrong_answers + [correct_answer], len(wrong_answers) + 1),
-            'correct_answer': correct_answer
+            'correct_answer': correct_answer,
+            'answers': QuestionBuilder._get_wrong_answers(card, direction, all_cards) + [correct_answer]
+            if mode == 'multiple_choice' else None
         }
 
     @staticmethod
@@ -132,6 +124,39 @@ class QuestionBuilder:
             c.native_translation if direction == 'en_to_native' else c.english_word
             for c in random.sample([c for c in all_cards if c != card], min(3, len(all_cards) - 1))
         ]
+
+
+class QuizResultProcessor:
+    @staticmethod
+    def process_answers(post_data: dict) -> dict:
+        mode = post_data.get('mode', 'multiple_choice')
+        answers = {}
+        correct = 0
+
+        for key, user_answer in post_data.items():
+            if key.startswith('question_'):
+                question_id = key.split('_')[1]
+                correct_answer = post_data.get(f'correct_answer_{question_id}', '')
+
+                is_correct = QuizService._check_answer(user_answer, correct_answer, mode)
+
+                answers[question_id] = {
+                    'user_answer': user_answer,
+                    'correct_answer': correct_answer,
+                    'is_correct': is_correct
+                }
+
+                if is_correct:
+                    correct += 1
+
+        total = len(answers)
+        return {
+            'answers': answers,
+            'correct': correct,
+            'total': total,
+            'percentage': round((correct / total) * 100) if total > 0 else 0,
+            'mode': mode
+        }
 
 
 class QuizService:
@@ -159,36 +184,15 @@ class QuizService:
         }
 
         questions = QuizService._generate_questions(user, **params)
-        return {**params, 'questions': questions}
+        return {
+            'questions': questions,
+            'mode': params['mode'],
+            'direction': params['direction']
+        }
 
     @staticmethod
     def build_quiz_results_context(post_data):
-        answers = {}
-        correct = total = 0
-        mode = post_data.get('mode', 'multiple_choice')
-
-        for key, value in post_data.items():
-            if key.startswith('question_'):
-                question_id = key.split('_')[1]
-                correct_answer = post_data.get(f'correct_answer_{question_id}')
-                is_correct = QuizService._check_answer(value, correct_answer, mode)
-
-                answers[question_id] = {
-                    'user_answer': value,
-                    'correct_answer': correct_answer,
-                    'is_correct': is_correct
-                }
-
-                correct += is_correct
-                total += 1
-
-        return {
-            'answers': answers,
-            'correct': correct,
-            'total': total,
-            'mode': mode,
-            'percentage': round((correct / total) * 100) if total > 0 else 0
-        }
+        return QuizResultProcessor.process_answers(post_data)
 
     @staticmethod
     def _parse_limit(limit):

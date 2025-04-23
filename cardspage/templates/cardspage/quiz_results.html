@@ -9,30 +9,25 @@
 {% endblock %}
 
 {% block cards_content %}
-    <div class="cards-content-wrapper">
-            <h1 class="quiz-results-title">Quiz Results</h1>
+<div class="cards-content-wrapper">
+    <h1 class="quiz-results-title">Quiz Results</h1>
 
-            <div class="quiz-score">
-                You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%)
-            </div>
+    <div class="quiz-score">
+        You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%)
+    </div>
 
-            {% for question_id, answer in answers.items %}
-            <div class="quiz-result-item {% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
-                <div class="quiz-result-question">Question {{ forloop.counter }}</div>
-                <div class="quiz-result-answer">Your answer: {{ answer.user_answer }}</div>
-                <div class="quiz-result-answer">Correct answer: {{ answer.correct_answer }}</div>
-            </div>
-            {% endfor %}
+    {% for question_id, answer in answers.items %}
+    <div class="quiz-result-item {% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
+        <div class="quiz-result-question">Question {{ forloop.counter }}</div>
+        <div class="quiz-result-answer">Your answer: {{ answer.user_answer }}</div>
+        <div class="quiz-result-answer">Correct answer: {{ answer.correct_answer }}</div>
+    </div>
+    {% endfor %}
 
-            <div class="quiz-results-buttons">
-                <a href="{% url 'quiz_start' %}" class="quiz-return-btn">Take Another Quiz</a>
-                <a href="{% url 'home' %}" class="quiz-home-btn">Return Home</a>
-            </div>
-        </div>
-
-<!-- Индикатор загрузки -->
-<div class="loading-overlay" id="loading-indicator">
-    <div class="loading-spinner"></div>
+    <div class="quiz-results-buttons">
+        <a href="{% url 'quiz_start' %}" class="quiz-return-btn">Take Another Quiz</a>
+        <a href="{% url 'home' %}" class="quiz-home-btn">Return Home</a>
+    </div>
 </div>
 {% endblock %}
 
