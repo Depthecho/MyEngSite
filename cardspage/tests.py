@@ -3,17 +3,12 @@ from io import BytesIO
 from PIL import Image
 from django.urls import reverse
 from mainpage.models import CustomUser as User
-from django.contrib.auth.hashers import check_password
-from django.contrib.messages import get_messages
-from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
 from profilepage.models import Profile, Achievement
 from profilepage.services import ProfileService, ProfileUpdateHandler, AchievementChecker
 from profilepage.forms import ProfileUpdateForm, CustomPasswordChangeForm
 from unittest.mock import MagicMock, patch
 
 
-# Фикстуры
 @pytest.fixture
 def test_user(db):
     return User.objects.create_user(

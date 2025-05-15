@@ -14,7 +14,6 @@ def my_cards(request: HttpRequest) -> HttpResponse:
     context = CardQueryService.build_my_cards_context(request.user, request.GET)
     return render(request, 'cardspage/my_cards.html', context)
 
-
 @login_required
 def add_cards(request: HttpRequest) -> HttpResponse:
     """Handle adding new cards."""

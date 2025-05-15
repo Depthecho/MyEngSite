@@ -1,11 +1,17 @@
 from django.core.paginator import Paginator
+from typing import Any, Dict, List, Optional, Tuple, Union
 import random
 from .models import Card
+from django.db.models.query import QuerySet
+from django.forms import Form
+from django.contrib.auth.models import AbstractUser
+from mainpage.models import CustomUser
 
+CustomUser = CustomUser
 
 class CardFilterService:
     @staticmethod
-    def apply_filters(queryset, filters):
+    def apply_filters(queryset: QuerySet[Card], filters: Dict[str, Any]) -> QuerySet[Card]:
         """Применяет все фильтры к queryset"""
         queryset = CardFilterService._apply_letter_filter(queryset, filters.get('letter'))
         queryset = CardFilterService._apply_category_filter(queryset, filters.get('category'))
@@ -13,13 +19,13 @@ class CardFilterService:
         return queryset
 
     @staticmethod
-    def _apply_letter_filter(queryset, letter):
+    def _apply_letter_filter(queryset: QuerySet[Card], letter: Optional[str]) -> QuerySet[Card]:
         if letter and letter.lower() != 'all':
             return queryset.filter(english_word__istartswith=letter)
         return queryset
 
     @staticmethod
-    def _apply_category_filter(queryset, category):
+    def _apply_category_filter(queryset: QuerySet[Card], category: Optional[str]) -> QuerySet[Card]:
         if category:
             if category == 'uncategorized':
                 return queryset.filter(category__isnull=True)
@@ -27,7 +33,7 @@ class CardFilterService:
         return queryset
 
     @staticmethod
-    def _apply_sort(queryset, sort):
+    def _apply_sort(queryset: QuerySet[Card], sort: Optional[str]) -> QuerySet[Card]:
         if sort == 'oldest':
             return queryset.order_by('created_at')
         return queryset.order_by('-created_at')
@@ -35,24 +41,24 @@ class CardFilterService:
 
 class CardQueryService:
     @staticmethod
-    def get_user_cards(user, **filters):
+    def get_user_cards(user: CustomUser, **filters: Any) -> QuerySet[Card]:
         """Основной метод для получения карточек с фильтрами"""
-        queryset = Card.objects.filter(user=user)
+        queryset: QuerySet[Card] = Card.objects.filter(user=user)
         return CardFilterService.apply_filters(queryset, filters)
 
     @staticmethod
-    def get_recent_cards(user, limit=12):
+    def get_recent_cards(user: CustomUser, limit: int = 12) -> QuerySet[Card]:
         return CardQueryService.get_user_cards(user, sort='newest')[:limit]
 
     @staticmethod
-    def get_user_categories(user):
+    def get_user_categories(user: CustomUser) -> QuerySet[str]:
         return Card.objects.filter(user=user).exclude(
             category__isnull=True
         ).order_by('category').values_list('category', flat=True).distinct()
 
     @staticmethod
-    def build_my_cards_context(user, get_params):
-        params = {
+    def build_my_cards_context(user: CustomUser, get_params: Dict[str, Any]) -> Dict[str, Any]:
+        params: Dict[str, Any] = {
             'letter': get_params.get('letter', '').upper(),
             'sort': get_params.get('sort', 'newest'),
             'category': get_params.get('category'),
@@ -60,8 +66,8 @@ class CardQueryService:
             'page_number': get_params.get('page', 1)
         }
 
-        queryset = CardQueryService.get_user_cards(user, **params)
-        paginator = Paginator(queryset, params['per_page'])
+        queryset: QuerySet[Card] = CardQueryService.get_user_cards(user, **params)
+        paginator: Paginator = Paginator(queryset, params['per_page'])
         page_obj = paginator.get_page(params['page_number'])
 
         return {
@@ -77,20 +83,20 @@ class CardQueryService:
 
 class CardCRUDService:
     @staticmethod
-    def create_card(form, user):
-        card = form.save(commit=False)
+    def create_card(form: Form, user: CustomUser) -> Card:
+        card: Card = form.save(commit=False)
         card.user = user
         card.save()
         return card
 
     @staticmethod
-    def update_card(form):
+    def update_card(form: Form) -> None:
         form.save()
 
     @staticmethod
-    def delete_card(user_card_id, user):
+    def delete_card(user_card_id: int, user: CustomUser) -> bool:
         try:
-            card = Card.objects.get(user_card_id=user_card_id, user=user)
+            card: Card = Card.objects.get(user_card_id=user_card_id, user=user)
             card.delete()
             return True
         except Card.DoesNotExist:
@@ -101,11 +107,18 @@ class CardCRUDService:
 
 class QuestionBuilder:
     @staticmethod
-    def create_question(card, direction, mode, all_cards):
+    def create_question(
+        card: Card,
+        direction: str,
+        mode: str,
+        all_cards: List[Card]
+    ) -> Dict[str, Any]:
+        question: str
+        correct_answer: str
         question, correct_answer = QuestionBuilder._get_question_data(card, direction)
 
         return {
-            'id': card.id,  # Используем card.id
+            'id': card.id,
             'question': question,
             'correct_answer': correct_answer,
             'answers': QuestionBuilder._get_wrong_answers(card, direction, all_cards) + [correct_answer]
@@ -113,13 +126,17 @@ class QuestionBuilder:
         }
 
     @staticmethod
-    def _get_question_data(card, direction):
+    def _get_question_data(card: Card, direction: str) -> Tuple[str, str]:
         if direction == 'en_to_native':
             return (card.english_word, card.native_translation)
         return (card.native_translation, card.english_word)
 
     @staticmethod
-    def _get_wrong_answers(card, direction, all_cards):
+    def _get_wrong_answers(
+        card: Card,
+        direction: str,
+        all_cards: List[Card]
+    ) -> List[str]:
         return [
             c.native_translation if direction == 'en_to_native' else c.english_word
             for c in random.sample([c for c in all_cards if c != card], min(3, len(all_cards) - 1))
@@ -128,17 +145,17 @@ class QuestionBuilder:
 
 class QuizResultProcessor:
     @staticmethod
-    def process_answers(post_data: dict) -> dict:
-        mode = post_data.get('mode', 'multiple_choice')
-        answers = {}
-        correct = 0
+    def process_answers(post_data: Dict[str, Any]) -> Dict[str, Any]:
+        mode: str = post_data.get('mode', 'multiple_choice')
+        answers: Dict[str, Dict[str, Any]] = {}
+        correct: int = 0
 
         for key, user_answer in post_data.items():
             if key.startswith('question_'):
-                question_id = key.split('_')[1]
-                correct_answer = post_data.get(f'correct_answer_{question_id}', '')
+                question_id: str = key.split('_')[1]
+                correct_answer: str = post_data.get(f'correct_answer_{question_id}', '')
 
-                is_correct = QuizService._check_answer(user_answer, correct_answer, mode)
+                is_correct: bool = QuizService._check_answer(user_answer, correct_answer, mode)
 
                 answers[question_id] = {
                     'user_answer': user_answer,
@@ -149,7 +166,7 @@ class QuizResultProcessor:
                 if is_correct:
                     correct += 1
 
-        total = len(answers)
+        total: int = len(answers)
         return {
             'answers': answers,
             'correct': correct,
@@ -161,8 +178,8 @@ class QuizResultProcessor:
 
 class QuizService:
     @staticmethod
-    def build_quiz_start_context(user):
-        categories = Card.get_user_categories(user)
+    def build_quiz_start_context(user: CustomUser) -> Dict[str, Any]:
+        categories: QuerySet[str] = Card.get_user_categories(user)
         return {
             'categories': categories,
             'card_counts': {
@@ -175,15 +192,18 @@ class QuizService:
         }
 
     @staticmethod
-    def build_quiz_context(user, get_params):
-        params = {
+    def build_quiz_context(
+        user: CustomUser,
+        get_params: Dict[str, Any]
+    ) -> Dict[str, Any]:
+        params: Dict[str, Any] = {
             'direction': get_params.get('direction', 'en_to_native'),
             'category': get_params.get('category'),
             'mode': get_params.get('mode', 'multiple_choice'),
             'limit': QuizService._parse_limit(get_params.get('limit'))
         }
 
-        questions = QuizService._generate_questions(user, **params)
+        questions: List[Dict[str, Any]] = QuizService._generate_questions(user, **params)
         return {
             'questions': questions,
             'mode': params['mode'],
@@ -191,23 +211,29 @@ class QuizService:
         }
 
     @staticmethod
-    def build_quiz_results_context(post_data):
+    def build_quiz_results_context(post_data: Dict[str, Any]) -> Dict[str, Any]:
         return QuizResultProcessor.process_answers(post_data)
 
     @staticmethod
-    def _parse_limit(limit):
+    def _parse_limit(limit: Optional[str]) -> Optional[int]:
         try:
             return int(limit) if limit and limit != 'all' else None
         except ValueError:
             return None
 
     @staticmethod
-    def _generate_questions(user, direction, category, limit, mode):
-        queryset = Card.objects.filter(user=user)
+    def _generate_questions(
+        user: CustomUser,
+        direction: str,
+        category: Optional[str],
+        limit: Optional[int],
+        mode: str
+    ) -> List[Dict[str, Any]]:
+        queryset: QuerySet[Card] = Card.objects.filter(user=user)
         if category:
             queryset = queryset.filter(category=category)
 
-        cards = list(queryset)
+        cards: List[Card] = list(queryset)
         random.shuffle(cards)
         cards = cards[:limit] if limit else cards
 
@@ -217,7 +243,7 @@ class QuizService:
         ]
 
     @staticmethod
-    def _check_answer(user_answer, correct_answer, mode):
+    def _check_answer(user_answer: str, correct_answer: str, mode: str) -> bool:
         if mode == 'spelling':
             return user_answer.strip().lower() == correct_answer.strip().lower()
         return user_answer == correct_answer
