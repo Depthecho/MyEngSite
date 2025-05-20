@@ -45,12 +45,21 @@ def send_email_with_code(email: str, code: str) -> None:
 
 
 def send_verification_code(email: str) -> Tuple[bool, str]:
+    logger.info(f"Attempting to send code to {email}")
     if not can_send_code(email):
+        logger.warning("Code sending too soon")
         return False, CODE_SENT_TOO_SOON_MSG
 
     code: str = generate_code()
+    logger.info(f"Generated code: {code}")
+
     save_code_to_cache(email, code)
     save_sent_time_to_cache(email)
-    send_email_with_code(email, code)
 
-    return True, CODE_SENT_SUCCESS_MSG
+    try:
+        send_email_with_code(email, code)
+        logger.info("Email sent successfully")
+        return True, CODE_SENT_SUCCESS_MSG
+    except Exception as e:
+        logger.error(f"Failed to send email: {str(e)}")
+        return False, f"Failed to send email: {str(e)}"

@@ -1,3 +1,4 @@
+from celery.beat import logger
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
@@ -27,17 +28,21 @@ def signup_view(request: HttpRequest) -> HttpResponse:
 
 @handle_errors
 def send_code_view(request: HttpRequest) -> JsonResponse:
+    logger.info(f"Request to send code: {request.POST}")
     if request.method == 'POST':
         email: Optional[str] = request.POST.get('email')
         if not email:
+            logger.warning("No email provided")
             return JsonResponse(
                 {'status': 'error', 'message': 'Email обязателен.'},
                 status=400
             )
 
+        logger.info(f"Processing email: {email}")
         success: bool
         message: str
         success, message = send_verification_code(email)
+        logger.info(f"Send result: {success}, {message}")
 
         if success:
             return JsonResponse({'status': 'success', 'message': message})
