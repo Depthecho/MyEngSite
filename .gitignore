@@ -2,3 +2,8 @@
 /shelf/
 /workspace.xml
 venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.idea/
+media/
