@@ -1,0 +1,73 @@
+.secondary-navbar {
+    background: #f5f5f5;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+.secondary-nav-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.secondary-nav-link {
+    color: #444;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.secondary-nav-link:hover,
+.secondary-nav-link.active {
+    background: #e3e9ff;
+    color: #2a3eb1;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: 40px auto 0 auto;
+    padding: 0 20px;
+}
+
+.texts-content-wrapper {
+    min-height: 60vh;
+    padding: 30px 0;
+}
+
+/* Кнопка "Наверх" */
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 100;
+    background: #2a3eb1;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgba(42,62,177,0.15);
+    transition: background 0.2s;
+}
+
+#back-to-top:hover {
+    background: #1d295c;
+}
+
+.site-footer {
+    background: linear-gradient(90deg, #2a3eb1 0%, #1d295c 100%);
+    color: white;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+

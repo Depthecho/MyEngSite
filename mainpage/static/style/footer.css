@@ -1,6 +1,6 @@
 /* Основные стили футера */
 .site-footer {
-    background: rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #2a3eb1 0%, #1d295c 100%);
     color: white;
     padding: 40px 0 20px;
     margin-top: 50px;

@@ -1,0 +1,61 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}My texts | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'style/texts_base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'texts_page' %}" class="secondary-nav-link {% if 'my_texts' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-book-open"></i> My texts
+        </a>
+        <a href="#" class="secondary-nav-link {% if 'add_text' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-plus-circle"></i> Add text
+        </a>
+        <a href="#" class="secondary-nav-link {% if 'texts_quiz' in request.resolver_match.url_name %}active{% endif %}">
+            <i class="fas fa-question-circle"></i> Quiz
+        </a>
+    </div>
+</div>
+
+<div class="main-container">
+    <div class="texts-content-wrapper">
+        {% block texts_content %}
+        {% endblock %}
+    </div>
+</div>
+
+{% include 'mainpage/footer.html' %}
+
+{% block extra_js %}
+<script>
+    // Кнопка "Наверх"
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
+
+<button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+{% endblock %}

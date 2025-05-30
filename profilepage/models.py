@@ -35,6 +35,23 @@ class Profile(models.Model):
         max_length=150,
         verbose_name='Last Name'
     )
+
+    ENGLISH_LEVEL_CHOICES: Tuple[Tuple[str, str], ...] = (
+        ('A0', 'A0'),
+        ('A1', 'A1'),
+        ('A2', 'A2'),
+        ('B1', 'B1'),
+        ('B2', 'B2'),
+        ('C1', 'C1'),
+        ('C2', 'C2'),
+    )
+    english_level: models.CharField = models.CharField(
+        max_length=2,
+        choices=ENGLISH_LEVEL_CHOICES,
+        default='A0',
+        verbose_name='English Level'
+    )
+
     words_learned: models.PositiveIntegerField = models.PositiveIntegerField(
         default=0,
         verbose_name='Words Learned'

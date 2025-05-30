@@ -16,4 +16,5 @@ urlpatterns = [
 
     path('profile/', include('profilepage.urls')),
     path('cards/', include('cardspage.urls')),
+    path('texts/', include('textspage.urls')),
 ]
