@@ -57,7 +57,9 @@
             {% for text in texts %}
             <div class="text-card">
                 <div class="text-card-header">
-                    <h3 class="text-card-title">{{ text.title }}</h3>
+                    <h3 class="text-card-title">
+    <a href="{% url 'text_detail' text.pk %}" class="text-title-link">{{ text.title }}</a>
+</h3>
                     <span class="text-card-level level-{{ text.english_level|lower }}">{{ text.get_english_level_display }}</span>
                 </div>
                 <div class="text-card-body">
