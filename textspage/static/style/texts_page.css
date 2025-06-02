@@ -185,11 +185,19 @@ body {
     gap: 15px;
 }
 
-.text-card-title {
+text-card-title. {
     margin: 0;
     font-size: 1.4rem;
     font-weight: 600;
     color: white;
+}
+.text-card-title a {
+    text-decoration: none;
+    color: white;
+}
+
+.text-card-title a:hover {
+    color: #ffcc00;
 }
 
 .text-card-level {

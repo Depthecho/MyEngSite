@@ -59,3 +59,12 @@ class TextService:
             'active_level': params['level'],
             'search_query': params['search'],
         }
+
+    @staticmethod
+    def mark_as_read(text_id, user):
+        try:
+            text = Text.objects.get(pk=text_id)
+            text.read_by.add(user)
+            return True
+        except Text.DoesNotExist:
+            return False

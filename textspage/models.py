@@ -46,6 +46,12 @@ class Text(models.Model):
         auto_now_add=True,
         verbose_name='Created At'
     )
+    read_by = models.ManyToManyField(
+        CustomUser,
+        related_name='read_texts',
+        blank=True,
+        verbose_name='Read By'
+    )
 
     # Typing for Django model internals
     objects: BaseManager['Text']

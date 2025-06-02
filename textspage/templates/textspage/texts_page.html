@@ -64,8 +64,9 @@
                 </div>
                 <div class="text-card-body">
                     <div class="text-card-content">
-                        {{ text.content|linebreaks }}
-                    </div>
+    {{ text.content|truncatechars:150|linebreaks }}
+</div>
+
                 </div>
                 <div class="text-card-footer">
                     <span class="text-card-date">{{ text.created_at|date:"d M Y" }}</span>
