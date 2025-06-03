@@ -1,8 +1,11 @@
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from urllib.parse import urlencode
+
+from django.views.decorators.http import require_POST
+
 from .models import Card
 from .forms import CardForm, QuizSettingsForm, QuizAnswerForm
 from .services import CardQueryService, CardCRUDService, QuizService
@@ -89,3 +92,29 @@ def quiz_results(request: HttpRequest) -> HttpResponse:
         context = QuizService.build_quiz_results_context(request.POST)
         return render(request, 'cardspage/quiz_results.html', context)
     return redirect('quiz_start')
+
+
+@login_required
+@require_POST
+def create_card_from_selection(request):
+    english_word = request.POST.get('english_word', '').strip()
+    translation = request.POST.get('translation', '').strip()
+    category = request.POST.get('category', '').strip()
+
+    if not english_word or not translation:
+        return JsonResponse({'status': 'error', 'message': 'Word and translation are required'}, status=400)
+
+    try:
+        card = Card.objects.create(
+            user=request.user,
+            english_word=english_word,
+            native_translation=translation,
+            category=category if category else None
+        )
+        return JsonResponse({
+            'status': 'success',
+            'card_id': card.id,
+            'word': card.english_word
+        })
+    except Exception as e:
+        return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
