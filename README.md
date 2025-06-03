@@ -53,6 +53,8 @@ requirements.txt — зависимости Python
 ![image](https://github.com/user-attachments/assets/4a405ba7-1bdb-4020-8664-28731aac67bf)
 ![image](https://github.com/user-attachments/assets/1cee31ae-4b5e-41f0-b55f-dbc786c8adb5)
 ![image](https://github.com/user-attachments/assets/5b941f4c-52a5-4bce-ac74-734943478786)
+![image](https://github.com/user-attachments/assets/8d5e90cb-6492-4c66-940f-0ba1c488c01f)
+
 
 
 🤝 Контакты
