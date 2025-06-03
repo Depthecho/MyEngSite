@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.utils import timezone
 from django.http import HttpRequest
 from django.contrib import messages
@@ -6,7 +7,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import AbstractBaseUser
 from django.forms import Form
 from typing import Any, Dict, Optional, Type, Union
-from .models import Profile, Achievement
+from .models import Profile, Achievement, Friendship
 from .forms import ProfileUpdateForm, CustomPasswordChangeForm
 
 
@@ -109,21 +110,45 @@ class ProfileService:
 
     def get_or_create_profile(self) -> Profile:
         """Get or create user profile with defaults."""
-        profile: Profile
-        created: bool
         profile, created = Profile.objects.get_or_create(
             user=self.user,
             defaults={
                 'username': self.user.username,
                 'email': self.user.email,
                 'first_name': '',
-                'last_name': ''
+                'last_name': '',
+                'friends_count': 0,
+                'followers_count': 0
             }
         )
+
+        if created:
+            FriendshipService.update_friends_count(self.user)
+            FriendshipService.update_followers_count(self.user)
+
         return profile
 
     def check_achievements(self) -> bool:
-        """Check and update user achievements."""
         profile: Profile = self.get_or_create_profile()
         AchievementChecker.check_achievements(self.user, profile)
         return True
+
+
+class FriendshipService:
+    @staticmethod
+    def update_friends_count(user):
+        friends_count = Friendship.objects.filter(
+            Q(from_user=user, status=Friendship.ACCEPTED) |
+            Q(to_user=user, status=Friendship.ACCEPTED)
+        ).count()
+
+        Profile.objects.filter(user=user).update(friends_count=friends_count)
+
+    @staticmethod
+    def update_followers_count(user):
+        followers_count = Friendship.objects.filter(
+            to_user=user,
+            status=Friendship.REQUESTED
+        ).count()
+
+        Profile.objects.filter(user=user).update(followers_count=followers_count)

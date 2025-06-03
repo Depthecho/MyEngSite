@@ -8,7 +8,6 @@ from django.utils import timezone
 
 UserModel = get_user_model()
 
-
 def avatar_upload_path(instance: 'Profile', filename: str) -> str:
     """Generate upload path for user avatars."""
     return os.path.join('avatars', str(instance.user.id), filename)
@@ -209,6 +208,51 @@ class Profile(models.Model):
         """Check if user has a specific achievement."""
         return self.get_achievements(badge_type).filter(level=level).exists()
 
+    def get_friends(self):
+        """Возвращает список друзей пользователя"""
+        accepted = Friendship.objects.filter(
+            models.Q(from_user=self.user, status=Friendship.ACCEPTED) |
+            models.Q(to_user=self.user, status=Friendship.ACCEPTED)
+        )
+
+        friends = []
+        for friendship in accepted:
+            if friendship.from_user == self.user:
+                friends.append(friendship.to_user)
+            else:
+                friends.append(friendship.from_user)
+        return friends
+
+    def get_pending_requests(self):
+        """Возвращает входящие заявки в друзья"""
+        return Friendship.objects.filter(
+            to_user=self.user,
+            status=Friendship.REQUESTED
+        )
+
+    def get_friendship_status(self, other_user):
+        """Возвращает статус дружбы между пользователями"""
+        if self.user == other_user:
+            return 'self'
+
+        try:
+            friendship = Friendship.objects.get(
+                from_user=self.user,
+                to_user=other_user
+            )
+            return friendship.status
+        except Friendship.DoesNotExist:
+            try:
+                friendship = Friendship.objects.get(
+                    from_user=other_user,
+                    to_user=self.user
+                )
+                if friendship.status == Friendship.REQUESTED:
+                    return 'request_received'
+                return friendship.status
+            except Friendship.DoesNotExist:
+                return 'none'
+
 
 class Achievement(models.Model):
     BADGE_TYPES: Tuple[Tuple[str, str], ...] = (
@@ -244,3 +288,41 @@ class Achievement(models.Model):
 
     def __str__(self) -> str:
         return f"{self.get_badge_type_display()} {self.get_level_display()} Badge"
+
+
+class Friendship(models.Model):
+    REQUESTED = 'requested'
+    ACCEPTED = 'accepted'
+    REJECTED = 'rejected'
+
+    STATUS_CHOICES = [
+        (REQUESTED, 'Requested'),
+        (ACCEPTED, 'Accepted'),
+        (REJECTED, 'Rejected'),
+    ]
+
+    from_user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+        related_name='friendship_requests_sent',
+
+    )
+    to_user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+        related_name='friendship_requests_received',
+    )
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default=REQUESTED
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ('from_user', 'to_user')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.from_user} → {self.to_user} ({self.status})"

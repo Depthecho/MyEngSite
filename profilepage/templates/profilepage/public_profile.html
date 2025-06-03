@@ -1,6 +1,7 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
 {% load profile_tags %}
+{% load friends_tags %}
 
 {% block title %}{{ profile.username }}'s profile{% endblock %}
 
@@ -45,6 +46,49 @@
             </div>
 
             {% include 'profilepage/social_stats.html' %}
+            <div class="friendship-actions">
+    {% if request.user != profile.user %}
+        {% friendship_status request.user profile.user as status %}
+
+        {% if status == 'none' %}
+            <form method="post" action="{% url 'send_friend_request' profile.username %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Add to friends</button>
+            </form>
+
+        {% elif status == 'rejected' %}
+    <button class="btn btn-secondary" disabled>
+        Still following
+    </button>
+
+        {% elif status == 'requested' %}
+            <button class="btn btn-secondary" disabled>Request was sent</button>
+
+        {% elif status == 'request_received' %}
+            <div class="friend-request-notification">
+                <p>You have been sent a friend request</p>
+                <form method="post" action="{% url 'accept_friend_request' friendship.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Accept</button>
+                </form>
+                <form method="post" action="{% url 'reject_friend_request' friendship.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+
+        {% elif status == 'accepted' %}
+            <form method="post" action="{% url 'remove_friend' profile.username %}"
+                  onsubmit="return confirm('Are you sure you want to remove from friends?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-warning">Remove from friends</button>
+            </form>
+
+        {% elif status == 'rejected' %}
+            <button class="btn btn-secondary" disabled>Request rejected</button>
+        {% endif %}
+    {% endif %}
+</div>
 
             <!-- Achievements Section -->
             <div class="achievements-section">
