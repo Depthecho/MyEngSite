@@ -20,7 +20,7 @@ MyEngSite — это современная образовательная пл�
 Технологии:
 Backend: Python 3, Django
 Frontend: HTML, CSS, JavaScript
-Базы данных: SQLite (по умолчанию)
+Базы данных: SQLite (по умолчанию), PosgreSQL, Redis
 DevOps: Docker, Docker Compose
 Тестирование: pytest
 
