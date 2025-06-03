@@ -2,7 +2,7 @@
 {% load static %}
 {% load profile_tags %}
 
-{% block title %}My profile{% endblock %}
+{% block title %}{{ profile.username }}'s profile{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -32,39 +32,23 @@
                     <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
                 </div>
                 <div class="user-info">
-                    <p><strong>First Name:</strong> {{ profile.first_name }}</p>
-                    <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
-                    <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
-                    {% if is_owner|default:True %}
-    <div class="buttons">
-        <a href="{% url 'update_profile' %}" class="cta-button">Edit profile</a>
-    </div>
-{% endif %}
+                    {% if not profile.hide_first_name %}
+                        <p><strong>First Name:</strong> {{ profile.first_name }}</p>
+                    {% endif %}
+                    {% if not profile.hide_last_name %}
+                        <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+                    {% endif %}
+                    {% if not profile.hide_birth_date and profile.birth_date %}
+                        <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+                    {% endif %}
                 </div>
             </div>
 
             {% include 'profilepage/social_stats.html' %}
-                <button class="add-friend-button">
-        <i class="fas fa-user-plus"></i>
-        Add Friend
-    </button>
-    <div class="invite-notification" id="inviteNotification">
-        <button class="close-invite-btn" id="closeInviteBtn">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="invite-content">
-            <i class="fas fa-envelope invite-icon"></i>
-            <p class="invite-text">
-                Your friend isn't here yet?
-                <a href="#" class="invite-link">Invite them</a>
-            </p>
-        </div>
-    </div>
-</div>
 
             <!-- Achievements Section -->
             <div class="achievements-section">
-                <h2>Your Achievements</h2>
+                <h2>Achievements</h2>
 
                 <!-- Words Badges -->
                 <div class="badge-category">
@@ -98,10 +82,6 @@
             </div>
 
             {% include 'profilepage/stats.html' %}
-
-            <div class="share-results-button">
-                <a href="#" class="cta-button">Share results</a>
-            </div>
         </div>
     </div>
 </div>

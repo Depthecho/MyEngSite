@@ -1,9 +1,10 @@
-<!-- profilepage/templates/profilepage/sidebar.html -->
 <div class="sidebar" id="sidebar">
     <ul>
-        <li><a href="#" class="active">My Profile</a></li>
+        <li><a href="{% url 'profile' %}" class="sidebar-link {% if request.path == '/profile/my_profile/' %}active{% endif %}">
+    My Profile
+  </a></li>
         <li><a href="{% url 'my_cards' %}">My cards</a></li>
-        <li><a href="#">My Texts</a></li>
+        <li><a href="{% url 'texts_page' %}">My Texts</a></li>
         <li><a href="#">My Tests</a></li>
     </ul>
 </div>
