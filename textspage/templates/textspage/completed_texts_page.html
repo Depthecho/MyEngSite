@@ -1,0 +1,143 @@
+{% extends 'textspage/texts_base.html' %}
+{% load static %}
+
+{% block title %}Texts | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/texts_page.css' %}">
+{% endblock %}
+
+{% block texts_content %}
+<div class="main-container">
+    <nav class="breadcrumbs">
+        <a href="{% url 'home' %}">Home</a> &raquo;
+        <span>Completed texts</span>
+    </nav>
+
+    <div class="texts-content-wrapper">
+        <h1 class="section-title">Texts</h1>
+
+        <!-- Элементы управления -->
+        <div class="texts-controls-wrapper">
+            <!-- Сортировка -->
+            <div class="sorting-options">
+                <div class="sorting-group" title="Sort texts by date">
+                    <a href="?sort=newest" class="sort-option {% if request.GET.sort == 'newest' %}active{% endif %}" aria-label="Sort newest first">
+                        <i class="fas fa-arrow-down"></i> Newest
+                    </a>
+                    <a href="?sort=oldest" class="sort-option {% if request.GET.sort == 'oldest' %}active{% endif %}" aria-label="Sort oldest first">
+                        <i class="fas fa-arrow-up"></i> Oldest
+                    </a>
+                </div>
+
+                <!-- Фильтрация по уровню -->
+                <div class="level-filter" title="Filter by English level">
+                    <span>Level:</span>
+                    <a href="?level=all" class="level-option {% if not request.GET.level or request.GET.level == 'all' %}active{% endif %}">All</a>
+                    {% for level in text.ENGLISH_LEVEL_CHOICES %}
+                        <a href="?level={{ level.0 }}" class="level-option {% if request.GET.level == level.0 %}active{% endif %}">{{ level.1 }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Поиск -->
+            <div class="text-search-wrapper">
+                <form method="get" class="search-form">
+                    <input type="text" name="search" placeholder="Search texts..." value="{{ request.GET.search|default:'' }}" class="search-input">
+                    <button type="submit" class="search-button" aria-label="Search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Основной контейнер с текстами -->
+        <div class="texts-list">
+            {% for text in texts %}
+            <div class="text-card">
+                <div class="text-card-header">
+                    <h3 class="text-card-title">
+    <a href="{% url 'text_detail' text.pk %}" class="text-title-link">{{ text.title }}</a>
+</h3>
+                    <span class="text-card-level level-{{ text.english_level|lower }}">{{ text.get_english_level_display }}</span>
+                </div>
+                <div class="text-card-body">
+                    <div class="text-card-content">
+    {{ text.content|truncatechars:150|linebreaks }}
+</div>
+
+                </div>
+                <div class="text-card-footer">
+                    <span class="text-card-date">{{ text.created_at|date:"d M Y" }}</span>
+                    <div class="text-card-actions">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Пагинация -->
+        {% if texts.has_other_pages %}
+        <div class="pagination">
+            {% if texts.has_previous %}
+                <a href="?page=1&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                   class="pagination-link" title="First page">&laquo; first</a>
+                <a href="?page={{ texts.previous_page_number }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                   class="pagination-link" title="Previous page">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ texts.number }} of {{ texts.paginator.num_pages }}
+            </span>
+
+            {% if texts.has_next %}
+                <a href="?page={{ texts.next_page_number }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                   class="pagination-link" title="Next page">next</a>
+                <a href="?page={{ texts.paginator.num_pages }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
+                   class="pagination-link" title="Last page">last &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Индикатор загрузки -->
+<div class="loading-overlay" id="loading-indicator">
+    <div class="loading-spinner"></div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Кнопка "Наверх"
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+        } else {
+            backToTopButton.style.display = 'none';
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Индикатор загрузки для ссылок
+    document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('a[href^="?"], a.pagination-link');
+        const loadingIndicator = document.getElementById('loading-indicator');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                loadingIndicator.style.display = 'flex';
+            });
+        });
+
+        window.addEventListener('load', () => {
+            loadingIndicator.style.display = 'none';
+        });
+    });
+</script>
+{% endblock %}

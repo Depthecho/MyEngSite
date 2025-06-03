@@ -29,15 +29,20 @@
             </div>
         </div>
 
-        <div class="text-actions">
+<div class="text-actions">
     {% if user.is_authenticated %}
-        <form method="post" action="{% url 'text_detail' text.pk %}">
-            {% csrf_token %}
-            <button type="submit" class="btn-read {% if is_read %}read{% endif %}">
-                <i class="fas fa-check"></i>
-                {% if is_read %}Read by me{% else %}Mark as read{% endif %}
-            </button>
-        </form>
+        {% if text in user.completed_texts.all %}
+            <span class="completed-badge">
+                <i class="fas fa-check-circle"></i> Completed
+            </span>
+        {% else %}
+            <form method="post" action="{% url 'complete_text' text.pk %}">
+                {% csrf_token %}
+                <button type="submit" class="btn-complete">
+                    <i class="fas fa-check"></i> Mark as read
+                </button>
+            </form>
+        {% endif %}
     {% endif %}
 </div>
     </div>

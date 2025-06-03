@@ -368,6 +368,49 @@ text-card-title. {
     100% { transform: rotate(360deg); }
 }
 
+.btn-complete {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-complete:hover {
+    background: linear-gradient(135deg, #66BB6A, #388E3C);
+    transform: translateY(-2px);
+}
+
+.completed-badge {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #9E9E9E, #616161);
+    color: white;
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.completed-badge i {
+    margin-right: 8px;
+}
+
+/* Вкладки */
+.secondary-nav-link.active {
+    position: relative;
+}
+
+.secondary-nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #6a11cb;
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }

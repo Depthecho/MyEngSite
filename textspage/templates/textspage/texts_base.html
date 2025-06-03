@@ -15,14 +15,13 @@
 
 <div class="secondary-navbar">
     <div class="secondary-nav-container">
-        <a href="{% url 'texts_page' %}" class="secondary-nav-link {% if 'my_texts' in request.resolver_match.url_name %}active{% endif %}">
-            <i class="fas fa-book-open"></i> My texts
+        <a href="{% url 'texts_page' %}"
+           class="secondary-nav-link {% if active_tab != 'completed' %}active{% endif %}">
+            <i class="fas fa-book-open"></i> All Texts
         </a>
-        <a href="#" class="secondary-nav-link {% if 'add_text' in request.resolver_match.url_name %}active{% endif %}">
-            <i class="fas fa-plus-circle"></i> Add text
-        </a>
-        <a href="#" class="secondary-nav-link {% if 'texts_quiz' in request.resolver_match.url_name %}active{% endif %}">
-            <i class="fas fa-question-circle"></i> Quiz
+        <a href="{% url 'completed_texts' %}"
+           class="secondary-nav-link {% if active_tab == 'completed' %}active{% endif %}">
+            <i class="fas fa-check-circle"></i> Completed Texts
         </a>
     </div>
 </div>

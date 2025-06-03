@@ -5,9 +5,14 @@ from django.db.models import Q
 
 class TextService:
     @staticmethod
-    def get_filtered_texts(request):
+    def get_filtered_texts(request, queryset=None):
         params = TextService._extract_params(request)
-        queryset = TextService._apply_filters(Text.objects.all(), params)
+        queryset = queryset if queryset is not None else Text.objects.all()
+
+        if 'completed' not in request.path and request.user.is_authenticated:
+            queryset = queryset.exclude(completed_by=request.user)
+
+        queryset = TextService._apply_filters(queryset, params)
         return TextService._paginate_queryset(queryset, request.GET.get('page'))
 
     @staticmethod
@@ -41,6 +46,8 @@ class TextService:
 
     @staticmethod
     def _sort_queryset(queryset, sort_order):
+        if not hasattr(queryset, 'order_by'):
+            return queryset
         if sort_order == 'oldest':
             return queryset.order_by('created_at')
         return queryset.order_by('-created_at')

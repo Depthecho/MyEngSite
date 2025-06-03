@@ -52,6 +52,12 @@ class Text(models.Model):
         blank=True,
         verbose_name='Read By'
     )
+    completed_by = models.ManyToManyField(
+        CustomUser,
+        through='TextCompletion',
+        related_name='completed_texts',
+        blank=True
+    )
 
     # Typing for Django model internals
     objects: BaseManager['Text']
@@ -74,3 +80,12 @@ class Text(models.Model):
         level_order = ['A0', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2']
         allowed_levels = level_order[:level_order.index(level) + 1]
         return cls.objects.filter(english_level__in=allowed_levels).order_by('-created_at')
+
+
+class TextCompletion(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    text = models.ForeignKey(Text, on_delete=models.CASCADE)
+    completed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'text')
