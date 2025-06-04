@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.utils import timezone
 from django.http import HttpRequest
@@ -7,7 +8,7 @@ from django.contrib.auth import update_session_auth_hash, get_user_model
 from django.contrib.auth.models import AbstractBaseUser
 from django.forms import Form
 from typing import Any, Dict, Optional, Type, Union
-from .models import Profile, Achievement, Friendship
+from .models import Profile, Achievement, Friendship, Notification
 from .forms import ProfileUpdateForm, CustomPasswordChangeForm
 
 User = get_user_model()
@@ -29,7 +30,6 @@ class ProfileUpdateHandler:
         return redirect('profile')
 
     def _get_appropriate_form(self) -> Optional[Union[ProfileUpdateForm, CustomPasswordChangeForm]]:
-        """Determine which form was submitted based on request data."""
         if 'update_profile' in self.request.POST:
             return ProfileUpdateForm(
                 self.request.POST,
@@ -44,7 +44,6 @@ class ProfileUpdateHandler:
         return None
 
     def _save_form(self, form: Union[ProfileUpdateForm, CustomPasswordChangeForm]) -> None:
-        """Save the appropriate form based on its type."""
         if isinstance(form, CustomPasswordChangeForm):
             user: AbstractBaseUser = form.save()
             update_session_auth_hash(self.request, user)
@@ -52,7 +51,6 @@ class ProfileUpdateHandler:
             form.save()
 
     def _add_success_message(self) -> None:
-        """Add appropriate success message based on form type."""
         message: str = (
             "Password updated successfully!"
             if 'change_password' in self.request.POST
@@ -61,7 +59,6 @@ class ProfileUpdateHandler:
         messages.success(self.request, message)
 
     def get_forms(self) -> Dict[str, Form]:
-        """Get both profile and password forms."""
         return {
             'profile_form': ProfileUpdateForm(instance=self.profile),
             'password_form': CustomPasswordChangeForm(self.request.user)
@@ -77,7 +74,6 @@ class AchievementChecker:
 
     @classmethod
     def check_achievements(cls, user: AbstractBaseUser, profile: Profile) -> None:
-        """Check and create achievements for all badge types."""
         for badge_type in cls.ACHIEVEMENT_THRESHOLDS:
             cls._check_single_type(user, profile, badge_type)
 
@@ -88,7 +84,6 @@ class AchievementChecker:
             profile: Profile,
             badge_type: str
     ) -> None:
-        """Check achievements for a single badge type."""
         attr_name: str = (
             f"{badge_type}_learned" if badge_type == 'words'
             else f"{badge_type}_read" if badge_type == 'texts'
@@ -111,7 +106,6 @@ class ProfileService:
         self.user: AbstractBaseUser = user
 
     def get_or_create_profile(self) -> Profile:
-        """Get or create user profile with defaults."""
         profile, created = Profile.objects.get_or_create(
             user=self.user,
             defaults={
@@ -156,7 +150,6 @@ class FriendshipService:
 
     @staticmethod
     def update_friends_count(user):
-        """Обновить счетчик друзей"""
         count = Friendship.objects.filter(
             (Q(from_user=user) | Q(to_user=user)),
             status=Friendship.ACCEPTED
@@ -165,7 +158,6 @@ class FriendshipService:
 
     @staticmethod
     def update_followers_count(user):
-        """Обновить счетчик подписчиков"""
         count = Friendship.objects.filter(
             to_user=user,
             status=Friendship.REQUESTED
@@ -174,7 +166,6 @@ class FriendshipService:
 
     @staticmethod
     def send_request(from_user, to_user):
-        """Отправить запрос в друзья"""
         if from_user == to_user:
             raise ValueError("You cannot send a request to yourself")
 
@@ -191,8 +182,9 @@ class FriendshipService:
             elif existing.status == Friendship.REJECTED:
                 existing.status = Friendship.REQUESTED
                 existing.save()
+                friendship = existing
         else:
-            Friendship.objects.create(
+            friendship = Friendship.objects.create(
                 from_user=from_user,
                 to_user=to_user,
                 status=Friendship.REQUESTED
@@ -200,9 +192,18 @@ class FriendshipService:
 
         FriendshipService.update_followers_count(to_user)
 
+        NotificationService.create_notification(
+            user=to_user,
+            notification_type='FRIEND_REQUEST',
+            title='New Friend Request',
+            message=f'{from_user.username} wants to be your friend',
+            related_object=friendship
+        )
+
+        return friendship
+
     @staticmethod
     def accept_request(friendship):
-        """Принять запрос в друзья"""
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be accepted")
 
@@ -215,7 +216,6 @@ class FriendshipService:
 
     @staticmethod
     def reject_request(friendship):
-        """Отклонить запрос в друзья"""
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be rejected")
 
@@ -224,7 +224,6 @@ class FriendshipService:
 
     @staticmethod
     def remove_friendship(user1, user2):
-        """Удалить дружбу между пользователями"""
         Friendship.objects.filter(
             (Q(from_user=user1, to_user=user2) |
              Q(from_user=user2, to_user=user1)),
@@ -233,3 +232,44 @@ class FriendshipService:
 
         FriendshipService.update_friends_count(user1)
         FriendshipService.update_friends_count(user2)
+
+
+class NotificationService:
+    @staticmethod
+    def create_notification(user, notification_type, title, message, related_object=None):
+        content_type = None
+        object_id = None
+
+        if related_object:
+            content_type = ContentType.objects.get_for_model(related_object)
+            object_id = related_object.id
+
+        return Notification.objects.create(
+            user=user,
+            notification_type=notification_type,
+            title=title,
+            message=message,
+            content_type=content_type,
+            object_id=object_id
+        )
+
+    @staticmethod
+    def get_unread_count(user):
+        return Notification.objects.filter(user=user, is_read=False).count()
+
+    @staticmethod
+    def mark_as_read(notification_id, user):
+        print(f"DEBUG_SERVICE: mark_as_read called for notif ID {notification_id}")
+        try:
+            notification = Notification.objects.get(id=notification_id, user=user)
+            print(f"DEBUG_SERVICE: Notification {notification.id} is_read BEFORE: {notification.is_read}")
+            if not notification.is_read:
+                notification.is_read = True
+                notification.save()
+                print(f"DEBUG_SERVICE: Notification {notification.id} marked as read and saved.")
+                return True
+            print(f"DEBUG_SERVICE: Notification {notification.id} already read.")
+            return False
+        except Notification.DoesNotExist:
+            print(f"DEBUG_SERVICE: Notification {notification_id} DoesNotExist for user {user.username}")
+            return False

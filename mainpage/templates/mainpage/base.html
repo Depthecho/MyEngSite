@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="icon" type="image/svg+xml" href="{% static 'favicon/logo.svg' %}">
     <link rel="stylesheet" href="{% static 'style/footer.css' %}">
@@ -12,9 +11,13 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-{% block content %}
+    <script>
+        const CSRF_TOKEN = "{{ csrf_token }}";
+    </script>
 
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
+    <script src="{% static 'js/notifications.js' %}"></script>
 </body>
 </html>

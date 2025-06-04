@@ -1,6 +1,9 @@
 import os
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Set, Tuple, Type, TypeVar, Union
+
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -198,18 +201,15 @@ class Profile(models.Model):
         return True
 
     def get_achievements(self, badge_type: Optional[str] = None) -> models.QuerySet['Achievement']:
-        """Get all achievements for this user, optionally filtered by badge type."""
         achievements = Achievement.objects.filter(user=self.user)
         if badge_type:
             achievements = achievements.filter(badge_type=badge_type)
         return achievements
 
     def has_achievement(self, badge_type: str, level: int) -> bool:
-        """Check if user has a specific achievement."""
         return self.get_achievements(badge_type).filter(level=level).exists()
 
     def get_friends(self):
-        """Возвращает список друзей пользователя"""
         accepted = Friendship.objects.filter(
             models.Q(from_user=self.user, status=Friendship.ACCEPTED) |
             models.Q(to_user=self.user, status=Friendship.ACCEPTED)
@@ -224,14 +224,12 @@ class Profile(models.Model):
         return friends
 
     def get_pending_requests(self):
-        """Возвращает входящие заявки в друзья"""
         return Friendship.objects.filter(
             to_user=self.user,
             status=Friendship.REQUESTED
         )
 
     def get_friendship_status(self, other_user):
-        """Возвращает статус дружбы между пользователями"""
         if self.user == other_user:
             return 'self'
 
@@ -326,3 +324,38 @@ class Friendship(models.Model):
 
     def __str__(self):
         return f"{self.from_user} → {self.to_user} ({self.status})"
+
+
+class Notification(models.Model):
+    NOTIFICATION_TYPES = [
+        ('FRIEND_REQUEST', 'Friend Request'),
+        ('SYSTEM', 'System Notification'),
+    ]
+
+    user = models.ForeignKey(
+        UserModel,
+        on_delete=models.CASCADE,
+        related_name='notifications'
+    )
+    notification_type = models.CharField(
+        max_length=20,
+        choices=NOTIFICATION_TYPES
+    )
+    title = models.CharField(max_length=100)
+    message = models.TextField()
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    content_type = models.ForeignKey(
+        ContentType,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+    object_id = models.PositiveIntegerField(null=True, blank=True)
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+    class Meta:
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.notification_type} for {self.user.username}"

@@ -28,10 +28,10 @@
 
             <div class="tabs-container">
                 <a href="{% url 'friends_list' %}" class="tab-item {% if request.resolver_match.url_name == 'friends_list' %}active{% endif %}">
-                    Friends ({{ friends_count }})
+                    Friends
                 </a>
                 <a href="{% url 'followers_list' %}" class="tab-item {% if request.resolver_match.url_name == 'followers_list' %}active{% endif %}">
-                    Followers ({{ page_obj.paginator.count }})
+                    Followers ({{ followers_count }})
                 </a>
             </div>
 
@@ -67,14 +67,14 @@
                                 <div class="friend-actions">
                                     {% friendship_status request.user follower as status %}
                                     {% if status == 'request_received' %}
-                                        <form method="post" action="{% url 'accept_friend_request' follower.id %}">
+                                        <form method="post" action="{% url 'friendship:accept' follower.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn-accept-friend">
                                                 <i class="fas fa-user-plus"></i> Accept
                                             </button>
                                         </form>
                                     {% elif status == 'not_friends' %}
-                                        <form method="post" action="{% url 'send_friend_request' follower.username %}">
+                                        <form method="post" action="{% url 'friendship:send' follower.username %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn-add-friend">
                                                 <i class="fas fa-user-plus"></i> Add Friend

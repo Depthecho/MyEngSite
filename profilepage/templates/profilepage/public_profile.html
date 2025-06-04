@@ -46,42 +46,42 @@
             </div>
 
             {% include 'profilepage/social_stats.html' %}
-                       <div class="friendship-actions">
+                    <div class="friendship-actions" data-profile-username="{{ profile.username }}">
     {% if request.user != profile.user %}
         {% friendship_status request.user profile.user as status %}
 
         {% if status == 'not_friends' %}
-            <form method="post" action="{% url 'send_friend_request' profile.username %}">
+            <form method="post" action="{% url 'friendship:send' profile.username %}">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-primary">Add to friends</button>
             </form>
 
         {% elif status == 'rejected' %}
             <button class="btn btn-secondary" disabled>Request rejected</button>
+            <form method="post" action="{% url 'friendship:send' profile.username %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Send request again</button>
+            </form> #}
 
         {% elif status == 'request_sent' %}
             <button class="btn btn-secondary" disabled>Request was sent</button>
 
         {% elif status == 'request_received' %}
-            <div class="friend-request-notification">
-                <p>You have been sent a friend request</p>
-                <form method="post" action="{% url 'accept_friend_request' profile.user.username %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-success">Accept</button>
-                </form>
-                <form method="post" action="{% url 'reject_friend_request' profile.user.username %}">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Reject</button>
-                </form>
-            </div>
-
-        {% elif status == 'friends' %}
-            <form method="post" action="{% url 'remove_friend' profile.username %}"
-                  onsubmit="return confirm('Are you sure you want to remove from friends?');">
+            <form method="post" action="{% url 'friendship:accept' incoming_request.id %}">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-warning">Remove from friends</button>
+                <button type="submit" class="btn btn-success">Accept Friend Request</button>
+            </form>
+            <form method="post" action="{% url 'friendship:reject' incoming_request.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Reject Friend Request</button>
             </form>
 
+        {% elif status == 'friends' %}
+            <form method="post" action="{% url 'friendship:remove' profile.username %}"
+                  onsubmit="return confirm('Are you sure you want to remove {{ profile.username }} from friends?');">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Remove from friends</button>
+            </form>
         {% endif %}
     {% endif %}
 </div>

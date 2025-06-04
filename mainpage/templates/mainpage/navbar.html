@@ -14,6 +14,60 @@
 
         <div class="navbar-auth">
             {% if user.is_authenticated %}
+                <div class="notification-icon-wrapper">
+                    <div class="notification-icon" id="notificationIcon">
+                        <i class="fas fa-bell"></i>
+                        {% if unread_notifications_count > 0 %}
+                        <span class="notification-badge notification-count">{{ unread_notifications_count }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-header">
+                            <h6>Notifications</h6>
+                            <small><a href="#" id="mark-all-read-btn">Mark all as read</a></small>
+                        </div>
+                        <div class="notification-list">
+                            {% for notification in request.user.notifications.all|slice:":5" %}
+                            <div class="notification-item {% if not notification.is_read %}unread{% endif %}"
+                                 data-notification-id="{{ notification.id }}">
+                                <div class="notification-content">
+                                    <h6>{{ notification.title }}</h6>
+                                    <p>{{ notification.message }}</p>
+                                    <small>{{ notification.created_at|timesince }} ago</small>
+
+                                    <i class="fas fa-times close-notification-btn"
+                                       data-notification-id="{{ notification.id }}"></i>
+
+                                    {% if notification.notification_type == 'FRIEND_REQUEST' %}
+                                        {% if notification.content_object and notification.content_object.id %}
+                                            <div class="notification-actions">
+                                                <form method="post" action="{% url 'friendship:accept' notification.content_object.id %}" class="js-friend-action-form">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-success">Accept</button>
+                                                </form>
+                                                <form method="post" action="{% url 'friendship:reject' notification.content_object.id %}" class="js-friend-action-form">
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                                </form>
+                                            </div>
+                                        {% else %}
+                                            <p>Friend request details unavailable.</p>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% empty %}
+                            <div class="notification-empty">
+                                <p>No notifications yet</p>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <div class="notification-footer">
+                            <a href="#">View all notifications</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="avatar-dropdown" id="avatarDropdown">
                     <img src="{{ user.profile.avatar.url }}" alt="User Avatar" class="avatar-img" id="avatar-img">
                     <div class="dropdown-menu" id="dropdownMenu">
@@ -35,31 +89,41 @@
             <span></span>
             <span></span>
         </div>
-        <script>
-    // Открытие/закрытие выпадающего меню по клику на аватар
-    const avatarDropdown = document.getElementById('avatarDropdown');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-
-    avatarDropdown.addEventListener('click', (e) => {
-        e.stopPropagation(); // Предотвращаем всплытие события
-        dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-    });
-
-    // Закрытие выпадающего меню при клике вне его
-    document.addEventListener('click', () => {
-        dropdownMenu.style.display = 'none';
-    });
-
-    // Управление бургер-меню
-    const burgerMenu = document.getElementById('burgerMenu');
-    const navbarLinks = document.querySelector('.navbar-links');
-    const navbarAuth = document.querySelector('.navbar-auth');
-
-    burgerMenu.addEventListener('click', () => {
-        navbarLinks.classList.toggle('active');
-        navbarAuth.classList.toggle('active');
-        burgerMenu.classList.toggle('active');
-    });
-</script>
     </div>
 </nav>
+
+<script src="{% static 'js/notifications.js' %}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const avatarDropdown = document.getElementById('avatarDropdown');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const notificationIcon = document.getElementById('notificationIcon');
+        const notificationDropdown = document.getElementById('notificationDropdown');
+        const burgerMenu = document.getElementById('burgerMenu');
+        const navbarLinks = document.querySelector('.navbar-links');
+        const navbarAuth = document.querySelector('.navbar-auth');
+
+        avatarDropdown.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+            notificationDropdown.style.display = 'none';
+        });
+
+        notificationIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            notificationDropdown.style.display = notificationDropdown.style.display === 'block' ? 'none' : 'block';
+            dropdownMenu.style.display = 'none';
+        });
+
+        burgerMenu.addEventListener('click', () => {
+            navbarLinks.classList.toggle('active');
+            navbarAuth.classList.toggle('active');
+            burgerMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', () => {
+            dropdownMenu.style.display = 'none';
+            notificationDropdown.style.display = 'none';
+        });
+    });
+</script>

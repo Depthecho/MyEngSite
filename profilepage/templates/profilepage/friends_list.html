@@ -31,7 +31,7 @@
                     Friends ({{ page_obj.paginator.count }})
                 </a>
                 <a href="{% url 'followers_list' %}" class="tab-item {% if request.resolver_match.url_name == 'followers_list' %}active{% endif %}">
-                    Followers ({{ followers_count }})
+                    Followers
                 </a>
             </div>
 
@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="friend-actions">
-                                    <form method="post" action="{% url 'remove_friend' friend.username %}"
+                                    <form method="post" action="{% url 'friendship:remove' friend.username %}"
                                           onsubmit="return confirm('Are you sure you want to remove {{ friend.username }} from friends?');">
                                         {% csrf_token %}
                                         <button type="submit" class="btn-remove-friend">

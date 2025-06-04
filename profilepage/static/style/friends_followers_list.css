@@ -99,20 +99,25 @@
 .btn-remove-friend {
     background: #ffcc00;
     color: #6a11cb;
+    border: 2px solid #ffcc00;
 }
 
 .btn-remove-friend:hover {
-    background: #ffd700;
-    color: #2575fc;
+    background: transparent;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
 }
 
 .btn-accept-friend {
     background: #ffcc00;
     color: #6a11cb;
+    border: 2px solid #ffcc00;
 }
 
 .btn-accept-friend:hover {
-    background: #ffb700;
+    background: transparent;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
 }
 
 .btn-add-friend {

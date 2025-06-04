@@ -370,18 +370,20 @@ text-card-title. {
 
 .btn-complete {
     padding: 10px 20px;
-    background: linear-gradient(135deg, #4CAF50, #2E7D32);
-    color: white;
-    border: none;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: 500;
+    background: transparent;
+    color: white;
+    border: 2px solid #4caf50;
 }
 
 .btn-complete:hover {
-    background: linear-gradient(135deg, #66BB6A, #388E3C);
     transform: translateY(-2px);
+    background: #4caf50;
+    border: 2px solid #4caf50;
+    color: #white;
 }
 
 .completed-badge {
