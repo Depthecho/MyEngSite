@@ -1,10 +1,11 @@
 <div class="sidebar" id="sidebar">
     <ul>
         <li><a href="{% url 'profile' %}" class="sidebar-link {% if request.path == '/profile/my_profile/' %}active{% endif %}">
-    My Profile
+    Profile
   </a></li>
-        <li><a href="{% url 'my_cards' %}">My cards</a></li>
-        <li><a href="{% url 'texts_page' %}">My Texts</a></li>
-        <li><a href="#">My Tests</a></li>
+        <li><a href="{% url 'friends_list' %}" class="sidebar-link {% if request.path == '/profile/friends/' %}active{% endif %} {% if request.path == '/profile/followers/' %}active{% endif %}">Friends</a></li>
+        <li><a href="{% url 'my_cards' %}">Cards</a></li>
+        <li><a href="{% url 'texts_page' %}">Texts</a></li>
+        <li><a href="#">Tests</a></li>
     </ul>
 </div>

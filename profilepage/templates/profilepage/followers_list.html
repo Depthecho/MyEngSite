@@ -1,0 +1,131 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% load profile_tags %}
+{% load friends_tags %}
+
+{% block title %}My Network{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'style/friends_followers_list.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+<div class="main-container">
+    <div class="profile-container">
+        {% include 'profilepage/sidebar.html' with active_tab='friends' %}
+
+        <div class="profile-content-wrapper">
+            <div class="header-with-toggle">
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Followers</h1>
+            </div>
+
+            <div class="tabs-container">
+                <a href="{% url 'friends_list' %}" class="tab-item {% if request.resolver_match.url_name == 'friends_list' %}active{% endif %}">
+                    Friends ({{ friends_count }})
+                </a>
+                <a href="{% url 'followers_list' %}" class="tab-item {% if request.resolver_match.url_name == 'followers_list' %}active{% endif %}">
+                    Followers ({{ page_obj.paginator.count }})
+                </a>
+            </div>
+
+            <div class="friends-list-container">
+                {% if page_obj %}
+                    <div class="friends-grid">
+                        {% for follower in page_obj %}
+                        <div class="friend-card">
+                            <div class="friend-avatar-container">
+                                <img src="{{ follower.profile.avatar.url }}" alt="{{ follower.username }}" class="friend-avatar">
+                            </div>
+                            <div class="friend-info">
+                                <h3 class="friend-name">
+                                    <a href="{% url 'public_profile' follower.username %}">
+                                        {% if follower.profile.first_name or follower.profile.last_name %}
+                                            {{ follower.profile.first_name }} {{ follower.profile.last_name }}
+                                        {% else %}
+                                            {{ follower.username }}
+                                        {% endif %}
+                                    </a>
+                                </h3>
+                                <p class="friend-username">@{{ follower.username }}</p>
+
+                                <div class="friend-stats">
+                                    <span class="stat-item">
+                                        <i class="fas fa-book-open"></i> {{ follower.profile.words_learned }}
+                                    </span>
+                                    <span class="stat-item">
+                                        <i class="fas fa-tasks"></i> {{ follower.profile.tests_completed }}
+                                    </span>
+                                </div>
+
+                                <div class="friend-actions">
+                                    {% friendship_status request.user follower as status %}
+                                    {% if status == 'request_received' %}
+                                        <form method="post" action="{% url 'accept_friend_request' follower.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-accept-friend">
+                                                <i class="fas fa-user-plus"></i> Accept
+                                            </button>
+                                        </form>
+                                    {% elif status == 'not_friends' %}
+                                        <form method="post" action="{% url 'send_friend_request' follower.username %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-add-friend">
+                                                <i class="fas fa-user-plus"></i> Add Friend
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1" class="pagination-link first-page">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        {% endif %}
+
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <span class="pagination-link current-page">{{ num }}</span>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                <a href="?page={{ num }}" class="pagination-link">{{ num }}</a>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="no-friends">
+                        <i class="fas fa-user-friends no-friends-icon"></i>
+                        <p>You don't have any followers yet.</p>
+                        <a href="{% url 'profile' %}" class="cta-button">Discover Users</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'mainpage/footer.html' %}
+
+<script src="{% static 'js/profile.js' %}"></script>
+{% endblock %}

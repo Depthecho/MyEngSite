@@ -3,12 +3,14 @@ from django.utils import timezone
 from django.http import HttpRequest
 from django.contrib import messages
 from django.shortcuts import redirect, HttpResponseRedirect
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, get_user_model
 from django.contrib.auth.models import AbstractBaseUser
 from django.forms import Form
 from typing import Any, Dict, Optional, Type, Union
 from .models import Profile, Achievement, Friendship
 from .forms import ProfileUpdateForm, CustomPasswordChangeForm
+
+User = get_user_model()
 
 
 class ProfileUpdateHandler:
@@ -135,20 +137,99 @@ class ProfileService:
 
 
 class FriendshipService:
+
+    @staticmethod
+    def get_friends(user):
+        friendships = Friendship.objects.filter(
+            (Q(from_user=user) | Q(to_user=user)),
+            status=Friendship.ACCEPTED
+        ).select_related('from_user', 'to_user')
+
+        return [f.from_user if f.from_user != user else f.to_user for f in friendships]
+
+    @staticmethod
+    def get_followers(user):
+        return User.objects.filter(
+            friendship_requests_sent__to_user=user,
+            friendship_requests_sent__status=Friendship.REQUESTED
+        )
+
     @staticmethod
     def update_friends_count(user):
-        friends_count = Friendship.objects.filter(
-            Q(from_user=user, status=Friendship.ACCEPTED) |
-            Q(to_user=user, status=Friendship.ACCEPTED)
+        """Обновить счетчик друзей"""
+        count = Friendship.objects.filter(
+            (Q(from_user=user) | Q(to_user=user)),
+            status=Friendship.ACCEPTED
         ).count()
-
-        Profile.objects.filter(user=user).update(friends_count=friends_count)
+        Profile.objects.filter(user=user).update(friends_count=count)
 
     @staticmethod
     def update_followers_count(user):
-        followers_count = Friendship.objects.filter(
+        """Обновить счетчик подписчиков"""
+        count = Friendship.objects.filter(
             to_user=user,
             status=Friendship.REQUESTED
         ).count()
+        Profile.objects.filter(user=user).update(followers_count=count)
 
-        Profile.objects.filter(user=user).update(followers_count=followers_count)
+    @staticmethod
+    def send_request(from_user, to_user):
+        """Отправить запрос в друзья"""
+        if from_user == to_user:
+            raise ValueError("You cannot send a request to yourself")
+
+        existing = Friendship.objects.filter(
+            from_user=from_user,
+            to_user=to_user
+        ).first()
+
+        if existing:
+            if existing.status == Friendship.REQUESTED:
+                raise ValueError("Request already sent")
+            elif existing.status == Friendship.ACCEPTED:
+                raise ValueError("Already friends")
+            elif existing.status == Friendship.REJECTED:
+                existing.status = Friendship.REQUESTED
+                existing.save()
+        else:
+            Friendship.objects.create(
+                from_user=from_user,
+                to_user=to_user,
+                status=Friendship.REQUESTED
+            )
+
+        FriendshipService.update_followers_count(to_user)
+
+    @staticmethod
+    def accept_request(friendship):
+        """Принять запрос в друзья"""
+        if friendship.status != Friendship.REQUESTED:
+            raise ValueError("Only pending requests can be accepted")
+
+        friendship.status = Friendship.ACCEPTED
+        friendship.save()
+
+        FriendshipService.update_friends_count(friendship.from_user)
+        FriendshipService.update_friends_count(friendship.to_user)
+        FriendshipService.update_followers_count(friendship.to_user)
+
+    @staticmethod
+    def reject_request(friendship):
+        """Отклонить запрос в друзья"""
+        if friendship.status != Friendship.REQUESTED:
+            raise ValueError("Only pending requests can be rejected")
+
+        friendship.status = Friendship.REJECTED
+        friendship.save()
+
+    @staticmethod
+    def remove_friendship(user1, user2):
+        """Удалить дружбу между пользователями"""
+        Friendship.objects.filter(
+            (Q(from_user=user1, to_user=user2) |
+             Q(from_user=user2, to_user=user1)),
+            status=Friendship.ACCEPTED
+        ).delete()
+
+        FriendshipService.update_friends_count(user1)
+        FriendshipService.update_friends_count(user2)

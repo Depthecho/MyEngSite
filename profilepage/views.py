@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse
 from django.forms import Form
@@ -141,7 +142,6 @@ def reject_friend_request(request, friendship_id):
 
     messages.success(request, "Friend request rejected")
     return redirect('profile')
-    return redirect('profile')
 
 
 @login_required
@@ -158,5 +158,83 @@ def remove_friend(request, username):
 
     FriendshipService.update_friends_count(request.user)
     FriendshipService.update_friends_count(friend_user)
+
+    return redirect('public_profile', username=username)
+
+
+@login_required
+def friends_list(request):
+    friends = FriendshipService.get_friends(request.user)
+    paginator = Paginator(friends, 20)
+    return render(request, 'profilepage/friends_list.html', {
+        'page_obj': paginator.get_page(request.GET.get('page')),
+        'friends_count': len(friends)
+    })
+
+
+@login_required
+def followers_list(request):
+    followers = FriendshipService.get_followers(request.user)
+    paginator = Paginator(followers, 20)
+    return render(request, 'profilepage/followers_list.html', {
+        'page_obj': paginator.get_page(request.GET.get('page')),
+        'followers_count': followers.count()
+    })
+
+
+@login_required
+def send_friend_request(request, username):
+    try:
+        to_user = get_object_or_404(User, username=username)
+        FriendshipService.send_request(request.user, to_user)
+        messages.success(request, "Friend request sent")
+    except ValueError as e:
+        messages.error(request, str(e))
+
+    return redirect('public_profile', username=username)
+
+
+@login_required
+def accept_friend_request(request, friendship_id):
+    try:
+        friendship = get_object_or_404(
+            Friendship,
+            id=friendship_id,
+            to_user=request.user,
+            status=Friendship.REQUESTED
+        )
+        FriendshipService.accept_request(friendship)
+        messages.success(request, "Friend request accepted")
+    except ValueError as e:
+        messages.error(request, str(e))
+
+    return redirect('profile')
+
+
+@login_required
+def reject_friend_request(request, friendship_id):
+    try:
+        friendship = get_object_or_404(
+            Friendship,
+            id=friendship_id,
+            to_user=request.user,
+            status=Friendship.REQUESTED
+        )
+        FriendshipService.reject_request(friendship)
+        messages.success(request, "Friend request rejected")
+    except ValueError as e:
+        messages.error(request, str(e))
+
+    return redirect('profile')
+
+
+@login_required
+def remove_friend(request, username):
+    try:
+        friend_user = get_object_or_404(User, username=username)
+        FriendshipService.remove_friendship(request.user, friend_user)
+        messages.success(request, f"User {username} removed from friends")
+    except Exception as e:
+        messages.error(request, str(e))
 
     return redirect('public_profile', username=username)
