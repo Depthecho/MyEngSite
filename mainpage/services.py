@@ -6,6 +6,9 @@ from django.forms import Form
 from django.contrib.auth.models import AbstractBaseUser
 from typing import Optional, Dict, Any
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from django.utils import timezone
+from profilepage.models import Profile
+
 
 REGISTRATION_SUCCESS_MSG: str = 'Registration successful!'
 REGISTRATION_FAIL_MSG: str = 'Registration failed. Please check the form.'
@@ -64,3 +67,26 @@ class UserAuthenticationService:
         )
         messages.success(request, LOGIN_SUCCESS_MSG)
         return user
+
+
+class ProfileStreakService:
+    @staticmethod
+    def update_streak(profile: Profile) -> None:
+        today = timezone.localdate()
+        needs_save = False
+
+        if not profile.last_visit_date:
+            profile.last_visit_date = today
+            profile.streak = 1
+            needs_save = True
+        elif profile.last_visit_date < today:
+            if profile.last_visit_date == today - timezone.timedelta(days=1):
+
+                profile.streak += 1
+            else:
+                profile.streak = 0
+            profile.last_visit_date = today
+            needs_save = True
+
+        if needs_save:
+            profile.save()

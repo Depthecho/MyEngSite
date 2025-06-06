@@ -38,7 +38,8 @@
             <div class="friends-list-container">
                 {% if page_obj %}
                     <div class="friends-grid">
-                        {% for follower in page_obj %}
+                        {% for item in page_obj %}
+                        {% with follower=item.follower friendship_request=item.friendship_request %}
                         <div class="friend-card">
                             <div class="friend-avatar-container">
                                 <img src="{{ follower.profile.avatar.url }}" alt="{{ follower.username }}" class="friend-avatar">
@@ -46,8 +47,16 @@
                             <div class="friend-info">
                                 <h3 class="friend-name">
                                     <a href="{% url 'public_profile' follower.username %}">
-                                        {% if follower.profile.first_name or follower.profile.last_name %}
-                                            {{ follower.profile.first_name }} {{ follower.profile.last_name }}
+                                        {% if not follower.profile.hide_first_name and not follower.profile.hide_last_name %}
+                                            {% if follower.first_name or follower.last_name %}
+                                                {{ follower.first_name }} {{ follower.last_name }}
+                                            {% else %}
+                                                {{ follower.username }}
+                                            {% endif %}
+                                        {% elif not follower.profile.hide_first_name %}
+                                            {{ follower.first_name }}
+                                        {% elif not follower.profile.hide_last_name %}
+                                            {{ follower.last_name }}
                                         {% else %}
                                             {{ follower.username }}
                                         {% endif %}
@@ -67,10 +76,16 @@
                                 <div class="friend-actions">
                                     {% friendship_status request.user follower as status %}
                                     {% if status == 'request_received' %}
-                                        <form method="post" action="{% url 'friendship:accept' follower.id %}">
+                                        <form method="post" action="{% url 'friendship:accept' friendship_request.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn-accept-friend">
                                                 <i class="fas fa-user-plus"></i> Accept
+                                            </button>
+                                        </form>
+                                        <form method="post" action="{% url 'friendship:reject' friendship_request.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-reject-friend">
+                                                <i class="fas fa-user-times"></i> Reject
                                             </button>
                                         </form>
                                     {% elif status == 'not_friends' %}
@@ -84,6 +99,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% endwith %}
                         {% endfor %}
                     </div>
 
@@ -124,6 +140,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% include 'mainpage/footer.html' %}
 

@@ -46,8 +46,16 @@
                             <div class="friend-info">
                                 <h3 class="friend-name">
                                     <a href="{% url 'public_profile' friend.username %}">
-                                        {% if friend.profile.first_name or friend.profile.last_name %}
-                                            {{ friend.profile.first_name }} {{ friend.profile.last_name }}
+                                        {% if not friend.profile.hide_first_name and not friend.profile.hide_last_name %}
+                                            {% if friend.first_name or friend.last_name %}
+                                                {{ friend.first_name }} {{ friend.last_name }}
+                                            {% else %}
+                                                {{ friend.username }}
+                                            {% endif %}
+                                        {% elif not friend.profile.hide_first_name %}
+                                            {{ friend.first_name }}
+                                        {% elif not friend.profile.hide_last_name %}
+                                            {{ friend.last_name }}
                                         {% else %}
                                             {{ friend.username }}
                                         {% endif %}
@@ -115,6 +123,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% include 'mainpage/footer.html' %}
 

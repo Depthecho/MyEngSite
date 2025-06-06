@@ -3,5 +3,22 @@ from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'first_name', 'last_name', 'words_learned', 'texts_read', 'tests_completed', 'streak')
-    search_fields = ('username', 'email')
+    list_display = (
+        'user__username',
+        'user__email',
+        'user__first_name',
+        'user__last_name',
+        'words_learned',
+        'texts_read',
+        'tests_completed',
+        'streak',
+    )
+    search_fields = (
+        'user__username',
+        'user__email',
+        'user__first_name',
+        'user__last_name',
+    )
+
+    list_filter = ('english_level', 'study_start_date')
+    raw_id_fields = ('user',)

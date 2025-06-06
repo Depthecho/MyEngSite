@@ -7,9 +7,10 @@ from django.shortcuts import redirect, HttpResponseRedirect
 from django.contrib.auth import update_session_auth_hash, get_user_model
 from django.contrib.auth.models import AbstractBaseUser
 from django.forms import Form
-from typing import Any, Dict, Optional, Type, Union
+from typing import Any, Dict, Optional, Type, Union, List
+from django.db import models
 from .models import Profile, Achievement, Friendship, Notification
-from .forms import ProfileUpdateForm, CustomPasswordChangeForm
+from .forms import ProfileUpdateForm, CustomPasswordChangeForm, UserUpdateForm
 
 User = get_user_model()
 
@@ -17,51 +18,48 @@ User = get_user_model()
 class ProfileUpdateHandler:
     def __init__(self, request: HttpRequest) -> None:
         self.request: HttpRequest = request
+        self.user: User = request.user
         self.profile: Profile = request.user.profile
 
-    def process_update(self) -> Union[Form, HttpResponseRedirect]:
-        form: Optional[Form] = self._get_appropriate_form()
+    def process_update(self) -> Union[Dict[str, Form], HttpResponseRedirect]:
+        if 'update_profile_and_user' in self.request.POST:
+            user_form = UserUpdateForm(self.request.POST, instance=self.user)
+            profile_form = ProfileUpdateForm(self.request.POST, self.request.FILES, instance=self.profile)
 
-        if not form or not form.is_valid():
-            return form
-
-        self._save_form(form)
-        self._add_success_message()
-        return redirect('profile')
-
-    def _get_appropriate_form(self) -> Optional[Union[ProfileUpdateForm, CustomPasswordChangeForm]]:
-        if 'update_profile' in self.request.POST:
-            return ProfileUpdateForm(
-                self.request.POST,
-                self.request.FILES,
-                instance=self.profile
-            )
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                profile_form.save()
+                messages.success(self.request, "Your profile has been updated!")
+                return redirect('profile')
+            else:
+                messages.error(self.request, "Please correct the errors in the profile form.")
+                return {
+                    'user_form': user_form,
+                    'profile_form': profile_form,
+                    'password_form': CustomPasswordChangeForm(self.user)
+                }
         elif 'change_password' in self.request.POST:
-            return CustomPasswordChangeForm(
-                self.request.user,
-                self.request.POST
-            )
-        return None
+            password_form = CustomPasswordChangeForm(self.user, self.request.POST)
+            if password_form.is_valid():
+                user: AbstractBaseUser = password_form.save()
+                update_session_auth_hash(self.request, user)
+                messages.success(self.request, "Password updated successfully!")
+                return redirect('profile')
+            else:
+                messages.error(self.request, "Please correct the errors in the password change form.")
+                return {
+                    'user_form': UserUpdateForm(instance=self.user),
+                    'profile_form': ProfileUpdateForm(instance=self.profile),
+                    'password_form': password_form
+                }
 
-    def _save_form(self, form: Union[ProfileUpdateForm, CustomPasswordChangeForm]) -> None:
-        if isinstance(form, CustomPasswordChangeForm):
-            user: AbstractBaseUser = form.save()
-            update_session_auth_hash(self.request, user)
-        else:
-            form.save()
-
-    def _add_success_message(self) -> None:
-        message: str = (
-            "Password updated successfully!"
-            if 'change_password' in self.request.POST
-            else "Your profile has been updated!"
-        )
-        messages.success(self.request, message)
+        return self.get_forms()
 
     def get_forms(self) -> Dict[str, Form]:
         return {
+            'user_form': UserUpdateForm(instance=self.user),
             'profile_form': ProfileUpdateForm(instance=self.profile),
-            'password_form': CustomPasswordChangeForm(self.request.user)
+            'password_form': CustomPasswordChangeForm(self.user)
         }
 
 
@@ -84,12 +82,15 @@ class AchievementChecker:
             profile: Profile,
             badge_type: str
     ) -> None:
-        attr_name: str = (
-            f"{badge_type}_learned" if badge_type == 'words'
-            else f"{badge_type}_read" if badge_type == 'texts'
-            else f"{badge_type}_completed"
-        )
-        current_value: int = getattr(profile, attr_name)
+        attr_name: str = ""
+        if badge_type == 'words':
+            attr_name = "words_learned"
+        elif badge_type == 'texts':
+            attr_name = "texts_read"
+        elif badge_type == 'tests':
+            attr_name = "tests_completed"
+
+        current_value: int = getattr(profile, attr_name, 0)
 
         for level, threshold in cls.ACHIEVEMENT_THRESHOLDS[badge_type].items():
             if current_value >= threshold:
@@ -109,10 +110,6 @@ class ProfileService:
         profile, created = Profile.objects.get_or_create(
             user=self.user,
             defaults={
-                'username': self.user.username,
-                'email': self.user.email,
-                'first_name': '',
-                'last_name': '',
                 'friends_count': 0,
                 'followers_count': 0
             }
@@ -131,9 +128,8 @@ class ProfileService:
 
 
 class FriendshipService:
-
     @staticmethod
-    def get_friends(user):
+    def get_friends(user: User) -> List[User]:
         friendships = Friendship.objects.filter(
             (Q(from_user=user) | Q(to_user=user)),
             status=Friendship.ACCEPTED
@@ -142,14 +138,14 @@ class FriendshipService:
         return [f.from_user if f.from_user != user else f.to_user for f in friendships]
 
     @staticmethod
-    def get_followers(user):
+    def get_followers(user: User) -> models.QuerySet[User]:
         return User.objects.filter(
             friendship_requests_sent__to_user=user,
             friendship_requests_sent__status=Friendship.REQUESTED
         )
 
     @staticmethod
-    def update_friends_count(user):
+    def update_friends_count(user: User) -> None:
         count = Friendship.objects.filter(
             (Q(from_user=user) | Q(to_user=user)),
             status=Friendship.ACCEPTED
@@ -157,7 +153,7 @@ class FriendshipService:
         Profile.objects.filter(user=user).update(friends_count=count)
 
     @staticmethod
-    def update_followers_count(user):
+    def update_followers_count(user: User) -> None:
         count = Friendship.objects.filter(
             to_user=user,
             status=Friendship.REQUESTED
@@ -165,18 +161,20 @@ class FriendshipService:
         Profile.objects.filter(user=user).update(followers_count=count)
 
     @staticmethod
-    def send_request(from_user, to_user):
+    def send_request(from_user: User, to_user: User) -> Friendship:
         if from_user == to_user:
             raise ValueError("You cannot send a request to yourself")
 
         existing = Friendship.objects.filter(
-            from_user=from_user,
-            to_user=to_user
+            Q(from_user=from_user, to_user=to_user) | Q(from_user=to_user, to_user=from_user)
         ).first()
 
         if existing:
             if existing.status == Friendship.REQUESTED:
-                raise ValueError("Request already sent")
+                if existing.from_user == from_user:
+                    raise ValueError("Request already sent")
+                else:
+                    raise ValueError("You have a pending request from this user. Accept it instead.")
             elif existing.status == Friendship.ACCEPTED:
                 raise ValueError("Already friends")
             elif existing.status == Friendship.REJECTED:
@@ -203,7 +201,7 @@ class FriendshipService:
         return friendship
 
     @staticmethod
-    def accept_request(friendship):
+    def accept_request(friendship: Friendship) -> None:
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be accepted")
 
@@ -215,15 +213,16 @@ class FriendshipService:
         FriendshipService.update_followers_count(friendship.to_user)
 
     @staticmethod
-    def reject_request(friendship):
+    def reject_request(friendship: Friendship) -> None:
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be rejected")
 
         friendship.status = Friendship.REJECTED
         friendship.save()
+        FriendshipService.update_followers_count(friendship.to_user)
 
     @staticmethod
-    def remove_friendship(user1, user2):
+    def remove_friendship(user1: User, user2: User) -> None:
         Friendship.objects.filter(
             (Q(from_user=user1, to_user=user2) |
              Q(from_user=user2, to_user=user1)),
@@ -236,7 +235,13 @@ class FriendshipService:
 
 class NotificationService:
     @staticmethod
-    def create_notification(user, notification_type, title, message, related_object=None):
+    def create_notification(
+            user: User,
+            notification_type: str,
+            title: str,
+            message: str,
+            related_object: Optional[models.Model] = None
+    ) -> Notification:
         content_type = None
         object_id = None
 
@@ -254,11 +259,11 @@ class NotificationService:
         )
 
     @staticmethod
-    def get_unread_count(user):
+    def get_unread_count(user: User) -> int:
         return Notification.objects.filter(user=user, is_read=False).count()
 
     @staticmethod
-    def mark_as_read(notification_id, user):
+    def mark_as_read(notification_id: int, user: User) -> bool:
         print(f"DEBUG_SERVICE: mark_as_read called for notif ID {notification_id}")
         try:
             notification = Notification.objects.get(id=notification_id, user=user)

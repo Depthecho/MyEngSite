@@ -1,3 +1,4 @@
+from django.utils import timezone
 from celery.beat import logger
 from django.contrib.auth import logout
 from django.shortcuts import render, redirect
@@ -5,14 +6,32 @@ from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.contrib.auth.models import AbstractBaseUser
 from typing import Any, Dict, Tuple, Optional
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
-from .services import UserRegistrationService, UserAuthenticationService
+from .services import UserRegistrationService, UserAuthenticationService, ProfileStreakService # <--- Добавлен импорт
 from .decorators import handle_errors
 from .utils import send_verification_code
+from profilepage.models import Profile
 
 
 @handle_errors
 def home(request: HttpRequest) -> HttpResponse:
-    return render(request, 'mainpage/home_page.html')
+    context = {}
+    if request.user.is_authenticated:
+        try:
+            profile = request.user.profile
+            context['profile'] = profile
+
+            # Делегируем логику обновления стрика новому сервису
+            ProfileStreakService.update_streak(profile)
+
+        except Profile.DoesNotExist:
+            # Если профиль не существует, это указывает на проблему,
+            # так как профиль должен создаваться вместе с пользователем.
+            # Возможно, стоит пересмотреть процесс создания пользователя/профиля.
+            # Для предотвращения ошибок, можно здесь создать профиль,
+            # но это может скрыть более глубокие проблемы.
+            logger.error(f"Profile does not exist for user {request.user.id}")
+            pass # Или handle error, create profile, redirect etc.
+    return render(request, 'mainpage/home_page.html', context)
 
 
 @handle_errors

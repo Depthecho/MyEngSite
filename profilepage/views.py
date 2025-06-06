@@ -47,9 +47,7 @@ def update_profile(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def public_profile(request, username):
-    profile = get_object_or_404(Profile, username=username)
-
-    # Получаем входящий запрос в друзья (если есть)
+    profile = get_object_or_404(Profile, user__username=username)
     incoming_request = None
     if request.user != profile.user:
         try:
@@ -212,12 +210,29 @@ def friends_list(request):
 
 @login_required
 def followers_list(request):
-    followers = FriendshipService.get_followers(request.user)
-    paginator = Paginator(followers, 20)
-    return render(request, 'profilepage/followers_list.html', {
-        'page_obj': paginator.get_page(request.GET.get('page')),
-        'followers_count': followers.count()
-    })
+    incoming_requests_qs = Friendship.objects.filter(
+        to_user=request.user,
+        status=Friendship.REQUESTED
+    ).select_related('from_user__profile').order_by('-created_at')
+
+    followers_data = []
+    for req in incoming_requests_qs:
+        followers_data.append({
+            'follower': req.from_user,
+            'friendship_request': req
+        })
+
+    followers_count = len(followers_data)
+
+    paginator = Paginator(followers_data, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'page_obj': page_obj,
+        'followers_count': followers_count,
+    }
+    return render(request, 'profilepage/followers_list.html', context)
 
 
 @login_required

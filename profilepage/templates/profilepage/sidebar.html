@@ -1,9 +1,9 @@
 <div class="sidebar" id="sidebar">
     <ul>
-        <li><a href="{% url 'profile' %}" class="sidebar-link {% if request.path == '/profile/my_profile/' %}active{% endif %}">
-    Profile
-  </a></li>
-        <li><a href="{% url 'friends_list' %}" class="sidebar-link {% if request.path == '/profile/friends/' %}active{% endif %} {% if request.path == '/profile/followers/' %}active{% endif %}">Friends</a></li>
+        <li><a href="{% url 'profile' %}" class="sidebar-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
+            Profile
+        </a></li>
+        <li><a href="{% url 'friends_list' %}" class="sidebar-link {% if request.resolver_match.url_name == 'friends_list' or request.resolver_match.url_name == 'followers_list' %}active{% endif %}">Friends</a></li>
         <li><a href="{% url 'my_cards' %}">Cards</a></li>
         <li><a href="{% url 'texts_page' %}">Texts</a></li>
         <li><a href="#">Tests</a></li>

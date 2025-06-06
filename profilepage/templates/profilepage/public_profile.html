@@ -3,7 +3,7 @@
 {% load profile_tags %}
 {% load friends_tags %}
 
-{% block title %}{{ profile.username }}'s profile{% endblock %}
+{% block title %}{{ profile.user.username }}'s profile{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -22,7 +22,7 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>{{ profile.username }}'s profile</h1>
+                <h1>{{ profile.user.username }}'s profile</h1>
             </div>
 
             <div class="profile-content">
@@ -33,64 +33,82 @@
                     <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
                 </div>
                 <div class="user-info">
-                    {% if not profile.hide_first_name %}
-                        <p><strong>First Name:</strong> {{ profile.first_name }}</p>
+                    {% if not profile.hide_first_name or request.user == profile.user %}
+                        <p><strong>First Name:</strong> {{ profile.user.first_name }}</p>
+                    {% else %}
+                        <p><strong>First Name:</strong> <span class="hidden-field">Hidden</span></p>
                     {% endif %}
-                    {% if not profile.hide_last_name %}
-                        <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
+                    {% if not profile.hide_last_name or request.user == profile.user %}
+                        <p><strong>Last Name:</strong> {{ profile.user.last_name }}</p>
+                    {% else %}
+                        <p><strong>Last Name:</strong> <span class="hidden-field">Hidden</span></p>
                     {% endif %}
-                    {% if not profile.hide_birth_date and profile.birth_date %}
-                        <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+                    {% if not profile.hide_birth_date or request.user == profile.user %}
+                        {% if profile.birth_date %}
+                            <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+                        {% endif %}
+                    {% else %}
+                        <p><strong>Birth Date:</strong> <span class="hidden-field">Hidden</span></p>
+                    {% endif %}
+
+                    <p><strong>English Level:</strong> {{ profile.get_english_level_display }}</p>
+                    <p><strong>Study Start Date:</strong> {{ profile.study_start_date|date:"Y-m-d" }}</p>
+                    {% if profile.bio %}
+                        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                    {% endif %}
+                    {% if profile.website %}
+                        <p><strong>Website:</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></p>
+                    {% endif %}
+                    {% if profile.location %}
+                        <p><strong>Location:</strong> {{ profile.location }}</p>
                     {% endif %}
                 </div>
             </div>
 
             {% include 'profilepage/social_stats.html' %}
-                    <div class="friendship-actions" data-profile-username="{{ profile.username }}">
-    {% if request.user != profile.user %}
-        {% friendship_status request.user profile.user as status %}
+            <div class="friendship-actions" data-profile-username="{{ profile.user.username }}">
+                {% if request.user != profile.user %}
+                    {% friendship_status request.user profile.user as status %}
 
-        {% if status == 'not_friends' %}
-            <form method="post" action="{% url 'friendship:send' profile.username %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Add to friends</button>
-            </form>
+                    {% if status == 'not_friends' %}
+                        <form method="post" action="{% url 'friendship:send' profile.user.username %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Add to friends</button>
+                        </form>
 
-        {% elif status == 'rejected' %}
-            <button class="btn btn-secondary" disabled>Request rejected</button>
-            <form method="post" action="{% url 'friendship:send' profile.username %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-primary">Send request again</button>
-            </form> #}
+                    {% elif status == 'rejected' %}
+                        <button class="btn btn-secondary" disabled>Request rejected</button>
+                        <form method="post" action="{% url 'friendship:send' profile.user.username %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-primary">Send request again</button>
+                        </form>
 
-        {% elif status == 'request_sent' %}
-            <button class="btn btn-secondary" disabled>Request was sent</button>
+                    {% elif status == 'request_sent' %}
+                        <button class="btn btn-secondary" disabled>Request was sent</button>
 
-        {% elif status == 'request_received' %}
-            <form method="post" action="{% url 'friendship:accept' incoming_request.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-success">Accept Friend Request</button>
-            </form>
-            <form method="post" action="{% url 'friendship:reject' incoming_request.id %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Reject Friend Request</button>
-            </form>
+                    {% elif status == 'request_received' %}
+                        <form method="post" action="{% url 'friendship:accept' incoming_request.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-success">Accept Friend Request</button>
+                        </form>
+                        <form method="post" action="{% url 'friendship:reject' incoming_request.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Reject Friend Request</button>
+                        </form>
 
-        {% elif status == 'friends' %}
-            <form method="post" action="{% url 'friendship:remove' profile.username %}"
-                  onsubmit="return confirm('Are you sure you want to remove {{ profile.username }} from friends?');">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger">Remove from friends</button>
-            </form>
-        {% endif %}
-    {% endif %}
-</div>
+                    {% elif status == 'friends' %}
+                        <form method="post" action="{% url 'friendship:remove' profile.user.username %}"
+                              onsubmit="return confirm('Are you sure you want to remove {{ profile.user.username }} from friends?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Remove from friends</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
+            </div>
 
-            <!-- Achievements Section -->
             <div class="achievements-section">
                 <h2>Achievements</h2>
 
-                <!-- Words Badges -->
                 <div class="badge-category">
                     <h3><i class="fas fa-book-open"></i> Words Mastery</h3>
                     <div class="badges-row">
@@ -100,7 +118,6 @@
                     </div>
                 </div>
 
-                <!-- Texts Badges -->
                 <div class="badge-category">
                     <h3><i class="fas fa-file-alt"></i> Texts Mastery</h3>
                     <div class="badges-row">
@@ -110,7 +127,6 @@
                     </div>
                 </div>
 
-                <!-- Tests Badges -->
                 <div class="badge-category">
                     <h3><i class="fas fa-tasks"></i> Tests Mastery</h3>
                     <div class="badges-row">
@@ -124,7 +140,6 @@
             {% include 'profilepage/stats.html' %}
         </div>
     </div>
-</div>
 </div>
 {% include 'mainpage/footer.html' %}
 

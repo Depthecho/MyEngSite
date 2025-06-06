@@ -19,23 +19,21 @@ def create_user_profile(
         **kwargs: Any
 ) -> None:
     if created:
-        Profile.objects.create(
-            user=instance,
-            username=instance.username,
-            email=instance.email,
-            first_name='',
-            last_name=''
-        )
+        # ИСПОЛЬЗУЙТЕ get_or_create ВМЕСТО create
+        Profile.objects.get_or_create(user=instance)
+        # Возможно, здесь стоит добавить print() для отладки, например:
+        # print(f"DEBUG: Profile created/got for user ID: {instance.id}")
 
 
-@receiver(post_save, sender=settings.AUTH_USER_MODEL)
-def save_user_profile(
-        sender: Type[Model],
-        instance: Model,
-        **kwargs: Any
-) -> None:
-    if hasattr(instance, 'profile'):
-        instance.profile.save()
+# Убедитесь, что этот сигнал закомментирован, пока мы не решим основную проблему:
+# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
+# def save_user_profile(
+#         sender: Type[Model],
+#         instance: Model,
+#         **kwargs: Any
+# ) -> None:
+#     if hasattr(instance, 'profile'):
+#         instance.profile.save()
 
 @receiver(post_save, sender=Friendship)
 def update_counts_on_friendship_change(sender, instance, **kwargs):

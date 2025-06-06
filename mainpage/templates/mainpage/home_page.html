@@ -1,3 +1,5 @@
+{# mainpage/home_page.html #}
+
 {% extends 'mainpage/base.html' %}
 {% load static %}
 
@@ -12,7 +14,6 @@
 {% include 'mainpage/navbar.html' %}
 
 <div class="main-content-container">
-    <!-- Hero Section -->
     <section class="hero-section section">
         <h1 class="hero-title">
             {% if user.is_authenticated %}
@@ -44,25 +45,24 @@
             {% endif %}
         </div>
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and profile %} {# Проверяем, что profile существует #}
         <div class="stats-container">
             <div class="stat-card">
-                <div class="stat-value">150</div>
+                <div class="stat-value">{{ profile.words_learned }}</div> {# Динамические данные #}
                 <div class="stat-label">Words Learned</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">12</div>
+                <div class="stat-value">{{ profile.tests_completed }}</div> {# Динамические данные #}
                 <div class="stat-label">Tests Completed</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">5</div>
+                <div class="stat-value">{{ profile.streak }}</div> {# Динамические данные #}
                 <div class="stat-label">Day Streak</div>
             </div>
         </div>
         {% endif %}
     </section>
 
-    <!-- Features Section -->
     <section class="features-section section">
         <h2 class="section-title">Why Choose ExdiEng?</h2>
         <div class="features-grid">
@@ -97,7 +97,6 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
     <section class="testimonials-section section">
         <h2 class="section-title">What Our Learners Say</h2>
         <div class="testimonials-slider">
@@ -124,7 +123,6 @@
         {% endif %}
     </section>
 
-    <!-- CTA Section -->
     {% if not user.is_authenticated %}
     <section class="cta-section section">
         <h2 class="cta-title">Ready to Transform Your English?</h2>
@@ -138,7 +136,6 @@
     {% endif %}
 </div>
 
-<!-- Back to Top Button -->
 <button id="back-to-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
 </button>

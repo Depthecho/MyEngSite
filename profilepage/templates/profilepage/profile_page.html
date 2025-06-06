@@ -21,7 +21,7 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>{{ profile.username }}'s profile</h1>
+                <h1>{{ profile.user.username }}'s profile</h1>
             </div>
 
             <div class="profile-content">
@@ -30,79 +30,102 @@
                         <i class="fas fa-bars"></i>
                     </button>
                     <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
+
+                    {% if is_owner|default:True %}
+                        <div class="edit-profile-button-container">
+                            <a href="{% url 'update_profile' %}" class="cta-button edit-avatar-button">Edit profile</a>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="user-info">
-                    <p><strong>First Name:</strong> {{ profile.first_name }}</p>
-                    <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
-                    <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
-                    {% if is_owner|default:True %}
-    <div class="buttons">
-        <a href="{% url 'update_profile' %}" class="cta-button">Edit profile</a>
-    </div>
-{% endif %}
+                    <p><strong>First Name:</strong>
+                        {% if profile.hide_first_name and not is_owner %}
+                            <span class="hidden-field">Hidden</span>
+                        {% else %}
+                            {{ profile.user.first_name }}
+                        {% endif %}
+                    </p>
+                    <p><strong>Last Name:</strong>
+                        {% if profile.hide_last_name and not is_owner %}
+                            <span class="hidden-field">Hidden</span>
+                        {% else %}
+                            {{ profile.user.last_name }}
+                        {% endif %}
+                    </p>
+                    <p><strong>Birth Date:</strong>
+                        {% if profile.hide_birth_date and not is_owner %}
+                            <span class="hidden-field">Hidden</span>
+                        {% else %}
+                            {{ profile.birth_date }}
+                        {% endif %}
+                    </p>
+
+                    <p><strong>English Level:</strong> {{ profile.get_english_level_display }}</p>
+                    {% if profile.bio %}
+                        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                    {% endif %}
+                    {% if profile.location %}
+                        <p><strong>Location:</strong> {{ profile.location }}</p>
+                    {% endif %}
                 </div>
             </div>
             {% include 'profilepage/social_stats.html' %}
-                <button class="add-friend-button">
-        <i class="fas fa-user-plus"></i>
-        Add Friend
-    </button>
-    <div class="invite-notification" id="inviteNotification">
-        <button class="close-invite-btn" id="closeInviteBtn">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="invite-content">
-            <i class="fas fa-envelope invite-icon"></i>
-            <p class="invite-text">
-                Your friend isn't here yet?
-                <a href="#" class="invite-link">Invite them</a>
-            </p>
+            <button class="add-friend-button">
+                <i class="fas fa-user-plus"></i>
+                Add Friend
+            </button>
+            <div class="invite-notification" id="inviteNotification">
+                <button class="close-invite-btn" id="closeInviteBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="invite-content">
+                    <i class="fas fa-envelope invite-icon"></i>
+                    <p class="invite-text">
+                        Your friend isn't here yet?
+                        <a href="#" class="invite-link">Invite them</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="achievements-section">
+            <h2>Your Achievements</h2>
+
+            <div class="badge-category">
+                <h3><i class="fas fa-book-open"></i> Words Mastery</h3>
+                <div class="badges-row">
+                    {% show_achievement_badge profile 'words' 1 100 %}
+                    {% show_achievement_badge profile 'words' 2 500 %}
+                    {% show_achievement_badge profile 'words' 3 1500 %}
+                </div>
+            </div>
+
+            <div class="badge-category">
+                <h3><i class="fas fa-file-alt"></i> Texts Mastery</h3>
+                <div class="badges-row">
+                    {% show_achievement_badge profile 'texts' 1 50 %}
+                    {% show_achievement_badge profile 'texts' 2 150 %}
+                    {% show_achievement_badge profile 'texts' 3 500 %}
+                </div>
+            </div>
+
+            <div class="badge-category">
+                <h3><i class="fas fa-tasks"></i> Tests Mastery</h3>
+                <div class="badges-row">
+                    {% show_achievement_badge profile 'tests' 1 50 %}
+                    {% show_achievement_badge profile 'tests' 2 150 %}
+                    {% show_achievement_badge profile 'tests' 3 500 %}
+                </div>
+            </div>
+        </div>
+
+        {% include 'profilepage/stats.html' %}
+
+        <div class="share-results-button">
+            <a href="#" class="cta-button">Share results</a>
         </div>
     </div>
 </div>
-
-            <!-- Achievements Section -->
-            <div class="achievements-section">
-                <h2>Your Achievements</h2>
-
-                <!-- Words Badges -->
-                <div class="badge-category">
-                    <h3><i class="fas fa-book-open"></i> Words Mastery</h3>
-                    <div class="badges-row">
-                        {% show_achievement_badge profile 'words' 1 100 %}
-                        {% show_achievement_badge profile 'words' 2 500 %}
-                        {% show_achievement_badge profile 'words' 3 1500 %}
-                    </div>
-                </div>
-
-                <!-- Texts Badges -->
-                <div class="badge-category">
-                    <h3><i class="fas fa-file-alt"></i> Texts Mastery</h3>
-                    <div class="badges-row">
-                        {% show_achievement_badge profile 'texts' 1 50 %}
-                        {% show_achievement_badge profile 'texts' 2 150 %}
-                        {% show_achievement_badge profile 'texts' 3 500 %}
-                    </div>
-                </div>
-
-                <!-- Tests Badges -->
-                <div class="badge-category">
-                    <h3><i class="fas fa-tasks"></i> Tests Mastery</h3>
-                    <div class="badges-row">
-                        {% show_achievement_badge profile 'tests' 1 50 %}
-                        {% show_achievement_badge profile 'tests' 2 150 %}
-                        {% show_achievement_badge profile 'tests' 3 500 %}
-                    </div>
-                </div>
-            </div>
-
-            {% include 'profilepage/stats.html' %}
-
-            <div class="share-results-button">
-                <a href="#" class="cta-button">Share results</a>
-            </div>
-        </div>
-    </div>
 </div>
 {% include 'mainpage/footer.html' %}
 
