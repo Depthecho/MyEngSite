@@ -301,7 +301,6 @@ def reject_friend_request(request: HttpRequest, friendship_id: int) -> JsonRespo
             FriendshipService.reject_request(friendship)
             messages.success(request, "Friend request rejected")
 
-            # Находим уведомление, связанное с этим запросом дружбы
             friendship_content_type = ContentType.objects.get_for_model(Friendship)
             notification_for_friendship = Notification.objects.filter(
                 user=request.user,
@@ -312,10 +311,8 @@ def reject_friend_request(request: HttpRequest, friendship_id: int) -> JsonRespo
             ).first()
 
             if notification_for_friendship:
-                # ИЗМЕНЕНИЕ ЗДЕСЬ: УДАЛЯЕМ УВЕДОМЛЕНИЕ ИЗ БД
                 notification_for_friendship.delete()
 
-            # Возвращаем JsonResponse с обновленным счетчиком для AJAX
             unread_count = NotificationService.get_unread_count(request.user)
             return JsonResponse({
                 'status': 'success',
@@ -352,8 +349,7 @@ def mark_all_notifications_as_read(request):
 def delete_notification(request, notification_id):
     try:
         notification = Notification.objects.get(id=notification_id, user=request.user)
-        # ИЗМЕНЕНИЕ ЗДЕСЬ: Вызываем метод delete() ORM
-        notification.delete() # <--- ЭТО УДАЛИТ УВЕДОМЛЕНИЕ ИЗ БАЗЫ ДАННЫХ
+        notification.delete()
 
         unread_count = NotificationService.get_unread_count(request.user)
         return JsonResponse({'status': 'success', 'unread_count': unread_count})
