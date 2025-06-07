@@ -1,0 +1,25 @@
+{% extends 'testspage/tests_base.html' %}
+{% load static %}
+
+{% block title %}Test Unavailable | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/tests.css' %}">
+{% endblock %}
+
+{% block tests_content %}
+<div class="main-container">
+    <nav class="breadcrumbs">
+        <a href="{% url 'home' %}">Home</a> &raquo;
+        <span>Test Unavailable</span>
+    </nav>
+
+    <div class="tests-content-wrapper unavailable-message-container">
+        <i class="fas fa-exclamation-triangle unavailable-icon"></i>
+        <h1 class="section-title">Test Currently Unavailable</h1>
+        <p class="unavailable-message">{{ message }}</p>
+        <a href="{% url 'home' %}" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+{% endblock %}

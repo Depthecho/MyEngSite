@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'mainpage.apps.MainpageConfig',
     'profilepage.apps.ProfilepageConfig',
     'cardspage.apps.CardspageConfig',
-    'textspage.apps.TextspageConfig'
+    'textspage.apps.TextspageConfig',
+    'testspage.apps.TestspageConfig',
 ]
 
 MIDDLEWARE = [

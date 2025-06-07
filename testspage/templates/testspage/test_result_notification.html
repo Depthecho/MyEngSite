@@ -1,0 +1,102 @@
+{% extends 'testspage/tests_base.html' %}
+{% load static %}
+
+{% block title %}Test Results{% endblock %}
+
+{% block tests_content %}
+<div class="result-container">
+    <div class="result-summary">
+        <h1 class="section-title">Test Results</h1>
+        <p>You have successfully completed the English level test.</p>
+        {# Убедитесь, что здесь используется max_possible_score, а не total_questions #}
+        <p>Your score: <strong>{{ result.score }}</strong> points out of <strong>{{ result.max_possible_score }}</strong>.</p>
+        <p>Percentage: <strong>{{ result.percentage|floatformat:2 }}%</strong></p>
+
+        <p class="determined-level">
+            According to the test, your English level is:
+            <span class="level-badge level-{{ result.english_level_determined|lower }}">
+                {{ result.get_english_level_determined_display }}
+            </span>
+        </p>
+    </div>
+
+    <div class="action-prompt">
+        <p>Your current profile level is:
+            <span class="level-badge level-{{ current_level|lower }}">
+                {{ request.user.profile.get_english_level_display }}
+            </span>
+        </p>
+
+        {% if not is_level_applied %}
+        <p>Do you want to apply this new level to your profile?</p>
+        <div class="action-buttons">
+            <button type="button" class="btn btn-primary" id="applyLevelBtn">Apply Level</button>
+            <button type="button" class="btn btn-secondary" id="dismissNotificationBtn">Dismiss</button>
+        </div>
+        {% else %}
+        <p class="mt-4 text-success">This level is already applied to your profile.</p>
+        <div class="action-buttons">
+            <a href="{% url 'home' %}" class="btn btn-secondary">Go to Home</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const applyLevelBtn = document.getElementById('applyLevelBtn');
+        const dismissNotificationBtn = document.getElementById('dismissNotificationBtn');
+
+        if (applyLevelBtn) {
+            applyLevelBtn.addEventListener('click', function() {
+                fetch("{% url 'level_test_result' result.id %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: 'action=apply_level'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert(data.message);
+                        window.location.reload();
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred during level application.');
+                });
+            });
+        }
+
+        if (dismissNotificationBtn) {
+            dismissNotificationBtn.addEventListener('click', function() {
+                fetch("{% url 'level_test_result' result.id %}", {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    body: 'action=dismiss_notification'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.location.href = "{% url 'home' %}";
+                    } else {
+                        alert('Error: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('An error occurred during dismissal.');
+                });
+            });
+        }
+    });
+</script>
+{% endblock tests_content %}

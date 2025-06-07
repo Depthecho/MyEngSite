@@ -57,15 +57,14 @@ body {
     gap: 15px;
 }
 
-/* Блок с аватаром и инфо */
 .profile-content {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    text-align: left;
-    margin-bottom: 20px;
-    position: relative;
-}
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        text-align: left;
+        margin-bottom: 20px;
+        position: relative;
+    }
 
 /* Стили для боковой панели */
 .sidebar {
@@ -161,8 +160,8 @@ body {
 }
 
 .avatar-img {
-    width: 220px;
-    height: 220px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border: 3px solid #6a11cb;
     transition: 0.3s;
@@ -191,7 +190,6 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    margin-top: -50px;
 }
 
 .user-info p {
@@ -920,7 +918,6 @@ body {
     margin-bottom: 20px;
     position: relative;
 }
-
     avatar-container {
         margin-left: 40px;
     }

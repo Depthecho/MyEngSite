@@ -1,0 +1,64 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}Tests | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+<link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/texts_base.css' %}">
+    <link rel="stylesheet" href="{% static 'style/tests.css' %}">
+    <link rel="stylesheet" href="{% static 'style/footer.css' %}">
+
+{% endblock %}
+
+{% block content %}
+
+    {% include 'mainpage/navbar.html' %}
+
+    <div class="secondary-navbar">
+        <div class="secondary-nav-container">
+           <a href="{% url 'take_level_test' %}"
+   class="secondary-nav-link {% if request.resolver_match.view_name == 'take_level_test' %}active{% endif %}"> <i class="fas fa-chart-bar"></i>
+   English Level Test
+</a>
+            <a href="#" class="secondary-nav-link disabled" title="Coming Soon">
+                <i class="fas fa-question-circle"></i> Other Tests (Coming Soon)
+            </a>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="tests-content-wrapper">
+            {% block tests_content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% include 'mainpage/footer.html' %}
+
+    <button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+{% endblock %}
+
+{% block extra_js %}
+    {{ block.super }}
+    <script>
+        const backToTopButton = document.getElementById('back-to-top');
+        if (backToTopButton) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+    </script>
+{% endblock %}

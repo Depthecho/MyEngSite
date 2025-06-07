@@ -1,0 +1,115 @@
+{% extends 'testspage/tests_base.html' %}
+{% load static %}
+
+{% block title %}{{ test.title }}{% endblock %}
+
+{% block tests_content %}
+<div class="test-container">
+    <div class="test-header">
+        <h1 class="section-title">{{ test.title }}</h1>
+        <p class="test-description">{{ test.description }}</p>
+    </div>
+
+    <form method="post" action="{% url 'take_level_test' %}" class="test-form" id="levelTestForm">
+        {% csrf_token %}
+        <input type="hidden" name="current_page_number" value="{{ page_obj.number }}">
+
+        <div class="questions-list">
+            {% for question in questions %}
+            <div class="question-item card custom-card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title question-title">
+                        Вопрос {{ forloop.counter0|add:page_obj.start_index }}
+                        <span class="badge bg-primary level-badge-small">
+                            {{ question.difficulty_level|default:"General" }}
+                        </span>
+                        <span class="badge bg-secondary points-badge-small">
+                            {{ question.points }} Баллов
+                        </span>
+                    </h5>
+                    <p class="card-text question-text">{{ question.text }}</p>
+
+                    {% if question.type == 'multiple_choice' %}
+                        <div class="answers-list">
+                            {% for answer in question.answers %}
+                                <div class="form-check custom-radio-container">
+                                    <input class="form-check-input custom-radio" type="radio"
+                                           name="question_{{ question.id }}" id="answer_{{ answer.id }}"
+                                           value="{{ answer.id }}" required>
+                                    <label class="form-check-label custom-label" for="answer_{{ answer.id }}">
+                                        {{ answer.text }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% elif question.type == 'text_input' %}
+                        <div class="form-group custom-text-input-group">
+                            <label for="question_{{ question.id }}" class="form-label custom-label">Ваш ответ:</label>
+                            <textarea class="form-control custom-textarea" name="question_{{ question.id }}"
+                                      id="question_{{ question.id }}" rows="3" required></textarea>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <p class="no-questions-message">Нет доступных вопросов для этого теста.</p>
+            {% endfor %}
+        </div>
+
+        <div class="pagination-controls d-flex justify-content-between align-items-center mt-4">
+            {% if page_obj.has_previous %}
+                <button type="submit" name="next_page_number" value="{{ page_obj.previous_page_number }}"
+                        class="btn btn-secondary pagination-btn">
+                    &laquo; Предыдущая
+                </button>
+            {% else %}
+                <button type="button" class="btn btn-secondary pagination-btn disabled" disabled>
+                    &laquo; Предыдущая
+                </button>
+            {% endif %}
+
+            <span class="page-info">
+                Страница {{ page_obj.number }} из {{ paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+                <button type="submit" name="next_page_number" value="{{ page_obj.next_page_number }}"
+                        class="btn btn-primary pagination-btn">
+                    Следующая &raquo;
+                </button>
+            {% else %}
+                <button type="submit" name="finish_test"
+                        class="btn btn-primary submit-test-btn-lg">
+                    Завершить тест
+                </button>
+            {% endif %}
+        </div>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const existingAnswersRaw = '{{ existing_answers|escapejs }}';
+        const existingAnswers = JSON.parse(existingAnswersRaw);
+
+        function prefillAnswers() {
+            for (const key in existingAnswers) {
+                if (existingAnswers.hasOwnProperty(key)) {
+                    const value = existingAnswers[key];
+                    const inputElement = document.querySelector(`[name="${key}"][value="${value}"]`);
+                    const textareaElement = document.getElementById(key);
+
+                    if (inputElement && inputElement.type === 'radio') {
+                        inputElement.checked = true;
+                    } else if (textareaElement && textareaElement.tagName === 'TEXTAREA') {
+                        textareaElement.value = value;
+                    }
+                }
+            }
+        }
+
+        prefillAnswers();
+    });
+</script>
+
+{% endblock tests_content %}
