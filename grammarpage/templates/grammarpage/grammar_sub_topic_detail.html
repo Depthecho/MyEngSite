@@ -1,0 +1,48 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+
+{% block grammar_title %}{{ topic.title }} - {{ main_topic.title }} - English Grammar{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_sub_topic_detail.css' %}">
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">Home</a> &raquo;
+            <a href="{% url 'grammar_page' %}">Grammar</a> &raquo;
+            {% for crumb in breadcrumbs_path %}
+                {% if not forloop.last %}
+                    {% if forloop.first %}
+                        <a href="{% url 'grammar_main_topic_detail' main_topic_slug=crumb.slug %}">{{ crumb.title }}</a> &raquo;
+                    {% else %}
+                        {% if crumb.slug %}
+                             <a href="{% url 'grammar_sub_topic_detail' main_topic_slug=breadcrumbs_path.0.slug sub_topic_slug=crumb.slug %}">{{ crumb.title }}</a> &raquo;
+                        {% else %}
+                            {{ crumb.title }} &raquo;
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <span>{{ crumb.title }}</span>
+                {% endif %}
+            {% endfor %}
+        </nav>
+
+        <h1>{{ topic.title }}</h1>
+        <div class="grammar-subtopic-detail-content">
+            {% if topic.content %}
+                {{ topic.content|safe }}
+            {% else %}
+                <p>Detailed content for "{{ topic.title }}" in "{{ main_topic.title }}" is coming soon!</p>
+            {% endif %}
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'grammar_main_topic_detail' main_topic_slug=main_topic.slug %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> Back to {{ main_topic.title }} Topics
+            </a>
+        </div>
+    </div>
+{% endblock %}

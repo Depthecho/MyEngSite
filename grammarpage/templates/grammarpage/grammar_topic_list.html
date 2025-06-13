@@ -1,0 +1,72 @@
+{% extends "grammarpage/grammar_base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ main_category.title }}
+{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+  <link rel="stylesheet" href="{% static 'style/grammar_topic_list.css' %}">
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">Home</a> &raquo;
+            <a href="{% url 'grammar_page' %}">Grammar</a> &raquo;
+            <span>{{ main_category.title }}</span>
+        </nav>
+
+        <h1 class="main-grammar-category-title">{{ main_category.title }}</h1>
+        <p class="intro-text">{{ main_category.description }}</p>
+
+        <div class="grammar-topic-list">
+            <ul class="main-subtopic-list">
+            {% for topic in main_category.sub_topics %}
+                <li>
+                    <h3>
+                        {% if topic.sub_topics %}
+                            {{ topic.title }}
+                        {% elif topic.slug %}
+                            <a href="{% url 'grammar_sub_topic_detail' main_topic_slug=main_category.slug sub_topic_slug=topic.slug %}" class="main-topic-link">{{ topic.title }}</a>
+                        {% else %}
+                            {{ topic.title }}
+                        {% endif %}
+                    </h3>
+
+                    {% if topic.sub_topics %}
+                        <ul class="nested-subtopic-list">
+                        {% for sub_topic in topic.sub_topics %}
+                            <li>
+                                <h4>
+                                    {% if sub_topic.slug %}
+                                        <a href="{% url 'grammar_sub_topic_detail' main_topic_slug=main_category.slug sub_topic_slug=sub_topic.slug %}" class="sub-topic-link">{{ sub_topic.title }}</a>
+                                    {% else %}
+                                        {{ sub_topic.title }}
+                                    {% endif %}
+                                </h4>
+                                {% if sub_topic.sub_topics %}
+                                    <ul class="deep-nested-subtopic-list">
+                                    {% for sub_sub_topic in sub_topic.sub_topics %}
+                                        <li>
+                                            {% if sub_sub_topic.slug %}
+                                                <a href="{% url 'grammar_sub_topic_detail' main_topic_slug=main_category.slug sub_topic_slug=sub_sub_topic.slug %}" class="sub-sub-topic-link">{{ sub_sub_topic.title }}</a>
+                                            {% else %}
+                                                {{ sub_sub_topic.title }}
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        <a href="{% url 'grammar_page' %}" class="back-to-grammar-btn">Back to Grammar Topics</a>
+    </div>
+{% endblock %}

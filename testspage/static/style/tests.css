@@ -1,4 +1,3 @@
-/* root: Объявление CSS переменных для легкой настройки */
 :root {
     --primary-bg-start: #6a11cb;
     --primary-bg-end: #2575fc;
@@ -24,37 +23,35 @@ body {
     background-size: cover;
     color: var(--text-color-light);
     overflow-x: hidden;
-    min-height: 100vh; /* Важно, чтобы body занимал всю высоту */
+    min-height: 100vh;
 
-    /* НОВЫЕ СВОЙСТВА ДЛЯ FLEXBOX-РАЗМЕТКИ СТРАНИЦЫ */
     display: flex;
-    flex-direction: column; /* Элементы будут располагаться в столбец */
-    min-height: 100vh; /* Убедитесь, что body занимает всю высоту */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-/* Общая обертка для контента, чтобы она не была слишком широкой */
 .tests-content-wrapper {
-    background: rgba(255, 255, 255, 0.05); /* Более прозрачный фон */
-    padding: 40px; /* Увеличим отступы */
-    border-radius: 20px; /* Более мягкие углы */
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
     box-shadow: var(--shadow-light);
-    backdrop-filter: blur(8px); /* Увеличим размытие фона */
-    border: 1px solid var(--border-color); /* Акцентная рамка */
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
     animation: fadeIn 1s ease-in-out;
     width: 100%;
-    max-width: 900px; /* Ограничиваем максимальную ширину контента */
-    margin-top: 20px; /* Отступ сверху */
-    margin-bottom: 20px; /* Отступ снизу */
+    max-width: 900px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .section-title {
     color: var(--text-color-light);
-    font-size: 2.8rem; /* Увеличим размер */
+    font-size: 2.8rem;
     margin-bottom: 20px;
     text-align: center;
     position: relative;
-    font-weight: 700; /* Более жирный шрифт */
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Тень для заголовка */
+    font-weight: 700;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
 .section-title::after {
@@ -63,23 +60,22 @@ body {
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px; /* Чуть шире */
-    height: 4px; /* Чуть толще */
-    background: var(--accent-color); /* Акцентный цвет */
+    width: 100px;
+    height: 4px;
+    background: var(--accent-color);
     border-radius: 2px;
 }
 
 .test-description {
     text-align: center;
     color: var(--text-color-faded);
-    font-size: 1.15rem; /* Чуть крупнее */
-    margin-bottom: 40px; /* Больше отступа */
+    font-size: 1.15rem;
+    margin-bottom: 40px;
     line-height: 1.6;
 }
 
-/* Custom Alert для сообщений */
 .custom-alert {
-    background-color: rgba(255, 255, 255, 0.1); /* Полупрозрачный белый */
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--border-color);
     border-radius: 10px;
     padding: 15px 20px;
@@ -90,36 +86,52 @@ body {
     box-shadow: var(--shadow-medium);
 }
 
-/* Стили для формы теста */
 .test-form {
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Увеличим расстояние между вопросами */
+    gap: 30px;
+}
+
+.breadcrumbs {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.breadcrumbs a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumbs a:hover {
+    opacity: 0.8;
 }
 
 .custom-card {
-    background: var(--card-bg-dark); /* Более темный фон для карточек */
-    border-radius: 15px; /* Более мягкие углы */
-    padding: 25px; /* Увеличим отступы */
+    background: var(--card-bg-dark);
+    border-radius: 15px;
+    padding: 25px;
     box-shadow: var(--shadow-medium);
-    backdrop-filter: blur(10px); /* Увеличим размытие */
+    backdrop-filter: blur(10px);
     border: 1px solid var(--border-color);
     transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
 .custom-card:hover {
-    transform: translateY(-5px); /* Легкий эффект поднятия */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); /* Более выраженная тень */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
 }
 
 .question-title {
-    font-size: 1.4rem; /* Крупнее заголовок вопроса */
+    font-size: 1.4rem;
     color: var(--text-color-light);
     margin-bottom: 15px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    flex-wrap: wrap; /* Для переноса бейджей на новую строку на маленьких экранах */
+    flex-wrap: wrap;
 }
 
 .question-title .badge {
@@ -128,17 +140,17 @@ body {
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 500;
-    opacity: 0.8; /* Чуть менее яркие */
+    opacity: 0.8;
 }
 
 .level-badge-small {
-    background-color: #6a11cb !important; /* Пример цвета для уровня */
+    background-color: #6a11cb !important;
     color: white !important;
 }
 
 .points-badge-small {
-    background-color: var(--accent-color) !important; /* Акцентный цвет для баллов */
-    color: #333 !important; /* Темный текст на светлом фоне */
+    background-color: var(--accent-color) !important;
+    color: #333 !important;
 }
 
 
@@ -152,13 +164,13 @@ body {
 .answers-list {
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Расстояние между вариантами ответа */
+    gap: 12px;
 }
 
 .custom-radio-container {
     display: flex;
     align-items: center;
-    background: rgba(255, 255, 255, 0.08); /* Чуть светлее фон для выбора */
+    background: rgba(255, 255, 255, 0.08);
     padding: 15px 20px;
     border-radius: 10px;
     cursor: pointer;
@@ -167,16 +179,16 @@ body {
 }
 
 .custom-radio-container:hover {
-    background: rgba(255, 255, 255, 0.15); /* Ярче при наведении */
-    border-color: var(--accent-color); /* Акцентная рамка при наведении */
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-color);
 }
 
 .custom-radio {
-    margin-right: 15px; /* Увеличим отступ */
+    margin-right: 15px;
     appearance: none;
-    width: 22px; /* Чуть крупнее */
+    width: 22px;
     height: 22px;
-    border: 3px solid var(--accent-color); /* Более толстая рамка */
+    border: 3px solid var(--accent-color);
     border-radius: 50%;
     outline: none;
     cursor: pointer;
@@ -193,9 +205,9 @@ body {
 .custom-radio:checked::before {
     content: '';
     display: block;
-    width: 10px; /* Чуть крупнее точка */
+    width: 10px;
     height: 10px;
-    background-color: var(--primary-bg-start); /* Цвет точки */
+    background-color: var(--primary-bg-start);
     border-radius: 50%;
     position: absolute;
     top: 50%;
@@ -205,49 +217,47 @@ body {
 
 .custom-label {
     color: var(--text-color-light);
-    font-size: 1.05rem; /* Чуть крупнее текст */
+    font-size: 1.05rem;
     flex-grow: 1;
-    cursor: pointer; /* Для доступности: клик по тексту выбирает радиокнопку */
+    cursor: pointer;
 }
 
-/* Стили для текстовых полей ввода */
 .custom-text-input-group .custom-label {
     margin-bottom: 10px;
-    display: block; /* Чтобы метка была над полем ввода */
+    display: block;
 }
 
 .custom-textarea {
-    background-color: rgba(255, 255, 255, 0.08); /* Полупрозрачный фон */
+    background-color: rgba(255, 255, 255, 0.08);
     border: 1px solid var(--border-color);
     border-radius: 10px;
     color: var(--text-color-light);
     padding: 12px 15px;
     font-size: 1rem;
     width: 100%;
-    box-sizing: border-box; /* Важно для padding */
+    box-sizing: border-box;
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
-    resize: vertical; /* Разрешаем изменение размера по вертикали */
+    resize: vertical;
 }
 
 .custom-textarea:focus {
-    border-color: var(--accent-color); /* Акцент при фокусе */
-    box-shadow: 0 0 0 0.25rem rgba(255, 204, 0, 0.25); /* Легкая подсветка */
-    background-color: rgba(255, 255, 255, 0.12); /* Чуть ярче фон при фокусе */
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 0.25rem rgba(255, 204, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.12);
     outline: none;
 }
 
-/* Кнопка отправки теста */
 .submit-test-btn-lg {
-    padding: 18px 40px; /* Крупнее кнопка */
+    padding: 18px 40px;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-color-dark));
-    color: var(--primary-bg-start); /* Цвет текста кнопки */
+    color: var(--primary-bg-start);
     border: none;
-    border-radius: 35px; /* Более округлая */
-    font-size: 1.25rem; /* Крупнее шрифт */
-    font-weight: 700; /* Жирный шрифт */
+    border-radius: 35px;
+    font-size: 1.25rem;
+    font-weight: 700;
     cursor: pointer;
     transition: all var(--transition-speed) ease;
-    box-shadow: var(--shadow-accent); /* Акцентная тень */
+    box-shadow: var(--shadow-accent);
     align-self: center;
     margin-top: 30px;
     letter-spacing: 0.5px;
@@ -255,8 +265,8 @@ body {
 }
 
 .submit-test-btn-lg:hover {
-    transform: translateY(-7px); /* Более выраженный подъем */
-    box-shadow: 0 8px 25px rgba(255, 204, 0, 0.6); /* Более яркая тень */
+    transform: translateY(-7px);
+    box-shadow: 0 8px 25px rgba(255, 204, 0, 0.6);
 }
 
 .no-questions-message {
@@ -266,13 +276,11 @@ body {
     margin-top: 50px;
 }
 
-/* Анимация появления */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Стили для страницы результатов (test_result_notification.html) */
 .result-summary {
     background: var(--card-bg-dark);
     padding: 30px;
@@ -317,14 +325,13 @@ body {
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Цвета для уровней (более насыщенные) */
-.level-a0 { background: #D32F2F; color: white; } /* Dark Red */
-.level-a1 { background: #F57C00; color: white; } /* Dark Orange */
-.level-a2 { background: #FBC02D; color: #333; } /* Dark Amber */
-.level-b1 { background: #388E3C; color: white; } /* Dark Green */
-.level-b2 { background: #00897B; color: white; } /* Dark Teal */
-.level-c1 { background: #1976D2; color: white; } /* Dark Blue */
-.level-c2 { background: #673AB7; color: white; } /* Dark Purple */
+.level-a0 { background: #D32F2F; color: white; }
+.level-a1 { background: #F57C00; color: white; }
+.level-a2 { background: #FBC02D; color: #333; }
+.level-b1 { background: #388E3C; color: white; }
+.level-b2 { background: #00897B; color: white; }
+.level-c1 { background: #1976D2; color: white; }
+.level-c2 { background: #673AB7; color: white; }
 
 
 .action-prompt {
@@ -341,12 +348,12 @@ body {
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Увеличим расстояние */
-    flex-wrap: wrap; /* Для адаптивности */
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 .btn {
-    padding: 14px 30px; /* Крупнее кнопки */
+    padding: 14px 30px;
     border-radius: 30px;
     font-size: 1.05rem;
     font-weight: 600;
@@ -375,7 +382,7 @@ body {
 .btn-secondary {
     background: transparent;
     color: var(--text-color-light);
-    border: 2px solid var(--border-color); /* Акцентная рамка */
+    border: 2px solid var(--border-color);
     box-shadow: none;
 }
 
@@ -385,7 +392,6 @@ body {
     transform: translateY(-3px);
 }
 
-/* Стили для страницы "Тест недоступен" */
 .unavailable-message-container {
     text-align: center;
     padding: 60px 30px;
@@ -395,25 +401,24 @@ body {
     backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
     max-width: 700px;
-    margin: 50px auto; /* Центрирование */
+    margin: 50px auto;
 }
 
 .unavailable-icon {
-    font-size: 5rem; /* Крупнее иконка */
+    font-size: 5rem;
     color: var(--accent-color);
     margin-bottom: 25px;
     text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
 }
 
 .unavailable-message {
-    font-size: 1.3rem; /* Крупнее текст */
+    font-size: 1.3rem;
     color: var(--text-color-faded);
     margin-bottom: 40px;
     line-height: 1.6;
     font-weight: 500;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .tests-content-wrapper {
         padding: 30px 20px;
@@ -429,12 +434,12 @@ body {
     }
     .question-title {
         font-size: 1.25rem;
-        flex-direction: column; /* Бейджи будут под текстом вопроса */
+        flex-direction: column;
         align-items: flex-start;
     }
     .question-title .badge {
         margin-left: 0;
-        margin-top: 5px; /* Отступ сверху для бейджей */
+        margin-top: 5px;
     }
     .question-text {
         font-size: 1rem;
@@ -448,7 +453,7 @@ body {
     .submit-test-btn-lg {
         padding: 15px 30px;
         font-size: 1.1rem;
-        width: 100%; /* Занимает всю ширину */
+        width: 100%;
     }
     .action-buttons {
         flex-direction: column;
@@ -507,7 +512,6 @@ body {
     }
 }
 
-/* Pagination Controls */
 .pagination-controls {
     display: flex;
     justify-content: space-between;
@@ -568,7 +572,6 @@ body {
     font-weight: 500;
 }
 
-/* Ensure the submit button on the last page uses the large style */
 .submit-test-btn-lg {
     padding: 18px 40px;
     background: linear-gradient(135deg, var(--accent-color), var(--accent-color-dark));
@@ -580,8 +583,8 @@ body {
     cursor: pointer;
     transition: all var(--transition-speed) ease;
     box-shadow: var(--shadow-accent);
-    align-self: center; /* This might be overridden by flexbox for pagination-controls */
-    margin-top: 0; /* Reset margin-top from previous definition */
+    align-self: center;
+    margin-top: 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -591,7 +594,6 @@ body {
     box-shadow: 0 8px 25px rgba(255, 204, 0, 0.6);
 }
 
-/* Responsive adjustments for pagination */
 @media (max-width: 768px) {
     .pagination-controls {
         flex-direction: column;
@@ -599,6 +601,6 @@ body {
     }
     .pagination-btn, .submit-test-btn-lg {
         width: 100%;
-        max-width: 300px; /* Limit width on smaller screens */
+        max-width: 300px;
     }
 }

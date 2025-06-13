@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'cardspage.apps.CardspageConfig',
     'textspage.apps.TextspageConfig',
     'testspage.apps.TestspageConfig',
+    'grammarpage.apps.GrammarpageConfig'
 ]
 
 MIDDLEWARE = [
