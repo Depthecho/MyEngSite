@@ -44,6 +44,9 @@ requirements.txt — Список зависимостей Python.
 ![image](https://github.com/user-attachments/assets/1cee31ae-4b5e-41f0-b55f-dbc786c8adb5)
 ![image](https://github.com/user-attachments/assets/5b941f4c-52a5-4bce-ac74-734943478786)
 ![image](https://github.com/user-attachments/assets/8d5e90cb-6492-4c66-940f-0ba1c488c01f)
+![image](https://github.com/user-attachments/assets/cc39c989-35bb-4e25-beb0-edacca81ed95)
+![image](https://github.com/user-attachments/assets/392fac59-189d-41d6-a73b-99d34cb3a0fc)
+
 
 
 
