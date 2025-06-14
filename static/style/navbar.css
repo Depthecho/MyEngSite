@@ -1,0 +1,427 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Навбар */
+.navbar {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Логотип */
+.navbar-logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 20px;
+    margin-left: 40px;
+}
+
+.navbar-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar-link:hover {
+    color: #ffcc00; /* Цвет #ffcc00 для наведения */
+}
+
+/* Блок авторизации/аватара */
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Аватар с выпадающим меню */
+.avatar-dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+#avatar-img, #logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffcc00; /* Золотистый цвет границы */
+    transition: transform 0.3s ease;
+}
+
+#avatar-img:hover {
+    transform: scale(1.1);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: -50px;
+    background: rgba(106, 17, 203, 0.8); /* Полупрозрачный цвет #6a11cb */
+    backdrop-filter: blur(10px);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    min-width: 150px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    text-align: center;
+}
+
+.dropdown-menu a:hover {
+    background: rgba(255, 204, 0, 0.2); /* Полупрозрачный #ffcc00 */
+}
+
+/* Кнопка Log Out */
+.dropdown-menu a[href*="logout"] {
+    background: #d9534f;
+    color: white;
+    border-radius: 5px;
+    margin: 5px;
+    text-align: center;
+}
+
+.dropdown-menu a[href*="logout"]:hover {
+    background: #c9302c;
+}
+
+/* Кнопка Log In и иконка настроек */
+.navbar-auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-button {
+    background: #ffcc00; /* Золотистый цвет */
+    color: #6a11cb; /* Фиолетовый цвет */
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.navbar-button:hover {
+    background: #ffaa00; /* Темно-золотистый при наведении */
+    color: white;
+}
+
+.settings-icon {
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.settings-icon:hover {
+    color: #ffcc00;
+}
+
+/* Бургер-меню */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.burger-menu span {
+    width: 25px;
+    height: 3px;
+    background: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    /* Удаляем display: none; и полагаемся на JS для переключения классов */
+    .navbar-links, .navbar-auth {
+        /* Эти элементы будут отображаться только при добавлении класса 'active' через JS */
+        /* Изначально они могут быть скрыты другим способом или просто не отображаться без active */
+        display: none; /* <--- ОСТАВЛЯЕМ display: none, но будем переключать НАСТРОЙКИ отображения через .active */
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 0;
+        width: 100%; /* Добавим, чтобы они занимали всю ширину в мобильном меню */
+        text-align: center; /* Центрируем ссылки в мобильном меню */
+    }
+
+    /* Активированные классы для мобильного меню */
+    .navbar-links.active,
+    .navbar-auth.active {
+        display: flex; /* Показываем, когда активны */
+    }
+
+    .burger-menu {
+        display: flex;
+    }
+
+    .avatar-dropdown {
+        margin-top: 10px;
+    }
+
+    .dropdown-menu {
+        top: 50px;
+        right: -10px;
+        /* Убедимся, что дропдауны внутри бургер-меню выглядят корректно */
+        position: absolute; /* Убедимся, что это сохраняется */
+        z-index: 1001; /* Возможно, потребуется повысить z-index, если есть конфликты */
+    }
+}
+
+/* Стили уведомлений */
+.notification-icon-wrapper {
+    position: relative;
+    margin-right: 15px;
+}
+
+.notification-icon {
+    font-size: 1.3rem;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    position: relative;
+}
+
+.notification-icon:hover {
+    color: #ffcc00;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ffaa00; /* Темно-золотистый цвет для бейджа */
+    color: white;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-dropdown {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 350px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиентный фон как у навбара */
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: none;
+    max-height: 80vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Светлая граница */
+}
+
+.notification-header {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    z-index: 1;
+    color: white; /* Белый текст заголовка */
+}
+
+.notification-header h6 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.notification-header small a {
+    color: #ffcc00; /* Золотистый цвет для ссылки "Mark all as read" */
+    text-decoration: none;
+    font-size: 0.8rem;
+    transition: color 0.2s ease;
+}
+
+.notification-header small a:hover {
+    color: #ffaa00; /* Темно-золотистый при наведении */
+}
+
+.notification-list {
+    padding: 0;
+}
+
+.notification-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Легкая граница между уведомлениями */
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative; /* Для позиционирования крестика */
+    color: white; /* Белый текст по умолчанию */
+}
+
+.notification-item.unread {
+    background: rgba(255, 204, 0, 0.1); /* Светло-золотистый фон для непрочитанных */
+    border-left: 3px solid #ffcc00; /* Золотистая полоса слева */
+}
+
+.notification-item:hover {
+    background: rgba(255, 255, 255, 0.05); /* Легкое затемнение при наведении */
+}
+
+.notification-content h6 {
+    margin: 0 0 5px 0;
+    font-size: 0.9rem;
+    color: white; /* Белый цвет заголовка */
+}
+
+.notification-content p {
+    margin: 0 0 5px 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8); /* Светло-белый цвет текста */
+}
+
+.notification-content small {
+    color: rgba(255, 255, 255, 0.6); /* Более тусклый цвет для времени */
+    font-size: 0.75rem;
+}
+
+.notification-actions {
+    margin-top: 8px;
+    display: flex;
+    gap: 5px;
+}
+
+.notification-actions .btn {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+    /* Стили для кнопок принятия/отклонения */
+}
+
+.notification-actions .btn-success {
+    background-color: #ffcc00; /* Золотистый для кнопки Accept */
+    border-color: #ffcc00;
+    color: #6a11cb; /* Фиолетовый текст */
+}
+
+.notification-actions .btn-success:hover {
+    background-color: #ffaa00;
+    border-color: #ffaa00;
+}
+
+.notification-actions .btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+    color: white;
+}
+
+.notification-actions .btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #c9302c;
+}
+
+
+.notification-empty {
+    padding: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7); /* Светлый цвет для сообщения "No notifications yet" */
+    font-size: 0.9rem;
+}
+
+.notification-footer {
+    padding: 10px 15px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1); /* Темный фон для футера */
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    position: sticky;
+    bottom: 0;
+}
+
+.notification-footer a {
+    color: #ffcc00; /* Золотистый цвет для ссылки "View all notifications" */
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+}
+
+.notification-footer a:hover {
+    color: #ffaa00;
+}
+
+/* Стили для крестика удаления */
+.close-notification-btn {
+    position: absolute;
+    top: 12px; /* Выравнивание по вертикали */
+    right: 10px; /* Отступ справа */
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6); /* Светлый цвет крестика */
+    font-size: 1em; /* Уменьшен размер для лучшего вида */
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+.close-notification-btn:hover {
+    color: white; /* Белый цвет при наведении */
+}
+
+/* Базовые стили для кнопок (можете адаптировать их из Bootstrap, если используете) */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    text-decoration: none; /* Убираем подчеркивание для кнопок-ссылок */
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    border-radius: 0.2rem;
+}

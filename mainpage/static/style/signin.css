@@ -13,9 +13,9 @@
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    padding: 0; /* Убираем padding */
+    padding: 0;
     box-sizing: border-box;
-    overflow: hidden; /* Убираем скролл */
+    overflow: hidden;
 }
 
 /* Контейнер для формы */
@@ -28,7 +28,7 @@
     width: 100%;
     text-align: center;
     animation: fadeIn 1s ease-in-out;
-    margin: 20px; /* Добавляем отступы внутри контейнера */
+    margin: 20px;
 }
 
 /* Заголовок формы */

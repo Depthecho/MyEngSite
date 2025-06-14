@@ -1,0 +1,1006 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1110px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Контейнер профиля */
+.profile-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    display: flex;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.profile-content-wrapper {
+    flex: 1;
+    transition: all 0.3s ease;
+}
+
+.profile-container.sidebar-closed {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+}
+
+/* Заголовок */
+.profile-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.header-with-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        text-align: left;
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+/* Стили для боковой панели */
+.sidebar {
+    width: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    margin-right: 20px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.closed {
+    transform: translateX(-250px);
+    width: 0;
+    padding: 0;
+    margin-right: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar ul li a.active {
+    background-color: #6a11cb;
+    color: #fff;
+}
+
+/* Кнопки переключения sidebar */
+.sidebar-toggle, .mobile-sidebar-toggle {
+    background: transparent;
+    border: none;
+    color: #ffcc00;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.sidebar-toggle:hover, .mobile-sidebar-toggle:hover {
+    background: rgba(255, 204, 0, 0.1);
+}
+
+.mobile-sidebar-toggle {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(106, 17, 203, 0.7);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: none;
+    z-index: 10;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
+}
+
+/* Аватар */
+.avatar-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar-img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border: 3px solid #6a11cb;
+    transition: 0.3s;
+}
+
+.edit-profile-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.edit-avatar-button {
+    width: auto;
+    min-width: 150px;
+    max-width: 100%;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+
+.user-info {
+    flex-grow: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.user-info p {
+    font-size: 1.2rem;
+    margin: 10px 0;
+    color: white;
+    display: block;
+}
+
+.user-info p:first-child {
+    margin-top: 0;
+}
+
+.user-info p strong {
+    color: #ffcc00;
+}
+
+/* Статистика */
+.stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    border: 2px solid #6a11cb;
+    transition: transform 0.3s ease-in-out;
+}
+
+.stat-item:hover {
+    transform: scale(1.05);
+}
+
+.stat-item p {
+    margin: 5px 0;
+    color: white;
+    font-size: 1rem;
+}
+
+.stat-item .number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffcc00;
+    margin-top: 10px;
+}
+
+.stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Кнопки */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.cta-button, .delete-button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cta-button {
+    background: #6a11cb;
+    color: white;
+    text-decoration: none;
+}
+
+.cta-button:hover {
+    background: #2575fc;
+}
+
+.delete-button {
+    background: #d9534f;
+    color: white;
+}
+
+.delete-button:hover {
+    background: #c9302c;
+}
+
+/* Кнопка Share results */
+.share-results-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.share-results-button .cta-button {
+    background: #ffcc00;
+    color: #6a11cb;
+}
+
+.share-results-button .cta-button:hover {
+    background: #ffdd33;
+}
+
+/* Анимация */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Social stats styles */
+.social-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
+    margin: 25px 0;
+    padding: 0;
+    align-items: center;
+}
+
+.social-stats-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    width: 100%;
+}
+
+.social-stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(106, 17, 203, 0.3);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.full-width-button {
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #ffcc00, #ffaa00);
+    border: none;
+    border-radius: 10px;
+    color: #6a11cb;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.full-width-button:hover {
+    background: linear-gradient(135deg, #ffdd33, #ffbb33);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.full-width-button:active {
+    transform: translateY(0);
+}
+
+.social-stat-icon {
+    font-size: 1.8rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.social-stat-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.social-stat-number {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    line-height: 1;
+    width: 100%;
+    text-align: center;
+}
+
+.social-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: center;
+}
+
+.add-friend-item {
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.add-friend-button {
+    width: 100%;
+    padding: 10px 15px;
+    background: linear-gradient(135deg, #ffcc00, #ffaa00);
+    border: none;
+    border-radius: 8px;
+    color: #6a11cb;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: 42px;
+}
+
+.add-friend-button:hover {
+    background: linear-gradient(135deg, #ffdd33, #ffbb33);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.add-friend-button:active {
+    transform: translateY(0);
+}
+
+.invite-friend {
+    margin-top: 5px;
+    text-align: center;
+}
+
+
+.invite-text {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-top: 8px;
+}
+
+.invite-link {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.invite-link:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.invite-notification {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 40px 12px 20px;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.5s ease-out;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.invite-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 25px;
+}
+
+.invite-icon {
+    color: #ffcc00;
+    font-size: 1.1rem;
+}
+
+.close-invite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    padding: 2px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-invite-btn:hover {
+    color: #ffcc00;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.invite-link {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-left: 5px;
+}
+
+.invite-link:hover {
+    text-decoration: underline;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Для скрытого состояния */
+.invite-notification.hidden {
+    display: none;
+}
+
+.social-stat-icon {
+    font-size: 1.8rem;
+    color: #ffcc00;
+    margin-bottom: 10px;
+}
+
+.add-friend-button .social-stat-number {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #6a11cb;
+    margin: 0;
+    line-height: 1;
+}
+
+.add-friend-button .social-stat-label {
+    font-size: 0.9rem;
+    color: #6a11cb;
+    margin: 5px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Achievements Section Styles */
+.achievements-section {
+    margin: 30px 0;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.achievements-section h2 {
+    color: #ffcc00;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.achievements-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ffcc00, transparent);
+}
+
+.badge-category {
+    margin-bottom: 30px;
+}
+
+.badge-category h3 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.badge-category h3 i {
+    color: #ffcc00;
+}
+
+.badges-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.badge {
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    min-height: 100px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Unlocked badges */
+.badge.unlocked {
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 4px solid;
+}
+
+.badge.unlocked.bronze {
+    border-left-color: #cd7f32;
+}
+
+.badge.unlocked.silver {
+    border-left-color: #c0c0c0;
+}
+
+.badge.unlocked.gold {
+    border-left-color: #ffd700;
+}
+
+/* Locked badges */
+.badge.locked {
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.4);
+    border-left: 4px solid rgba(255, 255, 255, 0.1);
+}
+
+.badge-icon {
+    font-size: 2rem;
+    min-width: 40px;
+    text-align: center;
+}
+
+.badge.unlocked.bronze .badge-icon {
+    color: #cd7f32;
+}
+
+.badge.unlocked.silver .badge-icon {
+    color: #c0c0c0;
+}
+
+.badge.unlocked.gold .badge-icon {
+    color: #ffd700;
+}
+
+.badge.locked .badge-icon {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.badge-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.badge-level {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.badge-name {
+    font-weight: bold;
+    margin: 5px 0;
+    font-size: 1.1rem;
+}
+
+.badge.unlocked .badge-name {
+    color: white;
+}
+
+.badge.locked .badge-name {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.badge-progress {
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.badge.unlocked .badge-progress {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.badge.locked .badge-progress {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Badge hover effects */
+.badge.unlocked:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.badge.unlocked.bronze:hover {
+    background: linear-gradient(135deg, rgba(205, 127, 50, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+.badge.unlocked.silver:hover {
+    background: linear-gradient(135deg, rgba(192, 192, 192, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+.badge.unlocked.gold:hover {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 255, 255, 0.1));
+}
+
+/* Ribbon effect for unlocked badges */
+.badge.unlocked::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30px 30px 0;
+    border-color: transparent;
+    z-index: 1;
+}
+
+.badge.unlocked.bronze::after {
+    border-right-color: #cd7f32;
+}
+
+.badge.unlocked.silver::after {
+    border-right-color: #c0c0c0;
+}
+
+.badge.unlocked.gold::after {
+    border-right-color: #ffd700;
+}
+
+.friendship-actions .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 4px;
+    min-width: 90px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Кнопка "Add to friends" (голубая) */
+.friendship-actions .btn-primary {
+    background-color: #ffcc00;
+    color: white;
+    width: 600px;
+}
+
+.friendship-actions .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    background-color: #e69500;
+}
+
+/* Кнопка "Request was sent" (серая) */
+.friendship-actions .btn-secondary {
+    background-color: #f5f7fa;
+    color: #656d78;
+    cursor: not-allowed;
+    width: 600px;
+}
+
+.friendship-actions button {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Кнопка "Accept" (зелёная) */
+.friendship-actions .btn-success {
+    background-color: #ffcc00;
+    color: white;
+    width: 150px;
+}
+
+.friendship-actions .btn-success:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Кнопка "Reject" (красная) */
+.friendship-actions .btn-danger {
+    background-color: #ed5565;
+    color: white;
+    width: 150px;
+}
+
+.friendship-actions .btn-danger:hover {
+    background-color: #da4453;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Кнопка "Remove from friends" (оранжевая) */
+.friendship-actions .btn-warning {
+    background-color: #ed5565;
+    color: white;
+    width: 600px;
+}
+
+.friendship-actions .btn-warning:hover {
+    background-color: #e69500;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Контейнер для уведомления о запросе */
+.friend-request-notification {
+    background-color: rgba(106, 17, 203, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    width: 600px;
+}
+
+.friend-request-notification p {
+    display: block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 15px;
+        margin: 20px;
+        flex-direction: column;
+    }
+
+    .profile-container.sidebar-closed {
+        max-width: 100%;
+        padding-left: 15px;
+    }
+
+    .sidebar {
+        width: 80%;
+        margin-right: 0;
+        margin-bottom: 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 100;
+        height: 100%;
+        transform: translateX(-100%);
+        opacity: 1;
+        visibility: visible;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar.closed {
+        transform: translateX(-100%);
+    }
+
+    .sidebar:not(.closed) {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: none;
+    }
+
+    .mobile-sidebar-toggle {
+        display: flex;
+    }
+
+    .profile-container h1 {
+        font-size: 2rem;
+    }
+
+.profile-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+    position: relative;
+}
+    avatar-container {
+        margin-left: 40px;
+    }
+
+    .avatar-img {
+        width: 220px;
+        height: 220px;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    .stat-item {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .share-results-button {
+        justify-content: center;
+    }
+
+    .badges-row {
+        flex-direction: column;
+    }
+
+    .badge {
+        padding: 15px;
+    }
+
+    .achievements-section {
+        padding: 15px;
+    }
+
+    .badge-category h3 {
+        font-size: 1.1rem;
+    }
+
+    .badge-name {
+        font-size: 1rem;
+    }
+
+    .social-stats {
+        flex-wrap: wrap;
+    }
+
+    .social-stat-item,
+    .add-friend-container {
+        flex: 1 1 45%;
+        max-width: none;
+    }
+
+    .add-friend-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .social-stats-top {
+        flex-wrap: wrap;
+    }
+
+    .social-stat-item {
+        flex: 1 1 45%;
+        min-width: 120px;
+    }
+
+    .full-width-button {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for new achievements */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+}
+
+.new-achievement {
+    animation: glow 2s infinite;
+}

@@ -19,4 +19,6 @@ urlpatterns = [
     path('texts/', include('textspage.urls')),
     path('grammar/', include('grammarpage.urls')),
     path('tests/', include('testspage.urls')),
+
+    path('api/', include('translator.urls')),
 ]

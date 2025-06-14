@@ -1,0 +1,39 @@
+/* --- Scroll-to-Top Button --- */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px; /* Same bottom as translator-fab */
+    right: 90px; /* Position to the left of translator-fab (20px right + 60px fab width + 10px gap) */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background matching navbar */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 998; /* Lower z-index than translator-fab (999) and container (1000) */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Ensure mobile responsiveness for the scroll-to-top button */
+@media (max-width: 768px) {
+    .scroll-to-top {
+        bottom: 15px; /* Adjust bottom for mobile */
+        right: 85px; /* Adjust right for mobile to avoid overlap */
+    }
+}

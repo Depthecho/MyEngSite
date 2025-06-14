@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Основные стили для body */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0; /* Убираем padding */
+    box-sizing: border-box;
+    overflow: hidden; /* Убираем скролл */
+}
+
+/* Контейнер для формы */
+.login-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    margin: 20px; /* Добавляем отступы внутри контейнера */
+}
+
+/* Заголовок формы */
+.login-header {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Форма */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Группа полей формы */
+.form-group {
+    position: relative;
+}
+
+/* Поля ввода */
+.input {
+    width: 85%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: #6a11cb;
+}
+
+/* Иконки внутри полей ввода */
+.form-group i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.input:focus + i {
+    color: #6a11cb;
+}
+
+/* Строка с "Reset password" и "Remember me" */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+/* Ссылка "Reset password" */
+.reset-password a {
+    color: #6a11cb;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    margin-right: 30px;
+}
+
+.reset-password a:hover {
+    color: #2575fc;
+}
+
+/* Чекбокс "Remember me" */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.remember-me label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
+    margin-right: 30px;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+    cursor: pointer;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #6a11cb;
+    border-radius: 4px;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+
+.remember-me input[type="checkbox"]:checked {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+/* Кнопка для входа */
+.login-button {
+    background: #6a11cb;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:

@@ -3,21 +3,66 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'style/style.css' %}">
     <link rel="icon" type="image/svg+xml" href="{% static 'favicon/logo.svg' %}">
     <link rel="stylesheet" href="{% static 'style/footer.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'style/translator.css' %}">
     {% block extra_css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <script>
         const CSRF_TOKEN = "{{ csrf_token }}";
+        const globalCsrfToken = "{{ csrf_token }}";
     </script>
 
     {% block content %}
+        {% include 'mainpage/navbar.html' %}
     {% endblock %}
 
+    {# Floating Translator Icon #}
+    <div class="translator-fab" id="translatorFab">
+        <i class="fas fa-language"></i>
+    </div>
+
+    {# Hidden Translator Window #}
+    <div class="translator-container hidden" id="translatorContainer">
+        <div class="translator-header">
+            <h4>Translator</h4>
+            <button class="close-translator-btn" id="closeTranslatorBtn">&times;</button>
+        </div>
+        <div class="translator-body">
+            <div class="translator-input-section">
+                <select id="sourceLang" class="lang-select">
+                    <option value="auto">Auto</option>
+                    <option value="en">English</option>
+                    <option value="ru">Russian</option>
+                </select>
+                <textarea id="textToTranslate" class="text-input" placeholder="Введите текст..."></textarea>
+            </div>
+            <div class="translator-action-section">
+                <button id="translateButton" class="translate-button">Translate</button>
+            </div>
+            <div class="translator-output-section">
+                <select id="targetLang" class="lang-select">
+                    <option value="ru">Russian</option>
+                    <option value="en">English</option>
+                </select>
+                <textarea id="translatedText" class="text-output" readonly placeholder="Перевод..."></textarea>
+            </div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
+        </div>
+    </div>
+
+    {# Scroll-to-Top Button #}
+    <div class="scroll-to-top hidden" id="scrollToTopBtn"> {# <-- Убедитесь, что он тут есть и изначально скрыт #}
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
     <script src="{% static 'js/notifications.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+    <script src="{% static 'js/translator.js' %}"></script>
 </body>
 </html>

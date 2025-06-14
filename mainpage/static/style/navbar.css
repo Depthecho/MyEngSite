@@ -5,7 +5,6 @@ html, body {
     height: 100%;
 }
 
-/* Навбар */
 .navbar {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     padding: 10px 20px;
@@ -26,7 +25,6 @@ html, body {
     padding: 0 20px;
 }
 
-/* Логотип */
 .navbar-logo a {
     color: white;
     font-size: 1.5rem;
@@ -49,17 +47,15 @@ html, body {
 }
 
 .navbar-link:hover {
-    color: #ffcc00; /* Цвет #ffcc00 для наведения */
+    color: #ffcc00;
 }
 
-/* Блок авторизации/аватара */
 .navbar-auth {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-/* Аватар с выпадающим меню */
 .avatar-dropdown {
     position: relative;
     cursor: pointer;
@@ -70,7 +66,7 @@ html, body {
     height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ffcc00; /* Золотистый цвет границы */
+    border: 2px solid #ffcc00;
     transition: transform 0.3s ease;
 }
 
@@ -83,7 +79,7 @@ html, body {
     position: absolute;
     top: 60px;
     right: -50px;
-    background: rgba(106, 17, 203, 0.8); /* Полупрозрачный цвет #6a11cb */
+    background: linear-gradient(75deg, rgba(106, 17, 203, 0.95), rgba(37, 117, 252, 0.95));
     backdrop-filter: blur(10px);
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -103,10 +99,9 @@ html, body {
 }
 
 .dropdown-menu a:hover {
-    background: rgba(255, 204, 0, 0.2); /* Полупрозрачный #ffcc00 */
+    background: rgba(255, 204, 0, 0.2);
 }
 
-/* Кнопка Log Out */
 .dropdown-menu a[href*="logout"] {
     background: #d9534f;
     color: white;
@@ -119,7 +114,6 @@ html, body {
     background: #c9302c;
 }
 
-/* Кнопка Log In и иконка настроек */
 .navbar-auth-buttons {
     display: flex;
     align-items: center;
@@ -127,8 +121,8 @@ html, body {
 }
 
 .navbar-button {
-    background: #ffcc00; /* Золотистый цвет */
-    color: #6a11cb; /* Фиолетовый цвет */
+    background: #ffcc00;
+    color: #6a11cb;
     padding: 8px 16px;
     border-radius: 5px;
     text-decoration: none;
@@ -138,7 +132,7 @@ html, body {
 }
 
 .navbar-button:hover {
-    background: #ffaa00; /* Темно-золотистый при наведении */
+    background: #ffaa00;
     color: white;
 }
 
@@ -153,7 +147,6 @@ html, body {
     color: #ffcc00;
 }
 
-/* Бургер-меню */
 .burger-menu {
     display: none;
     flex-direction: column;
@@ -168,7 +161,6 @@ html, body {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .navbar-links {
         display: none;
@@ -195,7 +187,6 @@ html, body {
     }
 }
 
-/* Стили уведомлений */
 .notification-icon-wrapper {
     position: relative;
     margin-right: 15px;
@@ -217,7 +208,7 @@ html, body {
     position: absolute;
     top: 0;
     right: 0;
-    background: #ffaa00; /* Темно-золотистый цвет для бейджа */
+    background: #ffaa00;
     color: white;
     border-radius: 50%;
     width: 18px;
@@ -233,19 +224,19 @@ html, body {
     right: 0;
     top: 100%;
     width: 350px;
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиентный фон как у навбара */
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     display: none;
     max-height: 80vh;
     overflow-y: auto;
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Светлая граница */
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .notification-header {
     padding: 12px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Светлая граница */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -253,7 +244,7 @@ html, body {
     top: 0;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     z-index: 1;
-    color: white; /* Белый текст заголовка */
+    color: white;
 }
 
 .notification-header h6 {
@@ -262,14 +253,14 @@ html, body {
 }
 
 .notification-header small a {
-    color: #ffcc00; /* Золотистый цвет для ссылки "Mark all as read" */
+    color: #ffcc00;
     text-decoration: none;
     font-size: 0.8rem;
     transition: color 0.2s ease;
 }
 
 .notification-header small a:hover {
-    color: #ffaa00; /* Темно-золотистый при наведении */
+    color: #ffaa00;
 }
 
 .notification-list {
@@ -278,36 +269,36 @@ html, body {
 
 .notification-item {
     padding: 12px 15px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Легкая граница между уведомлениями */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
     transition: background 0.2s;
-    position: relative; /* Для позиционирования крестика */
-    color: white; /* Белый текст по умолчанию */
+    position: relative;
+    color: white;
 }
 
 .notification-item.unread {
-    background: rgba(255, 204, 0, 0.1); /* Светло-золотистый фон для непрочитанных */
-    border-left: 3px solid #ffcc00; /* Золотистая полоса слева */
+    background: rgba(255, 204, 0, 0.1);
+    border-left: 3px solid #ffcc00;
 }
 
 .notification-item:hover {
-    background: rgba(255, 255, 255, 0.05); /* Легкое затемнение при наведении */
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .notification-content h6 {
     margin: 0 0 5px 0;
     font-size: 0.9rem;
-    color: white; /* Белый цвет заголовка */
+    color: white;
 }
 
 .notification-content p {
     margin: 0 0 5px 0;
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.8); /* Светло-белый цвет текста */
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .notification-content small {
-    color: rgba(255, 255, 255, 0.6); /* Более тусклый цвет для времени */
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.75rem;
 }
 
@@ -320,13 +311,12 @@ html, body {
 .notification-actions .btn {
     padding: 3px 8px;
     font-size: 0.8rem;
-    /* Стили для кнопок принятия/отклонения */
 }
 
 .notification-actions .btn-success {
-    background-color: #ffcc00; /* Золотистый для кнопки Accept */
+    background-color: #ffcc00;
     border-color: #ffcc00;
-    color: #6a11cb; /* Фиолетовый текст */
+    color: #6a11cb;
 }
 
 .notification-actions .btn-success:hover {
@@ -345,25 +335,24 @@ html, body {
     border-color: #c9302c;
 }
 
-
 .notification-empty {
     padding: 20px;
     text-align: center;
-    color: rgba(255, 255, 255, 0.7); /* Светлый цвет для сообщения "No notifications yet" */
+    color: rgba(255, 255, 255, 0.7);
     font-size: 0.9rem;
 }
 
 .notification-footer {
     padding: 10px 15px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.1); /* Темный фон для футера */
+    background: rgba(0, 0, 0, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     position: sticky;
     bottom: 0;
 }
 
 .notification-footer a {
-    color: #ffcc00; /* Золотистый цвет для ссылки "View all notifications" */
+    color: #ffcc00;
     text-decoration: none;
     font-size: 0.85rem;
     transition: color 0.2s ease;
@@ -373,15 +362,14 @@ html, body {
     color: #ffaa00;
 }
 
-/* Стили для крестика удаления */
 .close-notification-btn {
     position: absolute;
-    top: 12px; /* Выравнивание по вертикали */
-    right: 10px; /* Отступ справа */
+    top: 12px;
+    right: 10px;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.6); /* Светлый цвет крестика */
-    font-size: 1em; /* Уменьшен размер для лучшего вида */
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1em;
     cursor: pointer;
     padding: 5px;
     line-height: 1;
@@ -389,10 +377,9 @@ html, body {
 }
 
 .close-notification-btn:hover {
-    color: white; /* Белый цвет при наведении */
+    color: white;
 }
 
-/* Базовые стили для кнопок (можете адаптировать их из Bootstrap, если используете) */
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -406,7 +393,7 @@ html, body {
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
         border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    text-decoration: none; /* Убираем подчеркивание для кнопок-ссылок */
+    text-decoration: none;
 }
 
 .btn-sm {

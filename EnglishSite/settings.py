@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'cardspage.apps.CardspageConfig',
     'textspage.apps.TextspageConfig',
     'testspage.apps.TestspageConfig',
-    'grammarpage.apps.GrammarpageConfig'
+    'grammarpage.apps.GrammarpageConfig',
+    'translator.apps.TranslatorConfig',
 ]
 
 MIDDLEWARE = [
@@ -174,3 +175,6 @@ CACHES = {
 }
 
 REMEMBER_ME_AGE = 14 * 24 * 60 * 60
+
+LARA_ACCESS_KEY_ID = 'N1874BGVUCOM8C6ABDJA0G0IOO'
+LARA_ACCESS_KEY_SECRET = '2s5vdv4oXcAhZAgQSJ3xRSvkrUG75BFZA_ltYzPQ2fc'

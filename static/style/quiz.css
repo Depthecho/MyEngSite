@@ -1,0 +1,610 @@
+/* Quiz Start Page Styles */
+.quiz-start-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.quiz-start-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.quiz-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.quiz-form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-size: 1.1rem;
+}
+
+.quiz-radio-group {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.quiz-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.quiz-select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.quiz-submit-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: #ffcc00;
+    color: #6a11cb;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quiz-submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Quiz Page Styles */
+.quiz-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.quiz-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.quiz-question {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    border-left: 4px solid #6a11cb;
+}
+
+.quiz-question-text {
+    color: #fff;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.quiz-answers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.quiz-answer-label {
+    display: block;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.quiz-answer-label:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.quiz-answer-input {
+    margin-right: 0.5rem;
+}
+
+/* Quiz Results Page Styles */
+.quiz-results-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.quiz-results-title {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.quiz-score {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.quiz-result-item {
+    margin-bottom: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.quiz-result-item.correct {
+    background: rgba(76, 175, 80, 0.2);
+    border-left: 4px solid #4CAF50;
+}
+
+.quiz-result-item.incorrect {
+    background: rgba(244, 67, 54, 0.2);
+    border-left: 4px solid #F44336;
+}
+
+.quiz-result-question {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.quiz-result-answer {
+    color: #fff;
+    margin-bottom: 0.3rem;
+}
+
+.quiz-return-btn {
+    display: block;
+    width: 95%;
+    padding: 1rem;
+    margin-top: 2rem;
+    background: #6a11cb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.quiz-return-btn:hover {
+    transform: translateY(-3px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .quiz-answers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quiz-start-container,
+    .quiz-container,
+    .quiz-results-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+}
+
+.quiz-results-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.quiz-home-btn {
+    display: block;
+    width: 95%;
+    padding: 1rem;
+    background: #FFCC00;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.quiz-home-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
+    background: #FFD700;
+}
+
+.quiz-count-info {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.quiz-radio-group.columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .quiz-radio-group.columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    list-style-type: none;
+    margin: 0;
+    margin-top: 10px
+}
+
+/* Эффект при наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(106, 17, 203, 0.1);
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.4s ease;
+    margin-left: -25px;
+}
+
+.quiz-radio-container input{
+    text-decoration: none
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 6px rgba(106, 17, 203, 0.8);
+    text-decoration: none
+}
+
+/* Состояние фокуса на радио-кнопке */
+.quiz-radio-container input:focus + .radio-btn {
+    border-color: #2575fc;
+    box-shadow: 0 0 8px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 8px rgba(106, 17, 203, 0.8);
+}
+
+/* Состояние фокуса */
+.quiz-radio-container input:focus + .radio-btn {
+    border-color: #2575fc;
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+    background-size: 200% 200%;
+    background-position: 100% 100%;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background-position: 0% 0%;
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    position: relative;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+}
+
+/* При активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Состояние фокуса */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.8);
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(38, 117, 252, 0.5);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #6a11cb;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.7);
+}
+
+/* Визуальные эффекты при фокусе */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+/* Стили для radio-container */
+.quiz-radio-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    list-style-type: none;  /* Убираем маркеры */
+}
+
+/* При наведении на label */
+.quiz-radio-container:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(38, 117, 252, 0.5);
+}
+
+/* Стили для span в радио-кнопке */
+.quiz-radio-container .radio-btn {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #6a11cb;
+    background-color: transparent;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Состояние при активации радио-кнопки */
+.quiz-radio-container input:checked + .radio-btn {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+    box-shadow: 0 0 10px rgba(106, 17, 203, 0.7);
+}
+
+/* Визуальные эффекты при фокусе */
+.quiz-radio-container input:focus + .radio-btn {
+    box-shadow: 0 0 12px rgba(38, 117, 252, 0.8);
+}
+
+/* Визуальный эффект для активного состояния */
+.quiz-radio-container input:checked + .radio-btn::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.quiz-radio-container input[type="radio"] {
+    list-style-type: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.quiz-select {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #6a11cb;
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.quiz-select:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.quiz-select option {
+    background: #9e98e8;
+    color: #fff;
+    padding: 0.5rem;
+}
+
+.quiz-select option:hover {
+    background: #6a11cb;
+    color: #fff;
+}
+
+.quiz-input {
+    width: 95%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #6a11cb;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+}
+
+.quiz-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.quiz-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #2575fc;
+    box-shadow: 0 0 10px rgba(38, 117, 252, 0.5);
+}
