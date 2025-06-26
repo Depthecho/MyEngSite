@@ -21,4 +21,5 @@ urlpatterns = [
     path('tests/', include('testspage.urls')),
 
     path('api/', include('translator.urls')),
+    path('messenger/', include('messenger.urls')),
 ]

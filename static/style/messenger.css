@@ -1,0 +1,397 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 1200px; /* Максимальная ширина */
+    margin: 0 auto; /* Центрирование по горизонтали */
+    padding: 20px; /* Внутренние отступы */
+    box-sizing: border-box; /* Для корректного расчета ширины с padding */
+}
+
+.messenger-wrapper {
+    display: flex;
+    margin-top: 70px; /* Отступ от навбара */
+    height: calc(100vh - 70px); /* Занимаем всю оставшуюся высоту */
+    background-color: #f0f2f5; /* Светлый фон для контраста */
+    font-family: Arial, sans-serif; /* Или ваш Poppins */
+}
+
+.sidebar {
+    width: 320px; /* Ширина сайдбара */
+    border-right: 1px solid #e0e0e0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.search-bar {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.search-bar input:focus {
+    border-color: #6a11cb;
+}
+
+.dialogs-list {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.dialog-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    position: relative;
+}
+
+.dialog-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dialog-item.active {
+    background-color: #e6f7ff; /* Светло-голубой для активного диалога */
+    border-left: 3px solid #2575fc; /* Синяя полоса слева */
+}
+
+.dialog-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.dialog-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 2px solid #ffcc00; /* Золотистый ободок как у аватаров */
+}
+
+.dialog-info {
+    flex-grow: 1;
+}
+
+.dialog-name {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.05rem;
+}
+
+.dialog-last-message {
+    font-size: 0.9rem;
+    color: #777;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dialog-time {
+    font-size: 0.8rem;
+    color: #999;
+    margin-left: 10px;
+    align-self: flex-start;
+}
+
+.unread-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ffaa00; /* Темно-золотистый для бейджа непрочитанных */
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.no-dialogs {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff; /* Белый фон для области чата */
+}
+
+.no-chat-selected {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #aaa;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.no-chat-selected i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.chat-header {
+    padding: 15px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиент как у навбара */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chat-header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    border: 2px solid #ffcc00; /* Золотистый ободок */
+}
+
+.chat-header-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.messages-list {
+    flex-grow: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #f9f9f9; /* Очень светлый фон для списка сообщений */
+}
+
+.message-item {
+    display: flex;
+}
+
+.my-message {
+    justify-content: flex-end;
+}
+
+.other-message {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    padding: 10px 15px;
+    border-radius: 18px;
+    max-width: 70%;
+    position: relative;
+    word-wrap: break-word;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.my-message .message-bubble {
+    background: linear-gradient(45deg, #ffcc00, #ffaa00); /* Золотистый градиент для своих сообщений */
+    color: #6a11cb; /* Фиолетовый текст */
+    border-bottom-right-radius: 2px; /* Скошенный уголок */
+}
+
+.other-message .message-bubble {
+    background-color: #e2e2e2; /* Светло-серый для чужих сообщений */
+    color: #333;
+    border-bottom-left-radius: 2px; /* Скошенный уголок */
+}
+
+.message-time {
+    font-size: 0.7rem;
+    color: rgba(0, 0, 0, 0.5); /* Темный текст для времени */
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    left: auto;
+    white-space: nowrap;
+}
+.my-message .message-time {
+    color: rgba(106, 17, 203, 0.7); /* Цвет времени для своих сообщений */
+}
+
+
+.message-input-area {
+    display: flex;
+    padding: 15px 20px;
+    border-top: 1px solid #e0e0e0;
+    background-color: white;
+}
+
+.message-input-area textarea {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    resize: none; /* Запрещаем изменение размера по высоте */
+    font-size: 1rem;
+    outline: none;
+    margin-right: 10px;
+    min-height: 40px; /* Минимальная высота */
+    max-height: 100px; /* Максимальная высота */
+    overflow-y: auto;
+}
+
+.message-input-area textarea:focus {
+    border-color: #6a11cb;
+}
+
+.send-message-btn {
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Градиент как у навбара/сайта */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Круглая кнопка */
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.send-message-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Адаптивность для мессенджера */
+@media (max-width: 768px) {
+    .messenger-wrapper {
+        flex-direction: column;
+        height: auto; /* Allow height to adjust */
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        box-shadow: none;
+    }
+
+    .dialogs-list {
+        max-height: 50vh; /* Ограничить высоту списка диалогов на мобильных */
+    }
+
+    .chat-area {
+        width: 100%;
+        height: calc(100vh - 120px); /* Уменьшить высоту чата на мобильных, учитывая навбар и нижний отступ */
+    }
+
+    /* Скрытие сайдбара и показ чата, если выбран диалог */
+    /* Это потребует JS для динамического добавления/удаления классов */
+    .messenger-wrapper.show-chat .sidebar {
+        display: none;
+    }
+
+    .messenger-wrapper.show-chat .chat-area {
+        display: flex; /* Убедиться, что чат виден */
+    }
+
+    /* По умолчанию на мобильных, если нет выбранного чата, показать список диалогов */
+    .messenger-wrapper:not(.show-chat) .chat-area {
+        display: none;
+    }
+
+    .chat-area .no-chat-selected {
+        display: none; /* Скрываем "Select a chat" на мобильных, если список диалогов активен */
+    }
+}
+
+/* mobile back button */
+.back-to-dialogs {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.back-to-dialogs:hover {
+    color: #ffcc00;
+}
+
+/* Скрываем на десктопе */
+@media (min-width: 769px) {
+    .back-to-dialogs {
+        display: none;
+    }
+}
+
+/* style/messenger.css */
+
+/* ... (предыдущие стили messenger.css) ... */
+
+/* Стили для основного контейнера мессенджера */
+.main-container.messenger-main-container {
+    padding: 0; /* Убираем padding, так как messenger-wrapper уже имеет свои отступы */
+    margin-top: 0; /* Убираем верхний отступ, так как navbar уже создает пространство */
+    height: calc(100vh - 120px); /* Пример: 100vh минус высота навбара и футера */
+    display: flex; /* Чтобы messenger-wrapper внутри него мог использовать flexbox */
+}
+
+.messenger-content-wrapper {
+    width: 100%;
+    height: 100%;
+    /* Если нужно, добавьте фон или другие стили */
+}
+
+.messenger-wrapper {
+    width: 100%; /* Занимает 100% от своего родителя (который уже центрирован) */
+    height: calc(100vh - 180px); /* Adjust based on navbar + secondary navbar + footer height */
+    display: flex;
+    /* ... другие стили */
+}
+
+/* Возможно, вам также нужно, чтобы .main-container.messenger-main-container
+   не переопределял центрирование, если его цель - только изменить высоту */
+.main-container.messenger-main-container {
+    height: calc(100vh - 120px); /* Пример: 100vh минус высота навбара и футера */
+    padding: 0; /* Если вы хотите, чтобы мессенджер использовал всю доступную ширину внутри main-container */
+}
+
+/* А если вы хотите, чтобы сам messenger-wrapper был центрирован внутри main-container */
+.messenger-content-wrapper {
+    width: 100%; /* или конкретная максимальная ширина */
+    max-width: 1200px; /* Например, та же ширина, что и у .main-container */
+    margin: 0 auto; /* Центрируем содержимое мессенджера */
+    height: 100%;
+    display: flex; /* Если messenger-wrapper - это flex-контейнер для sidebar и chat-area */
+    flex-direction: row;
+}

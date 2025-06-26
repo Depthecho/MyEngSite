@@ -1,0 +1,43 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+
+{% block title %}Messenger | ExdiEngSite{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/messenger.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+{% include 'mainpage/navbar.html' %}
+
+<div class="secondary-navbar">
+    <div class="secondary-nav-container">
+        <a href="{% url 'messenger:chat_list' %}" class="secondary-nav-link {% if request.resolver_match.url_name == 'chat_list' or request.resolver_match.url_name == 'chat_detail' %}active{% endif %}">
+            <i class="fas fa-comments"></i> My Chats
+        </a>
+        <a href="{% url 'messenger:select_friend_for_chat' %}" class="secondary-nav-link {% if request.resolver_match.url_name == 'select_friend_for_chat' %}active{% endif %}">
+            <i class="fas fa-plus-circle"></i> New Chat
+        </a>
+    </div>
+</div>
+
+<div class="main-container messenger-layout">
+    <div class="messenger-sidebar">
+        {% include 'messenger/includes/chat_list_sidebar.html' %}
+    </div>
+
+    <div class="messenger-content-wrapper">
+        {% block messenger_content %}
+        {% endblock %}
+    </div>
+</div>
+
+{% include 'mainpage/footer.html' %}
+
+{% block extra_js %}
+{% endblock %}
+
+
+{% endblock %}

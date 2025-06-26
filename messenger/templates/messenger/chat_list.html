@@ -1,0 +1,15 @@
+{% extends 'messenger/messenger_base.html' %}
+{% load static %}
+
+{% block messenger_content %}
+    <div class="main-messenger-view">
+        <h3>Welcome to Messenger!</h3>
+        <p>Select a dialogue on the left or start a new chat.</p>
+
+        {% if friends_without_chat %}
+        {% else %}
+            <p>It looks like you don't have any friends to start a new chat with right now.</p>
+            <p>You can add new friends through your <a href="{% url 'profilepage:profile' %}">profile</a>.</p>
+        {% endif %}
+    </div>
+{% endblock %}

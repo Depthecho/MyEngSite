@@ -1,0 +1,57 @@
+{% extends 'messenger/messenger_base.html' %}
+{% load static %}
+
+{% block messenger_content %}
+<div class="chat-detail-view">
+    <div class="chat-header">
+        {% for participant in chat.participants.all %}
+            {% if participant != request.user %}
+                <div class="chat-partner-info">
+                    <div class="chat-avatar-header">
+                        {% if participant.profile.avatar %}
+                            <img src="{{ participant.profile.avatar.url }}" alt="{{ participant.username }} avatar">
+                        {% else %}
+                            <img src="{% static 'images/default_avatar.png' %}" alt="Default avatar">
+                        {% endif %}
+                    </div>
+                    <h4>{{ participant.username }}</h4>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="messages-container" id="messagesContainer">
+        {% for message in messages %}
+            <div class="message-item {% if message.sender == request.user %}sent{% else %}received{% endif %}">
+                <div class="message-content">
+                    <p>{{ message.content }}</p>
+                    <span class="message-timestamp">{{ message.timestamp|date:"H:i" }}</span>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+<div class="message-input-area">
+    <form id="messageForm" action="{% url 'messenger:send_message' chat.id %}" method="post">
+        {% csrf_token %}
+        <textarea name="content" id="messageInput" placeholder="Write a message..." rows="1"></textarea>
+        <button type="submit">Send</button>
+    </form>
+</div>
+</div>
+
+<script>
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (messagesContainer) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    const messageInput = document.getElementById('messageInput');
+    if (messageInput) {
+        messageInput.addEventListener('input', () => {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = messageInput.scrollHeight + 'px';
+        });
+    }
+</script>
+{% endblock messenger_content %}

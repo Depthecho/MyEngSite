@@ -1,0 +1,50 @@
+{% load static %}
+
+<div class="chat-list-sidebar-container">
+    <h4>My Dialogues</h4>
+    {% if chats %}
+        <ul class="chat-list-items">
+            {% for chat in chats %}
+                <li class="chat-list-item {% if chat.id == current_chat_id %}active{% endif %}">
+                    <a href="{% url 'messenger:chat_detail' chat.id %}">
+                        <div class="chat-avatar">
+                            {% for participant in chat.participants.all %}
+                                {% if participant != request.user %}
+                                    {% with other_user=participant %}
+                                        {% if other_user.profile.avatar %}
+                                            <img src="{{ other_user.profile.avatar.url }}" alt="{{ other_user.username }} avatar">
+                                        {% else %}
+                                            <img src="{% static 'images/default_avatar.png' %}" alt="Default avatar">
+                                        {% endif %}
+                                    {% endwith %}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="chat-info">
+                            <span class="chat-partner-name">
+                                {% for participant in chat.participants.all %}
+                                    {% if participant != request.user %}
+                                        {{ participant.username }}
+                                    {% endif %}
+                                {% endfor %}
+                            </span>
+                            <p class="last-message-preview">
+                                {% if chat.last_message %}
+                                    {{ chat.last_message.message|truncatechars:30 }}
+                                {% else %}
+                                    Start a dialogue...
+                                {% endif %}
+                            </p>
+                        </div>
+                        {% if chat.unread_count_annotated %}
+                            <span class="unread-badge">{{ chat.unread_count_annotated }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-chats-message">You don't have any dialogues yet.</p>
+        <p class="no-chats-message">Click "New Chat" to start a conversation.</p>
+    {% endif %}
+</div>
