@@ -63,7 +63,7 @@ def start_chat(request: HttpRequest, user_id: int) -> HttpResponse:
         return redirect('chat_list')
 
     messages.success(request, f"Чат с {other_user.username} успешно создан.")
-    return redirect('chat_detail', chat_id=chat.id)
+    return redirect('messenger:chat_detail', chat_id=chat.id)
 
 
 @login_required
