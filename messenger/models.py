@@ -7,7 +7,6 @@ from typing import Optional
 
 class ChatManager(models.Manager):
     def generate_unique_chat_id(self):
-        """Генерирует уникальный 9-значный ID чата"""
         while True:
             chat_id = random.randint(100_000_000, 999_999_999)  # 9 цифр
             if not self.filter(id=chat_id).exists():
@@ -59,7 +58,6 @@ class Chat(models.Model):
         return self.messages.order_by('-timestamp').first()
 
     def unread_messages_count(self, user) -> int:
-        """Количество непрочитанных сообщений для конкретного пользователя"""
         return self.messages.filter(is_read=False).exclude(sender=user).count()
 
 

@@ -1,50 +1,42 @@
 {% load static %}
 
 <div class="chat-list-sidebar-container">
-    <h4>My Dialogues</h4>
-    {% if chats %}
-        <ul class="chat-list-items">
-            {% for chat in chats %}
-                <li class="chat-list-item {% if chat.id == current_chat_id %}active{% endif %}">
-                    <a href="{% url 'messenger:chat_detail' chat.id %}">
-                        <div class="chat-avatar">
-                            {% for participant in chat.participants.all %}
-                                {% if participant != request.user %}
-                                    {% with other_user=participant %}
-                                        {% if other_user.profile.avatar %}
-                                            <img src="{{ other_user.profile.avatar.url }}" alt="{{ other_user.username }} avatar">
-                                        {% else %}
-                                            <img src="{% static 'images/default_avatar.png' %}" alt="Default avatar">
-                                        {% endif %}
-                                    {% endwith %}
-                                {% endif %}
-                            {% endfor %}
-                        </div>
-                        <div class="chat-info">
-                            <span class="chat-partner-name">
-                                {% for participant in chat.participants.all %}
-                                    {% if participant != request.user %}
-                                        {{ participant.username }}
-                                    {% endif %}
-                                {% endfor %}
-                            </span>
-                            <p class="last-message-preview">
-                                {% if chat.last_message %}
-                                    {{ chat.last_message.message|truncatechars:30 }}
-                                {% else %}
-                                    Start a dialogue...
-                                {% endif %}
-                            </p>
-                        </div>
-                        {% if chat.unread_count_annotated %}
-                            <span class="unread-badge">{{ chat.unread_count_annotated }}</span>
-                        {% endif %}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
+    <h4 class="dialogues-header">My Dialogues</h4>
+
+    <form method="get" action="{% url 'messenger:chat_list' %}" class="sidebar-search-form">
+        <input type="text"
+               name="q"
+               placeholder="Search in chats..."
+               value="{{ request.GET.q|default:'' }}"
+               aria-label="Search chats">
+        <button type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+
+    {% if request.GET.q %}
+        <div class="search-results-section">
+            <h5 class="section-title">Search Results</h5>
+            {% if search_results %}
+                <ul class="chat-list-items">
+                    {% for chat in search_results %}
+                        {% include 'messenger/includes/chat_item.html' with chat=chat %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-results-message">No chats found for "{{ request.GET.q }}"</p>
+            {% endif %}
+        </div>
     {% else %}
-        <p class="no-chats-message">You don't have any dialogues yet.</p>
-        <p class="no-chats-message">Click "New Chat" to start a conversation.</p>
+        {% if chats %}
+            <ul class="chat-list-items">
+                {% for chat in chats %}
+                    {% include 'messenger/includes/chat_item.html' with chat=chat %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-chats-message">You don't have any dialogues yet.</p>
+            <p class="no-chats-message">Click "New Chat" to start a conversation.</p>
+        {% endif %}
     {% endif %}
 </div>

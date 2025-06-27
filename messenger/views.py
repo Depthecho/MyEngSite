@@ -8,22 +8,29 @@ from .models import Chat
 from .forms import MessageForm
 from mainpage.models import CustomUser
 from .services import ChatService, MessageService
-from typing import Optional
-
+from typing import Optional, Set
 
 User = get_user_model()
 
 
 @login_required
 def chat_list(request: HttpRequest) -> HttpResponse:
-    chats: QuerySet[Chat] = ChatService.get_user_chats(request.user)
-    all_friends: QuerySet[CustomUser] = request.user.profile.get_friends()
-    friends_without_chat: List[CustomUser] = ChatService.get_friends_without_chat(request.user, all_friends)
+    search_query = request.GET.get('q', '')
+    chats = ChatService.get_user_chats(request.user)
 
-    context: dict = {
+    search_results = None
+    if search_query:
+        search_results = ChatService.search_user_chats(request.user, search_query)
+
+    all_friends = request.user.profile.get_friends()
+    friends_without_chat = ChatService.get_friends_without_chat(request.user, all_friends)
+
+    context = {
         'chats': chats,
         'friends_without_chat': friends_without_chat,
         'current_chat_id': None,
+        'search_query': search_query,
+        'search_results': search_results,
     }
     return render(request, 'messenger/chat_list.html', context)
 

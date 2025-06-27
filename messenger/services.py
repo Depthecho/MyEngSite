@@ -46,6 +46,20 @@ class ChatService:
         new_chat.participants.add(user1, user2)
         return new_chat
 
+    @staticmethod
+    def search_user_chats(user: AbstractUser, query: str) -> QuerySet[Chat]:
+        return Chat.objects.filter(
+            participants=user
+        ).filter(
+            Q(participants__username__icontains=query)
+        ).annotate(
+            last_message_date=Max('messages__timestamp'),
+            unread_count_annotated=Count(
+                'messages',
+                filter=Q(messages__is_read=False) & ~Q(messages__sender=user)
+            )
+        ).distinct().order_by(F('last_message_date').desc(nulls_last=True))
+
 
 class MessageService:
     @staticmethod
