@@ -962,3 +962,217 @@ hr {
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 204, 0, 0.6) rgba(0, 0, 0, 0.2);
 }
+
+/* Форма поиска в чате */
+.message-search-form {
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    gap: 5px;
+}
+
+.message-search-form input {
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 18px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 0.9em;
+    min-width: 200px;
+}
+
+.message-search-form button {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.message-search-form .clear-search {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 5px;
+}
+
+.message-search-form button:hover,
+.message-search-form .clear-search:hover {
+    color: #ffcc00;
+}
+
+.search-results-info {
+    padding: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 10px;
+}
+
+.highlight {
+    background-color: rgba(255, 204, 0, 0.3);
+    padding: 2px 0;
+    border-radius: 3px;
+}
+
+/* Навигация по результатам поиска */
+.search-results-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.search-results-info {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9em;
+}
+
+.search-nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.search-nav-button:hover {
+    background: rgba(255, 204, 0, 0.3);
+}
+
+.search-nav-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#resultCounter {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Подсветка результатов */
+.highlight {
+    background-color: rgba(255, 204, 0, 0.3);
+    padding: 2px 0;
+    border-radius: 3px;
+}
+
+.active-result {
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.5);
+    border-radius: 8px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.5); }
+    70% { box-shadow: 0 0 0 6px rgba(255, 204, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+
+/* Навигация по результатам поиска */
+.search-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.search-info {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9em;
+}
+
+.search-nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.nav-button:hover {
+    background: rgba(255, 204, 0, 0.3);
+}
+
+#searchCounter {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.highlight-text {
+    background-color: rgba(255, 204, 0, 0.3);
+    padding: 2px 0;
+    border-radius: 3px;
+}
+
+.current-search-result {
+    animation: highlight-pulse 2s;
+    box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.5);
+    border-radius: 8px;
+}
+
+@keyframes highlight-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.5); }
+    50% { box-shadow: 0 0 0 10px rgba(255, 204, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+
+.messages-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 10px;
+    max-height: calc(100vh - 250px);
+}
+
+body.no-scroll {
+    overflow: hidden;
+}
+
+.messages-container {
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.highlight-text {
+    background-color: rgba(255, 204, 0, 0.3);
+}
+
+.current-search-result {
+    animation: highlight-pulse 1s;
+}
+
+@keyframes highlight-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.5); }
+    50% { box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.3); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}

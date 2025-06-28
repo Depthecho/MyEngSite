@@ -1,4 +1,4 @@
-from django.db.models import QuerySet, Q, Count, Max, F
+from django.db.models import QuerySet, Q, Count, Max, F, Value, CharField
 from django.contrib.auth.models import AbstractUser
 from .models import Chat, Message
 from mainpage.models import CustomUser
@@ -74,3 +74,11 @@ class MessageService:
         message.is_read = False
         message.save()
         return message
+
+    @staticmethod
+    def search_messages_in_chat(chat: Chat, query: str) -> QuerySet[Message]:
+        return chat.messages.filter(
+            content__icontains=query
+        ).order_by('timestamp').annotate(
+            search_query=Value(query, output_field=CharField())
+        )

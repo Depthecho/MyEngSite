@@ -37,25 +37,37 @@ def chat_list(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
-    chat: Chat = get_object_or_404(Chat, id=chat_id, participants=request.user)
-    messages_in_chat: QuerySet[Message] = chat.messages.all().order_by('timestamp')
+    chat = get_object_or_404(Chat, id=chat_id, participants=request.user)
+
+    search_query = request.GET.get('mq', '')
+    all_messages = chat.messages.all().order_by('timestamp')
+
+    if search_query:
+        found_messages = MessageService.search_messages_in_chat(chat, search_query)
+        found_message_ids = list(found_messages.values_list('id', flat=True))
+    else:
+        found_message_ids = []
+
     MessageService.mark_messages_as_read(chat, request.user)
-    all_user_chats: QuerySet[Chat] = ChatService.get_user_chats(request.user)
+    all_user_chats = ChatService.get_user_chats(request.user)
 
     if request.method == 'POST':
-        form: MessageForm = MessageForm(request.POST)
+        form = MessageForm(request.POST)
         if form.is_valid():
             MessageService.create_message(chat, request.user, form)
             return redirect('chat_detail', chat_id=chat.id)
     else:
-        form: MessageForm = MessageForm()
+        form = MessageForm()
 
-    context: dict = {
+    context = {
         'chat': chat,
-        'messages': messages_in_chat,
+        'messages': all_messages,
         'form': form,
         'chats': all_user_chats,
         'current_chat_id': chat_id,
+        'search_query': search_query,
+        'found_message_ids': found_message_ids,
+        'found_messages_count': len(found_message_ids),
     }
     return render(request, 'messenger/chat_detail.html', context)
 
