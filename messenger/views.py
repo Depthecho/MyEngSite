@@ -9,6 +9,8 @@ from .forms import MessageForm
 from mainpage.models import CustomUser
 from .services import ChatService, MessageService
 from typing import Optional, Set
+from django.utils import timezone
+from datetime import timedelta
 
 User = get_user_model()
 
@@ -39,6 +41,10 @@ def chat_list(request: HttpRequest) -> HttpResponse:
 def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
     chat = get_object_or_404(Chat, id=chat_id, participants=request.user)
 
+    current_year = timezone.now().year
+    today = timezone.now().date()
+    yesterday = today - timedelta(days=1)
+
     search_query = request.GET.get('mq', '')
     all_messages = chat.messages.all().order_by('timestamp')
 
@@ -47,6 +53,24 @@ def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
         found_message_ids = list(found_messages.values_list('id', flat=True))
     else:
         found_message_ids = []
+
+    messages_grouped = {}
+    for message in all_messages:
+        message_date = message.timestamp.date()
+        if message_date not in messages_grouped:
+            messages_grouped[message_date] = []
+        messages_grouped[message_date].append(message)
+
+    messages_grouped_by_date = [
+        {
+            'date': date,
+            'messages': messages,
+            'is_today': date == today,
+            'is_yesterday': date == yesterday,
+            'is_current_year': date.year == current_year
+        }
+        for date, messages in sorted(messages_grouped.items(), key=lambda x: x[0])
+    ]
 
     MessageService.mark_messages_as_read(chat, request.user)
     all_user_chats = ChatService.get_user_chats(request.user)
@@ -61,6 +85,7 @@ def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
 
     context = {
         'chat': chat,
+        'messages_grouped_by_date': messages_grouped_by_date,
         'messages': all_messages,
         'form': form,
         'chats': all_user_chats,
@@ -68,9 +93,11 @@ def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
         'search_query': search_query,
         'found_message_ids': found_message_ids,
         'found_messages_count': len(found_message_ids),
+        'today': today,
+        'yesterday': yesterday,
+        'current_year': current_year,
     }
     return render(request, 'messenger/chat_detail.html', context)
-
 
 @login_required
 def start_chat(request: HttpRequest, user_id: int) -> HttpResponse:

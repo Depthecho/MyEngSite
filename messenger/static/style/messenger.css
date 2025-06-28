@@ -963,7 +963,6 @@ hr {
     scrollbar-color: rgba(255, 204, 0, 0.6) rgba(0, 0, 0, 0.2);
 }
 
-/* Форма поиска в чате */
 .message-search-form {
     display: flex;
     margin-left: auto;
@@ -1015,7 +1014,6 @@ hr {
     border-radius: 3px;
 }
 
-/* Навигация по результатам поиска */
 .search-results-nav {
     display: flex;
     justify-content: space-between;
@@ -1064,7 +1062,6 @@ hr {
     color: rgba(255, 255, 255, 0.7);
 }
 
-/* Подсветка результатов */
 .highlight {
     background-color: rgba(255, 204, 0, 0.3);
     padding: 2px 0;
@@ -1083,7 +1080,6 @@ hr {
     100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
 }
 
-/* Навигация по результатам поиска */
 .search-navigation {
     display: flex;
     justify-content: space-between;
@@ -1175,4 +1171,24 @@ body.no-scroll {
     0% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.5); }
     50% { box-shadow: 0 0 0 5px rgba(255, 204, 0, 0.3); }
     100% { box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+
+.date-divider {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8em;
+}
+
+.date-divider::before,
+.date-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.date-label {
+    padding: 0 10px;
+    letter-spacing: 1px;
 }
