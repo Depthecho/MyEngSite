@@ -67,12 +67,14 @@ body {
 }
 
 .messenger-sidebar {
-    flex: 0 0 300px;
+    flex: 0 0 360px;
     background-color: rgba(0, 0, 0, 0.3);
     border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
     padding: 15px;
-    overflow-y: auto;
     color: white;
+    height: 80vh;
+    overflow: hidden;
 }
 
 .messenger-content-wrapper {
@@ -88,6 +90,17 @@ body {
     height: 80vh;
     box-sizing: border-box;
     overflow: hidden
+}
+
+.main-container.messenger-layout {
+    display: flex;
+    align-items: flex-start;
+}
+
+.messenger-sidebar,
+.messenger-content-wrapper {
+    height: 80vh;
+    box-sizing: border-box;
 }
 
 .chat-container-base {
@@ -698,9 +711,11 @@ hr {
 }
 
 .chat-list-sidebar-container {
-    padding: 15px;
+    display: flex;
+    flex-direction: column;
     height: 100%;
-    overflow-y: auto;
+    padding: 15px;
+    overflow: hidden;
 }
 
 .chat-list-sidebar-container::-webkit-scrollbar {
@@ -722,11 +737,12 @@ hr {
 }
 
 .dialogues-header {
-    color: rgba(255, 255, 255, 0.9);
+    flex-shrink: 0;
     margin: 0 0 15px 0;
     padding: 0;
     font-size: 1.2em;
     font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .sidebar-search-form {
@@ -773,6 +789,13 @@ hr {
 
 .search-results-section {
    margin-top: 10px;
+}
+
+.search-results-section,
+.chat-list-items-wrapper {
+    flex-grow: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
 
 .section-title {

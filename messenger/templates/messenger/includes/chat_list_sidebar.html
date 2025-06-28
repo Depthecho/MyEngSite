@@ -1,5 +1,3 @@
-{% load static %}
-
 <div class="chat-list-sidebar-container">
     <h4 class="dialogues-header">My Dialogues</h4>
 
@@ -28,15 +26,17 @@
             {% endif %}
         </div>
     {% else %}
-        {% if chats %}
-            <ul class="chat-list-items">
-                {% for chat in chats %}
-                    {% include 'messenger/includes/chat_item.html' with chat=chat %}
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="no-chats-message">You don't have any dialogues yet.</p>
-            <p class="no-chats-message">Click "New Chat" to start a conversation.</p>
-        {% endif %}
+        <div class="chat-list-items-wrapper">
+            {% if chats %}
+                <ul class="chat-list-items">
+                    {% for chat in chats %}
+                        {% include 'messenger/includes/chat_item.html' with chat=chat %}
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="no-chats-message">You don't have any dialogues yet.</p>
+                <p class="no-chats-message">Click "New Chat" to start a conversation.</p>
+            {% endif %}
+        </div>
     {% endif %}
 </div>
