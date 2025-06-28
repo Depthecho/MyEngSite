@@ -60,6 +60,13 @@ class ChatService:
             )
         ).distinct().order_by(F('last_message_date').desc(nulls_last=True))
 
+    @staticmethod
+    def delete_chat(chat: Chat, user: AbstractUser) -> bool:
+        if user not in chat.participants.all():
+            return False
+        chat.delete()
+        return True
+
 
 class MessageService:
     @staticmethod
@@ -82,3 +89,10 @@ class MessageService:
         ).order_by('timestamp').annotate(
             search_query=Value(query, output_field=CharField())
         )
+
+    @staticmethod
+    def delete_message(message: Message, user: AbstractUser) -> bool:
+        if message.sender != user:
+            return False
+        message.delete()
+        return True

@@ -420,6 +420,7 @@ hr {
     font-size: 1em;
     transition: all 0.3s ease;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
 }
 
 .message-input-area button:hover {
@@ -1191,4 +1192,233 @@ body.no-scroll {
 .date-label {
     padding: 0 10px;
     letter-spacing: 1px;
+}
+
+.chat-actions-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 15px;
+}
+
+.chat-actions-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.chat-actions-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffcc00;
+}
+
+.chat-actions-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 15px);
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.95), rgba(37, 117, 252, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    min-width: 200px;
+    padding: 6px 0;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+}
+
+.chat-actions-menu.show {
+    display: block;
+}
+
+.chat-action-btn {
+    width: calc(100% - 10px);
+    margin: 0 5px;
+    padding: 10px 15px;
+    text-align: left;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 0.95em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.view-profile-btn{
+    width: calc(100% - 40px);
+}
+
+.chat-action-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffcc00;
+}
+
+.chat-action-btn i {
+    width: 20px;
+    text-align: center;
+    color: inherit;
+    font-size: 0.9em;
+}
+
+.delete-chat-btn:hover {
+    color: #ff6b6b;
+}
+
+.view-profile-btn:hover {
+    text-decoration: none;
+}
+
+.message-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.message-item:hover .message-actions {
+    opacity: 1;
+}
+
+.message-action-btn {
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.message-action-btn:hover {
+    background: rgba(255, 107, 107, 0.3);
+    color: #ff6b6b;
+}
+
+@media (max-width: 768px) {
+    .chat-actions-menu {
+        right: auto;
+        left: 0;
+        min-width: 180px;
+    }
+
+    .chat-action-btn {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-content p {
+    margin-bottom: 20px;
+    color: white;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.modal-cancel-btn,
+.modal-confirm-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.modal-cancel-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+}
+
+.modal-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.modal-confirm-btn {
+    background: rgba(255, 107, 107, 0.3);
+    border: 1px solid rgba(255, 107, 107, 0.5);
+    color: white;
+}
+
+.modal-confirm-btn:hover {
+    background: rgba(255, 107, 107, 0.4);
+    transform: translateY(-2px);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 20px;
+    }
+
+    .modal-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-cancel-btn,
+    .modal-confirm-btn {
+        width: 100%;
+    }
 }

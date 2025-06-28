@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.db.models import QuerySet
-from .models import Chat
+from .models import Chat, Message
 from .forms import MessageForm
 from mainpage.models import CustomUser
 from .services import ChatService, MessageService
@@ -148,5 +148,32 @@ def send_message(request: HttpRequest, chat_id: int) -> HttpResponse:
         if form.is_valid():
             MessageService.create_message(chat, request.user, form)
             return redirect('messenger:chat_detail', chat_id=chat.id)
+
+    return redirect('messenger:chat_detail', chat_id=chat.id)
+
+
+@login_required
+def delete_chat(request: HttpRequest, chat_id: int) -> HttpResponse:
+    chat = get_object_or_404(Chat, id=chat_id, participants=request.user)
+
+    if request.method == 'POST':
+        if ChatService.delete_chat(chat, request.user):
+            messages.success(request, "Чат успешно удален")
+            return redirect('messenger:chat_list')
+
+    return redirect('messenger:chat_detail', chat_id=chat_id)
+
+
+@login_required
+def delete_message(request: HttpRequest, message_id: int) -> HttpResponse:
+    message = get_object_or_404(Message, id=message_id)
+    chat = message.chat
+
+    if request.user not in chat.participants.all():
+        return redirect('messenger:chat_list')
+
+    if request.method == 'POST':
+        if MessageService.delete_message(message, request.user):
+            messages.success(request, "Сообщение удалено")
 
     return redirect('messenger:chat_detail', chat_id=chat.id)

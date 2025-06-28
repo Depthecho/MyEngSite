@@ -10,4 +10,6 @@ urlpatterns = [
     path('send_message/<int:chat_id>/', views.send_message, name='send_message'),
     path('create/', views.select_friend_for_chat, name='select_friend_for_chat'),
     path('select_friend/', views.select_friend_for_chat, name='select_friend_for_chat'),
+    path('chat/<int:chat_id>/delete/', views.delete_chat, name='delete_chat'),
+    path('message/<int:message_id>/delete/', views.delete_message, name='delete_message'),
 ]
