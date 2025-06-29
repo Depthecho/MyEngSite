@@ -101,7 +101,6 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    background: rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     overflow: hidden;
 }
@@ -183,5 +182,124 @@ body {
     .grammar-subtopic-detail-content table {
         font-size: 0.9em;
         padding: 8px 10px;
+    }
+}
+
+.grammar-table-container {
+    margin: 30px 0;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.grammar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(20, 20, 40, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.grammar-table th {
+    background-color: #ffda47;
+    color: #3a0ca3;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    padding: 14px 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.grammar-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.95em;
+}
+
+.grammar-table tr:last-child td {
+    border-bottom: none;
+}
+
+.grammar-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.grammar-table tr:hover {
+    background-color: rgba(255, 218, 71, 0.1);
+}
+
+/* Стили для выделения элементов */
+.noun-highlight {
+    color: #ffda47;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(255, 218, 71, 0.1);
+}
+
+.term-highlight {
+    color: #4cc9f0;
+    font-weight: 500;
+}
+
+.usage-note {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* Стили для разделителей */
+.grammar-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    margin: 40px 0;
+    border: none;
+}
+
+/* Стили для списков */
+.styled-list {
+    padding-left: 25px;
+    margin: 20px 0;
+}
+
+.styled-list li {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    line-height: 1.6;
+}
+
+.styled-list li::before {
+    content: '•';
+    color: #ffda47;
+    font-size: 1.2em;
+    position: absolute;
+    left: -20px;
+    top: 2px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .grammar-table {
+        font-size: 0.9em;
+    }
+
+    .grammar-table th,
+    .grammar-table td {
+        padding: 10px 12px;
+    }
+
+    .grammar-table-container {
+        margin: 20px -15px;
+        width: calc(100% + 30px);
     }
 }
