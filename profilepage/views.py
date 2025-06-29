@@ -7,7 +7,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, redirect
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.forms import Form
-from typing import Any, Dict
+from typing import Any, Dict, Union
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
@@ -29,20 +29,19 @@ def profile_page(request: HttpRequest) -> HttpResponse:
         'achievements': user_profile.get_achievements()
     })
 
-
 @login_required
 def update_profile(request: HttpRequest) -> HttpResponse:
-    handler: ProfileUpdateHandler = ProfileUpdateHandler(request)
+    handler = ProfileUpdateHandler(request)
 
     if request.method == 'POST':
-        result: Union[Form, HttpResponseRedirect] = handler.process_update()
-        if result and not hasattr(result, 'is_valid'):
-            return result
+        response = handler.process_update()
+        if response:
+            return response
 
-    context: Dict[str, Any] = handler.get_forms()
-    context['profile'] = request.user.profile
-
-    return render(request, 'profilepage/update_profile.html', context)
+    return render(request, 'profilepage/update_profile.html', {
+        **handler.get_context(),
+        'profile': request.user.profile
+    })
 
 
 @login_required

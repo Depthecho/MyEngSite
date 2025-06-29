@@ -22,24 +22,40 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
+                <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
                 <h1>Edit Profile</h1>
             </div>
+
+            {% if user_form.errors or profile_form.errors or password_form.errors %}
+            <div class="error-message-container">
+                <h3><i class="fas fa-exclamation-circle"></i> Please correct the following errors:</h3>
+                <ul class="error-list">
+                    {% for field, errors in user_form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ field|title }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for field, errors in profile_form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ field|title }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    {% for field, errors in password_form.errors.items %}
+                        {% for error in errors %}
+                            <li>{{ field|title }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
 
             <form method="POST" enctype="multipart/form-data" class="update-profile-form">
                 {% csrf_token %}
 
-                {% if user_form.errors or profile_form.errors %}
-                    <div class="alert alert-danger">
-                        Please correct the following errors:
-                        {% for field, errors in user_form.errors.items %}
-                            <p>{{ field }}: {{ errors }}</p>
-                        {% endfor %}
-                        {% for field, errors in profile_form.errors.items %}
-                            <p>{{ field }}: {{ errors }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-
+                <input type="hidden" name="username" value="{{ user.username }}">
+                <input type="hidden" name="english_level" value="{{ profile.english_level }}">
 
                 <div class="update-avatar-section">
                     <div class="update-avatar-container">
@@ -59,7 +75,8 @@
 
                     <div class="update-form-group">
                         <label>Username</label>
-                        {{ user_form.username }}
+                        <input type="text" value="{{ user.username }}" disabled>
+                        <p class="field-description">Username cannot be changed</p>
                     </div>
 
                     <div class="update-form-group">
@@ -98,7 +115,8 @@
 
                     <div class="update-form-group">
                         <label>English Level</label>
-                        {{ profile_form.english_level }}
+                        <input type="text" value="{{ profile.get_english_level_display }}" disabled>
+                        <p class="field-description">Level is determined by tests</p>
                     </div>
                 </div>
 
@@ -128,14 +146,6 @@
 
             <form method="POST" class="update-password-form">
                 {% csrf_token %}
-                {% if password_form.errors %}
-                    <div class="alert alert-danger">
-                        Please correct the following password errors:
-                        {% for field, errors in password_form.errors.items %}
-                            <p>{{ field }}: {{ errors }}</p>
-                        {% endfor %}
-                    </div>
-                {% endif %}
                 <div class="update-form-section">
                     <h2><i class="fas fa-lock"></i> Change Password</h2>
 
@@ -164,5 +174,4 @@
 {% include 'mainpage/footer.html' %}
 
 <script src="{% static 'js/profile.js' %}"></script>
-<script src="{% static 'js/update_profile.js' %}"></script>
 {% endblock %}

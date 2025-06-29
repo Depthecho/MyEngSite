@@ -38,7 +38,7 @@ body {
 }
 
 .profile-container.sidebar-closed {
-    max-width: 600px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 40px;
@@ -994,7 +994,6 @@ body {
     }
 }
 
-/* Animation for new achievements */
 @keyframes glow {
     0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
     50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8); }

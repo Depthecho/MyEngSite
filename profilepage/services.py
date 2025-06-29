@@ -1,7 +1,7 @@
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.utils import timezone
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect, HttpResponseRedirect
 from django.contrib.auth import update_session_auth_hash, get_user_model
@@ -17,43 +17,39 @@ User = get_user_model()
 
 class ProfileUpdateHandler:
     def __init__(self, request: HttpRequest) -> None:
-        self.request: HttpRequest = request
-        self.user: User = request.user
-        self.profile: Profile = request.user.profile
+        self.request = request
+        self.user = request.user
+        self.profile = request.user.profile
+        self.context = self.get_forms()
 
-    def process_update(self) -> Union[Dict[str, Form], HttpResponseRedirect]:
+    def process_update(self) -> Optional[HttpResponse]:
         if 'update_profile_and_user' in self.request.POST:
-            user_form = UserUpdateForm(self.request.POST, instance=self.user)
-            profile_form = ProfileUpdateForm(self.request.POST, self.request.FILES, instance=self.profile)
+            self.context['user_form'] = UserUpdateForm(self.request.POST, instance=self.user)
+            self.context['profile_form'] = ProfileUpdateForm(self.request.POST, self.request.FILES,
+                                                             instance=self.profile)
 
-            if user_form.is_valid() and profile_form.is_valid():
-                user_form.save()
-                profile_form.save()
+            if self.context['user_form'].is_valid() and self.context['profile_form'].is_valid():
+                self.context['user_form'].save()
+                self.context['profile_form'].save()
                 messages.success(self.request, "Your profile has been updated!")
                 return redirect('profile')
             else:
                 messages.error(self.request, "Please correct the errors in the profile form.")
-                return {
-                    'user_form': user_form,
-                    'profile_form': profile_form,
-                    'password_form': CustomPasswordChangeForm(self.user)
-                }
+                return None
+
         elif 'change_password' in self.request.POST:
-            password_form = CustomPasswordChangeForm(self.user, self.request.POST)
-            if password_form.is_valid():
-                user: AbstractBaseUser = password_form.save()
+            self.context['password_form'] = CustomPasswordChangeForm(self.user, self.request.POST)
+
+            if self.context['password_form'].is_valid():
+                user = self.context['password_form'].save()
                 update_session_auth_hash(self.request, user)
                 messages.success(self.request, "Password updated successfully!")
                 return redirect('profile')
             else:
                 messages.error(self.request, "Please correct the errors in the password change form.")
-                return {
-                    'user_form': UserUpdateForm(instance=self.user),
-                    'profile_form': ProfileUpdateForm(instance=self.profile),
-                    'password_form': password_form
-                }
+                return None
 
-        return self.get_forms()
+        return None
 
     def get_forms(self) -> Dict[str, Form]:
         return {
@@ -61,6 +57,9 @@ class ProfileUpdateHandler:
             'profile_form': ProfileUpdateForm(instance=self.profile),
             'password_form': CustomPasswordChangeForm(self.user)
         }
+
+    def get_context(self) -> Dict[str, Any]:
+        return self.context
 
 
 class AchievementChecker:
