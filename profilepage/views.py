@@ -10,7 +10,6 @@ from django.forms import Form
 from typing import Any, Dict, Union
 from django.urls import reverse
 from django.views.decorators.http import require_POST
-
 from .services import ProfileService, ProfileUpdateHandler, FriendshipService, NotificationService
 from .models import Profile, UserModel, Friendship, Notification
 from django.db.models import Q
@@ -46,21 +45,23 @@ def update_profile(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def public_profile(request, username):
-    profile = get_object_or_404(Profile, user__username=username)
+    profile_owner = get_object_or_404(User, username=username)
+    profile = get_object_or_404(Profile, user=profile_owner)
+
+    status = request.user.profile.get_friendship_status(profile_owner)
+
     incoming_request = None
-    if request.user != profile.user:
-        try:
-            incoming_request = Friendship.objects.get(
-                from_user=profile.user,
-                to_user=request.user,
-                status=Friendship.REQUESTED
-            )
-        except Friendship.DoesNotExist:
-            pass
+    if status == 'request_received':
+        incoming_request = Friendship.objects.filter(
+            from_user=profile_owner,
+            to_user=request.user,
+            status=Friendship.REQUESTED
+        ).first()
 
     context = {
         'profile': profile,
-        'friendship': incoming_request,
+        'status': status,
+        'incoming_request': incoming_request,
         'achievements': profile.get_achievements(),
     }
 
@@ -70,113 +71,38 @@ def public_profile(request, username):
 def _check_profile_visibility(profile: Profile, viewer: UserModel) -> bool:
     return True
 
-
 @login_required
-def send_friend_request(request, username):
-    to_user = get_object_or_404(User, username=username)
+def reject_friend_request(request: HttpRequest, friendship_id: int) -> HttpResponse:
+    if request.method == 'POST':
+        try:
+            friendship = get_object_or_404(
+                Friendship,
+                id=friendship_id,
+                to_user=request.user,
+                status=Friendship.REQUESTED
+            )
+            FriendshipService.reject_request(friendship)
+            messages.success(request, "Friend request rejected. 😔")
 
-    if request.user == to_user:
-        messages.error(request, "You cannot send a request to yourself")
-        return redirect('public_profile', username=username)
+            notification_for_friendship = Notification.objects.filter(
+                user=request.user,
+                notification_type='FRIEND_REQUEST',
+                content_type=ContentType.objects.get_for_model(Friendship),
+                object_id=friendship.id,
+                is_read=False
+            ).first()
 
-    existing_request = Friendship.objects.filter(
-        from_user=request.user,
-        to_user=to_user
-    ).first()
+            if notification_for_friendship:
+                notification_for_friendship.delete()
 
-    if existing_request:
-        if existing_request.status == Friendship.REQUESTED:
-            messages.info(request, "The request has already been sent")
-        elif existing_request.status == Friendship.ACCEPTED:
-            messages.info(request, "You are already friends")
-        elif existing_request.status == Friendship.REJECTED:
-            existing_request.status = Friendship.REQUESTED
-            existing_request.save()
-            messages.success(request, "Friend request sent")
+            return redirect('followers_list')
 
-            FriendshipService.update_followers_count(to_user)
-    else:
-        Friendship.objects.create(
-            from_user=request.user,
-            to_user=to_user,
-            status=Friendship.REQUESTED
-        )
-        messages.success(request, "Friend request sent")
+        except ValueError as e:
+            messages.error(request, str(e))
+        except Exception as e:
+            messages.error(request, f"An unexpected error occurred: {e}")
 
-        FriendshipService.update_followers_count(to_user)
-
-    return redirect('public_profile', username=username)
-
-
-@login_required
-@login_required
-def accept_friend_request(request, friendship_id):
-    try:
-        friendship = get_object_or_404(
-            Friendship,
-            id=friendship_id,
-            to_user=request.user,
-            status=Friendship.REQUESTED
-        )
-        FriendshipService.accept_request(friendship)
-        messages.success(request, "Friend request accepted")
-
-        friendship_content_type = ContentType.objects.get_for_model(Friendship)
-
-        notification_for_friendship = Notification.objects.filter(
-            user=request.user,
-            notification_type='FRIEND_REQUEST',
-            content_type=friendship_content_type,
-            object_id=friendship.id,
-            is_read=False
-        ).first()
-
-        if notification_for_friendship:
-            NotificationService.mark_as_read(notification_for_friendship.id, request.user)
-
-    except ValueError as e:
-        messages.error(request, str(e))
-
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        unread_count = NotificationService.get_unread_count(request.user)
-        return JsonResponse({'status': 'success', 'unread_count': unread_count})
-
-    return redirect('profile')
-
-
-@login_required
-def reject_friend_request(request, friendship_id):
-    try:
-        friendship = get_object_or_404(
-            Friendship,
-            id=friendship_id,
-            to_user=request.user,
-            status=Friendship.REQUESTED
-        )
-        FriendshipService.reject_request(friendship)
-        messages.success(request, "Friend request rejected")
-
-        friendship_content_type = ContentType.objects.get_for_model(Friendship)
-        notification_for_friendship = Notification.objects.filter(
-            user=request.user,
-            notification_type='FRIEND_REQUEST',
-            content_type=friendship_content_type,
-            object_id=friendship.id,
-            is_read=False
-        ).first()
-
-        if notification_for_friendship:
-            NotificationService.mark_as_read(notification_for_friendship.id, request.user)
-
-
-    except ValueError as e:
-        messages.error(request, str(e))
-
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        unread_count = NotificationService.get_unread_count(request.user)
-        return JsonResponse({'status': 'success', 'unread_count': unread_count})
-
-    return redirect('profile')
+    return redirect('followers_list')
 
 
 @login_required
@@ -210,8 +136,8 @@ def friends_list(request):
 @login_required
 def followers_list(request):
     incoming_requests_qs = Friendship.objects.filter(
-        to_user=request.user,
-        status=Friendship.REQUESTED
+        Q(to_user=request.user, status=Friendship.REQUESTED) |
+        Q(to_user=request.user, status=Friendship.REJECTED, was_rejected=True)
     ).select_related('from_user__profile').order_by('-created_at')
 
     followers_data = []
@@ -243,12 +169,12 @@ def send_friend_request(request, username):
     except ValueError as e:
         messages.error(request, str(e))
 
-    return redirect('public_profile', username=username)
+    return redirect('followers_list')
 
 
 @login_required
 @require_POST
-def accept_friend_request(request: HttpRequest, friendship_id: int) -> JsonResponse:
+def accept_friend_request(request: HttpRequest, friendship_id: int) -> HttpResponse:
     if request.method == 'POST':
         try:
             friendship = get_object_or_404(
@@ -258,13 +184,12 @@ def accept_friend_request(request: HttpRequest, friendship_id: int) -> JsonRespo
                 status=Friendship.REQUESTED
             )
             FriendshipService.accept_request(friendship)
-            messages.success(request, "Friend request accepted")
+            messages.success(request, "Friend request accepted! 🎉")
 
-            friendship_content_type = ContentType.objects.get_for_model(Friendship)
             notification_for_friendship = Notification.objects.filter(
                 user=request.user,
                 notification_type='FRIEND_REQUEST',
-                content_type=friendship_content_type,
+                content_type=ContentType.objects.get_for_model(Friendship),
                 object_id=friendship.id,
                 is_read=False
             ).first()
@@ -272,58 +197,51 @@ def accept_friend_request(request: HttpRequest, friendship_id: int) -> JsonRespo
             if notification_for_friendship:
                 notification_for_friendship.delete()
 
-            unread_count = NotificationService.get_unread_count(request.user)
-            return JsonResponse({
-                'status': 'success',
-                'unread_count': unread_count,
-            })
+            return redirect('friends_list')
 
         except ValueError as e:
             messages.error(request, str(e))
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
+        except Exception as e:
+            messages.error(request, f"An unexpected error occurred: {e}")
 
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
-
-
-
+    return redirect('followers_list')
 
 @login_required
-def reject_friend_request(request: HttpRequest, friendship_id: int) -> JsonResponse:
+def add_from_rejected(request: HttpRequest, friendship_id: int) -> HttpRequest:
     if request.method == 'POST':
         try:
             friendship = get_object_or_404(
                 Friendship,
                 id=friendship_id,
                 to_user=request.user,
-                status=Friendship.REQUESTED
+                status=Friendship.REJECTED,
+                was_rejected=True
             )
-            FriendshipService.reject_request(friendship)
-            messages.success(request, "Friend request rejected")
 
-            friendship_content_type = ContentType.objects.get_for_model(Friendship)
-            notification_for_friendship = Notification.objects.filter(
-                user=request.user,
+            FriendshipService.accept_rejected_request(friendship)
+
+            NotificationService.create_notification(
+                user=friendship.from_user,
                 notification_type='FRIEND_REQUEST',
-                content_type=friendship_content_type,
-                object_id=friendship.id,
-                is_read=False
-            ).first()
+                title='Friend Request Accepted',
+                message=f'{request.user.username} has accepted your friend request.',
+                related_object=friendship
+            )
 
-            if notification_for_friendship:
-                notification_for_friendship.delete()
+            messages.success(request, f"{friendship.from_user.username} is now your friend!")
+            return redirect('friends_list')
 
-            unread_count = NotificationService.get_unread_count(request.user)
-            return JsonResponse({
-                'status': 'success',
-                'unread_count': unread_count,
-            })
-
+        except Friendship.DoesNotExist:
+            messages.error(request, "Friendship request not found or cannot be accepted.")
+            return redirect('followers_list')
         except ValueError as e:
             messages.error(request, str(e))
-            return JsonResponse({'status': 'error', 'message': str(e)}, status=400)
-
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=405)
-
+            return redirect('followers_list')
+        except Exception as e:
+            messages.error(request, f"An unexpected error occurred: {e}")
+            return redirect('followers_list')
+    else:
+        return redirect('followers_list')
 
 @login_required
 def remove_friend(request, username):

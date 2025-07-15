@@ -84,7 +84,8 @@
 
 .btn-remove-friend,
 .btn-accept-friend,
-.btn-add-friend {
+.btn-add-friend,
+ .btn-reject-friend{
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -114,14 +115,26 @@
     border: 2px solid #ffcc00;
 }
 
+.btn-reject-friend{
+    background: red;
+    color: white;
+    border: 2px solid red;
+}
+
 .btn-accept-friend:hover {
     background: transparent;
     border: 2px solid #ffcc00;
     color: #ffcc00;
 }
 
+.btn-reject-friend:hover{
+    background: transparent;
+    color: red;
+}
+
 .btn-add-friend {
-    background: #4a89dc;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border: 2px solid #ffcc00;
     color: white;
 }
 

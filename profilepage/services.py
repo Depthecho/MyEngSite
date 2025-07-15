@@ -144,22 +144,6 @@ class FriendshipService:
         )
 
     @staticmethod
-    def update_friends_count(user: User) -> None:
-        count = Friendship.objects.filter(
-            (Q(from_user=user) | Q(to_user=user)),
-            status=Friendship.ACCEPTED
-        ).count()
-        Profile.objects.filter(user=user).update(friends_count=count)
-
-    @staticmethod
-    def update_followers_count(user: User) -> None:
-        count = Friendship.objects.filter(
-            to_user=user,
-            status=Friendship.REQUESTED
-        ).count()
-        Profile.objects.filter(user=user).update(followers_count=count)
-
-    @staticmethod
     def send_request(from_user: User, to_user: User) -> Friendship:
         if from_user == to_user:
             raise ValueError("You cannot send a request to yourself")
@@ -178,8 +162,11 @@ class FriendshipService:
                 raise ValueError("Already friends")
             elif existing.status == Friendship.REJECTED:
                 existing.status = Friendship.REQUESTED
+                existing.was_rejected = False
                 existing.save()
                 friendship = existing
+            else:
+                raise ValueError("An unknown friendship status exists.")
         else:
             friendship = Friendship.objects.create(
                 from_user=from_user,
@@ -200,6 +187,22 @@ class FriendshipService:
         return friendship
 
     @staticmethod
+    def update_friends_count(user: User) -> None:
+        count = Friendship.objects.filter(
+            (Q(from_user=user) | Q(to_user=user)),
+            status=Friendship.ACCEPTED
+        ).count()
+        Profile.objects.filter(user=user).update(friends_count=count)
+
+    @staticmethod
+    def update_followers_count(user: User) -> None:
+        count = Friendship.objects.filter(
+            to_user=user,
+            status=Friendship.REQUESTED
+        ).count()
+        Profile.objects.filter(user=user).update(followers_count=count)
+
+    @staticmethod
     def accept_request(friendship: Friendship) -> None:
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be accepted")
@@ -212,11 +215,24 @@ class FriendshipService:
         FriendshipService.update_followers_count(friendship.to_user)
 
     @staticmethod
+    def accept_rejected_request(friendship: Friendship) -> None:
+        if friendship.status != Friendship.REJECTED or not friendship.was_rejected:
+            raise ValueError("Only previously rejected requests can be accepted this way.")
+
+        friendship.status = Friendship.ACCEPTED
+        friendship.was_rejected = False
+        friendship.save()
+
+        FriendshipService.update_friends_count(friendship.from_user)
+        FriendshipService.update_friends_count(friendship.to_user)
+
+    @staticmethod
     def reject_request(friendship: Friendship) -> None:
         if friendship.status != Friendship.REQUESTED:
             raise ValueError("Only pending requests can be rejected")
 
         friendship.status = Friendship.REJECTED
+        friendship.was_rejected = True
         friendship.save()
         FriendshipService.update_followers_count(friendship.to_user)
 

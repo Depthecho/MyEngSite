@@ -74,8 +74,7 @@
                                 </div>
 
                                 <div class="friend-actions">
-                                    {% friendship_status request.user follower as status %}
-                                    {% if status == 'request_received' %}
+                                    {% if friendship_request.status == 'requested' %}
                                         <form method="post" action="{% url 'friendship:accept' friendship_request.id %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn-accept-friend">
@@ -88,7 +87,14 @@
                                                 <i class="fas fa-user-times"></i> Reject
                                             </button>
                                         </form>
-                                    {% elif status == 'not_friends' %}
+                                    {% elif friendship_request.status == 'rejected' and friendship_request.was_rejected %}
+                                        <form method="post" action="{% url 'friendship:add_from_rejected' friendship_request.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn-add-friend">
+                                                <i class="fas fa-user-plus"></i> Add Friend
+                                            </button>
+                                        </form>
+                                    {% elif friendship_request.status == 'not_friends' %}
                                         <form method="post" action="{% url 'friendship:send' follower.username %}">
                                             {% csrf_token %}
                                             <button type="submit" class="btn-add-friend">
@@ -140,7 +146,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 {% include 'mainpage/footer.html' %}
 

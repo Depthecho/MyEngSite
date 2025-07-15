@@ -298,6 +298,9 @@ class Friendship(models.Model):
         auto_now=True,
         verbose_name='Updated At'
     )
+    was_rejected = models.BooleanField(
+        default=False
+    )
 
     class Meta:
         unique_together = ('from_user', 'to_user')
