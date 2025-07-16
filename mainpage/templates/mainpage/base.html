@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% load i18n %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,37 +21,38 @@
 
     {% block content %}
         {% include 'mainpage/navbar.html' %}
+        {# Здесь больше не будет переключателя языка #}
     {% endblock %}
 
-    {# Floating Translator Icon #}
     <div class="translator-fab" id="translatorFab">
         <i class="fas fa-language"></i>
     </div>
 
-    {# Hidden Translator Window #}
     <div class="translator-container hidden" id="translatorContainer">
         <div class="translator-header">
-            <h4>Translator</h4>
+            <h4>{% trans "Translator" %}</h4>
             <button class="close-translator-btn" id="closeTranslatorBtn">&times;</button>
         </div>
         <div class="translator-body">
             <div class="translator-input-section">
                 <select id="sourceLang" class="lang-select">
-                    <option value="auto">Auto</option>
-                    <option value="en">English</option>
-                    <option value="ru">Russian</option>
+                    <option value="auto">{% trans "Auto" %}</option>
+                    <option value="en">{% trans "English" %}</option>
+                    <option value="ru">{% trans "Russian" %}</option>
+                    <option value="uk">{% trans "Ukrainian" %}</option>
                 </select>
-                <textarea id="textToTranslate" class="text-input" placeholder="Введите текст..."></textarea>
+                <textarea id="textToTranslate" class="text-input" placeholder="{% trans "Enter text..." %}"></textarea>
             </div>
             <div class="translator-action-section">
-                <button id="translateButton" class="translate-button">Translate</button>
+                <button id="translateButton" class="translate-button">{% trans "Translate" %}</button>
             </div>
             <div class="translator-output-section">
                 <select id="targetLang" class="lang-select">
-                    <option value="ru">Russian</option>
-                    <option value="en">English</option>
+                    <option value="ru">{% trans "Russian" %}</option>
+                    <option value="en">{% trans "English" %}</option>
+                    <option value="uk">{% trans "Ukrainian" %}</option>
                 </select>
-                <textarea id="translatedText" class="text-output" readonly placeholder="Перевод..."></textarea>
+                <textarea id="translatedText" class="text-output" readonly placeholder="{% trans "Translation..." %}"></textarea>
             </div>
             <div id="errorMessage" class="error-message" style="display: none;"></div>
         </div>

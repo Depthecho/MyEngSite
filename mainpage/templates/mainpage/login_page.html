@@ -1,7 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Log In{% endblock %}
+{% block title %}{% trans "Log In" %}{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/signin.css' %}">
@@ -10,43 +11,36 @@
 {% block content %}
 <div class="login-body">
     <div class="login-container">
-        <h1 class="login-header">Log In</h1>
+        <h1 class="login-header">{% trans "Log In" %}</h1>
         <form method="post" class="login-form">
             {% csrf_token %}
 
-            <!-- Поле для username/email -->
             <div class="form-group">
-                <input type="text" id="id_username" name="username" class="input" placeholder="Username or Email" required>
+                <input type="text" id="id_username" name="username" class="input" placeholder="{% trans "Username or Email" %}" required>
                 <i class='bx bxs-user-circle'></i>
             </div>
 
-            <!-- Поле для пароля -->
             <div class="form-group">
-                <input type="password" id="id_password" name="password" class="input" placeholder="Password" required>
+                <input type="password" id="id_password" name="password" class="input" placeholder="{% trans "Password" %}" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
-            <!-- Строка с "Reset password" и "Remember me" -->
             <div class="form-options">
-                <!-- Чекбокс "Remember me" -->
                 <div class="remember-me">
                     <label>
-                        <input type="checkbox" name="remember_me"> Remember me
+                        <input type="checkbox" name="remember_me"> {% trans "Remember me" %}
                     </label>
                 </div>
 
-                <!-- Ссылка "Reset password" -->
                 <div class="reset-password">
-                    <a href="{% url 'reset_password' %}">Reset password</a>
+                    <a href="{% url 'reset_password' %}">{% trans "Reset password" %}</a>
                 </div>
             </div>
 
-            <!-- Кнопка для входа -->
-            <button type="submit" class="login-button">Log In</button>
+            <button type="submit" class="login-button">{% trans "Log In" %}</button>
 
-            <!-- Ссылка "Don't have an account? Sign up" -->
             <div class="no-account">
-                <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+                <p>{% trans "Don't have an account?" %} <a href="{% url 'signup' %}">{% trans "Sign up" %}</a></p>
             </div>
         </form>
     </div>

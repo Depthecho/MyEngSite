@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <nav class="navbar">
     <div class="navbar-container">
         <div class="navbar-logo">
@@ -6,13 +7,27 @@
         </div>
 
         <div class="navbar-links">
-            <a href="{% url 'my_cards' %}" class="navbar-link">Cards</a>
-            <a href="{% url 'texts_page' %}" class="navbar-link">Texts</a>
-            <a href="{% url 'grammar_page' %}" class="navbar-link">Grammar</a>
-            <a href="{% url 'take_level_test' %}" class="navbar-link">Test</a>
+            <a href="{% url 'my_cards' %}" class="navbar-link">{% trans "Cards" %}</a>
+            <a href="{% url 'texts_page' %}" class="navbar-link">{% trans "Texts" %}</a>
+            <a href="{% url 'grammar_page' %}" class="navbar-link">{% trans "Grammar" %}</a>
+            <a href="{% url 'take_level_test' %}" class="navbar-link">{% trans "Test" %}</a>
         </div>
 
         <div class="navbar-auth">
+            <div class="language-switcher-container">
+                <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+<select name="language" onchange="this.form.submit()" class="form-select">
+    {% get_current_language as CURRENT_LANGUAGE %}
+    {% for lang_code, lang_name in LANGUAGES %}
+        <option value="{{ lang_code }}"{% if lang_code == CURRENT_LANGUAGE %} selected{% endif %}>
+            {{ lang_name }}
+        </option>
+    {% endfor %}
+</select>
+                </form>
+            </div>
             {% if user.is_authenticated %}
                 <div class="notification-icon-wrapper">
                     <div class="notification-icon" id="notificationIcon">
@@ -25,8 +40,8 @@
                     </div>
                     <div class="notification-dropdown" id="notificationDropdown">
                         <div class="notification-header">
-                            <h6>Notifications</h6>
-                            <small><a href="#" id="mark-all-read-btn">Mark all as read</a></small>
+                            <h6>{% trans "Notifications" %}</h6>
+                            <small><a href="#" id="mark-all-read-btn">{% trans "Mark all as read" %}</a></small>
                         </div>
                         <div class="notification-list">
                             {% for notification in request.user.notifications.all|slice:":10" %}
@@ -35,7 +50,7 @@
                                 <div class="notification-content">
                                     <h6>{{ notification.title }}</h6>
                                     <p>{{ notification.message }}</p>
-                                    <small>{{ notification.created_at|timesince }} ago</small>
+                                    <small>{{ notification.created_at|timesince }} {% trans "ago" %}</small>
                                     <i class="fas fa-times close-notification-btn"
                                        data-notification-id="{{ notification.id }}"></i>
 
@@ -44,27 +59,27 @@
                                             <div class="notification-actions">
                                                 <form method="post" action="{% url 'friendship:accept' notification.content_object.id %}" class="js-friend-action-form">
                                                     {% csrf_token %}
-                                                    <button type="submit" class="btn btn-sm btn-success">Accept</button>
+                                                    <button type="submit" class="btn btn-sm btn-success">{% trans "Accept" %}</button>
                                                 </form>
                                                 <form method="post" action="{% url 'friendship:reject' notification.content_object.id %}" class="js-friend-action-form">
                                                     {% csrf_token %}
-                                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                                    <button type="submit" class="btn btn-sm btn-danger">{% trans "Reject" %}</button>
                                                 </form>
                                             </div>
                                         {% else %}
-                                            <p>Friend request details unavailable.</p>
+                                            <p>{% trans "Friend request details unavailable." %}</p>
                                         {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
                             {% empty %}
                             <div class="notification-empty">
-                                <p>No notifications yet</p>
+                                <p>{% trans "No notifications yet" %}</p>
                             </div>
                             {% endfor %}
                         </div>
                         <div class="notification-footer">
-                            <a href="#">View all notifications</a>
+                            <a href="#">{% trans "View all notifications" %}</a>
                         </div>
                     </div>
                 </div>
@@ -72,15 +87,15 @@
                 <div class="avatar-dropdown" id="avatarDropdown">
                     <img src="{{ user.profile.avatar.url }}" alt="User Avatar" class="avatar-img" id="avatar-img">
                     <div class="dropdown-menu" id="dropdownMenu">
-                        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-                        <a href="{% url 'messenger:chat_list' %}" class="dropdown-item">Messenger</a>
-                        <a href="#" class="dropdown-item">Settings</a>
-                        <a href="{% url 'logout' %}" class="dropdown-item">Log Out</a>
+                        <a href="{% url 'profile' %}" class="dropdown-item">{% trans "My Profile" %}</a>
+                        <a href="{% url 'messenger:chat_list' %}" class="dropdown-item">{% trans "Messenger" %}</a>
+                        <a href="#" class="dropdown-item">{% trans "Settings" %}</a>
+                        <a href="{% url 'logout' %}" class="dropdown-item">{% trans "Log Out" %}</a>
                     </div>
                 </div>
             {% else %}
                 <div class="navbar-auth-buttons">
-                    <a href="{% url 'login' %}" class="navbar-button">Log In</a>
+                    <a href="{% url 'login' %}" class="navbar-button">{% trans "Log In" %}</a>
                     <a href="#" class="settings-icon">⚙️</a>
                 </div>
             {% endif %}

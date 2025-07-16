@@ -37,3 +37,109 @@
         right: 85px;
     }
 }
+
+/* --- Стили для переключателя языка --- */
+.language-switcher-container {
+    position: absolute; /* Позиционируем абсолютно относительно ближайшего позиционированного предка или body */
+    top: 20px; /* Отступ сверху */
+    right: 20px; /* Отступ справа */
+    z-index: 1000; /* Убедимся, что он поверх других элементов */
+    background: rgba(255, 255, 255, 0.15); /* Полупрозрачный фон */
+    border-radius: 8px; /* Скругленные углы */
+    padding: 5px 10px; /* Внутренние отступы */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Тонкая рамка */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Легкая тень */
+    backdrop-filter: blur(5px); /* Эффект размытия */
+}
+
+.language-switcher-container form {
+    margin: 0; /* Убираем стандартные отступы формы */
+    padding: 0;
+}
+
+.language-switcher-container .form-select {
+    background-color: transparent; /* Прозрачный фон для select */
+    color: white; /* Белый текст */
+    border: none; /* Без рамки */
+    padding: 5px 10px; /* Внутренние отступы */
+    border-radius: 5px; /* Скругленные углы */
+    font-size: 0.95rem; /* Размер шрифта */
+    cursor: pointer; /* Курсор-указатель */
+    outline: none; /* Убираем синюю рамку при фокусе */
+    -webkit-appearance: none; /* Убираем стандартный стиль select для Webkit-браузеров */
+    -moz-appearance: none; /* Убираем стандартный стиль select для Firefox */
+    appearance: none; /* Стандартное свойство */
+    padding-right: 25px; /* Пространство для кастомной стрелки */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Кастомная стрелка вниз */
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+}
+
+.language-switcher-container .form-select option {
+    background-color: #2575fc; /* Фон для опций в выпадающем списке */
+    color: white; /* Цвет текста для опций */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .language-switcher-container {
+        top: 10px; /* Уменьшаем отступ сверху для мобильных */
+        right: 10px; /* Уменьшаем отступ справа */
+        padding: 3px 8px; /* Уменьшаем внутренние отступы */
+    }
+
+    .language-switcher-container .form-select {
+        font-size: 0.85rem; /* Уменьшаем размер шрифта */
+        padding-right: 20px; /* Корректируем отступ для стрелки */
+        background-position: right 5px center;
+        background-size: 14px;
+    }
+}
+
+.navbar-auth {
+    display: flex;
+    align-items: center;
+    /* ... другие стили ... */
+    gap: 15px; /* Добавляет расстояние между элементами внутри navbar-auth */
+}
+
+/* Возможно, для переключателя не потребуется абсолютное позиционирование,
+   если flexbox уже все хорошо выровняет. */
+.language-switcher-container {
+    /* Убрать position: absolute; top; right; z-index; если flexbox работает */
+    /* Или настроить его позицию относительно navbar-auth */
+    margin-right: 500px; /* Или любой другой отступ, если нужно */
+    /* ... остальные стили, которые были в style.css (фон, рамка, тень) ... */
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+.language-switcher-container .form-select {
+    /* Стили для select остаются те же, что и были */
+    background-color: transparent;
+    color: white;
+    border: none;
+    padding: 0px;
+    border-radius: 5px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 25px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+}
+
+.language-switcher-container .form-select option {
+    background-color: #2575fc;
+    color: white;
+}

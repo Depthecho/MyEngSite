@@ -21,7 +21,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mainpage.urls')),  # Include EnglishSite URLs
+    path('', include('mainpage.urls')),
+    path('i18n/', include('django.conf.urls.i18n'))
 ]
 
 if settings.DEBUG:

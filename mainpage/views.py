@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.utils import timezone
 from celery.beat import logger
 from django.contrib.auth import logout
@@ -14,7 +15,9 @@ from profilepage.models import Profile
 
 @handle_errors
 def home(request: HttpRequest) -> HttpResponse:
-    context = {}
+    context = {
+        'LANGUAGES': settings.LANGUAGES,
+    }
     if request.user.is_authenticated:
         try:
             profile = request.user.profile
@@ -42,7 +45,7 @@ def signup_view(request: HttpRequest) -> HttpResponse:
         return redirect('home')
     else:
         form: CustomUserCreationForm = CustomUserCreationForm()
-    return render(request, 'mainpage/signup_page.html', {'form': form})
+    return render(request, 'mainpage/signup_page.html', {'form': form, 'LANGUAGES': settings.LANGUAGES,})
 
 
 @handle_errors
@@ -85,7 +88,7 @@ def login_view(request: HttpRequest) -> HttpResponse:
             return redirect('home')
     else:
         form: CustomAuthenticationForm = CustomAuthenticationForm()
-    return render(request, 'mainpage/login_page.html', {'form': form})
+    return render(request, 'mainpage/login_page.html', {'form': form, 'LANGUAGES': settings.LANGUAGES,})
 
 
 @handle_errors
