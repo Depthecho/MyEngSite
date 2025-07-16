@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'grammarpage.apps.GrammarpageConfig',
     'translator.apps.TranslatorConfig',
     'messenger.apps.MessengerConfig',
+    'settingspage.apps.SettingspageConfig'
 ]
 
 MIDDLEWARE = [

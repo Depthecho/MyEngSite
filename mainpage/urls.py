@@ -22,4 +22,6 @@ urlpatterns = [
 
     path('api/', include('translator.urls')),
     path('messenger/', include('messenger.urls')),
+
+    path('settings/', include('settingspage.urls'))
 ]
