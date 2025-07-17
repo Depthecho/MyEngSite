@@ -1,11 +1,12 @@
+{% load i18n %}
 <div class="sidebar" id="sidebar">
     <ul>
         <li><a href="{% url 'profile' %}" class="sidebar-link {% if request.resolver_match.url_name == 'profile' %}active{% endif %}">
-            Profile
+            {% translate "Profile" %}
         </a></li>
-        <li><a href="{% url 'friends_list' %}" class="sidebar-link {% if request.resolver_match.url_name == 'friends_list' or request.resolver_match.url_name == 'followers_list' %}active{% endif %}">Friends</a></li>
-        <li><a href="{% url 'my_cards' %}">Cards</a></li>
-        <li><a href="{% url 'texts_page' %}">Texts</a></li>
-        <li><a href="{% url 'take_level_test' %}">Tests</a></li>
+        <li><a href="{% url 'friends_list' %}" class="sidebar-link {% if request.resolver_match.url_name == 'friends_list' or request.resolver_match.url_name == 'followers_list' %}active{% endif %}">{% translate "Friends" %}</a></li>
+        <li><a href="{% url 'my_cards' %}">{% translate "Cards" %}</a></li>
+        <li><a href="{% url 'texts_page' %}">{% translate "Texts" %}</a></li>
+        <li><a href="{% url 'take_level_test' %}">{% translate "Tests" %}</a></li>
     </ul>
 </div>

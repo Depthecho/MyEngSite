@@ -1,7 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Tests | ExdiEngSite{% endblock %}
+{% block title %}{% translate "Tests" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -20,10 +21,10 @@
         <div class="secondary-nav-container">
            <a href="{% url 'take_level_test' %}"
    class="secondary-nav-link {% if request.resolver_match.view_name == 'take_level_test' %}active{% endif %}"> <i class="fas fa-chart-bar"></i>
-   English Level Test
+   {% translate "English Level Test" %}
 </a>
-            <a href="#" class="secondary-nav-link disabled" title="Coming Soon">
-                <i class="fas fa-question-circle"></i> Other Tests (Coming Soon)
+            <a href="#" class="secondary-nav-link disabled" title="{% translate "Coming Soon" %}">
+                <i class="fas fa-question-circle"></i> {% translate "Other Tests (Coming Soon)" %}
             </a>
         </div>
     </div>
@@ -37,7 +38,7 @@
 
     {% include 'mainpage/footer.html' %}
 
-    <button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+    <button id="back-to-top" title="{% translate "Go to top" %}" aria-label="{% translate "Scroll to top" %}">
         <i class="fas fa-arrow-up"></i>
     </button>
 

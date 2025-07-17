@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, get_object_or_404, redirect
@@ -33,6 +34,7 @@ def chat_list(request: HttpRequest) -> HttpResponse:
         'current_chat_id': None,
         'search_query': search_query,
         'search_results': search_results,
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'messenger/chat_list.html', context)
 
@@ -96,6 +98,7 @@ def chat_detail(request: HttpRequest, chat_id: int) -> HttpResponse:
         'today': today,
         'yesterday': yesterday,
         'current_year': current_year,
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'messenger/chat_detail.html', context)
 
@@ -132,6 +135,7 @@ def select_friend_for_chat(request: HttpRequest) -> HttpResponse:
         'friends_to_chat_with': friends_to_chat_with,
         'chats': chats,
         'current_chat_id': None,
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'messenger/select_friend_for_chat.html', context)
 

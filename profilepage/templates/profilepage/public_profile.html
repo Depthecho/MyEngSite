@@ -2,8 +2,9 @@
 {% load static %}
 {% load profile_tags %}
 {% load friends_tags %}
+{% load i18n %}
 
-{% block title %}{{ profile.user.username }}'s profile{% endblock %}
+{% block title %}{% blocktrans %}{{ profile.user.username }}'s profile{% endblocktrans %}{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -22,7 +23,7 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>{{ profile.user.username }}'s profile</h1>
+                <h1>{% blocktrans %}{{ profile.user.username }}'s profile{% endblocktrans %}</h1>
             </div>
 
             <div class="profile-content">
@@ -30,37 +31,37 @@
                     <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
                         <i class="fas fa-bars"></i>
                     </button>
-                    <img src="{{ profile.avatar.url }}" alt="User Avatar" class="avatar-img">
+                    <img src="{{ profile.avatar.url }}" alt="{% translate "User Avatar" %}" class="avatar-img">
                 </div>
                 <div class="user-info">
                     {% if not profile.hide_first_name or request.user == profile.user %}
-                        <p><strong>First Name:</strong> {{ profile.user.first_name }}</p>
+                        <p><strong>{% translate "First Name:" %}</strong> {{ profile.user.first_name }}</p>
                     {% else %}
-                        <p><strong>First Name:</strong> <span class="hidden-field">Hidden</span></p>
+                        <p><strong>{% translate "First Name:" %}</strong> <span class="hidden-field">{% translate "Hidden" %}</span></p>
                     {% endif %}
                     {% if not profile.hide_last_name or request.user == profile.user %}
-                        <p><strong>Last Name:</strong> {{ profile.user.last_name }}</p>
+                        <p><strong>{% translate "Last Name:" %}</strong> {{ profile.user.last_name }}</p>
                     {% else %}
-                        <p><strong>Last Name:</strong> <span class="hidden-field">Hidden</span></p>
+                        <p><strong>{% translate "Last Name:" %}</strong> <span class="hidden-field">{% translate "Hidden" %}</span></p>
                     {% endif %}
                     {% if not profile.hide_birth_date or request.user == profile.user %}
                         {% if profile.birth_date %}
-                            <p><strong>Birth Date:</strong> {{ profile.birth_date }}</p>
+                            <p><strong>{% translate "Birth Date:" %}</strong> {{ profile.birth_date }}</p>
                         {% endif %}
                     {% else %}
-                        <p><strong>Birth Date:</strong> <span class="hidden-field">Hidden</span></p>
+                        <p><strong>{% translate "Birth Date:" %}</strong> <span class="hidden-field">{% translate "Hidden" %}</span></p>
                     {% endif %}
 
-                    <p><strong>English Level:</strong> {{ profile.get_english_level_display }}</p>
-                    <p><strong>Study Start Date:</strong> {{ profile.study_start_date|date:"Y-m-d" }}</p>
+                    <p><strong>{% translate "English Level:" %}</strong> {{ profile.get_english_level_display }}</p>
+                    <p><strong>{% translate "Study Start Date:" %}</strong> {{ profile.study_start_date|date:"Y-m-d" }}</p>
                     {% if profile.bio %}
-                        <p><strong>Bio:</strong> {{ profile.bio }}</p>
+                        <p><strong>{% translate "Bio:" %}</strong> {{ profile.bio }}</p>
                     {% endif %}
                     {% if profile.website %}
-                        <p><strong>Website:</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></p>
+                        <p><strong>{% translate "Website:" %}</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></p>
                     {% endif %}
                     {% if profile.location %}
-                        <p><strong>Location:</strong> {{ profile.location }}</p>
+                        <p><strong>{% translate "Location:" %}</strong> {{ profile.location }}</p>
                     {% endif %}
                 </div>
             </div>
@@ -73,44 +74,44 @@
                     {% if status == 'not_friends' %}
                         <form method="post" action="{% url 'friendship:send' profile.user.username %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Add to friends</button>
+                            <button type="submit" class="btn btn-primary">{% translate "Add to friends" %}</button>
                         </form>
 
                     {% elif status == 'rejected' %}
-                        <button class="btn btn-secondary" disabled>Request rejected</button>
+                        <button class="btn btn-secondary" disabled>{% translate "Request rejected" %}</button>
                         <form method="post" action="{% url 'friendship:send' profile.user.username %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-primary">Send request again</button>
+                            <button type="submit" class="btn btn-primary">{% translate "Send request again" %}</button>
                         </form>
 
                     {% elif status == 'request_sent' %}
-                        <button class="btn btn-secondary" disabled>Request was sent</button>
+                        <button class="btn btn-secondary" disabled>{% translate "Request was sent" %}</button>
 
                     {% elif status == 'request_received' %}
                         <form method="post" action="{% url 'friendship:accept' incoming_request.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-success">Accept Friend Request</button>
+                            <button type="submit" class="btn btn-success">{% translate "Accept Friend Request" %}</button>
                         </form>
                         <form method="post" action="{% url 'friendship:reject' incoming_request.id %}">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Reject Friend Request</button>
+                            <button type="submit" class="btn btn-danger">{% translate "Reject Friend Request" %}</button>
                         </form>
 
                     {% elif status == 'friends' %}
                         <form method="post" action="{% url 'friendship:remove' profile.user.username %}"
-                              onsubmit="return confirm('Are you sure you want to remove {{ profile.user.username }} from friends?');">
+                              onsubmit="return confirm('{% blocktrans %}Are you sure you want to remove {{ profile.user.username }} from friends?{% endblocktrans %}');">
                             {% csrf_token %}
-                            <button type="submit" class="btn btn-danger">Remove from friends</button>
+                            <button type="submit" class="btn btn-danger">{% translate "Remove from friends" %}</button>
                         </form>
                     {% endif %}
                 {% endif %}
             </div>
 
             <div class="achievements-section">
-                <h2>Achievements</h2>
+                <h2>{% translate "Achievements" %}</h2>
 
                 <div class="badge-category">
-                    <h3><i class="fas fa-book-open"></i> Words Mastery</h3>
+                    <h3><i class="fas fa-book-open"></i> {% translate "Words Mastery" %}</h3>
                     <div class="badges-row">
                         {% show_achievement_badge profile 'words' 1 100 %}
                         {% show_achievement_badge profile 'words' 2 500 %}
@@ -119,7 +120,7 @@
                 </div>
 
                 <div class="badge-category">
-                    <h3><i class="fas fa-file-alt"></i> Texts Mastery</h3>
+                    <h3><i class="fas fa-file-alt"></i> {% translate "Texts Mastery" %}</h3>
                     <div class="badges-row">
                         {% show_achievement_badge profile 'texts' 1 50 %}
                         {% show_achievement_badge profile 'texts' 2 150 %}
@@ -128,7 +129,7 @@
                 </div>
 
                 <div class="badge-category">
-                    <h3><i class="fas fa-tasks"></i> Tests Mastery</h3>
+                    <h3><i class="fas fa-tasks"></i> {% translate "Tests Mastery" %}</h3>
                     <div class="badges-row">
                         {% show_achievement_badge profile 'tests' 1 50 %}
                         {% show_achievement_badge profile 'tests' 2 150 %}

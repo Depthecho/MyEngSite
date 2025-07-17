@@ -1,7 +1,8 @@
 {% extends 'grammarpage/grammar_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block grammar_title %}English Grammar Topics{% endblock %}
+{% block grammar_title %}{% translate "English Grammar Topics" %}{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -11,16 +12,16 @@
 {% block grammar_content %}
     <div class="grammar-detail-container">
         <nav class="breadcrumbs">
-            <a href="{% url 'home' %}">Home</a> &raquo;
-            <span>Grammar</span>
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span>{% translate "Grammar" %}</span>
         </nav>
 
-        <h1>English Grammar</h1>
-        <p class="intro-text">Explore detailed topics across various English grammar categories.</p>
+        <h1>{% translate "English Grammar" %}</h1>
+        <p class="intro-text">{% translate "Explore detailed topics across various English grammar categories." %}</p>
 
         <div class="main-categories-grid">
             {% for category in grammar_topics %}
-<a href="{% url 'grammar_main_topic_detail' main_topic_slug=category.slug %}" class="category-card">
+                <a href="{% url 'grammar_main_topic_detail' main_topic_slug=category.slug %}" class="category-card">
                     <h3>{{ category.title }}</h3>
                     <p>{{ category.description }}</p>
                 </a>
@@ -29,7 +30,7 @@
 
         <div class="navigation-links">
             <a href="{% url 'home' %}" class="back-to-list-btn">
-                <i class="fas fa-arrow-left"></i> Back to Home
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Home" %}
             </a>
         </div>
     </div>

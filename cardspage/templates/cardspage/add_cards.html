@@ -1,7 +1,8 @@
 {% extends 'cardspage/cards_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Add card | ExdiEngSite{% endblock %}
+{% block title %}{% trans "Add card" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -12,53 +13,53 @@
 {% block cards_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
-        <a href="{% url 'home' %}">Home</a> &raquo;
-        <a href="{% url 'my_cards' %}">My Cards</a> &raquo;
-        <span>Add Card</span>
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <a href="{% url 'my_cards' %}">{% translate "My Cards" %}</a> &raquo;
+        <span>{% translate "Add Card" %}</span>
     </nav>
 
         <div class="add-cards-container">
-            <h1 class="section-title">Add New Card</h1>
+            <h1 class="section-title">{% translate "Add New Card" %}</h1>
 
             <form method="post" class="card-form">
                 {% csrf_token %}
 
                 <div class="form-group">
                     <label for="id_english_word">
-                        <i class="fas fa-language"></i> English word
+                        <i class="fas fa-language"></i> {% translate "English word" %}
                     </label>
                     {{ form.english_word }}
-                    <small class="form-help">Enter the word in English</small>
+                    <small class="form-help">{% translate "Enter the word in English" %}</small>
                 </div>
 
                 <div class="form-group">
                     <label for="id_native_translation">
-                        <i class="fas fa-exchange-alt"></i> Translation
+                        <i class="fas fa-exchange-alt"></i> {% translate "Translation" %}
                     </label>
                     {{ form.native_translation }}
-                    <small class="form-help">Enter the translation in your native language</small>
+                    <small class="form-help">{% translate "Enter the translation in your native language" %}</small>
                 </div>
 
                 <div class="form-group">
                     <label for="id_category">
-                        <i class="fas fa-tag"></i> Category (Optional)
+                        <i class="fas fa-tag"></i> {% translate "Category (Optional)" %}
                     </label>
                     {{ form.category }}
-                    <small class="form-help">Choose or create a category</small>
+                    <small class="form-help">{% translate "Choose or create a category" %}</small>
                 </div>
 
                 <div class="form-actions">
                     <button type="submit" class="cta-button primary">
-                        <i class="fas fa-save"></i> Save card
+                        <i class="fas fa-save"></i> {% translate "Save card" %}
                     </button>
                     <button type="button" class="cta-button secondary" id="addAnother">
-                        <i class="fas fa-plus-circle"></i> Save and add another
+                        <i class="fas fa-plus-circle"></i> {% translate "Save and add another" %}
                     </button>
                 </div>
             </form>
 
             <div class="recent-cards-section">
-                <h2 class="section-subtitle">Last added cards</h2>
+                <h2 class="section-subtitle">{% translate "Last added cards" %}</h2>
                 <div class="mini-cards-grid">
                     {% for card in recent_cards %}
                     <div class="mini-card" onclick="flipMiniCard(this)">
@@ -77,19 +78,17 @@
                         </div>
                     </div>
                     {% empty %}
-                    <p class="no-cards-notice">You haven't added any cards yet</p>
+                    <p class="no-cards-notice">{% translate "You haven't added any cards yet" %}</p>
                     {% endfor %}
                 </div>
             </div>
         </div>
 </div>
 
-<!-- Кнопка "Наверх" -->
-<button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+<button id="back-to-top" title="{% translate "Go to top" %}" aria-label="{% translate "Scroll to top" %}">
     <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>

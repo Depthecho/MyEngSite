@@ -1,7 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Messenger | ExdiEngSite{% endblock %}
+{% block title %}{% translate "Messenger" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -15,10 +16,10 @@
 <div class="secondary-navbar">
     <div class="secondary-nav-container">
         <a href="{% url 'messenger:chat_list' %}" class="secondary-nav-link {% if request.resolver_match.url_name == 'chat_list' or request.resolver_match.url_name == 'chat_detail' %}active{% endif %}">
-            <i class="fas fa-comments"></i> My Chats
+            <i class="fas fa-comments"></i> {% translate "My Chats" %}
         </a>
         <a href="{% url 'messenger:select_friend_for_chat' %}" class="secondary-nav-link {% if request.resolver_match.url_name == 'select_friend_for_chat' %}active{% endif %}">
-            <i class="fas fa-plus-circle"></i> New Chat
+            <i class="fas fa-plus-circle"></i> {% translate "New Chat" %}
         </a>
     </div>
 </div>

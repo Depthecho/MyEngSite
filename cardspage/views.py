@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -13,22 +14,21 @@ from .services import CardQueryService, CardCRUDService, QuizService
 
 @login_required
 def my_cards(request: HttpRequest) -> HttpResponse:
-    """Display user's cards with filtering and pagination options."""
     context = CardQueryService.build_my_cards_context(request.user, request.GET)
+    context['LANGUAGES'] = settings.LANGUAGES
     return render(request, 'cardspage/my_cards.html', context)
 
 @login_required
 def add_cards(request: HttpRequest) -> HttpResponse:
-    """Handle adding new cards."""
     form = CardForm(request.POST or None)
-
     if request.method == 'POST' and form.is_valid():
         CardCRUDService.create_card(form, request.user)
         return redirect('add_cards' if 'add_another' in request.POST else 'my_cards')
 
     context = {
         'form': form,
-        'recent_cards': CardQueryService.get_recent_cards(request.user)
+        'recent_cards': CardQueryService.get_recent_cards(request.user),
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'cardspage/add_cards.html', context)
 
@@ -43,7 +43,7 @@ def edit_card(request: HttpRequest, user_card_id: int) -> HttpResponse:
         CardCRUDService.update_card(form)
         return redirect('my_cards')
 
-    return render(request, 'cardspage/edit_card.html', {'form': form, 'card': card})
+    return render(request, 'cardspage/edit_card.html', {'form': form, 'card': card, 'LANGUAGES': settings.LANGUAGES,})
 
 
 @login_required
@@ -68,6 +68,7 @@ def delete_card(request: HttpRequest, user_card_id: int) -> HttpResponse:
 def quiz_start(request: HttpRequest) -> HttpResponse:
     """Display quiz start page with statistics and options."""
     context = QuizService.build_quiz_start_context(request.user)
+    context['LANGUAGES'] = settings.LANGUAGES
     return render(request, 'cardspage/quiz_start.html', context)
 
 
@@ -81,15 +82,16 @@ def quiz(request: HttpRequest) -> HttpResponse:
                 request.user,
                 form.cleaned_data
             )
+            context['LANGUAGES'] = settings.LANGUAGES
             return render(request, 'cardspage/quiz.html', context)
     return redirect('quiz_start')
 
 
 @login_required
 def quiz_results(request: HttpRequest) -> HttpResponse:
-    """Process quiz answers and display results."""
     if request.method == 'POST':
         context = QuizService.build_quiz_results_context(request.POST)
+        context['LANGUAGES'] = settings.LANGUAGES
         return render(request, 'cardspage/quiz_results.html', context)
     return redirect('quiz_start')
 

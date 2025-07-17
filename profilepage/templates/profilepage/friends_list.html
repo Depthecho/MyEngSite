@@ -2,8 +2,9 @@
 {% load static %}
 {% load profile_tags %}
 {% load friends_tags %}
+{% load i18n %}
 
-{% block title %}My Network{% endblock %}
+{% block title %}{% translate "My Network" %}{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -23,15 +24,15 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>Friends</h1>
+                <h1>{% translate "Friends" %}</h1>
             </div>
 
             <div class="tabs-container">
                 <a href="{% url 'friends_list' %}" class="tab-item {% if request.resolver_match.url_name == 'friends_list' %}active{% endif %}">
-                    Friends ({{ page_obj.paginator.count }})
+                    {% blocktrans %}Friends ({{ page_obj.paginator.count }}){% endblocktrans %}
                 </a>
                 <a href="{% url 'followers_list' %}" class="tab-item {% if request.resolver_match.url_name == 'followers_list' %}active{% endif %}">
-                    Followers
+                    {% translate "Followers" %}
                 </a>
             </div>
 
@@ -74,10 +75,10 @@
 
                                 <div class="friend-actions">
                                     <form method="post" action="{% url 'friendship:remove' friend.username %}"
-                                          onsubmit="return confirm('Are you sure you want to remove {{ friend.username }} from friends?');">
+                                          onsubmit="return confirm('{% blocktrans %}Are you sure you want to remove {{ friend.username }} from friends?{% endblocktrans %}');">
                                         {% csrf_token %}
                                         <button type="submit" class="btn-remove-friend">
-                                            <i class="fas fa-user-minus"></i> Remove
+                                            <i class="fas fa-user-minus"></i> {% translate "Remove" %}
                                         </button>
                                     </form>
                                 </div>
@@ -88,10 +89,10 @@
 
                     <div class="pagination">
                         {% if page_obj.has_previous %}
-                            <a href="?page=1" class="pagination-link first-page">
+                            <a href="?page=1" class="pagination-link first-page" title="{% translate "First page" %}">
                                 <i class="fas fa-angle-double-left"></i>
                             </a>
-                            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link prev-page" title="{% translate "Previous page" %}">
                                 <i class="fas fa-angle-left"></i>
                             </a>
                         {% endif %}
@@ -105,10 +106,10 @@
                         {% endfor %}
 
                         {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page">
+                            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link next-page" title="{% translate "Next page" %}">
                                 <i class="fas fa-angle-right"></i>
                             </a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page">
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-link last-page" title="{% translate "Last page" %}">
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
                         {% endif %}
@@ -116,8 +117,8 @@
                 {% else %}
                     <div class="no-friends">
                         <i class="fas fa-user-friends no-friends-icon"></i>
-                        <p>You don't have any friends yet.</p>
-                        <a href="{% url 'profile' %}" class="cta-button">Find Friends</a>
+                        <p>{% translate "You don't have any friends yet." %}</p>
+                        <a href="{% url 'profile' %}" class="cta-button">{% translate "Find Friends" %}</a>
                     </div>
                 {% endif %}
             </div>

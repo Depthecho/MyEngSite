@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="badge {% if achieved %}unlocked {{ level_name|lower }}{% else %}locked{% endif %}">
     <div class="badge-icon">
         <i class="fas fa-medal"></i>
@@ -7,9 +8,9 @@
         <span class="badge-name">{{ badge_name }}</span>
         <span class="badge-progress">
             {% if achieved %}
-                Achieved!
+                {% translate "Achieved!" %}
             {% else %}
-                {{ current_value }}/{{ required_value }} {{ badge_type }}
+                {% blocktrans %}{{ current_value }}/{{ required_value }} {{ badge_type }}{% endblocktrans %}
             {% endif %}
         </span>
     </div>

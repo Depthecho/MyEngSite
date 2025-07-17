@@ -1,7 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}My texts | ExdiEngSite{% endblock %}
+{% block title %}{% translate "My texts" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -17,11 +18,11 @@
     <div class="secondary-nav-container">
         <a href="{% url 'texts_page' %}"
            class="secondary-nav-link {% if active_tab != 'completed' %}active{% endif %}">
-            <i class="fas fa-book-open"></i> All Texts
+            <i class="fas fa-book-open"></i> {% translate "All Texts" %}
         </a>
         <a href="{% url 'completed_texts' %}"
            class="secondary-nav-link {% if active_tab == 'completed' %}active{% endif %}">
-            <i class="fas fa-check-circle"></i> Completed Texts
+            <i class="fas fa-check-circle"></i> {% translate "Completed Texts" %}
         </a>
     </div>
 </div>
@@ -53,7 +54,7 @@
 </script>
 {% endblock %}
 
-<button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+<button id="back-to-top" title="{% translate "Go to top" %}" aria-label="{% translate "Scroll to top" %}">
     <i class="fas fa-arrow-up"></i>
 </button>
 

@@ -1,19 +1,19 @@
 {% extends 'testspage/tests_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Test Results{% endblock %}
+{% block title %}{% translate "Test Results" %}{% endblock %}
 
 {% block tests_content %}
 <div class="result-container">
     <div class="result-summary">
-        <h1 class="section-title">Test Results</h1>
-        <p>You have successfully completed the English level test.</p>
-        {# Убедитесь, что здесь используется max_possible_score, а не total_questions #}
-        <p>Your score: <strong>{{ result.score }}</strong> points out of <strong>{{ result.max_possible_score }}</strong>.</p>
-        <p>Percentage: <strong>{{ result.percentage|floatformat:2 }}%</strong></p>
+        <h1 class="section-title">{% translate "Test Results" %}</h1>
+        <p>{% translate "You have successfully completed the English level test." %}</p>
+        <p>{% blocktrans with score=result.score max_score=result.max_possible_score %}Your score: <strong>{{ score }}</strong> points out of <strong>{{ max_score }}</strong>.{% endblocktrans %}</p>
+        <p>{% blocktrans with percentage=result.percentage|floatformat:2 %}Percentage: <strong>{{ percentage }}%</strong>{% endblocktrans %}</p>
 
         <p class="determined-level">
-            According to the test, your English level is:
+            {% translate "According to the test, your English level is:" %}
             <span class="level-badge level-{{ result.english_level_determined|lower }}">
                 {{ result.get_english_level_determined_display }}
             </span>
@@ -21,22 +21,22 @@
     </div>
 
     <div class="action-prompt">
-        <p>Your current profile level is:
+        <p>{% translate "Your current profile level is:" %}
             <span class="level-badge level-{{ current_level|lower }}">
                 {{ request.user.profile.get_english_level_display }}
             </span>
         </p>
 
         {% if not is_level_applied %}
-        <p>Do you want to apply this new level to your profile?</p>
+        <p>{% translate "Do you want to apply this new level to your profile?" %}</p>
         <div class="action-buttons">
-            <button type="button" class="btn btn-primary" id="applyLevelBtn">Apply Level</button>
-            <button type="button" class="btn btn-secondary" id="dismissNotificationBtn">Dismiss</button>
+            <button type="button" class="btn btn-primary" id="applyLevelBtn">{% translate "Apply Level" %}</button>
+            <button type="button" class="btn btn-secondary" id="dismissNotificationBtn">{% translate "Dismiss" %}</button>
         </div>
         {% else %}
-        <p class="mt-4 text-success">This level is already applied to your profile.</p>
+        <p class="mt-4 text-success">{% translate "This level is already applied to your profile." %}</p>
         <div class="action-buttons">
-            <a href="{% url 'home' %}" class="btn btn-secondary">Go to Home</a>
+            <a href="{% url 'home' %}" class="btn btn-secondary">{% translate "Go to Home" %}</a>
         </div>
         {% endif %}
     </div>
@@ -63,12 +63,12 @@
                         alert(data.message);
                         window.location.reload();
                     } else {
-                        alert('Error: ' + data.message);
+                        alert('{% translate "Error:" %} ' + data.message);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred during level application.');
+                    alert('{% translate "An error occurred during level application." %}');
                 });
             });
         }
@@ -88,12 +88,12 @@
                     if (data.status === 'success') {
                         window.location.href = "{% url 'home' %}";
                     } else {
-                        alert('Error: ' + data.message);
+                        alert('{% translate "Error:" %} ' + data.message);
                     }
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('An error occurred during dismissal.');
+                    alert('{% translate "An error occurred during dismissal." %}');
                 });
             });
         }

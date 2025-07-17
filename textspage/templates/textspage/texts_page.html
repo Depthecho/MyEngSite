@@ -1,7 +1,8 @@
 {% extends 'textspage/texts_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Texts | ExdiEngSite{% endblock %}
+{% block title %}{% translate "Texts" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -11,48 +12,43 @@
 {% block texts_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
-        <a href="{% url 'home' %}">Home</a> &raquo;
-        <span>Texts</span>
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <span>{% translate "Texts" %}</span>
     </nav>
 
     <div class="texts-content-wrapper">
-        <h1 class="section-title">Texts</h1>
+        <h1 class="section-title">{% translate "Texts" %}</h1>
 
-        <!-- Элементы управления -->
         <div class="texts-controls-wrapper">
-            <!-- Сортировка -->
             <div class="sorting-options">
-                <div class="sorting-group" title="Sort texts by date">
-                    <a href="?sort=newest" class="sort-option {% if request.GET.sort == 'newest' %}active{% endif %}" aria-label="Sort newest first">
-                        <i class="fas fa-arrow-down"></i> Newest
+                <div class="sorting-group" title="{% translate "Sort texts by date" %}">
+                    <a href="?sort=newest" class="sort-option {% if request.GET.sort == 'newest' %}active{% endif %}" aria-label="{% translate "Sort newest first" %}">
+                        <i class="fas fa-arrow-down"></i> {% translate "Newest" %}
                     </a>
-                    <a href="?sort=oldest" class="sort-option {% if request.GET.sort == 'oldest' %}active{% endif %}" aria-label="Sort oldest first">
-                        <i class="fas fa-arrow-up"></i> Oldest
+                    <a href="?sort=oldest" class="sort-option {% if request.GET.sort == 'oldest' %}active{% endif %}" aria-label="{% translate "Sort oldest first" %}">
+                        <i class="fas fa-arrow-up"></i> {% translate "Oldest" %}
                     </a>
                 </div>
 
-                <!-- Фильтрация по уровню -->
-                <div class="level-filter" title="Filter by English level">
-                    <span>Level:</span>
-                    <a href="?level=all" class="level-option {% if not request.GET.level or request.GET.level == 'all' %}active{% endif %}">All</a>
+                <div class="level-filter" title="{% translate "Filter by English level" %}">
+                    <span>{% translate "Level:" %}</span>
+                    <a href="?level=all" class="level-option {% if not request.GET.level or request.GET.level == 'all' %}active{% endif %}">{% translate "All" %}</a>
                     {% for level in text.ENGLISH_LEVEL_CHOICES %}
                         <a href="?level={{ level.0 }}" class="level-option {% if request.GET.level == level.0 %}active{% endif %}">{{ level.1 }}</a>
                     {% endfor %}
                 </div>
             </div>
 
-            <!-- Поиск -->
             <div class="text-search-wrapper">
                 <form method="get" class="search-form">
-                    <input type="text" name="search" placeholder="Search texts..." value="{{ request.GET.search|default:'' }}" class="search-input">
-                    <button type="submit" class="search-button" aria-label="Search">
+                    <input type="text" name="search" placeholder="{% translate "Search texts..." %}" value="{{ request.GET.search|default:'' }}" class="search-input">
+                    <button type="submit" class="search-button" aria-label="{% translate "Search" %}">
                         <i class="fas fa-search"></i>
                     </button>
                 </form>
             </div>
         </div>
 
-        <!-- Основной контейнер с текстами -->
         <div class="texts-list">
             {% for text in texts %}
             <div class="text-card">
@@ -77,32 +73,30 @@
             {% endfor %}
         </div>
 
-        <!-- Пагинация -->
         {% if texts.has_other_pages %}
         <div class="pagination">
             {% if texts.has_previous %}
                 <a href="?page=1&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
-                   class="pagination-link" title="First page">&laquo; first</a>
+                   class="pagination-link" title="{% translate "First page" %}">&laquo; {% translate "first" %}</a>
                 <a href="?page={{ texts.previous_page_number }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
-                   class="pagination-link" title="Previous page">previous</a>
+                   class="pagination-link" title="{% translate "Previous page" %}">{% translate "previous" %}</a>
             {% endif %}
 
             <span class="current-page">
-                Page {{ texts.number }} of {{ texts.paginator.num_pages }}
+                {% blocktrans with number=texts.number num_pages=texts.paginator.num_pages %}Page {{ number }} of {{ num_pages }}{% endblocktrans %}
             </span>
 
             {% if texts.has_next %}
                 <a href="?page={{ texts.next_page_number }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
-                   class="pagination-link" title="Next page">next</a>
+                   class="pagination-link" title="{% translate "Next page" %}">{% translate "next" %}</a>
                 <a href="?page={{ texts.paginator.num_pages }}&sort={{ request.GET.sort }}&level={{ request.GET.level }}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}"
-                   class="pagination-link" title="Last page">last &raquo;</a>
+                   class="pagination-link" title="{% translate "Last page" %}">{% translate "last" %} &raquo;</a>
             {% endif %}
         </div>
         {% endif %}
     </div>
 </div>
 
-<!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>

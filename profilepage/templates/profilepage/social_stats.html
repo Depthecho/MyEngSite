@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="social-stats">
     <div class="social-stats-top">
         <div class="social-stat-item">
@@ -6,7 +7,7 @@
             </div>
             <div class="social-stat-info">
                 <p class="social-stat-number">{{ profile.friends_count }}</p>
-                <p class="social-stat-label">Friends</p>
+                <p class="social-stat-label">{% translate "Friends" %}</p>
             </div>
         </div>
         <div class="social-stat-item">
@@ -15,7 +16,7 @@
             </div>
             <div class="social-stat-info">
                 <p class="social-stat-number">{{ profile.followers_count }}</p>
-                <p class="social-stat-label">Followers</p>
+                <p class="social-stat-label">{% translate "Followers" %}</p>
             </div>
         </div>
     </div>

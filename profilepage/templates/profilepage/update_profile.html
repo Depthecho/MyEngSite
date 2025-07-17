@@ -1,7 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Edit Profile{% endblock %}
+{% block title %}{% translate "Edit Profile" %}{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -25,12 +26,12 @@
                 <button class="mobile-sidebar-toggle" id="mobileSidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>Edit Profile</h1>
+                <h1>{% translate "Edit Profile" %}</h1>
             </div>
 
             {% if user_form.errors or profile_form.errors or password_form.errors %}
             <div class="error-message-container">
-                <h3><i class="fas fa-exclamation-circle"></i> Please correct the following errors:</h3>
+                <h3><i class="fas fa-exclamation-circle"></i> {% translate "Please correct the following errors:" %}</h3>
                 <ul class="error-list">
                     {% for field, errors in user_form.errors.items %}
                         {% for error in errors %}
@@ -60,10 +61,10 @@
                 <div class="update-avatar-section">
                     <div class="update-avatar-container">
                         <label for="id_avatar" class="update-avatar-label">
-                            <img src="{{ profile.avatar.url }}" alt="User Avatar" class="update-avatar-img">
+                            <img src="{{ profile.avatar.url }}" alt="{% translate "User Avatar" %}" class="update-avatar-img">
                             <div class="update-avatar-overlay">
                                 <i class="fas fa-camera"></i>
-                                <span>Change Photo</span>
+                                <span>{% translate "Change Photo" %}</span>
                             </div>
                         </label>
                         <input type="file" name="{{ profile_form.avatar.name }}" id="{{ profile_form.avatar.id_for_label }}" accept="image/*" style="display: none;">
@@ -71,100 +72,100 @@
                 </div>
 
                 <div class="update-form-section">
-                    <h2><i class="fas fa-user"></i> Personal Information</h2>
+                    <h2><i class="fas fa-user"></i> {% translate "Personal Information" %}</h2>
 
                     <div class="update-form-group">
-                        <label>Username</label>
+                        <label>{% translate "Username" %}</label>
                         <input type="text" value="{{ user.username }}" disabled>
-                        <p class="field-description">Username cannot be changed</p>
+                        <p class="field-description">{% translate "Username cannot be changed" %}</p>
                     </div>
 
                     <div class="update-form-group">
-                        <label>Email</label>
+                        <label>{% translate "Email" %}</label>
                         {{ user_form.email }}
                     </div>
 
                     <div class="update-form-row">
                         <div class="update-form-group">
-                            <label>First Name</label>
+                            <label>{% translate "First Name" %}</label>
                             {{ user_form.first_name }}
                             <div class="update-visibility-toggle">
                                 {{ profile_form.hide_first_name }}
-                                <label for="{{ profile_form.hide_first_name.id_for_label }}">Hide</label>
+                                <label for="{{ profile_form.hide_first_name.id_for_label }}">{% translate "Hide" %}</label>
                             </div>
                         </div>
 
                         <div class="update-form-group">
-                            <label>Last Name</label>
+                            <label>{% translate "Last Name" %}</label>
                             {{ user_form.last_name }}
                             <div class="update-visibility-toggle">
                                 {{ profile_form.hide_last_name }}
-                                <label for="{{ profile_form.hide_last_name.id_for_label }}">Hide</label>
+                                <label for="{{ profile_form.hide_last_name.id_for_label }}">{% translate "Hide" %}</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="update-form-group">
-                        <label>Birth Date</label>
+                        <label>{% translate "Birth Date" %}</label>
                         {{ profile_form.birth_date }}
                         <div class="update-visibility-toggle">
                             {{ profile_form.hide_birth_date }}
-                            <label for="{{ profile_form.hide_birth_date.id_for_label }}">Hide</label>
+                            <label for="{{ profile_form.hide_birth_date.id_for_label }}">{% translate "Hide" %}</label>
                         </div>
                     </div>
 
                     <div class="update-form-group">
-                        <label>English Level</label>
+                        <label>{% translate "English Level" %}</label>
                         <input type="text" value="{{ profile.get_english_level_display }}" disabled>
-                        <p class="field-description">Level is determined by tests</p>
+                        <p class="field-description">{% translate "Level is determined by tests" %}</p>
                     </div>
                 </div>
 
                 <div class="update-form-section">
-                    <h2><i class="fas fa-info-circle"></i> Additional Information</h2>
+                    <h2><i class="fas fa-info-circle"></i> {% translate "Additional Information" %}</h2>
 
                     <div class="update-form-group">
-                        <label>Bio</label>
+                        <label>{% translate "Bio" %}</label>
                         {{ profile_form.bio }}
                     </div>
 
                     <div class="update-form-row">
                         <div class="update-form-group">
-                            <label>Location</label>
+                            <label>{% translate "Location" %}</label>
                             {{ profile_form.location }}
                         </div>
                     </div>
 
                     <div class="update-form-group">
-                        <label>Study Start Date</label>
+                        <label>{% translate "Study Start Date" %}</label>
                         <input type="text" value="{{ profile.study_start_date|date:'Y-m-d' }}" disabled>
                     </div>
                 </div>
 
-                <button type="submit" name="update_profile_and_user" class="update-cta-button">Save Profile Changes</button>
+                <button type="submit" name="update_profile_and_user" class="update-cta-button">{% translate "Save Profile Changes" %}</button>
             </form>
 
             <form method="POST" class="update-password-form">
                 {% csrf_token %}
                 <div class="update-form-section">
-                    <h2><i class="fas fa-lock"></i> Change Password</h2>
+                    <h2><i class="fas fa-lock"></i> {% translate "Change Password" %}</h2>
 
                     <div class="update-form-group">
-                        <label>Current Password</label>
+                        <label>{% translate "Current Password" %}</label>
                         {{ password_form.old_password }}
                     </div>
 
                     <div class="update-form-group">
-                        <label>New Password</label>
+                        <label>{% translate "New Password" %}</label>
                         {{ password_form.new_password1 }}
                     </div>
 
                     <div class="update-form-group">
-                        <label>Confirm New Password</label>
+                        <label>{% translate "Confirm New Password" %}</label>
                         {{ password_form.new_password2 }}
                     </div>
 
-                    <button type="submit" name="change_password" class="update-cta-button">Change Password</button>
+                    <button type="submit" name="change_password" class="update-cta-button">{% translate "Change Password" %}</button>
                 </div>
             </form>
         </div>

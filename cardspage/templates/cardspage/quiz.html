@@ -1,6 +1,7 @@
 {% extends 'cardspage/cards_base.html' %}
 {% load static %}
 {% load quiz_tags %}
+{% load i18n %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -10,7 +11,7 @@
 
 {% block cards_content %}
     <div class="cards-content-wrapper">
-            <h1 class="quiz-title">Quiz</h1>
+            <h1 class="quiz-title">{% translate "Quiz" %}</h1>
 
             <form method="post" action="{% url 'quiz_results' %}">
                 {% csrf_token %}
@@ -18,7 +19,7 @@
 
                 {% for question in questions %}
                 <div class="quiz-question">
-                    <h3 class="quiz-question-text">Question {{ forloop.counter }}: {{ question.question }}</h3>
+                    <h3 class="quiz-question-text">{% blocktrans %}Question {{ forloop.counter }}: {{ question.question }}{% endblocktrans %}</h3>
 
                     <input type="hidden" name="correct_answer_{{ question.id }}" value="{{ question.correct_answer }}">
 
@@ -37,12 +38,11 @@
                 </div>
                 {% endfor %}
 
-                <button type="submit" class="quiz-submit-btn">Submit Answers</button>
+                <button type="submit" class="quiz-submit-btn">{% translate "Submit Answers" %}</button>
             </form>
         </div>
 
 
-<!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>

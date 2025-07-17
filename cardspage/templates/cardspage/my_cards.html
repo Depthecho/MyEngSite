@@ -1,47 +1,45 @@
 {% extends 'cardspage/cards_base.html' %}
+{% load i18n %}
 
-{% block title %}My Cards | ExdiEngSite{% endblock %}
+{% block title %}{% translate "My Cards" %} | ExdiEngSite{% endblock %}
 
 {% block cards_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
-        <a href="{% url 'home' %}">Home</a> &raquo;
-        <span>My Cards</span>
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <span>{% translate "My Cards" %}</span>
     </nav>
 
     <div class="cards-content-wrapper">
-        <h1 class="section-title">My Cards</h1>
+        <h1 class="section-title">{% translate "My Cards" %}</h1>
 
-        <!-- Элементы управления с подсказками -->
         <div class="cards-controls-wrapper">
-            <!-- Фильтрация по буквам -->
-            <div class="alphabet-filter" title="Filter by first letter">
+            <div class="alphabet-filter" title="{% translate "Filter by first letter" %}">
                 {% for letter in letters %}
                     <a href="?letter={{ letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="alphabet-letter {% if active_letter == letter %}active{% endif %}"
-                       aria-label="Filter by letter {{ letter }}">
+                       aria-label="{% blocktrans %}Filter by letter {{ letter }}{% endblocktrans %}">
                         {{ letter }}
                     </a>
                 {% endfor %}
             </div>
 
-            <!-- Сортировка и выбор количества -->
             <div class="sorting-options">
-                <div class="sorting-group" title="Sort cards by date">
+                <div class="sorting-group" title="{% translate "Sort cards by date" %}">
                     <a href="?letter={{ active_letter }}&sort=newest&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="sort-option {% if sort_order == 'newest' %}active{% endif %}"
-                       aria-label="Sort newest first">
-                       <i class="fas fa-arrow-down"></i> Newest
+                       aria-label="{% translate "Sort newest first" %}">
+                       <i class="fas fa-arrow-down"></i> {% translate "Newest" %}
                     </a>
                     <a href="?letter={{ active_letter }}&sort=oldest&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="sort-option {% if sort_order == 'oldest' %}active{% endif %}"
-                       aria-label="Sort oldest first">
-                       <i class="fas fa-arrow-up"></i> Oldest
+                       aria-label="{% translate "Sort oldest first" %}">
+                       <i class="fas fa-arrow-up"></i> {% translate "Oldest" %}
                     </a>
                 </div>
 
-                <div class="per-page-selector" title="Cards per page">
-                    <span>Show:</span>
+                <div class="per-page-selector" title="{% translate "Cards per page" %}">
+                    <span>{% translate "Show:" %}</span>
                     <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=16{% if active_category %}&category={{ active_category }}{% endif %}"
                        class="per-page-option {% if per_page == 16 %}active{% endif %}">16</a>
                     <a href="?letter={{ active_letter }}&sort={{ sort_order }}&per_page=24{% if active_category %}&category={{ active_category }}{% endif %}"
@@ -51,25 +49,23 @@
                 </div>
             </div>
 
-            <!-- Фильтрация по категориям через селект -->
-            <div class="category-select-wrapper" title="Filter by category">
+            <div class="category-select-wrapper" title="{% translate "Filter by category" %}">
                 <form method="get" id="categoryForm">
                     <input type="hidden" name="letter" value="{{ active_letter }}">
                     <input type="hidden" name="sort" value="{{ sort_order }}">
                     <input type="hidden" name="per_page" value="{{ per_page }}">
-                    <label for="category-select">Category:</label>
+                    <label for="category-select">{% translate "Category:" %}</label>
                     <select name="category" id="category-select" onchange="document.getElementById('categoryForm').submit()">
-                        <option value="" {% if not active_category %}selected{% endif %}>All Categories</option>
+                        <option value="" {% if not active_category %}selected{% endif %}>{% translate "All Categories" %}</option>
                         {% for category in categories %}
                             <option value="{{ category }}" {% if active_category == category %}selected{% endif %}>{{ category }}</option>
                         {% endfor %}
-                        <option value="uncategorized" {% if active_category == 'uncategorized' %}selected{% endif %}>Uncategorized</option>
+                        <option value="uncategorized" {% if active_category == 'uncategorized' %}selected{% endif %}>{% translate "Uncategorized" %}</option>
                     </select>
                 </form>
             </div>
         </div>
 
-        <!-- Основная сетка карточек -->
         <div class="cards-grid">
             {% for card in page_obj %}
             <div class="card-item" onclick="flipCard(this)">
@@ -88,7 +84,7 @@
                     </div>
 
                     <div class="card-actions">
-                        <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="Edit card">
+                        <a href="{% url 'edit_card' card.user_card_id %}" class="card-edit-btn" title="{% translate "Edit card" %}">
                             <i class="fas fa-edit"></i>
                         </a>
                         <form method="post" action="{% url 'delete_card' card.user_card_id %}" class="delete-form">
@@ -98,8 +94,8 @@
                             <input type="hidden" name="category" value="{{ active_category|default:'' }}">
                             <input type="hidden" name="per_page" value="{{ per_page }}">
                             <input type="hidden" name="page" value="{{ page_obj.number }}">
-                            <button type="submit" class="card-delete-btn" title="Delete card"
-                                    onclick="return confirm('Are you sure you want to delete \'{{ card.english_word }}\'?')">
+                            <button type="submit" class="card-delete-btn" title="{% translate "Delete card" %}"
+                                    onclick="return confirm('{% blocktrans %}Are you sure you want to delete \'{{ card.english_word }}\'?{% endblocktrans %}')">
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </form>
@@ -109,45 +105,42 @@
             {% empty %}
             <div class="no-cards-message">
                 <i class="fas fa-inbox"></i>
-                <p>You don't have any cards yet.</p>
+                <p>{% translate "You don't have any cards yet." %}</p>
                 <a href="{% url 'add_cards' %}" class="btn-add-first-card">
-                    Add your first card
+                    {% translate "Add your first card" %}
                 </a>
             </div>
             {% endfor %}
         </div>
 
-        <!-- Пагинация -->
         {% if page_obj.paginator.num_pages > 1 %}
         <div class="pagination">
             {% if page_obj.has_previous %}
                 <a href="?page=1&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
-                   class="pagination-link" title="First page">&laquo; first</a>
+                   class="pagination-link" title="{% translate "First page" %}">&laquo; {% translate "first" %}</a>
                 <a href="?page={{ page_obj.previous_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
-                   class="pagination-link" title="Previous page">previous</a>
+                   class="pagination-link" title="{% translate "Previous page" %}">{% translate "previous" %}</a>
             {% endif %}
 
             <span class="current-page">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                {% blocktrans %}Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}{% endblocktrans %}
             </span>
 
             {% if page_obj.has_next %}
                 <a href="?page={{ page_obj.next_page_number }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
-                   class="pagination-link" title="Next page">next</a>
+                   class="pagination-link" title="{% translate "Next page" %}">{% translate "next" %}</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}&letter={{ active_letter }}&sort={{ sort_order }}&per_page={{ per_page }}{% if active_category %}&category={{ active_category }}{% endif %}"
-                   class="pagination-link" title="Last page">last &raquo;</a>
+                   class="pagination-link" title="{% translate "Last page" %}">{% translate "last" %} &raquo;</a>
             {% endif %}
         </div>
         {% endif %}
 
-        <!-- Кнопка "Наверх" -->
-        <button id="back-to-top" title="Go to top" aria-label="Scroll to top">
+        <button id="back-to-top" title="{% translate "Go to top" %}" aria-label="{% translate "Scroll to top" %}">
             <i class="fas fa-arrow-up"></i>
         </button>
     </div>
 </div>
 
-<!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>

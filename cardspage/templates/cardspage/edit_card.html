@@ -1,7 +1,8 @@
 {% extends 'cardspage/cards_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Edit Card | ExdiEngSite{% endblock %}
+{% block title %}{% translate "Edit Card" %} | ExdiEngSite{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -17,51 +18,51 @@
 <div class="secondary-navbar">
     <div class="secondary-nav-container">
         <a href="{% url 'my_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-layer-group"></i> My cards
+            <i class="fas fa-layer-group"></i> {% translate "My cards" %}
         </a>
         <a href="{% url 'add_cards' %}" class="secondary-nav-link">
-            <i class="fas fa-plus-circle"></i> Add cards
+            <i class="fas fa-plus-circle"></i> {% translate "Add cards" %}
         </a>
         <a href="#" class="secondary-nav-link disabled">
-            <i class="fas fa-question-circle"></i> Quiz
+            <i class="fas fa-question-circle"></i> {% translate "Quiz" %}
         </a>
     </div>
 </div>
 
 <div class="main-container">
     <div class="cards-content-wrapper">
-        <h2 class="section-title">Edit Card</h2>
-        
+        <h2 class="section-title">{% translate "Edit Card" %}</h2>
+
         <form method="post" class="card-form">
             {% csrf_token %}
-            
+
             <div class="form-group">
                 <label for="id_english_word">
-                    <i class="fas fa-language"></i> English word
+                    <i class="fas fa-language"></i> {% translate "English word" %}
                 </label>
                 {{ form.english_word }}
             </div>
-            
+
             <div class="form-group">
                 <label for="id_native_translation">
-                    <i class="fas fa-exchange-alt"></i> Translation
+                    <i class="fas fa-exchange-alt"></i> {% translate "Translation" %}
                 </label>
                 {{ form.native_translation }}
             </div>
-            
+
             <div class="form-group">
                 <label for="id_category">
-                    <i class="fas fa-tag"></i> Category (Optional)
+                    <i class="fas fa-tag"></i> {% translate "Category (Optional)" %}
                 </label>
                 {{ form.category }}
             </div>
-            
+
             <div class="form-actions">
                 <button type="submit" class="cta-button primary">
-                    <i class="fas fa-save"></i> Save Changes
+                    <i class="fas fa-save"></i> {% translate "Save Changes" %}
                 </button>
                 <a href="{% url 'my_cards' %}" class="cta-button secondary">
-                    <i class="fas fa-times"></i> Cancel
+                    <i class="fas fa-times"></i> {% translate "Cancel" %}
                 </a>
             </div>
         </form>

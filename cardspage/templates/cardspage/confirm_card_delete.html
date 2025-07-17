@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block content %}
-<h2>Confirm delete</h2>
-<p>Are you sure you want to delete "{{ card.english_word }}"?</p>
+<h2>{% translate "Confirm delete" %}</h2>
+<p>{% blocktrans %}Are you sure you want to delete "{{ card.english_word }}"?{% endblocktrans %}</p>
 
 <form method="post">
     {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a href="{% url 'my_cards' %}" class="btn btn-secondary">Cancel</a>
+    <button type="submit" class="btn btn-danger">{% translate "Delete" %}</button>
+    <a href="{% url 'my_cards' %}" class="btn btn-secondary">{% translate "Cancel" %}</a>
 </form>
 {% endblock %}

@@ -1,4 +1,6 @@
 import json
+
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -23,7 +25,8 @@ def take_level_test(request):
     availability_message = TestAvailabilityService.check_availability(user_profile)
     if availability_message:
         return render(request, 'testspage/test_unavailable.html', {
-            'message': availability_message
+            'message': availability_message,
+            'LANGUAGES': settings.LANGUAGES,
         })
 
     # Инициализация теста в сессии
@@ -114,6 +117,7 @@ def take_level_test(request):
         'paginator': paginator,
         'page_obj': current_page_questions,
         'existing_answers': json.dumps(existing_answers),
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'testspage/english_level_test.html', context)
 
@@ -123,7 +127,6 @@ def level_test_result(request, result_id):
     user_test_result = get_object_or_404(UserTestResult, id=result_id, user=request.user)
     profile = request.user.profile
 
-    # Обработка POST-запросов (применение уровня или закрытие уведомления)
     if request.method == 'POST':
         action = request.POST.get('action')
 
@@ -143,4 +146,5 @@ def level_test_result(request, result_id):
         'result': user_test_result,
         'current_level': profile.english_level,
         'is_level_applied': is_level_applied,
+        'LANGUAGES': settings.LANGUAGES,
     })

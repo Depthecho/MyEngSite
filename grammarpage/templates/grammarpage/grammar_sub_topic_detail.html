@@ -1,7 +1,8 @@
 {% extends 'grammarpage/grammar_base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block grammar_title %}{{ topic.title }} - {{ main_topic.title }} - English Grammar{% endblock %}
+{% block grammar_title %}{{ topic.title }} - {{ main_topic.title }} - {% translate "English Grammar" %}{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -11,8 +12,8 @@
 {% block grammar_content %}
     <div class="grammar-detail-container">
         <nav class="breadcrumbs">
-            <a href="{% url 'home' %}">Home</a> &raquo;
-            <a href="{% url 'grammar_page' %}">Grammar</a> &raquo;
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a> &raquo;
             {% for crumb in breadcrumbs_path %}
                 {% if not forloop.last %}
                     {% if forloop.first %}
@@ -35,13 +36,13 @@
             {% if topic.content %}
                 {{ topic.content|safe }}
             {% else %}
-                <p>Detailed content for "{{ topic.title }}" in "{{ main_topic.title }}" is coming soon!</p>
+                <p>{% blocktrans with topic_title=topic.title main_topic_title=main_topic.title %}Detailed content for "{{ topic_title }}" in "{{ main_topic_title }}" is coming soon!{% endblocktrans %}</p>
             {% endif %}
         </div>
 
         <div class="navigation-links">
             <a href="{% url 'grammar_main_topic_detail' main_topic_slug=main_topic.slug %}" class="back-to-list-btn">
-                <i class="fas fa-arrow-left"></i> Back to {{ main_topic.title }} Topics
+                <i class="fas fa-arrow-left"></i> {% blocktrans with main_topic_title=main_topic.title %}Back to {{ main_topic_title }} Topics{% endblocktrans %}
             </a>
         </div>
     </div>

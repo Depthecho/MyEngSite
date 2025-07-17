@@ -268,10 +268,10 @@ grammar_topics_data = [
     </style>
 '''
                     },
-{
-    'title': 'Table of Irregular Verbs',
-'slug': 'table-of-irregular-verbs',
-'content': '''
+                    {
+                        'title': 'Table of Irregular Verbs',
+                        'slug': 'table-of-irregular-verbs',
+                        'content': '''
     <h3>Table of Irregular Verbs</h3>
     <p>Irregular verbs are a fundamental part of English grammar, as they do not follow the standard <span class="term-highlight">-ed</span> rule for forming their past simple and past participle forms. Memorizing these forms is crucial for fluency.</p>
     <p>Below is a comprehensive table of common irregular verbs, showing their base form (V1), past simple (V2), and past participle (V3).</p>
@@ -453,19 +453,19 @@ grammar_topics_data = [
             border-radius: 4px;
             background: rgba(76, 201, 240, 0.1);
         }
-        
+
         /* Alternate row colors */
         .grammar-table tr:nth-child(4n+3),
         .grammar-table tr:nth-child(4n+4) {
             background-color: rgba(255, 255, 255, 0.02);
         }
-        
+
         .grammar-table tr:hover {
             background-color: rgba(76, 201, 240, 0.1) !important;
         }
     </style>
 '''
-},
+                    },
                     {
                         'title': 'Person and Number of the English Verb',
                         'slug': 'person-number-verb',
@@ -1328,7 +1328,7 @@ grammar_topics_data = [
                     },
                 ]
             },
-{
+            {
                 'title': 'Personal and impersonal forms of the verb',
                 'slug': 'personal-and-impersonal-forms-of-the-verb',
                 'sub_topics': [
@@ -3155,8 +3155,8 @@ grammar_topics_data = [
                     },
                     {
                         'title': 'The Past Simple',
-'slug': 'past-simple',
-'content': '''
+                        'slug': 'past-simple',
+                        'content': '''
     <h3>The Past Simple</h3>
     <p>The <span class="term-highlight">Past Simple</span> tense (also known as the Simple Past) is used to describe actions or states that started and finished at a specific time in the past. It's one of the most common tenses for narrating past events.</p>
 
@@ -3367,27 +3367,27 @@ grammar_topics_data = [
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .ending-highlight {
             color: #4cc9f0;
             font-weight: 600;
         }
-        
+
         .auxiliary-highlight {
             color: #83e8de;
             font-weight: 600;
         }
-        
+
         .verb-highlight {
             color: #ffda47;
             font-weight: 600;
         }
-        
+
         .time-highlight {
             color: #b388ff;
             font-weight: 500;
         }
-        
+
         .code-highlight {
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.2);
@@ -3395,54 +3395,54 @@ grammar_topics_data = [
             border-radius: 4px;
             color: #83e8de;
         }
-        
+
         .example-highlight {
             color: #4cc9f0;
             font-weight: 500;
         }
-        
+
         .term-highlight {
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .grammar-divider {
             border: 1px solid #444;
             margin: 20px 0;
         }
-        
+
         .grammar-table-container {
             overflow-x: auto;
             margin: 20px 0;
         }
-        
+
         .grammar-table {
             width: 100%;
             border-collapse: collapse;
             background: rgba(0, 0, 0, 0.1);
         }
-        
+
         .grammar-table th, .grammar-table td {
             border: 1px solid #444;
             padding: 10px;
             text-align: left;
         }
-        
+
         .grammar-table th {
             background: rgba(0, 0, 0, 0.2);
             font-weight: bold;
         }
-        
+
         .styled-list {
             padding-left: 20px;
             list-style-type: none;
         }
-        
+
         .styled-list li {
             margin: 8px 0;
             position: relative;
         }
-        
+
         .styled-list li:before {
             content: "•";
             color: #4cc9f0;
@@ -3456,8 +3456,8 @@ grammar_topics_data = [
                     },
                     {
                         'title': 'The Past Continuous',
-'slug': 'past-continuous',
-'content': '''
+                        'slug': 'past-continuous',
+                        'content': '''
     <h3>The Past Continuous (Past Progressive)</h3>
     <p>The <span class="term-highlight">Past Continuous</span> tense (also known as the Past Progressive) is used to describe actions that were in progress at a specific moment or over a period in the past. It emphasizes the ongoing nature of an action rather than its completion.</p>
 
@@ -3611,27 +3611,27 @@ grammar_topics_data = [
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .ending-highlight {
             color: #4cc9f0;
             font-weight: 600;
         }
-        
+
         .auxiliary-highlight {
             color: #83e8de;
             font-weight: 600;
         }
-        
+
         .verb-highlight {
             color: #ffda47;
             font-weight: 600;
         }
-        
+
         .time-highlight {
             color: #b388ff;
             font-weight: 500;
         }
-        
+
         .code-highlight {
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.2);
@@ -3639,54 +3639,54 @@ grammar_topics_data = [
             border-radius: 4px;
             color: #83e8de;
         }
-        
+
         .example-highlight {
             color: #4cc9f0;
             font-weight: 500;
         }
-        
+
         .term-highlight {
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .grammar-divider {
             border: 1px solid #444;
             margin: 20px 0;
         }
-        
+
         .grammar-table-container {
             overflow-x: auto;
             margin: 20px 0;
         }
-        
+
         .grammar-table {
             width: 100%;
             border-collapse: collapse;
             background: rgba(0, 0, 0, 0.1);
         }
-        
+
         .grammar-table th, .grammar-table td {
             border: 1px solid #444;
             padding: 10px;
             text-align: left;
         }
-        
+
         .grammar-table th {
             background: rgba(0, 0, 0, 0.2);
             font-weight: bold;
         }
-        
+
         .styled-list {
             padding-left: 20px;
             list-style-type: none;
         }
-        
+
         .styled-list li {
             margin: 8px 0;
             position: relative;
         }
-        
+
         .styled-list li:before {
             content: "•";
             color: #4cc9f0;
@@ -7069,15 +7069,15 @@ grammar_topics_data = [
                     },
                 ]
             },
-{
-    'title': 'The Active Voice',
-    'slug': 'active-voice',
-    'content': '<p><b>The Active Voice</b> is the most common and direct grammatical voice in English. In an active sentence, the **subject performs the action** of the verb, and the object receives that action. It emphasizes the doer of the action.</p>',
-    'sub_topics': [
-        {
-            'title': 'Forms of the Active Voice',
-            'slug': 'forms-active-voice',
-            'content': '''
+            {
+                'title': 'The Active Voice',
+                'slug': 'active-voice',
+                'content': '<p><b>The Active Voice</b> is the most common and direct grammatical voice in English. In an active sentence, the **subject performs the action** of the verb, and the object receives that action. It emphasizes the doer of the action.</p>',
+                'sub_topics': [
+                    {
+                        'title': 'Forms of the Active Voice',
+                        'slug': 'forms-active-voice',
+                        'content': '''
                 <h3>Forms of the Active Voice</h3>
                 <p>The active voice is incredibly versatile and can be formed using <span class="term-highlight">all standard verb tenses</span> in English. The key characteristic is that the subject of the sentence is the agent performing the action.</p>
 
@@ -7270,11 +7270,11 @@ grammar_topics_data = [
                     }
                 </style>
             '''
-        },
-        {
-            'title': 'Use of the Active Voice',
-            'slug': 'use-active-voice',
-            'content': '''
+                    },
+                    {
+                        'title': 'Use of the Active Voice',
+                        'slug': 'use-active-voice',
+                        'content': '''
     <h3>Use of the Active Voice</h3>
     <p>The active voice is generally preferred in English writing and speaking because it is <span class="term-highlight">clear, direct, and concise</span>. It makes sentences easier to understand and more impactful.</p>
 
@@ -7432,9 +7432,9 @@ grammar_topics_data = [
         }
     </style>
 '''
-        },
-    ]
-},
+                    },
+                ]
+            },
             {
                 'title': 'Modal Verbs',
                 'slug': 'modal-verbs',
@@ -8231,10 +8231,10 @@ grammar_topics_data = [
 ''',
                         'sub_topics': []
                     },
-{
-    'title': 'Have to / Have got to',
-    'slug': 'have-to-have-got-to',
-    'content': '''
+                    {
+                        'title': 'Have to / Have got to',
+                        'slug': 'have-to-have-got-to',
+                        'content': '''
         <h3>Have to / Have got to</h3>
         <p>Both <span class="term-highlight">Have to</span> and <span class="term-highlight">Have got to</span> are used to express obligation, necessity, or certainty. While they often convey similar meanings, there are subtle differences in their usage, especially in terms of formality and commonness in different English varieties.</p>
         <p>They are sometimes called "semi-modals" or "quasi-modals" because, unlike true modal verbs (like "must" or "can"), "have to" conjugates for tense and subject (e.g., "he has to," "they had to"), and forms questions and negatives with "do/does/did." "Have got to" is a fixed phrase and doesn't change for tense (only for subject in the present).</p>
@@ -8475,12 +8475,12 @@ grammar_topics_data = [
             }
         </style>
     ''',
-    'sub_topics': []
-},
-{
-    'title': 'Be to',
-    'slug': 'be-to',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Be to',
+                        'slug': 'be-to',
+                        'content': '''
     <h3>Be to</h3>
     <p>The construction <span class="term-highlight">"be to"</span> (e.g., "am to," "is to," "are to," "was to," "were to") functions as a semi-modal verb in English. It is used to express pre-arranged plans, instructions/orders, obligation, possibility (especially in formal contexts), or destiny/fate.</p>
     <p>Unlike true modal verbs, "be to" changes form according to the subject and tense (e.g., "I am to," "she is to," "they were to"). It is always followed by the base form of the main verb.</p>
@@ -8489,7 +8489,7 @@ grammar_topics_data = [
 
     <h4>Forms of Be to</h4>
     <p>The "be to" construction is formed by conjugating the verb "to be" according to the subject and tense, and then adding "to" followed by the base form of the main verb.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -8667,12 +8667,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Need',
-    'slug': 'need',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Need',
+                        'slug': 'need',
+                        'content': '''
     <h3>Need</h3>
     <p>The verb <span class="term-highlight">"Need"</span> can function in two ways in English: as a <span class="term-highlight">main verb</span> (lexical verb) and as a <span class="term-highlight">modal verb</span>. Understanding the distinction is crucial because its grammatical behavior (conjugation, negation, question formation) changes depending on its function.</p>
 
@@ -8909,12 +8909,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Ought to',
-    'slug': 'ought-to',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Ought to',
+                        'slug': 'ought-to',
+                        'content': '''
     <h3>Ought to</h3>
     <p><span class="term-highlight">Ought to</span> is a semi-modal verb in English, primarily used to express <span class="term-highlight">advice, recommendation, obligation, duty, or probability</span>. It is similar in meaning to "should," but can sometimes imply a stronger sense of moral obligation or correctness. Unlike most modal verbs, it is always followed by "to" and then the base form of the main verb.</p>
 
@@ -8922,7 +8922,7 @@ grammar_topics_data = [
 
     <h4>Forms of Ought to</h4>
     <p>As a semi-modal, "ought to" has a relatively simple conjugation. It does not change form for different subjects and is always followed by the bare infinitive (base form) of the main verb.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -9110,12 +9110,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Should',
-    'slug': 'should',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Should',
+                        'slug': 'should',
+                        'content': '''
     <h3>Should</h3>
     <p>The modal verb <span class="term-highlight">Should</span> is one of the most common and versatile modal verbs in English. It is primarily used to express <span class="term-highlight">advice, recommendation, obligation, probability, or a sense of what is correct or expected</span>. It is less forceful than "must" or "have to" and is generally equivalent to "ought to," though "should" is far more common in everyday language.</p>
 
@@ -9123,7 +9123,7 @@ grammar_topics_data = [
 
     <h4>Forms of Should</h4>
     <p>As a modal verb, "should" has a simple and unchanging form. It always precedes the base form of the main verb, and it does not change based on the subject.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -9317,12 +9317,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Would',
-    'slug': 'would',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Would',
+                        'slug': 'would',
+                        'content': '''
     <h3>Would</h3>
     <p>The modal verb <span class="term-highlight">Would</span> is a versatile and frequently used word in English. It serves as the past form of "will" in reported speech, but also has numerous independent uses related to <span class="term-highlight">hypothetical situations, polite requests, past habits, conditional statements, and expressing preferences or opinions</span>.</p>
 
@@ -9330,7 +9330,7 @@ grammar_topics_data = [
 
     <h4>Forms of Would</h4>
     <p>As a modal verb, "would" is invariable; it does not change its form based on the subject. It is always followed by the base form (bare infinitive) of the main verb.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -9544,12 +9544,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Shall / Will',
-    'slug': 'shall-will',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Shall / Will',
+                        'slug': 'shall-will',
+                        'content': '''
     <h3>Shall / Will</h3>
     <p><span class="term-highlight">Shall</span> and <span class="term-highlight">Will</span> are modal auxiliary verbs primarily used to form the future tense in English. While "will" is the standard and most common choice for expressing future actions or intentions, "shall" has more specific and often formal or polite uses, particularly in British English.</p>
 
@@ -9790,12 +9790,12 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
-{
-    'title': 'Dare',
-    'slug': 'dare',
-    'content': '''
+                        'sub_topics': []
+                    },
+                    {
+                        'title': 'Dare',
+                        'slug': 'dare',
+                        'content': '''
     <h3>Dare</h3>
     <p>The verb <span class="term-highlight">Dare</span> is unique in English because it can function both as a <span class="term-highlight">main verb</span> (lexical verb) and as a <span class="term-highlight">modal verb</span>. This dual nature means its grammatical behavior changes depending on how it's used, affecting its conjugation, negation, and question formation.</p>
     <p>The core meaning of "dare" is "to be brave enough to do something," "to challenge," or "to provoke."</p>
@@ -9811,7 +9811,7 @@ grammar_topics_data = [
         <li>It uses "do/does/did" for questions and negatives.</li>
         <li>It is followed by a "to-infinitive."</li>
     </ul>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -9849,7 +9849,7 @@ grammar_topics_data = [
         <li>It is followed directly by the base form of the main verb (without "to").</li>
         <li>This usage is more formal or literary, often found in fixed expressions.</li>
     </ul>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -10023,8 +10023,8 @@ grammar_topics_data = [
         }
     </style>
 ''',
-    'sub_topics': []
-},
+                        'sub_topics': []
+                    },
                     {
                         'title': 'Used to',
                         'slug': 'used-to',
@@ -10037,7 +10037,7 @@ grammar_topics_data = [
 
     <h4>Forms of Used to</h4>
     <p>"Used to" is a fixed phrase that always precedes the base form of the main verb. It does not change for person or number.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -10217,7 +10217,7 @@ grammar_topics_data = [
 
     <h4>Common Phrasal Verbs</h4>
     <p>Here's a table with some common phrasal verbs, their meanings, and example sentences.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -10336,7 +10336,7 @@ grammar_topics_data = [
 
     <h4>Table of Phrasal Verbs</h4>
     <p>Here's a more extensive list of phrasal verbs to help you expand your vocabulary. Remember that many phrasal verbs have multiple meanings depending on the context.</p>
-    
+
     <div class="grammar-table-container">
         <table class="grammar-table">
             <thead>
@@ -11981,10 +11981,10 @@ grammar_topics_data = [
     </style>
 '''
             },
-{
-    'title': 'Determinatives (Determiners)',
-    'slug': 'determinatives',
-    'content': '''
+            {
+                'title': 'Determinatives (Determiners)',
+                'slug': 'determinatives',
+                'content': '''
     <h3>Determinatives (Determiners)</h3>
     <p><span class="term-highlight">Determinatives</span>, more commonly known as <span class="term-highlight">Determiners</span>, are words that come before a noun (or a noun phrase) to specify its quantity, possession, or definiteness. They help to clarify which specific thing or amount of something the noun is referring to.</p>
     <p>Determiners are essential because they introduce the noun and link it to the surrounding context of the sentence. A key rule is that you generally use only one determiner with a noun at a time.</p>
@@ -12190,7 +12190,7 @@ grammar_topics_data = [
         }
     </style>
 '''
-},
+            },
             {
                 'title': 'Functions of Nouns in a Sentence',
                 'slug': 'functions-nouns-sentence',
@@ -12367,10 +12367,10 @@ grammar_topics_data = [
     </style>
 '''
             },
-{
-    'title': 'Collective Nouns',
-    'slug': 'collective-nouns',
-    'content': '''
+            {
+                'title': 'Collective Nouns',
+                'slug': 'collective-nouns',
+                'content': '''
     <h3>Collective Nouns</h3>
     <p>A <span class="term-highlight">collective noun</span> is a type of noun that refers to a group of people, animals, or things as a single, unified entity. Even though it names a group, it is treated grammatically as a singular unit. However, there are nuances in verb agreement, especially between British and American English.</p>
 
@@ -12622,7 +12622,7 @@ grammar_topics_data = [
         }
     </style>
 '''
-}
+            }
         ]
     },
     {
@@ -13976,10 +13976,10 @@ grammar_topics_data = [
     </style>
 '''
             },
-{
-    'title': 'Degrees of Comparison of Adjectives',
-    'slug': 'adjectives-degrees-of-comparison',
-    'content': '''
+            {
+                'title': 'Degrees of Comparison of Adjectives',
+                'slug': 'adjectives-degrees-of-comparison',
+                'content': '''
     <h3>Degrees of Comparison of Adjectives</h3>
     <p>In English, adjectives that describe qualities (<span class="term-highlight">qualitative adjectives</span>) can change their form to show varying degrees of that quality. This is known as the <span class="term-highlight">degrees of comparison</span>. Only adjectives whose quality can be expressed in terms of "more" or "less" typically have these forms.</p>
     <p>There are three degrees of comparison:</p>
@@ -14239,10 +14239,10 @@ grammar_topics_data = [
         }
     </style>
 '''
-},{
-'title': 'Adjectives Used as Nouns (Substantivization)',
-'slug': 'adjectives-substantivization',
-'content': '''
+            }, {
+                'title': 'Adjectives Used as Nouns (Substantivization)',
+                'slug': 'adjectives-substantivization',
+                'content': '''
     <h3>Adjectives Used as Nouns (Substantivization)</h3>
     <p><span class="term-highlight">Substantivization</span> is a linguistic phenomenon where a word that typically functions as an adjective takes on the role of a noun. In English, this means an adjective can gain the characteristics of a noun, such as being preceded by an article, taking a plural form, or functioning as the subject or object of a sentence.</p>
 
@@ -14459,7 +14459,7 @@ grammar_topics_data = [
         }
     </style>
 '''
-},
+            },
             {
                 'title': 'Order of Adjectives',
                 'slug': 'adjectives-order',
@@ -15083,10 +15083,10 @@ grammar_topics_data = [
                     </style>
                 '''
             },
-                {
-                    'title': 'Types of Pronouns',
-                    'slug': 'types-pronouns',
-                    'content': '''
+            {
+                'title': 'Types of Pronouns',
+                'slug': 'types-pronouns',
+                'content': '''
                         <h3>Types of Pronouns</h3>
                         <p>Pronouns are words that replace nouns or noun phrases to avoid repetition and make sentences more concise. They are categorized into various types based on their function and meaning.</p>
 
@@ -15274,11 +15274,11 @@ grammar_topics_data = [
                             }
                         </style>
                     '''
-                },
-                {
-                    'title': 'Usage of Pronouns',
-                    'slug': 'usage-pronouns',
-                    'content': '''
+            },
+            {
+                'title': 'Usage of Pronouns',
+                'slug': 'usage-pronouns',
+                'content': '''
                         <h3>Usage of Pronouns</h3>
                         <p>Proper pronoun usage is essential for clear and grammatically correct English. The fundamental rules revolve around agreement with their antecedents and their function within a sentence.</p>
 
@@ -15448,7 +15448,7 @@ grammar_topics_data = [
                             }
                         </style>
                     '''
-                }
+            }
         ]
     },
     {
@@ -15650,10 +15650,10 @@ grammar_topics_data = [
     </style>
 '''
             },
-                {
-                    'title': 'Types of Numerals',
-                    'slug': 'types-numerals',
-                    'content': '''
+            {
+                'title': 'Types of Numerals',
+                'slug': 'types-numerals',
+                'content': '''
                         <h3>Types of Numerals</h3>
                         <p>Numerals are words that represent numbers or quantities. They specify how many of something there are (e.g., <span class="code-highlight">"three books"</span>) or the order in which something appears (e.g., <span class="code-highlight">"the third day"</span>). In English, numerals primarily function as adjectives (modifying nouns) or as nouns themselves.</p>
 
@@ -15827,11 +15827,11 @@ grammar_topics_data = [
                             }
                         </style>
                     '''
-                },
-                {
-                    'title': 'Usage of Numerals',
-                    'slug': 'usage-numerals',
-                    'content': '''
+            },
+            {
+                'title': 'Usage of Numerals',
+                'slug': 'usage-numerals',
+                'content': '''
                         <h3>Usage of Numerals</h3>
                         <p>Numerals are integral to expressing quantities, order, and various numerical data in English. Here's a breakdown of their common usage:</p>
 
@@ -15987,11 +15987,11 @@ grammar_topics_data = [
                             }
                         </style>
                     '''
-                },
-{
-    'title': 'Date and Time in English',
-    'slug': 'date-time-numerals',
-    'content': '''
+            },
+            {
+                'title': 'Date and Time in English',
+                'slug': 'date-time-numerals',
+                'content': '''
     <h3>Date and Time in English</h3>
     <p>Expressing dates and times correctly is crucial in English. There are often differences in conventions between British English (BrE) and American English (AmE), especially for dates.</p>
 
@@ -16191,11 +16191,11 @@ grammar_topics_data = [
         }
     </style>
 '''
-},
-{
-    'title': 'Fractional Numerals',
-    'slug': 'fractional-numerals',
-    'content': '''
+            },
+            {
+                'title': 'Fractional Numerals',
+                'slug': 'fractional-numerals',
+                'content': '''
         <h3>Fractional Numerals</h3>
         <p><span class="term-highlight">Fractional numerals</span> are words used to express parts of a whole or quantities that are not integers. They include both simple fractions and decimal fractions.</p>
 
@@ -16372,11 +16372,11 @@ grammar_topics_data = [
             }
         </style>
     '''
-},
-{
-    'title': 'Numerals Used as Nouns',
-    'slug': 'numerals-nouns',
-    'content': '''
+            },
+            {
+                'title': 'Numerals Used as Nouns',
+                'slug': 'numerals-nouns',
+                'content': '''
     <h3>Numerals Used as Nouns</h3>
     <p>While numerals primarily function as adjectives (modifying nouns) or as part of a noun phrase, they can also function independently as nouns. This is known as <span class="term-highlight">substantivization of numerals</span>.</p>
 
@@ -16544,7 +16544,7 @@ grammar_topics_data = [
         }
     </style>
 '''
-},
+            },
 
         ]
     },
@@ -17963,10 +17963,10 @@ grammar_topics_data = [
 '''
             },
 
-    {
-        'title': 'Usage of Common Prepositions',
-        'slug': 'usage-common-prepositions',
-        'content': '''
+            {
+                'title': 'Usage of Common Prepositions',
+                'slug': 'usage-common-prepositions',
+                'content': '''
     <h3>Usage of Common Prepositions</h3>
     <p>Prepositions are essential words that connect nouns, pronouns, and phrases to other words in a sentence, establishing relationships of time, place, direction, and more. Here's a detailed look at the usage of some of the most common English prepositions.</p>
 
@@ -18403,7 +18403,7 @@ grammar_topics_data = [
         }
     </style>
 '''
-    }
+            }
         ]
     },
     {
@@ -21543,41 +21543,41 @@ grammar_topics_data = [
                 <li><i><u class="pronoun-highlight">I</u> <u class="verb-highlight">bought</u> apples<span class="term-highlight">,</span> bananas<span class="term-highlight">,</span> and oranges<span class="term-highlight">.</span></i> (The last comma before "and" is called the Oxford or serial comma, and its use can vary.)</li>
             </ul>
         </li>
-        
+
         <li><b>Setting off introductory elements:</b> (words, phrases, or clauses that come before the main part of the sentence)
             <ul class="styled-list">
                 <li><i>However<span class="term-highlight">,</span> <u class="pronoun-highlight">I</u> <u class="verb-highlight">decided</u> to stay<span class="term-highlight">.</span></i></li>
                 <li><i>After the rain stopped<span class="term-highlight">,</span> <u class="pronoun-highlight">we</u> <u class="verb-highlight">went</u> for a walk<span class="term-highlight">.</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>Separating independent clauses joined by a coordinating conjunction (FANBOYS):</b>
             <ul class="styled-list">
                 <li><i><u class="pronoun-highlight">She</u> <u class="verb-highlight">studies</u> hard<span class="term-highlight">,</span> <span class="term-highlight">and</span> <u class="pronoun-highlight">she</u> <u class="verb-highlight">gets</u> good grades<span class="term-highlight">.</span></i></li>
                 <li><i><u class="pronoun-highlight">He</u> <u class="verb-highlight">wanted</u> to go<span class="term-highlight">,</span> <span class="term-highlight">but</span> <u class="pronoun-highlight">he</u> <u class="verb-highlight">was</u> too tired<span class="term-highlight">.</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>Setting off non-essential (non-restrictive) clauses or phrases:</b> (information that can be removed without changing the basic meaning of the sentence)
             <ul class="styled-list">
                 <li><i><u class="pronoun-highlight">My brother</u><span class="term-highlight">,</span> <span class="term-highlight">who lives in Canada</span><span class="term-highlight">,</span> <u class="verb-highlight">is visiting</u> next month<span class="term-highlight">.</span></i></li>
                 <li><i><u class="pronoun-highlight">Sarah</u><span class="term-highlight">,</span> <span class="term-highlight">a talented musician</span><span class="term-highlight">,</span> <u class="verb-highlight">performed</u> beautifully<span class="term-highlight">.</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>Separating adjectives when two or more equally modify the same noun:</b>
             <ul class="styled-list">
                 <li><i><u class="pronoun-highlight">It</u> <u class="verb-highlight">was</u> a long<span class="term-highlight">,</span> tiring journey<span class="term-highlight">.</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>After salutations and closings in letters:</b>
             <ul class="styled-list">
                 <li><i>Dear John<span class="term-highlight">,</span></i></li>
                 <li><i>Sincerely<span class="term-highlight">,</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>To separate day and year in dates:</b>
             <ul class="styled-list">
                 <li><i>December 25<span class="term-highlight">,</span> 2024</i></li>
@@ -21814,7 +21814,7 @@ grammar_topics_data = [
                 <li><i>Oh no<span class="term-highlight">!</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>For forceful commands or interjections:</b>
             <ul class="styled-list">
                 <li><i>Stop<span class="term-highlight">!</span></i></li>
@@ -21822,7 +21822,7 @@ grammar_topics_data = [
                 <li><i>Look out<span class="term-highlight">!</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>To add emphasis:</b>
             <ul class="styled-list">
                 <li><i><u class="pronoun-highlight">This</u> <u class="verb-highlight">is</u> truly amazing<span class="term-highlight">!</span></i></li>
@@ -22332,14 +22332,14 @@ grammar_topics_data = [
             </ul>
             <p>Punctuation (commas, periods, question marks) with quotation marks can vary between American and British English conventions.</p>
         </li>
-        
+
         <li><b>To indicate titles of short works:</b> (e.g., articles, chapters, poems, songs, short stories)
             <ul class="styled-list">
                 <li><i><u class="auxiliary-highlight">Have</u> <u class="pronoun-highlight">you</u> <u class="verb-highlight">read</u> <span class="term-highlight">"</span>The Raven<span class="term-highlight">"</span><span class="term-highlight">?</span></i> (poem)</li>
                 <li><i><u class="pronoun-highlight">My</u> favorite song <u class="verb-highlight">is</u> <span class="term-highlight">"</span>Bohemian Rhapsody<span class="term-highlight">."</span></i></li>
             </ul>
         </li>
-        
+
         <li><b>To indicate words used in a special or ironic sense (often called "scare quotes"):</b>
             <ul class="styled-list">
                 <li><i><u class="pronoun-highlight">He</u> <u class="verb-highlight">offered</u> his <span class="term-highlight">"</span>help<span class="term-highlight">,"</span> which only <u class="verb-highlight">made</u> things worse<span class="term-highlight">.</span></i></li>

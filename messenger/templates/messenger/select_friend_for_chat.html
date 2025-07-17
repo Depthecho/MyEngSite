@@ -1,11 +1,12 @@
 {% extends 'messenger/messenger_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block messenger_content %}
 <div class="create-chat-container">
-    <h2>Create New Chat</h2>
+    <h2>{% translate "Create New Chat" %}</h2>
     {% if friends_to_chat_with %}
-        <p>Select a friend to start a chat with:</p>
+        <p>{% translate "Select a friend to start a chat with:" %}</p>
         <ul class="friend-selection-list">
             {% for friend in friends_to_chat_with %}
                 <li>
@@ -17,8 +18,8 @@
             {% endfor %}
         </ul>
     {% else %}
-        <p>You don't have any friends to start a new chat with (or you are already chatting with all of them).</p>
-        <p>You can add new friends through your <a href="{% url 'profile' %}">profile</a>.</p>
+        <p>{% translate "You don't have any friends to start a new chat with (or you are already chatting with all of them)." %}</p>
+        <p>{% translate "You can add new friends through your" %} <a href="{% url 'profile' %}">{% translate "profile" %}</a>.</p>
     {% endif %}
 </div>
 {% endblock %}

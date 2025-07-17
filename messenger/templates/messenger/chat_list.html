@@ -1,15 +1,16 @@
 {% extends 'messenger/messenger_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block messenger_content %}
     <div class="main-messenger-view">
-        <h3>Welcome to Messenger!</h3>
-        <p>Select a dialogue on the left or start a new chat.</p>
+        <h3>{% translate "Welcome to Messenger!" %}</h3>
+        <p>{% translate "Select a dialogue on the left or start a new chat." %}</p>
 
         {% if friends_without_chat %}
         {% else %}
-            <p>It looks like you don't have any friends to start a new chat with right now.</p>
-            <p>You can add new friends through your <a href="{% url 'profile' %}">profile</a>.</p>
+            <p>{% translate "It looks like you don't have any friends to start a new chat with right now." %}</p>
+            <p>{% translate "You can add new friends through your" %} <a href="{% url 'profile' %}">{% translate "profile" %}</a>.</p>
         {% endif %}
     </div>
 {% endblock %}

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
@@ -25,7 +26,8 @@ def profile_page(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'profilepage/profile_page.html', {
         'profile': user_profile,
-        'achievements': user_profile.get_achievements()
+        'achievements': user_profile.get_achievements(),
+        'LANGUAGES': settings.LANGUAGES,
     })
 
 @login_required
@@ -39,7 +41,8 @@ def update_profile(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'profilepage/update_profile.html', {
         **handler.get_context(),
-        'profile': request.user.profile
+        'profile': request.user.profile,
+        'LANGUAGES': settings.LANGUAGES,
     })
 
 
@@ -63,6 +66,7 @@ def public_profile(request, username):
         'status': status,
         'incoming_request': incoming_request,
         'achievements': profile.get_achievements(),
+        'LANGUAGES': settings.LANGUAGES,
     }
 
     return render(request, 'profilepage/public_profile.html', context)
@@ -129,7 +133,8 @@ def friends_list(request):
     paginator = Paginator(friends, 20)
     return render(request, 'profilepage/friends_list.html', {
         'page_obj': paginator.get_page(request.GET.get('page')),
-        'friends_count': len(friends)
+        'friends_count': len(friends),
+        'LANGUAGES': settings.LANGUAGES,
     })
 
 
@@ -156,6 +161,7 @@ def followers_list(request):
     context = {
         'page_obj': page_obj,
         'followers_count': followers_count,
+        'LANGUAGES': settings.LANGUAGES,
     }
     return render(request, 'profilepage/followers_list.html', context)
 

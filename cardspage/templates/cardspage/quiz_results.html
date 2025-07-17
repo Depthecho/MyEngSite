@@ -1,6 +1,7 @@
 {% extends 'cardspage/cards_base.html' %}
 {% load static %}
 {% load quiz_tags %}
+{% load i18n %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -10,23 +11,23 @@
 
 {% block cards_content %}
 <div class="cards-content-wrapper">
-    <h1 class="quiz-results-title">Quiz Results</h1>
+    <h1 class="quiz-results-title">{% translate "Quiz Results" %}</h1>
 
     <div class="quiz-score">
-        You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%)
+        {% blocktrans %}You scored <strong>{{ correct }}/{{ total }}</strong> ({{ percentage }}%){% endblocktrans %}
     </div>
 
     {% for question_id, answer in answers.items %}
     <div class="quiz-result-item {% if answer.is_correct %}correct{% else %}incorrect{% endif %}">
-        <div class="quiz-result-question">Question {{ forloop.counter }}</div>
-        <div class="quiz-result-answer">Your answer: {{ answer.user_answer }}</div>
-        <div class="quiz-result-answer">Correct answer: {{ answer.correct_answer }}</div>
+        <div class="quiz-result-question">{% blocktrans %}Question {{ forloop.counter }}{% endblocktrans %}</div>
+        <div class="quiz-result-answer">{% blocktrans %}Your answer: {{ answer.user_answer }}{% endblocktrans %}</div>
+        <div class="quiz-result-answer">{% blocktrans %}Correct answer: {{ answer.correct_answer }}{% endblocktrans %}</div>
     </div>
     {% endfor %}
 
     <div class="quiz-results-buttons">
-        <a href="{% url 'quiz_start' %}" class="quiz-return-btn">Take Another Quiz</a>
-        <a href="{% url 'home' %}" class="quiz-home-btn">Return Home</a>
+        <a href="{% url 'quiz_start' %}" class="quiz-return-btn">{% translate "Take Another Quiz" %}</a>
+        <a href="{% url 'home' %}" class="quiz-home-btn">{% translate "Return Home" %}</a>
     </div>
 </div>
 {% endblock %}
@@ -43,10 +44,9 @@
             }, index * 100);
         });
 
-        // Кнопка "Наверх"
         const backToTopButton = document.createElement('button');
         backToTopButton.id = 'back-to-top';
-        backToTopButton.title = 'Go to top';
+        backToTopButton.title = '{% translate "Go to top" %}';
         backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
         document.body.appendChild(backToTopButton);
 

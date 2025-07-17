@@ -1,6 +1,7 @@
 {% extends 'cardspage/cards_base.html' %}
 {% load static %}
 {% load quiz_tags %}
+{% load i18n %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -11,42 +12,42 @@
 {% block cards_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
-        <a href="{% url 'home' %}">Home</a> &raquo;
-        <a href="{% url 'my_cards' %}">My Cards</a> &raquo;
-        <span>Quiz</span>
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <a href="{% url 'my_cards' %}">{% translate "My Cards" %}</a> &raquo;
+        <span>{% translate "Quiz" %}</span>
     </nav>
     <div class="cards-content-wrapper">
-            <h1 class="quiz-start-title">Start Quiz</h1>
+            <h1 class="quiz-start-title">{% translate "Start Quiz" %}</h1>
 
             <form method="get" action="{% url 'quiz' %}">
                 <div class="quiz-form-group">
-                    <label class="quiz-form-label">Translation Direction:</label>
+                    <label class="quiz-form-label">{% translate "Translation Direction:" %}</label>
                     <div class="quiz-radio-group">
                         <label class="quiz-radio-container">
                             <input type="radio" name="direction" value="en_to_native" checked>
                             <span class="radio-btn"></span>
-                            English → Native
+                            {% translate "English → Native" %}
                         </label>
                         <label class="quiz-radio-container">
                             <input type="radio" name="direction" value="native_to_en">
                             <span class="radio-btn"></span>
-                            Native → English
+                            {% translate "Native → English" %}
                         </label>
                     </div>
                 </div>
 
                 <div class="quiz-form-group">
-                    <label for="category" class="quiz-form-label">Category (optional):</label>
+                    <label for="category" class="quiz-form-label">{% translate "Category (optional):" %}</label>
                     <select name="category" id="category" class="quiz-select">
-                        <option value="">All Categories</option>
+                        <option value="">{% translate "All Categories" %}</option>
                         {% for category in categories %}
-                        <option value="{{ category }}">{{ category }} ({{ card_counts.by_category|get_item:category }} cards)</option>
+                        <option value="{{ category }}">{{ category }} ({% blocktrans count card_count=card_counts.by_category|get_item:category %}{{ card_count }} card{% plural %}{{ card_count }} cards{% endblocktrans %})</option>
                         {% endfor %}
                     </select>
                 </div>
 
                 <div class="quiz-form-group">
-                    <label class="quiz-form-label">Number of questions:</label>
+                    <label class="quiz-form-label">{% translate "Number of questions:" %}</label>
                     <div class="quiz-radio-group">
                         <label class="quiz-radio-container">
                             <input type="radio" name="limit" value="10" checked>
@@ -66,42 +67,41 @@
                         <label class="quiz-radio-container">
                             <input type="radio" name="limit" value="all">
                             <span class="radio-btn"></span>
-                            All available
+                            {% translate "All available" %}
                         </label>
                     </div>
                     <div class="quiz-count-info">
                         {% if card_counts.total > 0 %}
-                            You have {{ card_counts.total }} cards total
-                            {% if categories %}and {{ card_counts.by_category|length }} categories{% endif %}
+                            {% blocktrans count card_total=card_counts.total %}You have {{ card_total }} card total{% plural %}You have {{ card_total }} cards total{% endblocktrans %}
+                            {% if categories %}{% blocktrans count category_count=card_counts.by_category|length %} and {{ category_count }} category{% plural %} and {{ category_count }} categories{% endblocktrans %}{% endif %}
                         {% else %}
-                            You don't have any cards yet. Please add some first.
+                            {% translate "You don't have any cards yet. Please add some first." %}
                         {% endif %}
                     </div>
                 </div>
                 <div class="quiz-form-group">
-                    <label class="quiz-form-label">Quiz mode:</label>
+                    <label class="quiz-form-label">{% translate "Quiz mode:" %}</label>
                     <div class="quiz-radio-group">
                         <label class="quiz-radio-container">
                             <input type="radio" name="mode" value="multiple_choice" checked>
                             <span class="radio-btn"></span>
-                            Multiple choice
+                            {% translate "Multiple choice" %}
                         </label>
                         <label class="quiz-radio-container">
                             <input type="radio" name="mode" value="spelling">
                             <span class="radio-btn"></span>
-                            Spelling
+                            {% translate "Spelling" %}
                         </label>
                     </div>
                 </div>
 
                 <button type="submit" class="quiz-submit-btn" {% if card_counts.total == 0 %}disabled{% endif %}>
-                    Start Quiz
+                    {% translate "Start Quiz" %}
                 </button>
             </form>
         </div>
 </div>
 
-<!-- Индикатор загрузки -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>

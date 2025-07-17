@@ -1,5 +1,6 @@
 {% extends 'textspage/texts_base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}{{ text.title }} | ExdiEngSite{% endblock %}
 
@@ -12,8 +13,8 @@
 {% block texts_content %}
 <div class="main-container">
     <nav class="breadcrumbs">
-        <a href="{% url 'home' %}">Home</a> &raquo;
-        <a href="{% url 'texts_page' %}">Texts</a> &raquo;
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <a href="{% url 'texts_page' %}">{% translate "Texts" %}</a> &raquo;
         <span>{{ text.title|truncatechars:30 }}</span>
     </nav>
 
@@ -33,13 +34,13 @@
     {% if user.is_authenticated %}
         {% if text in user.completed_texts.all %}
             <span class="completed-badge">
-                <i class="fas fa-check-circle"></i> Completed
+                <i class="fas fa-check-circle"></i> {% translate "Completed" %}
             </span>
         {% else %}
             <form method="post" action="{% url 'complete_text' text.pk %}">
                 {% csrf_token %}
                 <button type="submit" class="btn-complete">
-                    <i class="fas fa-check"></i> Mark as read
+                    <i class="fas fa-check"></i> {% translate "Mark as read" %}
                 </button>
             </form>
         {% endif %}
@@ -48,7 +49,6 @@
     </div>
 </div>
 
-<!-- Loading indicator -->
 <div class="loading-overlay" id="loading-indicator">
     <div class="loading-spinner"></div>
 </div>
@@ -85,21 +85,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         popup.innerHTML = `
             <div class="popup-content">
-                <h4>Add to my cards</h4>
+                <h4>{% translate "Add to my cards" %}</h4>
                 <div class="form-group">
-                    <label>English Word:</label>
+                    <label>{% translate "English Word:" %}</label>
                     <input type="text" id="english-word" value="${word}" readonly>
                 </div>
                 <div class="form-group">
-                    <label>Translation:</label>
-                    <input type="text" id="word-translation" placeholder="Enter translation" required>
+                    <label>{% translate "Translation:" %}</label>
+                    <input type="text" id="word-translation" placeholder="{% translate "Enter translation" %}" required>
                 </div>
                 <div class="form-group">
-                    <label>Category (optional):</label>
-                    <input type="text" id="word-category" placeholder="Category">
+                    <label>{% translate "Category (optional):" %}</label>
+                    <input type="text" id="word-category" placeholder="{% translate "Category" %}">
                 </div>
-                <button id="save-card-btn">Save</button>
-                <button id="cancel-btn">Cancel</button>
+                <button id="save-card-btn">{% translate "Save" %}</button>
+                <button id="cancel-btn">{% translate "Cancel" %}</button>
             </div>
         `;
 
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const category = document.getElementById('word-category').value;
 
             if (!translation) {
-                alert('Please enter translation');
+                alert('{% translate "Please enter translation" %}');
                 return;
             }
 
@@ -138,14 +138,14 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.status === 'success') {
-                    showNotification(`"${data.word}" added to your cards!`);
+                    showNotification(`"${data.word}" {% translate "added to your cards!" %}`);
                     document.body.removeChild(popup);
                 } else {
-                    alert('Error: ' + (data.message || 'Something went wrong'));
+                    alert('{% translate "Error:" %} ' + (data.message || '{% translate "Something went wrong" %}'));
                 }
             })
             .catch(error => {
-                alert('Error: ' + error);
+                alert('{% translate "Error:" %} ' + error);
             });
         }
     }

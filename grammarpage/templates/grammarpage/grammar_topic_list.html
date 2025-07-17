@@ -1,5 +1,6 @@
 {% extends "grammarpage/grammar_base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
     {{ main_category.title }}
@@ -13,8 +14,8 @@
 {% block grammar_content %}
     <div class="grammar-detail-container">
         <nav class="breadcrumbs">
-            <a href="{% url 'home' %}">Home</a> &raquo;
-            <a href="{% url 'grammar_page' %}">Grammar</a> &raquo;
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a> &raquo;
             <span>{{ main_category.title }}</span>
         </nav>
 
@@ -67,6 +68,6 @@
             {% endfor %}
             </ul>
         </div>
-        <a href="{% url 'grammar_page' %}" class="back-to-grammar-btn">Back to Grammar Topics</a>
+        <a href="{% url 'grammar_page' %}" class="back-to-grammar-btn">{% translate "Back to Grammar Topics" %}</a>
     </div>
 {% endblock %}
