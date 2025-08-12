@@ -1,0 +1,213 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Joint Possession" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Joint Possession" %}</span>
+        </nav>
+
+        <h1>{% translate "Joint Possession" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Joint possession</span> occurs when two or more nouns own the same thing. The way you use apostrophes and the possessive <span class=\"code-highlight\">'s</span> changes depending on whether the ownership is shared or individual." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Shared Possession" %}</h3>
+        <p>
+            {% translate "When two or more nouns share a single item, ownership is indicated by adding <span class=\"code-highlight\">’s</span> to the last noun in the list only." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Possessive is added to the last noun." %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">Maria and Tom's</span> new car is red." %}</td>
+                        <td>{% translate "They own one car together." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Possessive is added to the last noun." %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">The students and the teacher's</span> project was a success." %}</td>
+                        <td>{% translate "They all worked on one project together." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Separate Possession" %}</h3>
+        <p>
+            {% translate "When two or more nouns possess their own separate items, ownership is indicated by adding <span class=\"code-highlight\">’s</span> to each noun individually." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Possessive is added to each noun." %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">Maria's and Tom's</span> cars are parked outside." %}</td>
+                        <td>{% translate "Maria owns one car, and Tom owns another." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Possessive is added to each noun." %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">The student's and the teacher's</span> books are on the table." %}</td>
+                        <td>{% translate "The student's book is on the table, and the teacher's book is also on the table." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

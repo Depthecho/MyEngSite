@@ -1,0 +1,373 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Future Perfect" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Future Perfect" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Future Perfect" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Future Perfect</span> tense describes an action that <span class=\"verb-highlight\">will be completed before a specific point or another action in the future.</span> It focuses on the completion of an action by a certain future time." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Formation of the Future Perfect" %}</h4>
+        <p>
+            {% translate "The Future Perfect is formed using the auxiliary verbs <span class=\"auxiliary-highlight\">\"will have\"</span> and the <span class=\"term-highlight\">past participle (V3)</span> of the main verb. \"Will have\" is used for all subjects." %}
+        </p>
+
+        <h5>{% translate "1. Affirmative Sentences" %}</h5>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Person / Number" %}</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Auxiliary 1" %} (<span class="code-highlight">will</span>)</th>
+                        <th>{% translate "Auxiliary 2" %} (<span class="code-highlight">have</span>)</th>
+                        <th>{% translate "Main Verb" %} ({% translate "Past Participle V3" %})</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="pronoun-highlight">I</span></td><td><span class="pronoun-highlight">I</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "I will have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "You will have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">He / She / It</span></td><td><span class="pronoun-highlight">He</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "He will have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">We</span></td><td><span class="pronoun-highlight">We</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "We will have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "You will have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">They</span></td><td><span class="pronoun-highlight">They</span></td><td><span class="auxiliary-highlight">will</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "They will have worked." %}</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Contractions:" %}</span> {% translate "In informal speech and writing, contractions are common:" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "I'll have worked" %}</span></li>
+                    <li><span class="code-highlight">{% translate "You'll have worked" %}</span></li>
+                    <li><span class="code-highlight">{% translate "He'll / She'll / It'll have worked" %}</span></li>
+                    <li><span class="code-highlight">{% translate "We'll have worked" %}</span></li>
+                    <li><span class="code-highlight">{% translate "They'll have worked" %}</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h5>{% translate "2. Negative Sentences" %}</h5>
+        <p>
+            {% translate "To form negative sentences, we place <span class=\"term-highlight\">'not'</span> between \"will\" and \"have\"." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Person / Number" %}</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Auxiliary 1" %} (<span class="code-highlight">will</span>) + not</th>
+                        <th>{% translate "Auxiliary 2" %} (<span class="code-highlight">have</span>)</th>
+                        <th>{% translate "Main Verb" %} ({% translate "Past Participle V3" %})</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="pronoun-highlight">I</span></td><td><span class="pronoun-highlight">I</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "I will not have worked." %}</span> / <span class="code-highlight">{% translate "I won't have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "You will not have worked." %}</span> / <span class="code-highlight">{% translate "You won't have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">He / She / It</span></td><td><span class="pronoun-highlight">He</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "He will not have worked." %}</span> / <span class="code-highlight">{% translate "He won't have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">We</span></td><td><span class="pronoun-highlight">We</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "We will not have worked." %}</span> / <span class="code-highlight">{% translate "We won't have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "You will not have worked." %}</span> / <span class="code-highlight">{% translate "You won't have worked." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">They</span></td><td><span class="pronoun-highlight">They</span></td><td><span class="auxiliary-highlight">will</span> not / won't</td><td><span class="auxiliary-highlight">have</span></td><td>worked</td><td><span class="code-highlight">{% translate "They will not have worked." %}</span> / <span class="code-highlight">{% translate "They won't have worked." %}</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "By tomorrow morning, I won't have slept more than three hours." %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They will not have finished the project by the deadline." %}</span></i></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h5>{% translate "3. Interrogative Sentences (Questions)" %}</h5>
+        <p>
+            {% translate "To form questions, we invert the subject and \"will\". \"Have\" and the past participle remain after the subject." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Auxiliary 1" %} (<span class="code-highlight">will</span>)</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Auxiliary 2" %} (<span class="code-highlight">have</span>)</th>
+                        <th>{% translate "Main Verb" %} ({% translate "Past Participle V3" %})</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">I</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will I have worked?" %}</span></td></tr>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">you</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will you have worked?" %}</span></td></tr>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">he</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will he have worked?" %}</span></td></tr>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">we</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will we have worked?" %}</span></td></tr>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">you</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will you have worked?" %}</span></td></tr>
+                    <tr><td><span class="auxiliary-highlight">Will</span></td><td><span class="pronoun-highlight">they</span></td><td><span class="auxiliary-highlight">have</span></td><td>worked?</td><td><span class="code-highlight">{% translate "Will they have worked?" %}</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Will you have finished your degree by next year?" %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "How many books will you have read by the end of the year?" %}</span></i> ({% translate "for Wh-questions" %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Uses of the Future Perfect" %}</h4>
+        <p>
+            {% translate "The Future Perfect is primarily used for:" %}
+        </p>
+        <ol class="styled-list">
+            <li><span class="term-highlight">{% translate "Actions that Will Be Completed Before a Specific Time or Another Action in the Future:" %}</span> {% translate "This is its main use. It highlights the completion of one action before a future deadline or another future event." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "By next year, I" %} <span class="verb-highlight">will have finished</span> {% translate "my degree." %}</span></i> ({% translate "The degree will be finished before next year arrives." %})</li>
+                    <li><i><span class="code-highlight">{% translate "When you arrive, I" %} <span class="verb-highlight">will have cooked</span> {% translate "dinner." %}</span></i> ({% translate "The cooking will be completed before your arrival." %})</li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">will have signed</span> {% translate "the contract by Friday." %}</span></i> ({% translate "The signing will be done by Friday." %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "To Express an Assumption or Opinion about a Past Action from a Future Perspective:" %}</span> {% translate "Less common, but it can be used to guess about something that has probably already happened." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">will have arrived</span> {% translate "home by now." %}</span></i> ({% translate "Assuming he has already arrived, looking from the present moment." %})</li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">will have heard</span> {% translate "the news." %}</span></i> ({% translate "Assuming they have already received the news." %})</li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Time Expressions Used with the Future Perfect" %}</h4>
+        <p>
+            {% translate "Common time expressions often used with the Future Perfect include:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="code-highlight">by</span> ({% translate "by next week, by 2030, by then, by the time..." %})</li>
+            <li><span class="code-highlight">before</span></li>
+            <li><span class="code-highlight">when</span> ({% translate "when something else happens" %})</li>
+            <li><span class="code-highlight">until</span> ({% translate "used with negative sentences" %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Future Perfect vs. Other Future Tenses" %}</h4>
+        <p>
+            {% translate "The main difference lies in the emphasis:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Future Perfect:" %}</span> {% translate "Focuses on the <b>completion of an action before a specific future point.</b>" %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "By 5 PM, I" %} <span class="verb-highlight">will have finished</span> {% translate "my report." %}</span></i> ({% translate "The report will be done by 5 PM." %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Simple (will):" %}</span> {% translate "Describes a single action or a prediction in the future." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">will finish</span> {% translate "my report at 5 PM." %}</span></i> ({% translate "The action itself happens at 5 PM." %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Continuous:" %}</span> {% translate "Describes an action that will be <b>in progress</b> at a specific future point." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "At 4 PM, I" %} <span class="verb-highlight">will be finishing</span> {% translate "my report." %}</span></i> ({% translate "I'll be in the process of finishing." %})</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "The Future Perfect is crucial for showing sequence and completion in future timelines." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

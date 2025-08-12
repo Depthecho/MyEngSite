@@ -1,0 +1,194 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Using 'A' vs. 'An'" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "The Indefinite Articles 'A' and 'An'" %}</span> &raquo;
+            <span>{% translate "Using 'A' vs. 'An'" %}</span>
+        </nav>
+
+        <h1>{% translate "Using 'A' vs. 'An'" %}</h1>
+        <p>
+            {% translate "The choice between the indefinite articles <span class=\"code-highlight\">a</span> and <span class=\"code-highlight\">an</span> is determined by the sound of the word that follows the article, not the letter it starts with. This is a simple but crucial rule to get right for natural-sounding English." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Rule: Based on Sound, not Spelling" %}</h3>
+        <p>
+            {% translate "Use <span class=\"term-highlight\">a</span> when the next word starts with a consonant sound. Use <span class=\"term-highlight\">an</span> when the next word starts with a vowel sound." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Article" %}</th>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "a" %}</span></td>
+                        <td>{% translate "Use before a consonant sound." %}</td>
+                        <td>{% translate "a book, a cat, a dog, a university (starts with a 'y' sound), a European (starts with a 'y' sound)." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "an" %}</span></td>
+                        <td>{% translate "Use before a vowel sound." %}</td>
+                        <td>{% translate "an apple, an elephant, an hour (the 'h' is silent), an honest person (the 'h' is silent)." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Exceptions and Tricky Words" %}</h3>
+        <p>
+            {% translate "Some words can be confusing because their spelling doesn't match their pronunciation. Remember to listen to the sound of the first syllable." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "Words starting with 'u' or 'eu':" %}</span><br>{% translate "If they sound like 'yoo,' use <span class=\"code-highlight\">a</span>. If they sound like 'uh' or 'ew,' use <span class=\"code-highlight\">an</span>." %}<br><strong>{% translate "Examples:" %}</strong> <span class=\"code-highlight\">{% translate "a" %}</span> university, <span class=\"code-highlight\">{% translate "a" %}</span> unique idea. vs. <span class=\"code-highlight\">{% translate "an" %}</span> umbrella, <span class=\"code-highlight\">{% translate "an" %}</span> unwritten rule.</li>
+            <li><span class=\"example-highlight\">{% translate "Words starting with 'h':" %}</span><br>{% translate "If the 'h' is silent, use <span class=\"code-highlight\">an</span>. If the 'h' is pronounced, use <span class=\"code-highlight\">a</span>." %}<br><strong>{% translate "Examples:" %}</strong> <span class=\"code-highlight\">{% translate "an" %}</span> hour, <span class=\"code-highlight\">{% translate "an" %}</span> honor. vs. <span class=\"code-highlight\">{% translate "a" %}</span> horse, <span class=\"code-highlight\">{% translate "a" %}</span> happy day.</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Countable/Uncountable Nouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Countable/Uncountable Nouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Countable/Uncountable Nouns" %}</h1>
+        <p>
+            {% translate "Nouns can be divided into two main categories based on whether they can be counted. This distinction affects the use of articles, determiners, and verb agreement." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Countable Nouns" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Countable nouns</span> (or count nouns) are for things we can count using numbers. They have both a singular and a plural form." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                        <th>{% translate "Sentence Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "a book" %}</td>
+                        <td>{% translate "two books" %}</td>
+                        <td>{% translate "I have <span class=\"code-highlight\">a book</span>. I have <span class=\"code-highlight\">two books</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "an apple" %}</td>
+                        <td>{% translate "three apples" %}</td>
+                        <td>{% translate "She ate <span class=\"code-highlight\">an apple</span>. She ate <span class=\"code-highlight\">three apples</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "a car" %}</td>
+                        <td>{% translate "many cars" %}</td>
+                        <td>{% translate "We bought <span class=\"code-highlight\">a car</span>. We have <span class=\"code-highlight\">many cars</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Key Rules for Countable Nouns" %}</h4>
+        <ul class="styled-list">
+            <li>{% translate "They can be used with numbers:" %} <span class="code-highlight">one apple, five apples</span>.</li>
+            <li>{% translate "They can be used with indefinite articles <span class=\"code-highlight\">a/an</span> in the singular form:" %} <span class="code-highlight">a dog, an elephant</span>.</li>
+            <li>{% translate "They can be used with quantifiers like <span class=\"code-highlight\">many, a few, several</span>." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Uncountable Nouns" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Uncountable nouns</span> (or mass nouns) are for things that we cannot count. They are typically used in the singular form and do not have a plural." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Category" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Sentence Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Liquids" %}</td>
+                        <td>{% translate "water, milk, oil" %}</td>
+                        <td>{% translate "I need some <span class=\"code-highlight\">water</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Materials" %}</td>
+                        <td>{% translate "wood, paper, gold" %}</td>
+                        <td>{% translate "The table is made of <span class=\"code-highlight\">wood</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Abstract Ideas" %}</td>
+                        <td>{% translate "information, advice, happiness" %}</td>
+                        <td>{% translate "That is useful <span class=\"code-highlight\">information</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Fields of Study" %}</td>
+                        <td>{% translate "physics, history, economics" %}</td>
+                        <td>{% translate "I am studying <span class=\"code-highlight\">economics</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Key Rules for Uncountable Nouns" %}</h4>
+        <ul class="styled-list">
+            <li>{% translate "They cannot be used with numbers directly." %}</li>
+            <li>{% translate "They do not take the indefinite articles <span class=\"code-highlight\">a/an</span>." %}</li>
+            <li>{% translate "They are used with quantifiers like <span class=\"code-highlight\">much, a little, some</span>." %}</li>
+            <li>{% translate "To count them, we use phrases like <span class=\"code-highlight\">a piece of, a glass of, a loaf of</span>:" %} <span class="code-highlight">a glass of water, a slice of bread</span>.</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns that can be both" %}</h3>
+        <p>
+            {% translate "Some nouns can be either countable or uncountable, depending on the context and meaning." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Countable:" %}</span> {% translate "There are <span class=\"code-highlight\">two hairs</span> on the table." %}</li>
+            <li><span class="example-highlight">{% translate "Uncountable:" %}</span> {% translate "She has long <span class=\"code-highlight\">hair</span>." %}</li>
+        </ul>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Countable:" %}</span> {% translate "I want <span class=\"code-highlight\">a coffee</span> (a cup of coffee)." %}</li>
+            <li><span class="example-highlight">{% translate "Uncountable:" %}</span> {% translate "I love <span class=\"code-highlight\">coffee</span> (the drink in general)." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

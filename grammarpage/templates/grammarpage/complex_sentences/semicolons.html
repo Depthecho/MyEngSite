@@ -1,0 +1,240 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Using Semicolons" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .semicolon-highlight {
+            color: #4cc9f0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Using Semicolons" %}</span>
+        </nav>
+
+        <h1>{% translate "The Power of Semicolons" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">semicolon (;)</span> is a powerful punctuation mark that creates sophisticated connections between ideas. It's stronger than a comma but weaker than a period." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Primary Uses of Semicolons" %}</h3>
+
+        <div class="usage-card">
+            <h4>{% translate "1. Connecting Related Independent Clauses" %}</h4>
+            <p>{% translate "Use a semicolon between two independent clauses that are closely related in meaning, without a coordinating conjunction:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The rain stopped<span class=\"semicolon-highlight\">;</span> the sun came out." %}</span></li>
+                <li><span class="code-highlight">{% translate "I have a big test tomorrow<span class=\"semicolon-highlight\">;</span> I can't go out tonight." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h4>{% translate "2. With Conjunctive Adverbs" %}</h4>
+            <p>{% translate "Use semicolons before conjunctive adverbs (however, therefore, moreover, etc.) when they connect two independent clauses:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "I wanted to buy the car<span class=\"semicolon-highlight\">;</span> however, it was too expensive." %}</span></li>
+                <li><span class="code-highlight">{% translate "She practiced daily<span class=\"semicolon-highlight\">;</span> consequently, she improved rapidly." %}</span></li>
+            </ul>
+            <p>{% translate "Common conjunctive adverbs include: however, therefore, moreover, nevertheless, consequently, furthermore, otherwise." %}</p>
+        </div>
+
+        <div class="usage-card">
+            <h4>{% translate "3. In Complex Lists" %}</h4>
+            <p>{% translate "Use semicolons to separate items in a list when the items themselves contain commas:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The conference had attendees from Paris, France<span class=\"semicolon-highlight\">;</span> Rome, Italy<span class=\"semicolon-highlight\">;</span> and Berlin, Germany." %}</span></li>
+                <li><span class="code-highlight">{% translate "I need to buy apples, which are my favorite fruit<span class=\"semicolon-highlight\">;</span> bread, both white and whole wheat<span class=\"semicolon-highlight\"></span>" %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Semicolons vs. Other Punctuation" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Semicolon vs. Period:</span> Use a semicolon when clauses are closely related" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "She loves reading. She visits the library weekly." %}</span> ({% translate "separate statements" %})</li>
+                    <li><span class="code-highlight">{% translate "She loves reading<span class=\"semicolon-highlight\">;</span> she visits the library weekly." %}</span> ({% translate "connected ideas" %})</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Semicolon vs. Comma:</span> Use semicolons when clauses contain commas" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "If it rains, we'll stay inside, and if it's sunny, we'll go out." %}</span> ({% translate "confusing with commas" %})</li>
+                    <li><span class="code-highlight">{% translate "If it rains, we'll stay inside<span class=\"semicolon-highlight\">;</span> if it's sunny, we'll go out." %}</span> ({% translate "clearer with semicolon" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Using with dependent clauses:</span> Semicolons only join independent clauses" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "Although it was late<span class=\"semicolon-highlight\">;</span> we decided to stay." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "Although it was late, we decided to stay." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Overusing semicolons:</span> They should be used sparingly for special effect" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Overused:" %}</span> {% translate "I woke up<span class=\"semicolon-highlight\">;</span> I brushed my teeth<span class=\"semicolon-highlight\">;</span> I had breakfast<span class=\"semicolon-highlight\">;</span> I went to work." %}</li>
+                    <li><span class="code-highlight">{% translate "Better:" %}</span> {% translate "I woke up, brushed my teeth, had breakfast, and went to work." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Stylistic Tips" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Use semicolons to create balance between two contrasting ideas:" %}
+                <p class="code-highlight">{% translate "War is destructive<span class=\"semicolon-highlight\">;</span> peace is constructive." %}</p>
+            </li>
+            <li>{% translate "Employ semicolons to show cause and effect:" %}
+                <p class="code-highlight">{% translate "The roads were icy<span class=\"semicolon-highlight\">;</span> several accidents were reported." %}</p>
+            </li>
+            <li>{% translate "Use them to build rhythm in your writing, creating a pause stronger than a comma but weaker than a period." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

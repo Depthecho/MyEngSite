@@ -1,0 +1,194 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Introduction to Articles" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "Introduction to Articles" %}</span>
+        </nav>
+
+        <h1>{% translate "Introduction to Articles" %}</h1>
+        <p>
+            {% translate "An <span class=\"term-highlight\">article</span> is a word that is used with a noun to specify its grammatical definiteness, whether it is specific or non-specific. English has three articles: <span class=\"code-highlight\">a, an</span> (indefinite articles), and <span class=\"code-highlight\">the</span> (the definite article). In some cases, no article is used (known as the zero article)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "What Articles Do" %}</h3>
+        <p>
+            {% translate "Articles are essential because they tell the listener or reader whether the noun being referred to is a specific item or a general one." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Indefinite Article (a/an):" %}</span><br>{% translate "Refers to a non-specific or general noun. It's used when we talk about something for the first time." %}<br><span class="code-highlight">{% translate "I saw a dog." %}</span> ({% translate "This could be any dog." %})</li>
+            <li><span class="example-highlight">{% translate "Definite Article (the):" %}</span><br>{% translate "Refers to a specific or already known noun. It's used when we are talking about a specific item that both the speaker and listener know." %}<br><span class="code-highlight">{% translate "I saw the dog." %}</span> ({% translate "We both know which dog I'm talking about." %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Main Types of Articles" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Article Type" %}</th>
+                        <th>{% translate "Forms" %}</th>
+                        <th>{% translate "Usage" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Indefinite" %}</td>
+                        <td><span class=\"code-highlight\">{% translate "a / an" %}</span></td>
+                        <td>{% translate "Used with singular, countable nouns when the noun is general or mentioned for the first time." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Definite" %}</td>
+                        <td><span class=\"code-highlight\">{% translate "the" %}</span></td>
+                        <td>{% translate "Used with any noun (singular, plural, countable, uncountable) when the noun is specific or has been previously mentioned." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Zero Article" %}</td>
+                        <td><span class=\"code-highlight\">{% translate "(no article)" %}</span></td>
+                        <td>{% translate "Used with plural countable nouns and uncountable nouns when speaking generally, or with proper nouns like names of countries, people, and cities." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Definition and Structure of Compound Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Definition and Structure of Compound Sentences" %}</span>
+        </nav>
+
+        <h1>{% translate "Definition and Structure of Compound Sentences" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">compound sentence</span> consists of two or more independent clauses joined together. Each independent clause can stand alone as a complete sentence." %}
+        </p>
+        <p>
+            {% translate "Example: <span class=\"code-highlight\">I love pizza, and she loves pasta.</span>" %}
+            <br>{% translate "In this example, both 'I love pizza' and 'she loves pasta' are independent clauses." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,386 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.grammar-detail-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 5px rgba(255, 255, 255, 0.05);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.grammar-detail-container::before {
+    content: '';
+    position: absolute;
+    top: -2px; bottom: -2px; left: -2px; right: -2px;
+    background: linear-gradient(135deg, #ffda47 0%, #2575fc 100%);
+    z-index: -1;
+    border-radius: 22px;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.grammar-detail-container:hover::before {
+    opacity: 0.2;
+}
+
+.grammar-detail-container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.8rem;
+    color: #ffda47;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.grammar-subtopic-detail-content {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    opacity: 0.9;
+    line-height: 1.7;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.grammar-subtopic-detail-content p {
+    margin-bottom: 1em;
+}
+
+.grammar-subtopic-detail-content ul, .grammar-subtopic-detail-content ol {
+    margin-left: 20px;
+    margin-bottom: 1em;
+}
+
+.grammar-subtopic-detail-content li {
+    margin-bottom: 0.5em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.grammar-subtopic-detail-content strong {
+    color: #ffda47;
+}
+
+.grammar-subtopic-detail-content h3 {
+    color: #ffda47;
+    font-size: 2.2rem;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.grammar-subtopic-detail-content h4 {
+    color: #fff;
+    font-size: 1.8rem;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+}
+
+.grammar-subtopic-detail-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.grammar-subtopic-detail-content th,
+.grammar-subtopic-detail-content td {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 12px 15px;
+    text-align: left;
+    color: #f0f0f0;
+}
+
+.grammar-subtopic-detail-content th {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffda47;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.95em;
+}
+
+.grammar-subtopic-detail-content tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.grammar-subtopic-detail-content tr:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.navigation-links {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.back-to-list-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffda47;
+    color: #333;
+    padding: 16px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-list-btn i {
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+.back-to-list-btn:hover {
+    background-color: #e6b800;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .grammar-detail-container {
+        margin: 30px 15px;
+        padding: 25px;
+        border-radius: 15px;
+    }
+    .grammar-detail-container h1 {
+        font-size: 2.8rem;
+        letter-spacing: 1px;
+    }
+    .grammar-subtopic-detail-content {
+        font-size: 1.05rem;
+        margin-bottom: 30px;
+    }
+    .back-to-list-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+    .grammar-subtopic-detail-content table {
+        font-size: 0.9em;
+        padding: 8px 10px;
+    }
+}
+
+.grammar-table-container {
+    margin: 30px 0;
+    overflow-x: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.grammar-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: rgba(20, 20, 40, 0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.grammar-table th {
+    background-color: #ffda47;
+    color: #3a0ca3;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 1px;
+    padding: 14px 20px;
+    text-align: center;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.grammar-table td {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.95em;
+}
+
+.grammar-table tr:last-child td {
+    border-bottom: none;
+}
+
+.grammar-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.grammar-table tr:hover {
+    background-color: rgba(255, 218, 71, 0.1);
+}
+
+/* Стили для выделения элементов */
+.noun-highlight {
+    color: #ffda47;
+    font-weight: 600;
+    padding: 2px 4px;
+    border-radius: 4px;
+    background: rgba(255, 218, 71, 0.1);
+}
+
+.term-highlight {
+    color: #4cc9f0;
+    font-weight: 500;
+}
+
+.usage-note {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* Стили для разделителей */
+.grammar-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    margin: 40px 0;
+    border: none;
+}
+
+/* Стили для списков */
+.styled-list {
+    padding-left: 25px;
+    margin: 20px 0;
+}
+
+.styled-list li {
+    margin-bottom: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    line-height: 1.6;
+}
+
+.styled-list li::before {
+    content: '•';
+    color: #ffda47;
+    font-size: 1.2em;
+    position: absolute;
+    left: -20px;
+    top: 2px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 768px) {
+    .grammar-table {
+        font-size: 0.9em;
+    }
+
+    .grammar-table th,
+    .grammar-table td {
+        padding: 10px 12px;
+    }
+
+    .grammar-table-container {
+        margin: 20px -15px;
+        width: calc(100% + 30px);
+    }
+}
+
+.pronoun-highlight {
+    color: #ff9e7d;
+    font-weight: 600;
+}
+
+.ending-highlight {
+    color: #4cc9f0;
+    font-weight: 600;
+}
+
+.auxiliary-highlight {
+    color: #83e8de;
+    font-weight: 600;
+}
+
+.verb-highlight {
+    color: #ffda47;
+    font-weight: 600;
+}
+
+.code-highlight {
+    font-family: 'Courier New', monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 4px;
+    border-radius: 4px;
+    color: #83e8de;
+}
+
+.example-highlight {
+    color: #4cc9f0;
+    font-weight: 500;
+}
+
+.term-highlight {
+    color: #ff9e7d;
+    font-weight: 600;
+}
+
+.grammar-divider {
+    border: 1px solid #444;
+    margin: 20px 0;
+}
+
+.grammar-table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+.grammar-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.grammar-table th, .grammar-table td {
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
+}
+
+.grammar-table th {
+    background: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+}
+
+.styled-list {
+    padding-left: 20px;
+    list-style-type: none;
+}
+
+.styled-list li {
+    margin: 8px 0;
+    position: relative;
+}
+
+.styled-list li:before {
+    content: "•";
+    color: #4cc9f0;
+    font-weight: bold;
+}

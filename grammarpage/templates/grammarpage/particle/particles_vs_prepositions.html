@@ -1,0 +1,320 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Particles vs. Prepositions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .particle-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .preposition-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "Particles vs. Prepositions" %}</span>
+        </nav>
+
+        <h1>{% translate "Particles vs. Prepositions: Key Differences" %}</h1>
+        <p>
+            {% translate "Many words in English can function as both particles and prepositions, creating confusion for learners. Understanding their distinct roles is crucial for mastering phrasal verbs and sentence structure." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "1. Particles in English" %}</h2>
+            <p>{% translate "Particles are small words that combine with verbs to create phrasal verbs with new meanings. They don't take objects and are inseparable parts of the verb phrase." %}</p>
+
+            <div class="structure-diagram">
+                <span class="particle-highlight">[Verb] + [Particle]</span> = New meaning
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Modify or complete the meaning of the main verb" %}</li>
+                <li>{% translate "Don't have their own objects (though the verb may have one)" %}</li>
+                <li>{% translate "Often appear after the verb's object in transitive phrasal verbs" %}</li>
+                <li>{% translate "Can be moved after the object in separable phrasal verbs" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She <span class=\"particle-highlight\">turned down</span> the offer." %}</span> (rejected)</li>
+                <li><span class="code-highlight">{% translate "Please <span class=\"particle-highlight\">turn</span> the music <span class=\"particle-highlight\">down</span>." %}</span> (reduce volume)</li>
+                <li><span class="code-highlight">{% translate "He <span class=\"particle-highlight\">ran into</span> an old friend." %}</span> (met by chance)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "2. Prepositions in English" %}</h2>
+            <p>{% translate "Prepositions show relationships between nouns/pronouns and other words in a sentence. They always have objects and indicate location, time, direction, etc." %}</p>
+
+            <div class="structure-diagram">
+                <span class="preposition-highlight">[Preposition] + [Object]</span> → Relationship
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always followed by a noun/pronoun (the prepositional object)" %}</li>
+                <li>{% translate "Form prepositional phrases that function as adjectives or adverbs" %}</li>
+                <li>{% translate "Cannot be separated from their objects" %}</li>
+                <li>{% translate "Convey clear spatial, temporal, or logical relationships" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She walked <span class=\"preposition-highlight\">down</span> the stairs." %}</span></li>
+                <li><span class="code-highlight">{% translate "The book is <span class=\"preposition-highlight\">on</span> the table." %}</span></li>
+                <li><span class="code-highlight">{% translate "We'll meet <span class=\"preposition-highlight\">after</span> lunch." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Comparative Analysis" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Feature" %}</th>
+                    <th>{% translate "Particle" %}</th>
+                    <th>{% translate "Preposition" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Relationship to Verb" %}</td>
+                    <td>{% translate "Forms phrasal verb with new meaning" %}</td>
+                    <td>{% translate "Independent of verb" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Object Required" %}</td>
+                    <td>{% translate "No" %}</td>
+                    <td>{% translate "Yes" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Position Flexibility" %}</td>
+                    <td>{% translate "Can often move after object" %}</td>
+                    <td>{% translate "Fixed before object" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Stress in Speech" %}</td>
+                    <td>{% translate "Usually stressed" %}</td>
+                    <td>{% translate "Usually unstressed" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Example" %}</td>
+                    <td><span class="code-highlight">{% translate "Turn <span class=\"particle-highlight\">off</span> the light" %}</span></td>
+                    <td><span class="code-highlight">{% translate "Sit <span class=\"preposition-highlight\">on</span> the chair" %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="structure-card">
+            <h2>{% translate "3. Words That Can Be Both" %}</h2>
+            <p>{% translate "Many common words function as both particles and prepositions. Context determines their role in each sentence." %}</p>
+
+            <h3>{% translate "Common Dual-Function Words:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="term-highlight">up</span>, <span class="term-highlight">down</span>, <span class="term-highlight">in</span>, <span class="term-highlight">out</span></li>
+                <li><span class="term-highlight">on</span>, <span class="term-highlight">off</span>, <span class="term-highlight">over</span>, <span class="term-highlight">under</span></li>
+                <li><span class="term-highlight">through</span>, <span class="term-highlight">around</span>, <span class="term-highlight">by</span>, <span class="term-highlight">along</span></li>
+            </ul>
+
+            <h3>{% translate "Contrastive Examples:" %}</h3>
+            <div class="structure-diagram">
+                <span class="particle-highlight">[Particle]</span> vs <span class="preposition-highlight">[Preposition]</span> usage
+            </div>
+            <ul class="styled-list">
+                <li>{% translate "Particle: <span class=\"code-highlight\">She <span class=\"particle-highlight\">looked up</span> the word.</span> (researched)" %}</li>
+                <li>{% translate "Preposition: <span class=\"code-highlight\">She looked <span class=\"preposition-highlight\">up</span> the chimney.</span> (direction)" %}</li>
+                <li>{% translate "Particle: <span class=\"code-highlight\">He <span class=\"particle-highlight\">took off</span> his jacket.</span> (removed)" %}</li>
+                <li>{% translate "Preposition: <span class=\"code-highlight\">The plane took off <span class=\"preposition-highlight\">from</span> the runway.</span>" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Practical Identification Tips" %}</h2>
+        <div class="structure-card">
+            <h3>{% translate "Test 1: Object Movement" %}</h3>
+            <p>{% translate "If the word can move after a pronoun object, it's a particle:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Particle:</span> Turn <span class=\"code-highlight\">off</span> the light → Turn it <span class=\"code-highlight\">off</span>" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Preposition:</span> Walk <span class=\"code-highlight\">up</span> the hill → *Walk it <span class=\"code-highlight\">up</span> (incorrect)" %}</li>
+            </ul>
+
+            <h3>{% translate "Test 2: Question Formation" %}</h3>
+            <p>{% translate "Prepositional objects can become question subjects; particle objects cannot:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Preposition:</span> She sat <span class=\"code-highlight\">on</span> the chair → What did she sit <span class=\"code-highlight\">on</span>?" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Particle:</span> She <span class=\"code-highlight\">turned on</span> the light → *What did she turn <span class=\"code-highlight\">on</span>? (ambiguous)" %}</li>
+            </ul>
+
+            <h3>{% translate "Test 3: Stress Pattern" %}</h3>
+            <p>{% translate "Particles are typically stressed in speech, while prepositions are unstressed:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Particle:</span> Please <span class=\"example-highlight\">PICK</span> <span class=\"particle-highlight\">UP</span> the package." %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Preposition:</span> The cat jumped <span class=\"preposition-highlight\">up</span> the <span class=\"example-highlight\">TREE</span>." %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

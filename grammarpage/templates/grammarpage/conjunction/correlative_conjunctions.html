@@ -1,0 +1,337 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Correlative Conjunctions: The Paired Connectors" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .correlative-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .conjunction-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ff9e7d;
+            margin: 15px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .parallel-structure {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'conjunction_page' %}">{% translate "Conjunctions" %}</a></span> &raquo;
+            <span>{% translate "Correlative Conjunctions" %}</span>
+        </nav>
+
+        <h1>{% translate "Correlative Conjunctions: The Power of Pairs" %}</h1>
+        <p>
+            {% translate "Correlative conjunctions are powerful grammatical tools that work in pairs to connect equivalent elements in a sentence, creating balanced and parallel structures that enhance clarity and rhythm." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="conjunction-card">
+            <h2>{% translate "Essential Correlative Conjunction Pairs" %}</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Pair" %}</th>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="correlative-highlight">both...and</span></td>
+                        <td>{% translate "Connects two positive alternatives" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Both</span> my brother <span class=\"correlative-highlight\">and</span> my sister attended." %}</span><br>
+                            <span class="code-highlight">{% translate "She is <span class=\"correlative-highlight\">both</span> intelligent <span class=\"correlative-highlight\">and</span> hardworking." %}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="correlative-highlight">either...or</span></td>
+                        <td>{% translate "Presents two alternatives (positive)" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "You can have <span class=\"correlative-highlight\">either</span> tea <span class=\"correlative-highlight\">or</span> coffee." %}</span><br>
+                            <span class="code-highlight">{% translate "We'll go <span class=\"correlative-highlight\">either</span> today <span class=\"correlative-highlight\">or</span> tomorrow." %}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="correlative-highlight">neither...nor</span></td>
+                        <td>{% translate "Presents two negative alternatives" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "I like <span class=\"correlative-highlight\">neither</span> coffee <span class=\"correlative-highlight\">nor</span> tea." %}</span><br>
+                            <span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Neither</span> the teacher <span class=\"correlative-highlight\">nor</span> the students knew." %}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="correlative-highlight">not only...but also</span></td>
+                        <td>{% translate "Emphasizes two qualities/actions" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "She is <span class=\"correlative-highlight\">not only</span> talented <span class=\"correlative-highlight\">but also</span> dedicated." %}</span><br>
+                            <span class="code-highlight">{% translate "He <span class=\"correlative-highlight\">not only</span> sings <span class=\"correlative-highlight\">but also</span> writes songs." %}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="correlative-highlight">whether...or</span></td>
+                        <td>{% translate "Indicates alternatives in a choice" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "I don't know <span class=\"correlative-highlight\">whether</span> to laugh <span class=\"correlative-highlight\">or</span> cry." %}</span><br>
+                            <span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Whether</span> you go <span class=\"correlative-highlight\">or</span> stay, please decide soon." %}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class="correlative-highlight">as...as</span></td>
+                        <td>{% translate "Makes comparisons between equals" %}</td>
+                        <td>
+                            <span class="code-highlight">{% translate "She is <span class=\"correlative-highlight\">as</span> tall <span class=\"correlative-highlight\">as</span> her brother." %}</span><br>
+                            <span class="code-highlight">{% translate "This test is <span class=\"correlative-highlight\">as</span> difficult <span class=\"correlative-highlight\">as</span> the last one." %}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="conjunction-card">
+            <h2>{% translate "The Golden Rule: Parallel Structure" %}</h2>
+
+            <div class="parallel-structure">
+                <p>{% translate "Elements connected by correlative conjunctions must be <span class=\"term-highlight\">parallel</span> in grammatical form:" %}</p>
+                <p>{% translate "Noun + Noun, Verb + Verb, Adjective + Adjective, etc." %}</p>
+            </div>
+
+            <h3>{% translate "Examples of Parallel Structure" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Correct (Parallel)" %}</th>
+                        <th>{% translate "Incorrect (Non-Parallel)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "She <span class=\"correlative-highlight\">not only</span> sings <span class=\"correlative-highlight\">but also</span> dances." %}</span><br>(verb + verb)</td>
+                        <td><span class="code-highlight">{% translate "She <span class=\"correlative-highlight\">not only</span> sings <span class=\"correlative-highlight\">but also</span> a dancer." %}</span><br>(verb + noun)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "I want <span class=\"correlative-highlight\">either</span> to stay <span class=\"correlative-highlight\">or</span> to leave." %}</span><br>(infinitive + infinitive)</td>
+                        <td><span class="code-highlight">{% translate "I want <span class=\"correlative-highlight\">either</span> to stay <span class=\"correlative-highlight\">or</span> leaving." %}</span><br>(infinitive + gerund)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "He is <span class=\"correlative-highlight\">both</span> kind <span class=\"correlative-highlight\">and</span> generous." %}</span><br>(adjective + adjective)</td>
+                        <td><span class="code-highlight">{% translate "He is <span class=\"correlative-highlight\">both</span> kind <span class=\"correlative-highlight\">and</span> has generosity." %}</span><br>(adjective + verb phrase)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="usage-note">
+                <h4>{% translate "Pro Tip:" %}</h4>
+                <p>{% translate "When using 'not only...but also', the element after 'not only' determines what should follow 'but also'. Keep them in the same grammatical form." %}</p>
+            </div>
+        </div>
+
+        <div class="conjunction-card">
+            <h2>{% translate "Special Grammar Rules" %}</h2>
+
+            <h3>{% translate "1. Subject-Verb Agreement" %}</h3>
+            <p>{% translate "With 'either...or' and 'neither...nor', the verb agrees with the subject closer to it:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Neither</span> the teacher <span class=\"correlative-highlight\">nor</span> the students <strong>were</strong> there." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Neither</span> the students <span class=\"correlative-highlight\">nor</span> the teacher <strong>was</strong> there." %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Positioning for Clarity" %}</h3>
+            <p>{% translate "Place correlative conjunctions immediately before the words/phrases being connected:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She <span class=\"correlative-highlight\">not only</span> speaks French <span class=\"correlative-highlight\">but also</span> Spanish." %}</span> (Correct)</li>
+                <li><span class="code-highlight">{% translate "She speaks <span class=\"correlative-highlight\">not only</span> French <span class=\"correlative-highlight\">but also</span> Spanish." %}</span> (Better)</li>
+            </ul>
+
+            <h3>{% translate "3. Avoiding Double Negatives" %}</h3>
+            <p>{% translate "With 'neither...nor', don't use other negative words:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "I don't like <span class=\"correlative-highlight\">neither</span> tea <span class=\"correlative-highlight\">nor</span> coffee." %}</span> (Incorrect)</li>
+                <li><span class="code-highlight">{% translate "I like <span class=\"correlative-highlight\">neither</span> tea <span class=\"correlative-highlight\">nor</span> coffee." %}</span> (Correct)</li>
+            </ul>
+        </div>
+
+        <div class="conjunction-card">
+            <h2>{% translate "Practice Exercises" %}</h2>
+
+            <h3>{% translate "1. Complete the Sentences" %}</h3>
+            <p>{% translate "Fill in the blanks with the correct correlative conjunctions:" %}</p>
+            <ol class="styled-list">
+                <li>{% translate "___ my parents ___ my grandparents could attend the wedding." %}</li>
+                <li>{% translate "You can ___ stay here ___ come with us." %}</li>
+                <li>{% translate "She is ___ intelligent ___ hardworking." %}</li>
+            </ol>
+
+            <h3>{% translate "2. Correct the Errors" %}</h3>
+            <p>{% translate "Fix the parallel structure errors:" %}</p>
+            <ol class="styled-list">
+                <li>{% translate "He not only enjoys swimming but also to hike." %}</li>
+                <li>{% translate "Both my sister and going to the park are fun." %}</li>
+                <li>{% translate "I neither have the time nor the patience for this." %}</li>
+            </ol>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'conjunction_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Conjunctions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,383 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Active Voice" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+        
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Active Voice" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Active Voice" %}</h1>
+        <p>
+            {% translate "<b>The Active Voice</b> is the most common and direct grammatical voice in English. In an active sentence, the <b>subject performs the action</b> of the verb, and the object receives that action. It emphasizes the doer of the action." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Forms of the Active Voice" %}</h3>
+        <p>
+            {% translate "The active voice is incredibly versatile and can be formed using" %} <span class="term-highlight">{% translate "all standard verb tenses" %}</span> {% translate "in English. The key characteristic is that the subject of the sentence is the agent performing the action." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "General Formula:" %}</h4>
+        <p><span class="term-highlight">{% translate "Subject + Verb (+ Object)" %}</span></p>
+        <ul class="styled-list">
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "subject" %}</span> {% translate "is the doer of the action." %}</li>
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "verb" %}</span> {% translate "shows the action performed by the subject." %}</li>
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "object" %}</span> ({% translate "if present" %}) {% translate "receives the action." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Active Voice Across Different Tenses:" %}</h4>
+
+        <h5>{% translate "1. Simple Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Simple Active:" %}</span> <span class="code-highlight">{% translate "Subject + Base Verb (-s/es for 3rd person singular)" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "The chef" %} <span class="verb-highlight">{% translate "prepares" %}</span> {% translate "dinner every evening." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Birds" %} <span class="verb-highlight">{% translate "sing" %}</span> {% translate "in the morning." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Simple Active:" %}</span> <span class="code-highlight">{% translate "Subject + Past Simple Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "wrote" %}</span> {% translate "a letter yesterday." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "visited" %}</span> {% translate "their relatives last summer." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Simple Active:" %}</span> <span class="code-highlight">{% translate "Subject + will + Base Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "will finish" %}</span> {% translate "the report tomorrow." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "will celebrate" %}</span> {% translate "your birthday next week." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. Continuous Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + am/is/are + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "am reading" %}</span> {% translate "a fascinating book." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "The children" %} <span class="verb-highlight">{% translate "are playing" %}</span> {% translate "in the garden." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + was/were + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "was cooking" %}</span> {% translate "when the phone rang." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "were traveling" %}</span> {% translate "around Europe last year." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + will be + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "At this time tomorrow, I" %} <span class="verb-highlight">{% translate "will be relaxing" %}</span> {% translate "on the beach." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "will be attending" %}</span> {% translate "the conference all week." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. Perfect Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Perfect Active:" %}</span> <span class="code-highlight">{% translate "Subject + has/have + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "have seen" %}</span> {% translate "that movie before." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "has completed" %}</span> {% translate "his assignment." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Perfect Active:" %}</span> <span class="code-highlight">{% translate "Subject + had + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "had already eaten" %}</span> {% translate "when I arrived." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "had finished" %}</span> {% translate "her work before the deadline." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Perfect Active:" %}</span> <span class="code-highlight">{% translate "Subject + will have + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "By next month, I" %} <span class="verb-highlight">{% translate "will have lived" %}</span> {% translate "here for five years." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "will have arrived" %}</span> {% translate "by the time the party starts." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "4. Perfect Continuous Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Perfect Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + has/have been + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "has been studying" %}</span> {% translate "for hours." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "have been waiting" %}</span> {% translate "for you." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Perfect Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + had been + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "had been working" %}</span> {% translate "on the project all night before he went home." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "had been living" %}</span> {% translate "there for a decade before they moved." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Perfect Continuous Active:" %}</span> <span class="code-highlight">{% translate "Subject + will have been + -ing Verb" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "By noon, I" %} <span class="verb-highlight">{% translate "will have been writing" %}</span> {% translate "this report for three hours." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "will have been planning" %}</span> {% translate "the event for a year by the time it happens." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+        
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Use of the Active Voice" %}</h3>
+        <p>
+            {% translate "The active voice is generally preferred in English writing and speaking because it is" %} <span class="term-highlight">{% translate "clear, direct, and concise" %}</span>. {% translate "It makes sentences easier to understand and more impactful." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. Emphasizing the Doer of the Action" %}</h4>
+        <p>
+            {% translate "When you want to highlight who or what performed the action, the active voice is the natural choice." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The dog" %}</span> <span class="verb-highlight">{% translate "chased" %}</span> {% translate "the cat." %}</span></i> ({% translate "Focus on the dog" %})</li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "Scientists" %}</span> <span class="verb-highlight">{% translate "discovered" %}</span> {% translate "a new planet." %}</span></i> ({% translate "Focus on the scientists" %})</li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "She" %}</span> <span class="verb-highlight">{% translate "wrote" %}</span> {% translate "that acclaimed novel." %}</span></i> ({% translate "Focus on \"she\" as the author" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. Promoting Clarity and Directness" %}</h4>
+        <p>
+            {% translate "Active sentences are typically shorter and more straightforward, making your communication more effective and less ambiguous." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The company" %}</span> <span class="verb-highlight">{% translate "launched" %}</span> {% translate "a new product." %}</span></i> ({% translate "Clear and direct" %})</li>
+                    <li>({% translate "Compare to passive:" %} <i><span class="code-highlight">{% translate "A new product" %} <span class="verb-highlight">{% translate "was launched" %}</span> {% translate "by the company." %}</span></i>)</li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "I" %}</span> <span class="verb-highlight">{% translate "made" %}</span> {% translate "a mistake." %}</span></i> ({% translate "Takes responsibility" %})</li>
+                    <li>({% translate "Compare to passive:" %} <i><span class="code-highlight">{% translate "A mistake" %} <span class="verb-highlight">{% translate "was made" %}</span>.</span></i>)</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "3. Making Writing More Dynamic and Engaging" %}</h4>
+        <p>
+            {% translate "Active voice often results in more vigorous and engaging prose, which is particularly beneficial in storytelling, persuasive writing, and general communication." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The waves" %}</span> <span class="verb-highlight">{% translate "crashed" %}</span> {% translate "against the shore." %}</span></i> ({% translate "Vivid action" %})</li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The team" %}</span> <span class="verb-highlight">{% translate "won" %}</span> {% translate "the championship." %}</span></i> ({% translate "Strong, active statement" %})</li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The entrepreneur" %}</span> <span class="verb-highlight">{% translate "built" %}</span> {% translate "a successful business from scratch." %}</span></i> ({% translate "Emphasizes effort and achievement" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "4. When the Doer is Known and Important" %}</h4>
+        <p>
+            {% translate "If the identity of the person or thing performing the action is crucial to the meaning of the sentence, the active voice is essential." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "The President" %}</span> <span class="verb-highlight">{% translate "signed" %}</span> {% translate "the new bill into law." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "Picasso" %}</span> <span class="verb-highlight">{% translate "painted" %}</span> "Guernica".</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "When to Choose Active Voice:" %}</h4>
+        <p>
+            {% translate "While the passive voice has its specific uses, the active voice should be your default choice for effective and clear English." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "For most everyday communication." %}</li>
+            <li>{% translate "When you want to assign responsibility clearly." %}</li>
+            <li>{% translate "To create strong, concise, and dynamic sentences." %}</li>
+            <li>{% translate "When the agent of the action is important or known." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

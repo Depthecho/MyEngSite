@@ -1,0 +1,218 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Interrogative and Relative Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Types of Pronouns" %}</span> &raquo;
+            <span>{% translate "Interrogative and Relative Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronouns: Interrogative and Relative Pronouns" %}</h1>
+        <p>
+            {% translate "Interrogative and relative pronouns are two distinct types of pronouns that often use the same words (e.g., <span class=\"code-highlight\">who, whom, whose, which, that</span>). Their function, however, is entirely different." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Interrogative Pronouns" %}</h3>
+        <p>
+            {% translate "Interrogative pronouns are used to ask questions. They stand in for the noun about which the question is being asked. The most common interrogative pronouns are:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "Who" %}</span>: {% translate "Refers to a person (subject)." %}<br>{% translate "<span class=\"example-highlight\">Who</span> is coming to the party?" %}</li>
+            <li><span class=\"code-highlight\">{% translate "Whom" %}</span>: {% translate "Refers to a person (object)." %}<br>{% translate "<span class=\"example-highlight\">Whom</span> did you see at the store?" %}</li>
+            <li><span class=\"code-highlight\">{% translate "Whose" %}</span>: {% translate "Asks about possession." %}<br>{% translate "<span class=\"example-highlight\">Whose</span> car is parked outside?" %}</li>
+            <li><span class=\"code-highlight\">{% translate "Which" %}</span>: {% translate "Refers to a choice between a limited number of things or people." %}<br>{% translate "<span class=\"example-highlight\">Which</span> of these books do you want?" %}</li>
+            <li><span class=\"code-highlight\">{% translate "What" %}</span>: {% translate "Refers to things or ideas in a general sense." %}<br>{% translate "<span class=\"example-highlight\">What</span> happened?" %}</li>
+        </ul>
+        <p>
+            {% translate "An interrogative pronoun always begins a question and is followed by a question mark." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Relative Pronouns" %}</h3>
+        <p>
+            {% translate "Relative pronouns connect a relative clause to the main clause of a sentence. They refer to a noun (the antecedent) mentioned earlier in the sentence. The most common relative pronouns are:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "Who / Whom / Whose" %}</span>: {% translate "Refer to people." %}<br>{% translate "The man <span class=\"example-highlight\">who</span> called is my boss." %}<br>{% translate "The woman <span class=\"example-highlight\">whom</span> I saw was happy." %}</li>
+            <li><span class=\"code-highlight\">{% translate "Which" %}</span>: {% translate "Refers to things or animals." %}<br>{% translate "The book <span class=\"example-highlight\">which</span> is on the table is mine." %}</li>
+            <li><span class=\"code-highlight\">{% translate "That" %}</span>: {% translate "Can refer to people, things, or animals." %}<br>{% translate "The car <span class=\"example-highlight\">that</span> I bought is fast." %}</li>
+        </ul>
+        <p>
+            {% translate "Relative pronouns act as a bridge, linking two parts of a sentence together and making the sentence more detailed and complex." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Interrogative vs. Relative: A Simple Test" %}</h3>
+        <p>
+            {% translate "The key difference is their function in a sentence. Here is a simple way to tell them apart:" %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "If the pronoun is asking a question, it's <span class=\"term-highlight\">interrogative</span>." %}</li>
+            <li>{% translate "If the pronoun is connecting a clause and referring to a noun, it's <span class=\"term-highlight\">relative</span>." %}</li>
+        </ul>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence" %}</th>
+                        <th>{% translate "Pronoun" %}</th>
+                        <th>{% translate "Function" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">Who</span> is your best friend?" %}</td>
+                        <td><span class=\"code-highlight\">{% translate "Who" %}</span></td>
+                        <td>{% translate "Interrogative (asking a question)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "I know the person <span class=\"code-highlight\">who</span> won." %}</td>
+                        <td><span class=\"code-highlight\">{% translate "who" %}</span></td>
+                        <td>{% translate "Relative (connecting to 'person')" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

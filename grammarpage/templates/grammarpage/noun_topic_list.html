@@ -1,0 +1,241 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Noun" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+<style>
+    .grammar-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #e0e0e0;
+    }
+
+    .grammar-main-title {
+        color: #4cc9f0;
+        font-size: 28px;
+        margin-bottom: 25px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .grammar-section {
+        margin-bottom: 30px;
+        background: rgba(30, 40, 50, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #444;
+    }
+
+    .grammar-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .main-topic {
+        font-weight: bold;
+        color: #4cc9f0;
+        font-size: 22px;
+        margin: 25px 0 15px;
+        padding: 10px 15px;
+        background: rgba(20, 30, 40, 0.5);
+        border-radius: 8px;
+        border-left: 5px solid #ff9e7d;
+    }
+
+    .topic-item {
+        margin: 18px 0;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .topic-item a {
+        color: #83e8de;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 12px 20px;
+        display: block;
+        background: linear-gradient(90deg, rgba(60,70,80,0.4) 0%, rgba(40,50,60,0.2) 100%);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-left: 4px solid #4cc9f0;
+    }
+
+    .topic-item a:hover {
+        background: linear-gradient(90deg, rgba(76,201,240,0.2) 0%, rgba(40,50,60,0.3) 100%);
+        color: #ffda47;
+        transform: translateX(8px);
+        border-left-color: #ff9e7d;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .sub-list {
+        list-style-type: none;
+        padding-left: 30px;
+        margin-top: 12px;
+        border-left: 2px dashed #4cc9f0;
+    }
+
+    .sub-item {
+        margin: 15px 0;
+        position: relative;
+    }
+
+    .sub-item a {
+        color: #b0b0b0;
+        font-size: 16px;
+        margin-right: 30px;
+        padding: 8px 15px 8px 25px;
+        display: block;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    .sub-item a:before {
+        content: "•";
+        color: #4cc9f0;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+
+    .sub-item a:hover {
+        color: #83e8de;
+        background: rgba(76, 201, 240, 0.1);
+        padding-left: 30px;
+    }
+
+    .grammar-divider {
+        border: 1px solid #444;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .topic-item a {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .sub-item a {
+            font-size: 15px;
+            padding: 6px 12px 6px 22px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span>{% translate "Noun" %}</span>
+        </nav>
+
+        <div class="grammar-list-container">
+            <h1 class="grammar-main-title">{% translate "Noun" %}</h1>
+            <p>
+                {% translate "A noun is a word that names a person, place, thing, quality, or idea. Nouns are fundamental building blocks of a sentence and can function as the subject, object, or complement. In English, they have various forms and classifications that determine their use in speech." %}
+            </p>
+
+            <div class="grammar-section">
+                <ul class="grammar-list">
+                    <li class="main-topic">{% translate "Noun" %}</li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Nouns: Definition and Classification" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'proper_vs_common_nouns' %}">{% translate "Proper vs Common Nouns" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'concrete_vs_abstract' %}">{% translate "Concrete vs Abstract" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'countable_or_uncountable' %}">{% translate "Countable/Uncountable" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'collective_nouns' %}">{% translate "Collective Nouns" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'compound_nouns' %}">{% translate "Compound Nouns" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Gender of Nouns" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'natural_gender' %}">{% translate "Natural Gender" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'male_female_pairs' %}">{% translate "Male/Female Pairs" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'gender_suffixes' %}">{% translate "Gender Suffixes" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'gender_neutral_terms' %}">{% translate "Gender-Neutral Terms" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'gender_in_pronouns' %}">{% translate "Gender in Pronouns" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Plural Forms of Nouns" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'regular_plurals_s_or_es' %}">{% translate "Regular Plurals (-s/-es)" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'nouns_ending_in_y_or_o_or_f' %}">{% translate "Nouns ending in -y/-o/-f" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'irregular_plurals' %}">{% translate "Irregular Plurals" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'zero_plurals' %}">{% translate "Zero Plurals" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'always_plural_nouns' %}">{% translate "Always Plural Nouns" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'latin_and_greek_plurals' %}">{% translate "Latin/Greek Plurals" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Case of Nouns" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'common_case' %}">{% translate "Common Case" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'possessive_case' %}">{% translate "Possessive Case" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'subject_or_object_functions' %}">{% translate "Subject/Object Functions" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'joint_possession' %}">{% translate "Joint Possession" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Determiners" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'articles_page' %}">{% translate "Articles (a/an/the)" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'possessive_determiners' %}">{% translate "Possessive Determiners" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'demonstratives' %}">{% translate "Demonstratives" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'quantifiers' %}">{% translate "Quantifiers" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'interrogative_determiners' %}">{% translate "Interrogative Determiners" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Functions of Nouns in a Sentence" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'subject_of_verb' %}">{% translate "Subject of Verb" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'direct_or_indirect_object' %}">{% translate "Direct/Indirect Object" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'object_of_preposition' %}">{% translate "Object of Preposition" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'subject_complement' %}">{% translate "Subject Complement" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'appositive' %}">{% translate "Appositive" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#" onclick="return false;">{% translate "Collective Nouns" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'collective_nouns_for_people' %}">{% translate "For People" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'collective_nouns_for_animals' %}">{% translate "For Animals" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'collective_nouns_for_objects' %}">{% translate "For Objects" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'verb_agreement_rules' %}">{% translate "Verb Agreement Rules" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'bre_vs_ame_usage' %}">{% translate "BrE vs AmE Usage" %}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'grammar_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Grammar" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

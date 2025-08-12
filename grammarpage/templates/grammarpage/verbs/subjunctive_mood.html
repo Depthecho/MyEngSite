@@ -1,0 +1,417 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Subjunctive Mood" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Subjunctive Mood" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Subjunctive Mood" %}</h1>
+        <p>
+            {% translate "This section discusses the subjunctive mood, used to express wishes, recommendations, demands, or hypothetical situations." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Forms of the Subjunctive Mood" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Subjunctive Mood</span> in English is a grammatical mood that expresses various states of unreality, such as wishes, desires, demands, suggestions, or hypothetical situations. Unlike the indicative mood (which states facts) or the imperative mood (which gives commands), the subjunctive expresses what is desired, recommended, or conditional, rather than what is factual." %}
+        </p>
+
+        <p>
+            {% translate "Although its use has become less frequent in modern English, especially in informal contexts, it remains important for specific formal constructions and expressions." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "The Limited Forms of the Subjunctive Mood" %}</h4>
+        <p>
+            {% translate "The subjunctive mood in English has very limited and distinct forms, primarily affecting the verb <span class=\"term-highlight\">\"to be\"</span> and the <span class=\"term-highlight\">base form of other verbs</span>." %}
+        </p>
+
+        <h5>{% translate "1. The Present Subjunctive (Base Form Subjunctive)" %}</h5>
+        <p>
+            {% translate "The present subjunctive uses the <span class=\"term-highlight\">base form of the verb</span> for all persons (singular and plural). This means that for third-person singular subjects (he, she, it), the <span class=\"code-highlight\">-s</span> ending is dropped. For the verb \"to be\", it is always <span class=\"term-highlight\">\"be\"</span> for all persons." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Verb \"to be\"" %}</th>
+                        <th>{% translate "Other Verbs" %} (e.g., <span class="code-highlight">to go</span>)</th>
+                        <th>{% translate "Example Sentence (Present Subjunctive)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="pronoun-highlight">I</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "I suggest that I be present." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "They demanded that you be there." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">He / She / It</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "It is important that he go now." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">We</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "They asked that we be informed." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "She insisted that you go together." %}</span></td></tr>
+                    <tr><td><span class="pronoun-highlight">They</span></td><td>be</td><td>go</td><td><span class="code-highlight">{% translate "The rule requires that they be quiet." %}</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I demand that he" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "careful." %}</span></i> ({% translate "Instead of \"he is\"" %})</li>
+                    <li><i><span class="code-highlight">{% translate "It is essential that she" %} <span class="verb-highlight">{% translate "study" %}</span> {% translate "for the exam." %}</span></i> ({% translate "Instead of \"she studies\"" %})</li>
+                    <li><i><span class="code-highlight">{% translate "They suggested that we" %} <span class="verb-highlight">{% translate "leave" %}</span> {% translate "early." %}</span></i> ({% translate "Instead of \"we leave\"" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. The Past Subjunctive" %}</h5>
+        <p>
+            {% translate "The past subjunctive is primarily used in <span class=\"term-highlight\">hypothetical or unreal conditional sentences</span> (Type 2 and sometimes Type 3 conditionals) and in expressions of wish about the present or future." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "For the verb" %} <span class="term-highlight">"to be"</span>, {% translate "the past subjunctive form is" %} <span class="term-highlight">"were" for all persons</span> (I, he, she, it, we, you, they). {% translate "This is the most recognizable form of the subjunctive mood." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "If I" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "you, I wouldn't do that." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "She wishes she" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "taller." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "If it" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "only that simple!" %}</span></i></li>
+                </ul>
+            </li>
+            <li>{% translate "For" %} <span class="term-highlight">{% translate "other verbs" %}</span>, {% translate "the past subjunctive is" %} <span class="term-highlight">{% translate "identical to the simple past indicative form" %}</span>. {% translate "However, its function is different – it expresses unreality, not past fact." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I wish I" %} <span class="verb-highlight">{% translate "knew" %}</span> {% translate "the answer." %}</span></i> ({% translate "Here, \"knew\" is past subjunctive, expressing a wish about the present, not a past fact." %})</li>
+                    <li><i><span class="code-highlight">{% translate "If he" %} <span class="verb-highlight">{% translate "came" %}</span> {% translate "tomorrow, it would be a surprise." %}</span></i> ({% translate "Here, \"came\" is past subjunctive, expressing a hypothetical future event." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. The Past Perfect Subjunctive" %}</h5>
+        <p>
+            {% translate "The past perfect subjunctive is identical in form to the past perfect indicative" %} (<span class="term-highlight">had + past participle</span>). {% translate "It is used in <span class=\"term-highlight\">Type 3 conditional sentences</span> and <span class=\"term-highlight\">wishes about the past</span> to express a hypothetical or unreal situation in the past." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "If I" %} <span class="verb-highlight">{% translate "had known" %}</span>, {% translate "I would have helped you." %}</span></i> ({% translate "Expressing an unreal condition in the past" %})</li>
+                    <li><i><span class="code-highlight">{% translate "I wish I" %} <span class="verb-highlight">{% translate "hadn't said" %}</span> {% translate "that." %}</span></i> ({% translate "Expressing regret about a past action" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Use of the Subjunctive Mood" %}</h3>
+        <p>
+            {% translate "The subjunctive mood is typically used in more formal contexts, specific fixed expressions, or constructions that convey non-factual or desired situations." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. Mandative Subjunctive (after Verbs of Demand, Recommendation, Suggestion, etc.)" %}</h4>
+        <p>
+            {% translate "Used in" %} <span class="code-highlight">that</span>-{% translate "clauses after verbs that express a <span class=\"term-highlight\">demand, recommendation, suggestion, proposal, insistence, order, or request</span>. The present subjunctive (base form) is used here." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Common Verbs:" %}</span> <span class="code-highlight">advise, ask, command, demand, insist, propose, recommend, request, suggest, urge, move, order</span>.</li>
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "demand" %}</span> {% translate "that he" %} <span class="verb-highlight">{% translate "leave" %}</span> {% translate "immediately." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "The committee" %} <span class="verb-highlight">{% translate "recommended" %}</span> {% translate "that the proposal" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "accepted." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "suggested" %}</span> {% translate "that she" %} <span class="verb-highlight">{% translate "take" %}</span> {% translate "a break." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "The doctor" %} <span class="verb-highlight">{% translate "advised" %}</span> {% translate "that he" %} <span class="verb-highlight">{% translate "rest" %}</span> {% translate "more." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. Subjunctive after Adjectives Expressing Importance, Necessity, Urgency" %}</h4>
+        <p>
+            {% translate "Used in" %} <span class="code-highlight">that</span>-{% translate "clauses after adjectives that express <span class=\"term-highlight\">necessity, importance, urgency, or desirability</span>. The present subjunctive (base form) is used." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Common Adjectives:" %}</span> <span class="code-highlight">essential, important, necessary, vital, crucial, imperative, advisable, obligatory, urgent, desirable, fit</span>.</li>
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "It is" %} <span class="term-highlight">{% translate "essential" %}</span> {% translate "that everyone" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "present." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "It is" %} <span class="term-highlight">{% translate "important" %}</span> {% translate "that he" %} <span class="verb-highlight">{% translate "understand" %}</span> {% translate "the risks." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "It is" %} <span class="term-highlight">{% translate "crucial" %}</span> {% translate "that the information" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "accurate." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "3. Subjunctive in Conditional Sentences (Hypothetical Situations)" %}</h4>
+        <p>
+            {% translate "The subjunctive is used in the" %} <span class="code-highlight">if</span>-{% translate "clause of <span class=\"term-highlight\">Type 2 and Type 3 conditional sentences</span> to express hypothetical or unreal conditions." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Type 2 Conditional (Unreal Present/Future):" %}</span> {% translate "Uses the <span class=\"term-highlight\">past subjunctive</span> (<span class=\"code-highlight\">were</span> for \"to be\", or simple past for other verbs) to express a hypothetical situation in the present or future." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "If I" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "a bird, I would fly everywhere." %}</span></i> ({% translate "But I am not a bird." %})</li>
+                    <li><i><span class="code-highlight">{% translate "If she" %} <span class="verb-highlight">{% translate "knew" %}</span> {% translate "the answer, she would tell us." %}</span></i> ({% translate "But she doesn't know." %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Type 3 Conditional (Unreal Past):" %}</span> {% translate "Uses the <span class=\"term-highlight\">past perfect subjunctive</span> (<span class=\"code-highlight\">had + past participle</span>) to express a hypothetical situation in the past that did not happen." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "If he" %} <span class="verb-highlight">{% translate "had studied" %}</span> {% translate "harder, he would have passed the exam." %}</span></i> ({% translate "But he didn't study, so he didn't pass." %})</li>
+                    <li><i><span class="code-highlight">{% translate "If I" %} <span class="verb-highlight">{% translate "had seen" %}</span> {% translate "you, I would have said hello." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "4. Subjunctive in Expressions of Wish, Doubt, or Supposition" %}</h4>
+        <p>
+            {% translate "Used in" %} <span class="code-highlight">that</span>-{% translate "clauses (often implied" %} <span class="code-highlight">that</span>) {% translate "or with" %} <span class="code-highlight">as if/as though</span> {% translate "to express wishes, doubts, or suppositions that are contrary to fact." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Wishes" %} (<span class="code-highlight">wish</span>):</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "wish" %}</span> {% translate "I" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "taller." %}</span></i> ({% translate "Past subjunctive for a wish about the present" %})</li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "wishes" %}</span> {% translate "he" %} <span class="verb-highlight">{% translate "hadn't gone" %}</span>.</span></i> ({% translate "Past perfect subjunctive for a wish/regret about the past" %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "As if / As though" %} (<span class="code-highlight">as if/as though</span>):</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She acts" %} <span class="term-highlight">{% translate "as if" %}</span> {% translate "she" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "the boss." %}</span></i> ({% translate "But she isn't the boss." %})</li>
+                    <li><i><span class="code-highlight">{% translate "He talks" %} <span class="term-highlight">{% translate "as though" %}</span> {% translate "he" %} <span class="verb-highlight">{% translate "knew" %}</span> {% translate "everything." %}</span></i> ({% translate "But he doesn't know everything." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "5. Fixed Expressions and Idiomatic Phrases" %}</h4>
+        <p>
+            {% translate "The subjunctive is preserved in many traditional or idiomatic expressions, often without a preceding main clause verb of command or suggestion. These are typically formulaic." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "God" %} <span class="verb-highlight">{% translate "save" %}</span> {% translate "the King/Queen!" %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Far" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "it from me to judge." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Suffice it" %} <span class="verb-highlight">{% translate "to say" %}</span>...</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Come what" %} <span class="verb-highlight">{% translate "may" %}</span>...</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Be that as it" %} <span class="verb-highlight">{% translate "may" %}</span>...</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Heaven" %} <span class="verb-highlight">{% translate "forbid" %}</span>!</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "So" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "it." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Declining Use in Modern English" %}</h4>
+        <p>
+            {% translate "In modern, informal English, the subjunctive mood is often replaced by other constructions, particularly:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Modal verbs" %}</span> (<span class="code-highlight">should</span>, <span class="code-highlight">must</span>, <span class="code-highlight">might</span>)
+                <ul class="styled-list">
+                    <li><i>{% translate "Formal Subjunctive:" %} <span class="code-highlight">{% translate "I suggest that he" %} <span class="verb-highlight">{% translate "be" %}</span> {% translate "here by noon." %}</span></i></li>
+                    <li><i>{% translate "Informal Equivalent:" %} <span class="code-highlight">{% translate "I suggest that he" %} <span class="verb-highlight">{% translate "should be" %}</span> {% translate "here by noon." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Indicative forms (especially after \"that\" for present relevance)" %}</span>
+                <ul class="styled-list">
+                    <li><i>{% translate "Subjunctive:" %} <span class="code-highlight">{% translate "It is important that she" %} <span class="verb-highlight">{% translate "do" %}</span> {% translate "her homework." %}</span></i></li>
+                    <li><i>{% translate "Informal Equivalent:" %} <span class="code-highlight">{% translate "It's important that she" %} <span class="verb-highlight">{% translate "does" %}</span> {% translate "her homework." %}</span></i> ({% translate "Commonly used, though technically less formal" %})</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "Despite this trend, understanding the subjunctive mood is essential for comprehending formal texts, classic literature, and for maintaining a high level of grammatical precision in your own writing." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

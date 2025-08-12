@@ -1,0 +1,220 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Regular and Irregular Verbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .main-container {
+            padding-top: 40px;
+        }
+
+        h3 {
+            color: #ff9e7d;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+        }
+
+        h4 {
+            color: #ff9e7d;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>    }
+
+        .styled-list li:before {
+            left: -5px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+             <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Regular and Irregular Verbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Regular and Irregular Verbs" %}</h1>
+        <p>
+            {% translate "English verbs are broadly categorized into two main types based on how they form their past tenses and past participles: <span class=\"term-highlight\">Regular Verbs</span> and <span class=\"term-highlight\">Irregular Verbs</span>." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Regular Verbs" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Regular verbs</span> in English form their Past Simple tense and Past Participle (V3) by consistently adding the ending <span class=\"ending-highlight\">-ed</span> to their base form (infinitive without 'to')." %}
+        </p>
+
+        <h5>{% translate "Rules for Adding the -ed Ending" %}</h5>
+        <ul class="styled-list">
+            <li>
+                {% translate "If the verb ends in <span class=\"ending-highlight\">-e</span>, only <span class=\"ending-highlight\">-d</span> is added." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">live &ndash; lived</span>, <span class="code-highlight">change &ndash; changed</span>, <span class="code-highlight">agree &ndash; agreed</span>.</i>
+            </li>
+            <li>
+                {% translate "If the verb ends in a <span class=\"term-highlight\">consonant + y</span>, the <span class=\"ending-highlight\">y</span> changes to <span class=\"ending-highlight\">i</span>, and then <span class=\"ending-highlight\">-ed</span> is added." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">study &ndash; studied</span>, <span class="code-highlight">carry &ndash; carried</span>, <span class="code-highlight">try &ndash; tried</span>.</i>
+            </li>
+            <li>
+                {% translate "If the verb ends in a <span class=\"term-highlight\">vowel + y</span>, simply <span class=\"ending-highlight\">-ed</span> is added (the <span class=\"ending-highlight\">y</span> does not change)." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">play &ndash; played</span>, <span class="code-highlight">stay &ndash; stayed</span>, <span class="code-highlight">enjoy &ndash; enjoyed</span>.</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Doubling the Final Consonant:" %}</span>
+                <ul class="styled-list">
+                    <li>
+                        {% translate "For single-syllable verbs ending in a <span class=\"term-highlight\">vowel + consonant</span> (except <span class=\"ending-highlight\">x, w, y</span>), the final consonant is doubled before <span class=\"ending-highlight\">-ed</span>." %}
+                        <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">stop &ndash; stopped</span>, <span class="code-highlight">plan &ndash; planned</span>, <span class="code-highlight">rub &ndash; rubbed</span>.</i>
+                    </li>
+                    <li>
+                        {% translate "For multi-syllable verbs ending in a <span class=\"term-highlight\">vowel + consonant</span>, if the stress falls on the last syllable, the final consonant is doubled." %}
+                        <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">prefer &ndash; preferred</span>, <span class="code-highlight">permit &ndash; permitted</span>, <span class="code-highlight">occur &ndash; occurred</span>.</i>
+                    </li>
+                    <li>
+                        {% translate "Verbs ending in <span class=\"ending-highlight\">-l</span>, in British English, double the <span class=\"ending-highlight\">l</span> regardless of stress." %}
+                        <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">travel &ndash; travelled</span>, <span class="code-highlight">cancel &ndash; cancelled</span>. {% translate "(In American English: <span class=\"code-highlight\">traveled</span>, <span class=\"code-highlight\">canceled</span>)." %}</i>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h5>{% translate "Pronunciation of the -ed Ending" %}</h5>
+        <p>
+            {% translate "The <span class=\"ending-highlight\">-ed</span> ending can be pronounced in three different ways, depending on the sound the verb ends with:" %}
+        </p>
+        <ul class="styled-list">
+            <li>
+                {% translate "As the sound <span class=\"code-highlight\">/t/</span> &mdash; after voiceless consonant sounds (except /t/)." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">looked (/lʊkt/)</span>, <span class="code-highlight">asked (/ɑːskt/)</span>, <span class="code-highlight">washed (/wɒʃt/)</span>, <span class="code-highlight">finished (/fɪnɪʃt/)</span>.</i>
+            </li>
+            <li>
+                {% translate "As the sound <span class=\"code-highlight\">/d/</span> &mdash; after voiced consonant sounds (except /d/) and all vowel sounds." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">lived (/lɪvd/)</span>, <span class="code-highlight">played (/pleɪd/)</span>, <span class="code-highlight">opened (/əʊpənd/)</span>, <span class="code-highlight">called (/kɔːld/)</span>.</i>
+            </li>
+            <li>
+                {% translate "As the sound <span class=\"code-highlight\">/ɪd/</span> &mdash; after the sounds <span class=\"code-highlight\">/t/</span> and <span class=\"code-highlight\">/d/</span>. In this case, the ending forms an additional syllable." %}
+                <br><span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">wanted (/ˈwɒntɪd/)</span>, <span class="code-highlight">decided (/dɪˈsaɪdɪd/)</span>, <span class="code-highlight">started (/ˈstɑːtɪd/)</span>, <span class="code-highlight">needed (/ˈniːdɪd/)</span>.</i>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Irregular Verbs" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Irregular verbs</span> do not follow the standard <span class=\"ending-highlight\">-ed</span> rule for forming their Past Simple tense and Past Participle (V3). Instead, they undergo internal vowel changes, use different endings, or remain unchanged." %}
+        </p>
+        <p>
+            {% translate "There are no simple rules for forming irregular verbs; their forms must typically be memorized. They are very common in English and include many of the most frequently used verbs." %}
+        </p>
+        <p><span class="example-highlight">{% translate "Examples:" %}</span></p>
+        <ul class="styled-list">
+            <li><span class="code-highlight"><b>Go</b> &ndash; Went &ndash; Gone</span></li>
+            <li><span class="code-highlight"><b>See</b> &ndash; Saw &ndash; Seen</span></li>
+            <li><span class="code-highlight"><b>Eat</b> &ndash; Ate &ndash; Eaten</span></li>
+            <li><span class="code-highlight"><b>Come</b> &ndash; Came &ndash; Come</span></li>
+            <li><span class="code-highlight"><b>Put</b> &ndash; Put &ndash; Put</span></li>
+        </ul>
+        <p>
+            {% translate "While challenging, mastering irregular verbs is crucial for fluency as they are fundamental to everyday communication." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

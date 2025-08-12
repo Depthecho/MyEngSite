@@ -1,0 +1,39 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% block grammar_title %}{% translate "English Grammar" %}{% endblock %} | YourSiteName{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'style/grammar_base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+
+    {% include 'mainpage/navbar.html' %}
+
+    <div class="secondary-navbar">
+        <div class="secondary-nav-container">
+            <a href="{% url 'grammar_page' %}"
+               class="secondary-nav-link {% if request.resolver_match.view_name == 'grammar_page' %}active{% endif %}">
+               <i class="fas fa-book"></i> {% translate "Grammar Topics" %}
+            </a>
+            <a href="#" class="secondary-nav-link disabled" title="{% translate "Coming Soon" %}">
+                <i class="fas fa-graduation-cap"></i> {% translate "Grammar Exercises (Coming Soon)" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="grammar-content-wrapper">
+            {% block grammar_content %}
+            {% endblock %}
+        </div>
+    </div>
+
+    {% include 'mainpage/footer.html' %}
+
+{% endblock %}

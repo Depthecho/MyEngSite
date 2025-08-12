@@ -1003,3 +1003,194 @@ body {
 .new-achievement {
     animation: glow 2s infinite;
 }
+
+/* Profile Edit Form Styles */
+.profile-form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.form-section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+.form-section-title {
+    color: #ffcc00;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #ffcc00;
+    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-error {
+    color: #ff6b6b;
+    font-size: 0.85rem;
+    margin-top: 5px;
+}
+
+/* Avatar Upload */
+.avatar-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.avatar-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.default-avatar {
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Privacy Settings */
+.privacy-settings {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.privacy-title {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.privacy-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.privacy-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.privacy-option input[type="checkbox"] {
+    width: auto;
+}
+
+.privacy-option label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.cancel-button {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.cancel-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .form-actions .cta-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

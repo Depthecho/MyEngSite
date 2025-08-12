@@ -1,0 +1,355 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Usage with Royalty and Sequence" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .royal-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .sequence-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .royal-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Usage of Numerals in Specific Contexts" %}</span> &raquo;
+            <span>{% translate "Royalty and Sequence" %}</span>
+        </nav>
+
+        <h1>{% translate "Numerals in Royal and Sequential Contexts" %}</h1>
+        <p>
+            {% translate "The use of numerals with royalty, popes, and sequential references follows specific conventions that differ from ordinary numerical usage. Mastering these forms is essential for formal communication and historical contexts." %}
+        </p>
+
+        <div class="royal-card">
+            <h3>{% translate "1. Royal and Papal Numerals" %}</h3>
+            <p>
+                {% translate "Monarchs and popes use Roman numerals in their official titles, which are always read as ordinal numbers in speech." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Title Type" %}</th>
+                            <th>{% translate "Written Form" %}</th>
+                            <th>{% translate "Spoken Form" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "British Monarch" %}</td>
+                            <td><span class="code-highlight">Elizabeth II</span></td>
+                            <td><span class="example-highlight">Elizabeth the Second</span></td>
+                            <td>{% translate "Queen Elizabeth the Second's coronation was in 1953" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Pope" %}</td>
+                            <td><span class="code-highlight">John Paul II</span></td>
+                            <td><span class="example-highlight">John Paul the Second</span></td>
+                            <td>{% translate "Pope John Paul the Second visited over 100 countries" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "European Monarch" %}</td>
+                            <td><span class="code-highlight">Louis XIV</span></td>
+                            <td><span class="example-highlight">Louis the Fourteenth</span></td>
+                            <td>{% translate "Louis the Fourteenth ruled France for 72 years" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Royal Cases" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">First of name:</span> Typically written without numeral but spoken as "the First" if distinction needed</li>
+                <li><span class="term-highlight">Current monarchs:</span> Spoken without ordinal until their reign ends (e.g., "King Charles" not "the Third" in daily speech)</li>
+                <li><span class="term-highlight">Regnal numbers:</span> Reset for different countries (Elizabeth II was only first Elizabeth of UK, not Scotland)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Sequential Numbering in Titles" %}</h3>
+            <p>
+                {% translate "The same ordinal convention applies to numbered items in series, though practice varies by context." %}
+            </p>
+
+            <h4>{% translate "Cultural and Historical References" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">World War II</span>: <span class="example-highlight">World War Two</span> or <span class="example-highlight">the Second World War</span></li>
+                <li><span class="code-highlight">Henry VIII</span>: <span class="example-highlight">Henry the Eighth</span> (English king)</li>
+                <li><span class="code-highlight">Pope Benedict XVI</span>: <span class="example-highlight">Benedict the Sixteenth</span></li>
+            </ul>
+
+            <h4>{% translate "Modern Sequential Titles" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">Rocky IV</span>: <span class="example-highlight">Rocky Four</span> (common for movies)</li>
+                <li><span class="code-highlight">iPhone 14</span>: <span class="example-highlight">iPhone fourteen</span> (tech products)</li>
+                <li><span class="code-highlight">Chapter XI</span>: <span class="example-highlight">Chapter Eleven</span> (books/legal)</li>
+            </ul>
+
+            <div class="note-card">
+                <h4>{% translate "When Ordinals Aren't Used" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "With family names: <span class=\"code-highlight\">John Smith III</span> → <span class=\"example-highlight\">John Smith the Third</span> (formal) or <span class=\"example-highlight\">John Smith Three</span> (informal)" %}</li>
+                    <li>{% translate "For centuries: <span class=\"code-highlight\">21st century</span> always read as ordinal" %}</li>
+                    <li>{% translate "With 'Junior/Senior': No numerals used" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Roman Numeral Conventions" %}</h3>
+            <p>
+                {% translate "Understanding Roman numerals is essential for proper reading of royal and sequential titles." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Roman" %}</th>
+                            <th>{% translate "Arabic" %}</th>
+                            <th>{% translate "Ordinal" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code-highlight">I</span></td>
+                            <td>1</td>
+                            <td>First</td>
+                            <td>Paul I</td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">IV</span></td>
+                            <td>4</td>
+                            <td>Fourth</td>
+                            <td>George IV</td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">IX</span></td>
+                            <td>9</td>
+                            <td>Ninth</td>
+                            <td>Henry IX</td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">XIII</span></td>
+                            <td>13</td>
+                            <td>Thirteenth</td>
+                            <td>Louis XIII</td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">XX</span></td>
+                            <td>20</td>
+                            <td>Twentieth</td>
+                            <td>Pope XX</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Common Errors to Avoid" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Never read Roman numerals as cardinals: <strike>Elizabeth Two</strike> → <span class=\"example-highlight\">Elizabeth the Second</span>" %}</li>
+                <li>{% translate "Don't omit 'the' with ordinals in royal names" %}</li>
+                <li>{% translate "For popes, always use ordinal even if numeral isn't present: <span class=\"example-highlight\">Pope Francis</span> (no number needed yet)" %}</li>
+                <li>{% translate "In American usage, family generations often use suffixes (<span class=\"code-highlight\">Jr.</span>, <span class=\"code-highlight\">III</span>) rather than ordinals" %}</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Royal Numeral Usage Across Languages" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Language" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Note" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "English" %}</td>
+                        <td><span class="example-highlight">Elizabeth the Second</span></td>
+                        <td>{% translate "Always ordinal with 'the'" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "French" %}</td>
+                        <td><span class="example-highlight">Louis quatorze</span></td>
+                        <td>{% translate "Cardinal number used" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "German" %}</td>
+                        <td><span class="example-highlight">Wilhelm der Zweite</span></td>
+                        <td>{% translate "Ordinal with article" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

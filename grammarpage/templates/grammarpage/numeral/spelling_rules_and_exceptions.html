@@ -1,0 +1,394 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Ordinal Numerals: Spelling Rules and Exceptions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .spelling-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .exception-highlight {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .exception-card {
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .abbreviation-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Ordinal Numerals" %}</span> &raquo;
+            <span>{% translate "Spelling Rules and Exceptions" %}</span>
+        </nav>
+
+        <h1>{% translate "Ordinal Numerals: Spelling Rules and Exceptions" %}</h1>
+        <p>
+            {% translate "Mastering ordinal numeral spelling requires understanding both the regular patterns and important exceptions. These rules are essential for proper writing in academic, professional, and formal contexts." %}
+        </p>
+
+        <div class="rule-card">
+            <h3>{% translate "1. Standard Formation Rules" %}</h3>
+            <h4>{% translate "Basic '-th' Suffix Rule" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "For most numbers, add <span class=\"spelling-highlight\">-th</span> to the cardinal form:" %}
+                    <p class="code-highlight">four → fourth<br>ten → tenth<br>sixteen → sixteenth</p>
+                </li>
+                <li>{% translate "Numbers ending in <span class=\"code-highlight\">-y</span> change to <span class=\"code-highlight\">-ieth</span>:" %}
+                    <p class="code-highlight">twenty → twentieth<br>fifty → fiftieth</p>
+                </li>
+                <li>{% translate "Numbers ending in <span class=\"code-highlight\">-ve</span> change to <span class=\"code-highlight\">-fth</span>:" %}
+                    <p class="code-highlight">five → fifth<br>twelve → twelfth</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Pronunciation Patterns" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The <span class=\"code-highlight\">-th</span> ending is always unvoiced (/θ/)" %}</li>
+                <li>{% translate "Stress typically remains on the same syllable as the cardinal number" %}</li>
+                <li>{% translate "Compound ordinals have secondary stress on both parts" %}
+                    <p class="code-highlight">twenty-FIFTH<br>thirty-SECOND</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="exception-card">
+            <h3>{% translate "2. Key Exceptions and Irregular Forms" %}</h3>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Cardinal" %}</th>
+                            <th>{% translate "Ordinal" %}</th>
+                            <th>{% translate "Spelling Change" %}</th>
+                            <th>{% translate "Notes" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>one</td>
+                            <td>first</td>
+                            <td>Complete change</td>
+                            <td>{% translate "Not 'oneth'" %}</td>
+                        </tr>
+                        <tr>
+                            <td>two</td>
+                            <td>second</td>
+                            <td>Complete change</td>
+                            <td>{% translate "Not 'twoth'" %}</td>
+                        </tr>
+                        <tr>
+                            <td>three</td>
+                            <td>third</td>
+                            <td>Drop -ee, add -ird</td>
+                            <td>{% translate "Not 'threeth'" %}</td>
+                        </tr>
+                        <tr>
+                            <td>five</td>
+                            <td>fifth</td>
+                            <td>ve → f, add -th</td>
+                            <td>{% translate "Not 'fiveth'" %}</td>
+                        </tr>
+                        <tr>
+                            <td>eight</td>
+                            <td>eighth</td>
+                            <td>Add -h only</td>
+                            <td>{% translate "One 't' disappears" %}</td>
+                        </tr>
+                        <tr>
+                            <td>nine</td>
+                            <td>ninth</td>
+                            <td>Drop -e</td>
+                            <td>{% translate "Not 'nineth'" %}</td>
+                        </tr>
+                        <tr>
+                            <td>twelve</td>
+                            <td>twelfth</td>
+                            <td>ve → f, add -th</td>
+                            <td>{% translate "Not 'twelveth'" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Compound Number Exceptions" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Only the last number becomes ordinal:" %}
+                    <p class="code-highlight">twenty-one → twenty-<span class="exception-highlight">first</span><br>
+                    fifty-three → fifty-<span class="exception-highlight">third</span></p>
+                </li>
+                <li>{% translate "Exception for 11-13 (use -th):" %}
+                    <p class="code-highlight">eleven → eleventh<br>
+                    twelve → twelfth<br>
+                    thirteen → thirteenth</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="abbreviation-card">
+            <h3>{% translate "3. Abbreviated Forms and Writing Conventions" %}</h3>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Number" %}</th>
+                            <th>{% translate "Abbreviation" %}</th>
+                            <th>{% translate "Full Word" %}</th>
+                            <th>{% translate "Usage Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>1st</td>
+                            <td>first</td>
+                            <td>1st place</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2nd</td>
+                            <td>second</td>
+                            <td>2nd floor</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>3rd</td>
+                            <td>third</td>
+                            <td>3rd attempt</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>4th</td>
+                            <td>fourth</td>
+                            <td>April 4th</td>
+                        </tr>
+                        <tr>
+                            <td>21</td>
+                            <td>21st</td>
+                            <td>twenty-first</td>
+                            <td>21st century</td>
+                        </tr>
+                        <tr>
+                            <td>32</td>
+                            <td>32nd</td>
+                            <td>thirty-second</td>
+                            <td>32nd anniversary</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Writing Style Guidelines" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "In formal writing, spell out ordinals under 10:" %}
+                    <p class="code-highlight">the <span class="example-highlight">third</span> chapter (not 3rd chapter)</p>
+                </li>
+                <li>{% translate "Use numerals with suffixes for dates and rankings:" %}
+                    <p class="code-highlight">May <span class="example-highlight">15th</span><br>
+                    <span class="example-highlight">42nd</span> President</p>
+                </li>
+                <li>{% translate "Superscripts are acceptable in informal contexts:" %}
+                    <p class="code-highlight">1<sup>st</sup>, 2<sup>nd</sup>, 3<sup>rd</sup></p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "4. Common Mistakes to Avoid" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"exception-highlight\">Incorrect double ordinalization</span> in compounds:" %}
+                    <p class="code-highlight">Incorrect: twenty-oneth<br>
+                    Correct: twenty-first</p>
+                </li>
+                <li>{% translate "<span class=\"exception-highlight\">Misspelling irregular forms</span>:" %}
+                    <p class="code-highlight">Incorrect: nineth, twelveth, fiveth<br>
+                    Correct: ninth, twelfth, fifth</p>
+                </li>
+                <li>{% translate "<span class=\"exception-highlight\">Incorrect abbreviations</span>:" %}
+                    <p class="code-highlight">Incorrect: 22th, 43th<br>
+                    Correct: 22nd, 43rd</p>
+                </li>
+                <li>{% translate "<span class=\"exception-highlight\">Wrong suffix after hundred/thousand</span>:" %}
+                    <p class="code-highlight">Incorrect: one hundredth first<br>
+                    Correct: one hundred first</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

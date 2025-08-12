@@ -1,0 +1,183 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Indirect Speech" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+<style>
+    .grammar-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #e0e0e0;
+    }
+
+    .grammar-main-title {
+        color: #4cc9f0;
+        font-size: 28px;
+        margin-bottom: 25px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .grammar-section {
+        margin-bottom: 30px;
+        background: rgba(30, 40, 50, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #444;
+    }
+
+    .grammar-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .main-topic {
+        font-weight: bold;
+        color: #4cc9f0;
+        font-size: 22px;
+        margin: 25px 0 15px;
+        padding: 10px 15px;
+        background: rgba(20, 30, 40, 0.5);
+        border-radius: 8px;
+        border-left: 5px solid #ff9e7d;
+    }
+
+    .topic-item {
+        margin: 18px 0;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .topic-item a {
+        color: #83e8de;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 12px 20px;
+        display: block;
+        background: linear-gradient(90deg, rgba(60,70,80,0.4) 0%, rgba(40,50,60,0.2) 100%);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-left: 4px solid #4cc9f0;
+    }
+
+    .topic-item a:hover {
+        background: linear-gradient(90deg, rgba(76,201,240,0.2) 0%, rgba(40,50,60,0.3) 100%);
+        color: #ffda47;
+        transform: translateX(8px);
+        border-left-color: #ff9e7d;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .sub-list {
+        list-style-type: none;
+        padding-left: 30px;
+        margin-top: 12px;
+        border-left: 2px dashed #4cc9f0;
+    }
+
+    .sub-item {
+        margin: 15px 0;
+        position: relative;
+    }
+
+    .sub-item a {
+        color: #b0b0b0;
+        font-size: 16px;
+        margin-right: 30px;
+        padding: 8px 15px 8px 25px;
+        display: block;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    .sub-item a:before {
+        content: "•";
+        color: #4cc9f0;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+
+    .sub-item a:hover {
+        color: #83e8de;
+        background: rgba(76, 201, 240, 0.1);
+        padding-left: 30px;
+    }
+
+    .grammar-divider {
+        border: 1px solid #444;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .topic-item a {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .sub-item a {
+            font-size: 15px;
+            padding: 6px 12px 6px 22px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span>{% translate "Indirect Speech" %}</span>
+        </nav>
+
+        <div class="grammar-list-container">
+            <h1 class="grammar-main-title">{% translate "Indirect (Reported) Speech" %}</h1>
+            <p>
+                {% translate "Indirect speech is used to convey what someone said without using their exact words. It requires careful changes in tenses, pronouns, and time expressions to be grammatically correct." %}
+            </p>
+
+            <div class="grammar-section">
+                <ul class="grammar-list">
+                    <li class="main-topic">{% translate "Formation of Indirect Speech" %}</li>
+                    
+                    <li class="topic-item">
+                        <a href="#">{% translate "Key Changes" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'indirect_speech_verb_tense_changes' %}">{% translate "Verb Tense Changes (Backshift)" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'indirect_speech_pronoun_changes' %}">{% translate "Pronoun Changes" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'indirect_speech_time_and_place_changes' %}">{% translate "Time and Place Expression Changes" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'indirect_speech_reporting_verbs_and_structure' %}">{% translate "Changes in Reporting Verbs and Structure" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "Usage and Sequence of Tenses" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'indirect_speech_rules_for_backshift' %}">{% translate "Rules for Tense Backshift" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'indirect_speech_examples_of_tense_sequence' %}">{% translate "Examples of Tense Sequence" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'indirect_speech_exceptions_to_backshift' %}">{% translate "Exceptions to Tense Backshift" %}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'grammar_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Grammar" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -4,7 +4,12 @@
 {% load friends_tags %}
 {% load i18n %}
 
-{% block title %}{% blocktrans %}{{ profile.user.username }}'s profile{% endblocktrans %}{% endblock %}
+{% block title %}
+    {% comment %} Здесь blocktrans уже был, но с неправильным синтаксисом для подстановки {% endcomment %}
+    {% with user_name=profile.user.username %}
+        {% blocktrans %}Profile of {{ user_name }}{% endblocktrans %}
+    {% endwith %}
+{% endblock %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'style/navbar.css' %}">
@@ -23,7 +28,12 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                <h1>{% blocktrans %}{{ profile.user.username }}'s profile{% endblocktrans %}</h1>
+                {# Исправлено: Передача user_name в blocktrans для правильного перевода с подстановкой #}
+                <h1>
+                    {% with user_name=profile.user.username %}
+                        {% blocktrans %}{{ user_name }}'s profile{% endblocktrans %}
+                    {% endwith %}
+                </h1>
             </div>
 
             <div class="profile-content">

@@ -1,0 +1,263 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Nouns ending in -y/-o/-f" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Nouns ending in -y/-o/-f" %}</span>
+        </nav>
+
+        <h1>{% translate "Nouns ending in -y/-o/-f" %}</h1>
+        <p>
+            {% translate "Forming the plural of nouns that end in <span class=\"term-highlight\">-y</span>, <span class=\"term-highlight\">-o</span>, and <span class=\"term-highlight\">-f/-fe</span> follows specific rules, often with a number of common exceptions. " %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns ending in -y" %}</h3>
+        <p>
+            {% translate "The rule for nouns ending in <span class=\"code-highlight\">-y</span> depends on the letter that comes before it." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "If a noun ends in a consonant + <span class=\"code-highlight\">-y</span>, change <span class=\"code-highlight\">-y</span> to <span class=\"code-highlight\">-ies</span>." %}</td>
+                        <td>{% translate "city" %}</td>
+                        <td>{% translate "cities" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "If a noun ends in a vowel + <span class=\"code-highlight\">-y</span>, simply add <span class=\"code-highlight\">-s</span>." %}</td>
+                        <td>{% translate "day" %}</td>
+                        <td>{% translate "days" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns ending in -o" %}</h3>
+        <p>
+            {% translate "For nouns ending in <span class=\"code-highlight\">-o</span>, the plural form can be either <span class=\"code-highlight\">-s</span> or <span class=\"code-highlight\">-es</span>, and sometimes both." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Add <span class=\"code-highlight\">-es</span> if the noun ends in a consonant + <span class=\"code-highlight\">-o</span>." %}</td>
+                        <td>{% translate "hero" %}</td>
+                        <td>{% translate "heroes" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Add <span class=\"code-highlight\">-s</span> if the noun ends in a vowel + <span class=\"code-highlight\">-o</span>." %}</td>
+                        <td>{% translate "radio" %}</td>
+                        <td>{% translate "radios" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Many nouns ending in <span class=\"code-highlight\">-o</span> have an irregular plural form, or both forms are acceptable." %}</td>
+                        <td>{% translate "potato" %} / {% translate "piano" %}</td>
+                        <td>{% translate "potatoes" %} / {% translate "pianos" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Common Exceptions for -o" %}</h4>
+        <p>
+            {% translate "Nouns of foreign origin and some common nouns only add <span class=\"code-highlight\">-s</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "photo" %} -> {% translate "photos" %}</li>
+            <li>{% translate "piano" %} -> {% translate "pianos" %}</li>
+            <li>{% translate "zoo" %} -> {% translate "zoos" %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns ending in -f or -fe" %}</h3>
+        <p>
+            {% translate "For nouns ending in <span class=\"code-highlight\">-f</span> or <span class=\"code-highlight\">-fe</span>, the plural is usually formed by changing the ending to <span class=\"code-highlight\">-ves</span>." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "leaf" %}</td><td>{% translate "leaves" %}</td></tr>
+                    <tr><td>{% translate "wife" %}</td><td>{% translate "wives" %}</td></tr>
+                    <tr><td>{% translate "wolf" %}</td><td>{% translate "wolves" %}</td></tr>
+                    <tr><td>{% translate "knife" %}</td><td>{% translate "knives" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h4>{% translate "Common Exceptions for -f" %}</h4>
+        <p>
+            {% translate "Some nouns ending in <span class=\"code-highlight\">-f</span> or <span class=\"code-highlight\">-fe</span> simply add <span class=\"code-highlight\">-s</span> to form the plural." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "belief" %} -> {% translate "beliefs" %}</li>
+            <li>{% translate "chief" %} -> {% translate "chiefs" %}</li>
+            <li>{% translate "safe" %} -> {% translate "safes" %}</li>
+            <li>{% translate "roof" %} -> {% translate "roofs" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

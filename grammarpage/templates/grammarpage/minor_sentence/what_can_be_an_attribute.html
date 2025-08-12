@@ -1,0 +1,365 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "What Can Be an Attribute?" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #b388ff;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .attribute-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .noun-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'minor_sentence_part_page' %}">{% translate "Minor Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "What Can Be an Attribute?" %}</span>
+        </nav>
+
+        <h1>{% translate "Grammatical Forms That Can Function as Attributes" %}</h1>
+        <p>
+            {% translate "Attributes can be expressed through various grammatical forms, each providing different types of information about the nouns they modify." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "1. Adjectives" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Adjective]</span> + <span class="noun-highlight">[Noun]</span>
+            </div>
+
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Most common attributive form" %}</li>
+                <li>{% translate "Typically precede the noun they modify" %}</li>
+                <li>{% translate "Can be gradable (comparative/superlative forms)" %}</li>
+                <li>{% translate "Can be compound (dark-blue, ice-cold)" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">happy</span> <span class=\"noun-highlight\">child</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">tallest</span> <span class=\"noun-highlight\">building</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "An <span class=\"attribute-highlight\">extremely difficult</span> <span class=\"noun-highlight\">problem</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "Special Cases:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Postpositive adjectives:</span> Some adjectives follow the noun" %}
+                    <p class="code-highlight">{% translate "The president <span class=\"attribute-highlight\">elect</span>" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Adjectives beginning with 'a':</span>" %}
+                    <p class="code-highlight">{% translate "The child <span class=\"attribute-highlight\">asleep</span>" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "2. Nouns and Noun Phrases" %}</h2>
+
+            <h3>{% translate "A. Possessive Nouns" %}</h3>
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Noun+'s]</span> + <span class="noun-highlight">[Noun]</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Mary's</span> <span class=\"noun-highlight\">car</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">company's</span> <span class=\"noun-highlight\">policy</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "B. Noun Modifiers" %}</h3>
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Noun]</span> + <span class="noun-highlight">[Noun]</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Chocolate</span> <span class=\"noun-highlight\">cake</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Computer</span> <span class=\"noun-highlight\">science</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "C. Compound Nouns" %}</h3>
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Noun]</span>+<span class="noun-highlight">[Noun]</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Tooth</span><span class=\"noun-highlight\">brush</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Swimming</span> <span class=\"noun-highlight\">pool</span>" %}</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "3. Participles" %}</h2>
+
+            <h3>{% translate "A. Present Participles (-ing)" %}</h3>
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Verb+ing]</span> + <span class="noun-highlight">[Noun]</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">barking</span> <span class=\"noun-highlight\">dog</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">setting</span> <span class=\"noun-highlight\">sun</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "B. Past Participles (-ed/irregular)" %}</h3>
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Verb+ed/irregular]</span> + <span class="noun-highlight">[Noun]</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">broken</span> <span class=\"noun-highlight\">window</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">stolen</span> <span class=\"noun-highlight\">jewelry</span>" %}</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "4. Prepositional Phrases" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="noun-highlight">[Noun]</span> + <span class="attribute-highlight">[Preposition + Noun]</span>
+            </div>
+
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always follow the noun they modify" %}</li>
+                <li>{% translate "Can be restrictive or non-restrictive" %}</li>
+                <li>{% translate "Often equivalent to relative clauses" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The book <span class=\"attribute-highlight\">on the shelf</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "A woman <span class=\"attribute-highlight\">of great wisdom</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The house <span class=\"attribute-highlight\">across the street</span>" %}</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "5. Other Attributive Forms" %}</h2>
+
+            <h3>{% translate "A. Relative Clauses" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The man <span class=\"attribute-highlight\">who lives next door</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The ideas <span class=\"attribute-highlight\">that we discussed</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "B. Infinitives" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The best way <span class=\"attribute-highlight\">to learn</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "A book <span class=\"attribute-highlight\">to read</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "C. Adverbs" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The people <span class=\"attribute-highlight\">here</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The meeting <span class=\"attribute-highlight\">yesterday</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "D. Whole Sentences" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">do-it-yourself</span> project" %}</span></li>
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">I-told-you-so</span> look" %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Comparison of Attributive Forms" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Form" %}</th>
+                    <th>{% translate "Position" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Notes" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Adjective" %}</td>
+                    <td>{% translate "Pre-noun" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">red</span> car" %}</span></td>
+                    <td>{% translate "Most common form" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Possessive noun" %}</td>
+                    <td>{% translate "Pre-noun" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">teacher's</span> book" %}</span></td>
+                    <td>{% translate "Shows ownership" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Participle" %}</td>
+                    <td>{% translate "Pre-noun" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">running</span> water" %}</span></td>
+                    <td>{% translate "Verbal adjective" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Prepositional phrase" %}</td>
+                    <td>{% translate "Post-noun" %}</td>
+                    <td><span class="code-highlight">{% translate "book <span class=\"attribute-highlight\">on the table</span>" %}</span></td>
+                    <td>{% translate "Often replaceable with relative clause" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="navigation-links">
+            <a href="{% url 'minor_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Minor Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

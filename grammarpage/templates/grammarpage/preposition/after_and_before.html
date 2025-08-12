@@ -1,0 +1,339 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: After and Before" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .after-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .before-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .prep-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .after-card {
+            border-left-color: #83e8de;
+        }
+
+        .before-card {
+            border-left-color: #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .usage-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "After and Before" %}</span>
+        </nav>
+
+        <h1>{% translate "Mastering After and Before" %}</h1>
+        <p>
+            {% translate "These essential temporal prepositions establish sequence relationships between events, actions, and time periods. Understanding their nuanced usage will significantly improve your temporal precision in English." %}
+        </p>
+
+        <div class="prep-card after-card">
+            <h2><span class="after-highlight">{% translate "After: Subsequent Events" %}</span></h2>
+            <div class="usage-diagram">
+                {% translate "Event 1 + <span class=\"after-highlight\">after</span> + Event 2/Time" %}
+            </div>
+
+            <h3>{% translate "Basic Temporal Usage" %}</h3>
+            <p>{% translate "Indicates that something occurs later than another event or time:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "We'll discuss this <span class=\"after-highlight\">after</span> the meeting." %}</li>
+                <li>{% translate "The flowers bloom <span class=\"after-highlight\">after</span> the first spring rain." %}</li>
+                <li>{% translate "She always feels tired <span class=\"after-highlight\">after</span> exercising." %}</li>
+            </ul>
+
+            <h3>{% translate "Special Constructions" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "After + -ing form:" %}
+                    <p class="code-highlight">{% translate "<span class=\"after-highlight\">After</span> finishing his degree, he traveled for a year." %}</p>
+                </li>
+                <li>{% translate "After + noun (time periods):" %}
+                    <p class="code-highlight">{% translate "The store closes <span class=\"after-highlight\">after</span> midnight." %}</p>
+                </li>
+                <li>{% translate "After + pronoun:" %}
+                    <p class="code-highlight">{% translate "He arrived <span class=\"after-highlight\">after</span> me." %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Common Expressions" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Expression" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">after all</span></td>
+                        <td>{% translate "Despite what was thought" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">day after day</span></td>
+                        <td>{% translate "Repeatedly over time" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">after the fact</span></td>
+                        <td>{% translate "After something happened" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="prep-card before-card">
+            <h2><span class="before-highlight">{% translate "Before: Prior Events" %}</span></h2>
+            <div class="usage-diagram">
+                {% translate "Event 1 + <span class=\"before-highlight\">before</span> + Event 2/Time" %}
+            </div>
+
+            <h3>{% translate "Basic Temporal Usage" %}</h3>
+            <p>{% translate "Indicates that something occurs earlier than another event or time:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Please submit your report <span class=\"before-highlight\">before</span> Friday." %}</li>
+                <li>{% translate "Check the oil <span class=\"before-highlight\">before</span> starting the car." %}</li>
+                <li>{% translate "She had never been abroad <span class=\"before-highlight\">before</span> last year." %}</li>
+            </ul>
+
+            <h3>{% translate "Special Constructions" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Before + -ing form:" %}
+                    <p class="code-highlight">{% translate "<span class=\"before-highlight\">Before</span> leaving the house, check the windows." %}</p>
+                </li>
+                <li>{% translate "Before + noun (time periods):" %}
+                    <p class="code-highlight">{% translate "We need to finish <span class=\"before-highlight\">before</span> sunset." %}</p>
+                </li>
+                <li>{% translate "Before + pronoun:" %}
+                    <p class="code-highlight">{% translate "He arrived <span class=\"before-highlight\">before</span> me." %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Positioning in Sentences" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Initial Position" %}</th>
+                        <th>{% translate "Mid Position" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"before-highlight\">Before</span> breakfast, I go for a run." %}</td>
+                        <td>{% translate "I go for a run <span class=\"before-highlight\">before</span> breakfast." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "<span class=\"before-highlight\">Before</span> you leave, turn off the lights." %}</td>
+                        <td>{% translate "Turn off the lights <span class=\"before-highlight\">before</span> you leave." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="prep-card">
+            <h2>{% translate "Comparative Usage" %}</h2>
+
+            <h3>{% translate "Time Sequence Visualization" %}</h3>
+            <div class="usage-diagram">
+                [Event A] <span class="before-highlight">BEFORE</span> [Event B] <span class="after-highlight">AFTER</span> [Event C]
+            </div>
+
+            <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Confusing with 'afterwards' and 'beforehand':" %}
+                    <p class="code-highlight">{% translate "Correct: We ate dinner, and <span class=\"term-highlight\">afterwards</span> we watched a movie." %}</p>
+                    <p class="code-highlight">{% translate "Incorrect: We ate dinner, and <span class=\"term-highlight\">after</span> we watched a movie." %}</p>
+                </li>
+                <li>{% translate "Using with present perfect:" %}
+                    <p class="code-highlight">{% translate "Correct: I had never seen it <span class=\"before-highlight\">before</span>." %}</p>
+                    <p class="code-highlight">{% translate "Incorrect: I have never seen it <span class=\"before-highlight\">before</span> yesterday." %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "With Other Time Expressions" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Expression" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Soon after" %}</td>
+                        <td>{% translate "<span class=\"after-highlight\">Soon after</span> the accident, new safety rules were implemented." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Long before" %}</td>
+                        <td>{% translate "The temple was built <span class=\"before-highlight\">long before</span> the city existed." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Immediately before" %}</td>
+                        <td>{% translate "<span class=\"before-highlight\">Immediately before</span> the speech, she felt nervous." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

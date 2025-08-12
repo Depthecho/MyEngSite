@@ -1,0 +1,199 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Possessive Determiners" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Possessive Determiners" %}</span>
+        </nav>
+
+        <h1>{% translate "Possessive Determiners" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">possessive determiner</span> is a word that shows who or what owns something. They are also known as possessive adjectives because they always come before a noun and act like an adjective." %}
+        </p>
+        <p>
+            {% translate "Unlike possessive pronouns (<span class=\"code-highlight\">mine, yours, hers</span>), possessive determiners are always followed by a noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "The Possessive Determiners" %}</h3>
+        <p>
+            {% translate "Here is a list of the possessive determiners and the personal pronouns they correspond to:" %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Personal Pronoun" %}</th>
+                        <th>{% translate "Possessive Determiner" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "I" %}</td><td>{% translate "my" %}</td><td>{% translate "This is <span class=\"code-highlight\">my</span> book." %}</td></tr>
+                    <tr><td>{% translate "you" %}</td><td>{% translate "your" %}</td><td>{% translate "What is <span class=\"code-highlight\">your</span> name?" %}</td></tr>
+                    <tr><td>{% translate "he" %}</td><td>{% translate "his" %}</td><td>{% translate "He lost <span class=\"code-highlight\">his</span> keys." %}</td></tr>
+                    <tr><td>{% translate "she" %}</td><td>{% translate "her" %}</td><td>{% translate "Her parents are very kind." %}</td></tr>
+                    <tr><td>{% translate "it" %}</td><td>{% translate "its" %}</td><td>{% translate "The cat is washing <span class=\"code-highlight\">its</span> tail." %}</td></tr>
+                    <tr><td>{% translate "we" %}</td><td>{% translate "our" %}</td><td>{% translate "This is <span class=\"code-highlight\">our</span> house." %}</td></tr>
+                    <tr><td>{% translate "they" %}</td><td>{% translate "their" %}</td><td>{% translate "They sold <span class=\"code-highlight\">their</span> old car." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Key Characteristics" %}</h3>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Always precede a noun:" %}</span>
+                <p>{% translate "A possessive determiner cannot stand alone. It must be followed by a noun." %}</p>
+                <span class="code-highlight">{% translate "This is <span class=\"term-highlight\">my</span> car." %}</span>
+            </li>
+            <li><span class="example-highlight">{% translate "Do not use with articles:" %}</span>
+                <p>{% translate "You do not use an article (<span class=\"code-highlight\">a, an, the</span>) with a possessive determiner." %}</p>
+                <span class="code-highlight">{% translate "<s>the my car</s>" %}</span> -> <span class="code-highlight">{% translate "my car" %}</span>
+            </li>
+            <li><span class="example-highlight">{% translate "Distinction between 'its' and 'it's':" %}</span>
+                <p>{% translate "<span class=\"code-highlight\">Its</span> is the possessive determiner (e.g., <span class=\"code-highlight\">The dog wagged its tail</span>). <span class=\"code-highlight\">It's</span> is a contraction of <span class=\"code-highlight\">it is</span> or <span class=\"code-highlight\">it has</span>." %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

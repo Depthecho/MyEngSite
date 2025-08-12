@@ -1,0 +1,334 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Types of Predicates" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .subject-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .predicate-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .simple-predicate {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .complete-predicate {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .compound-predicate {
+            color: #a546e3;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'main_sentence_part_page' %}">{% translate "Main Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "Types of Predicates" %}</span>
+        </nav>
+
+        <h1>{% translate "Types of Predicates" %}</h1>
+        <p>
+            {% translate "Predicates can be classified into different types based on their structure and complexity. Understanding these types helps in sentence construction and analysis." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Simple Predicate" %}</h3>
+            <p>{% translate "The most basic form consisting of just the main verb or verb phrase." %}</p>
+
+            <div class="structure-diagram">
+                <span class="subject-highlight">[Subject]</span> + <span class="simple-predicate">[Verb]</span>
+            </div>
+
+            <h4>{% translate "Characteristics:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Contains only the verb (no objects, complements, or modifiers)" %}</li>
+                <li>{% translate "Common in short, direct statements" %}</li>
+                <li>{% translate "Often used in commands where the subject is implied" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Birds <span class=\"simple-predicate\">fly</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "She <span class=\"simple-predicate\">has been working</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"simple-predicate\">Stop</span>!" %}</span> (implied subject "you")</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Complete Predicate" %}</h3>
+            <p>{% translate "Includes the verb plus all words that modify or complete its meaning." %}</p>
+
+            <div class="structure-diagram">
+                <span class="subject-highlight">[Subject]</span> + <span class="complete-predicate">[Verb] + [Objects/Complements/Modifiers]</span>
+            </div>
+
+            <h4>{% translate "Components Often Included:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Direct and indirect objects" %}</li>
+                <li>{% translate "Subject and object complements" %}</li>
+                <li>{% translate "Adverbial modifiers (time, place, manner)" %}</li>
+                <li>{% translate "Prepositional phrases" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The children <span class=\"complete-predicate\">played in the park all afternoon</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "She <span class=\"complete-predicate\">gave her brother a present for his birthday</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "The teacher <span class=\"complete-predicate\">considered the answer correct after careful review</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Compound Predicate" %}</h3>
+            <p>{% translate "Contains two or more verbs sharing the same subject, connected by conjunctions." %}</p>
+
+            <div class="structure-diagram">
+                <span class="subject-highlight">[Subject]</span> + <span class="compound-predicate">[Verb] + [Conjunction] + [Verb]</span>
+            </div>
+
+            <h4>{% translate "Key Features:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Verbs must share the same subject" %}</li>
+                <li>{% translate "Connected by coordinating conjunctions (and, but, or)" %}</li>
+                <li>{% translate "May include different verb forms (tenses, aspects)" %}</li>
+                <li>{% translate "Each verb can have its own objects and modifiers" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "He <span class=\"compound-predicate\">ran to the store and bought some milk</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "The dog <span class=\"compound-predicate\">barked loudly but didn't move</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "She <span class=\"compound-predicate\">has studied French for years but never visited France</span>." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Common Conjunction Patterns:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">And:</span> Shows addition" %}
+                    <p class="code-highlight">{% translate "She <span class=\"compound-predicate\">sang and danced</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">But:</span> Shows contrast" %}
+                    <p class="code-highlight">{% translate "He <span class=\"compound-predicate\">tried but failed</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Or:</span> Shows alternatives" %}
+                    <p class="code-highlight">{% translate "We <span class=\"compound-predicate\">can leave now or wait until morning</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Predicate Type Comparison" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Type" %}</th>
+                    <th>{% translate "Components" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "When Used" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Simple" %}</td>
+                    <td>{% translate "Verb only" %}</td>
+                    <td><span class="code-highlight">{% translate "Birds <span class=\"simple-predicate\">fly</span>." %}</span></td>
+                    <td>{% translate "Short statements, commands" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Complete" %}</td>
+                    <td>{% translate "Verb + modifiers" %}</td>
+                    <td><span class="code-highlight">{% translate "She <span class=\"complete-predicate\">reads books every night</span>." %}</span></td>
+                    <td>{% translate "Most common in writing" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Compound" %}</td>
+                    <td>{% translate "Multiple verbs" %}</td>
+                    <td><span class="code-highlight">{% translate "He <span class=\"compound-predicate\">cooked and cleaned</span>." %}</span></td>
+                    <td>{% translate "Showing multiple actions" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases and Notes" %}</h3>
+        <div class="structure-card">
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Verb phrases:</span> Multi-word verbs still count as simple predicates" %}
+                    <p class="code-highlight">{% translate "She <span class=\"simple-predicate\">has been sleeping</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Ellipsis:</span> Some parts may be omitted in context" %}
+                    <p class="code-highlight">{% translate "He read the book and (he) wrote a review." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Interrupted predicates:</span> Modifiers can separate parts" %}
+                    <p class="code-highlight">{% translate "They <span class=\"complete-predicate\">have, after much consideration, decided</span> to leave." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Inverted structures:</span> Questions may reverse normal order" %}
+                    <p class="code-highlight">{% translate "<span class=\"complete-predicate\">Did you see</span> the movie?" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'main_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Main Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

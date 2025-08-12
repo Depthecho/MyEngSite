@@ -1,0 +1,358 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Reading Mixed Numbers" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .mixed-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Fractional and Decimal Numerals" %}</span> &raquo;
+            <span>{% translate "Reading Mixed Numbers" %}</span>
+        </nav>
+
+        <h1>{% translate "Reading Mixed Numbers" %}</h1>
+        <p>
+            {% translate "Mixed numbers combine whole numbers with fractions, requiring specific reading conventions. Mastering these patterns is essential for clear communication in mathematics, cooking, construction, and other practical fields." %}
+        </p>
+
+        <div class="rule-card">
+            <h3>{% translate "1. Fundamental Reading Rules" %}</h3>
+            <h4>{% translate "Standard Format" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Read the whole number first" %}</li>
+                <li>{% translate "Say '<span class=\"mixed-highlight\">and</span>' to connect to the fraction" %}</li>
+                <li>{% translate "Read the fraction following simple fraction rules" %}</li>
+                <li>{% translate "For halves/quarters, use special terms when available" %}</li>
+            </ul>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Written Form" %}</th>
+                            <th>{% translate "Spoken Form" %}</th>
+                            <th>{% translate "Components" %}</th>
+                            <th>{% translate "Notes" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1½</td>
+                            <td>one and a half</td>
+                            <td>1 + 1/2</td>
+                            <td>Special term for half</td>
+                        </tr>
+                        <tr>
+                            <td>2¾</td>
+                            <td>two and three quarters</td>
+                            <td>2 + 3/4</td>
+                            <td>Quarter preferred over fourth</td>
+                        </tr>
+                        <tr>
+                            <td>5⅔</td>
+                            <td>five and two thirds</td>
+                            <td>5 + 2/3</td>
+                            <td>Regular fraction form</td>
+                        </tr>
+                        <tr>
+                            <td>10⅛</td>
+                            <td>ten and one eighth</td>
+                            <td>10 + 1/8</td>
+                            <td>Hyphen optional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "2. Practical Applications" %}</h3>
+            <h4>{% translate "Common Usage Contexts" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Context" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Reading" %}</th>
+                            <th>{% translate "Variations" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Cooking/Recipes" %}</td>
+                            <td>1½ cups</td>
+                            <td>one and a half cups</td>
+                            <td>"a half cup" also acceptable</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Construction" %}</td>
+                            <td>3¾ inches</td>
+                            <td>three and three quarter inches</td>
+                            <td>No "s" on quarter</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Time" %}</td>
+                            <td>2½ hours</td>
+                            <td>two and a half hours</td>
+                            <td>"two hours and thirty minutes" alternative</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Sports" %}</td>
+                            <td>9⅔ innings</td>
+                            <td>nine and two thirds innings</td>
+                            <td>Formal reporting only</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Written vs. Spoken Forms" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Written with space:" %}
+                    <p class="code-highlight">1 1/2 (one and a half)</p>
+                </li>
+                <li>{% translate "Written with special characters:" %}
+                    <p class="code-highlight">1½ (one and a half)</p>
+                </li>
+                <li>{% translate "Spoken contractions:" %}
+                    <p class="code-highlight">"two'n'a half" (informal speech)</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "3. Special Cases and Exceptions" %}</h3>
+            <h4>{% translate "When 'and' is Omitted" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "In some British English traditions:" %}
+                    <p class="code-highlight">1¼ → "one quarter" (without "and")</p>
+                </li>
+                <li>{% translate "In rapid speech, 'and' may be reduced:" %}
+                    <p class="code-highlight">"two 'n' a half"</p>
+                </li>
+                <li>{% translate "Never omitted in formal writing or American English" %}</li>
+            </ul>
+
+            <h4>{% translate "Decimal vs. Fractional Mixed Numbers" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Decimals use 'point', not 'and':" %}
+                    <p class="code-highlight">2.5 → "two point five" (not "two and five")</p>
+                </li>
+                <li>{% translate "Place value method uses 'and':" %}
+                    <p class="code-highlight">2.5 → "two and five tenths" (mathematical)</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Common Mistakes to Avoid" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Mistake" %}</th>
+                        <th>{% translate "Correction" %}</th>
+                        <th>{% translate "Rule" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>one an half</td>
+                        <td>one and a half</td>
+                        <td>Use "and", not "an"</td>
+                    </tr>
+                    <tr>
+                        <td>two and half</td>
+                        <td>two and a half</td>
+                        <td>Include article "a"</td>
+                    </tr>
+                    <tr>
+                        <td>three and three fourth</td>
+                        <td>three and three fourths</td>
+                        <td>Pluralize denominator</td>
+                    </tr>
+                    <tr>
+                        <td>one and one second</td>
+                        <td>one and a half</td>
+                        <td>Special term for 1/2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-language"></i> {% translate "Language & Region" %}
+    </h2>
+    
+    <form method="post" action="#" class="settings-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="language">{% translate "Application Language" %}</label>
+            <select name="language" id="language" class="form-control">
+                <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                <option value="ru" {% if request.LANGUAGE_CODE == 'ru' %}selected{% endif %}>Русский</option>
+                <option value="uk" {% if request.LANGUAGE_CODE == 'uk' %}selected{% endif %}>Українська</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="timezone">{% translate "Timezone" %}</label>
+            <select name="timezone" id="timezone" class="form-control">
+                {% for tz in timezones %}
+                    <option value="{{ tz }}" {% if tz == current_timezone %}selected{% endif %}>{{ tz }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-actions">
+            <button type="reset" class="cta-button secondary">
+                <i class="fas fa-undo"></i> {% translate "Reset" %}
+            </button>
+            <button type="submit" class="cta-button primary">
+                <i class="fas fa-save"></i> {% translate "Save Changes" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-globe"></i> {% translate "Content Preferences" %}
+    </h2>
+    
+    <div class="setting-item">
+        <div class="setting-info">
+            <h3 class="setting-title">{% translate "Show translations" %}</h3>
+            <p class="setting-description">
+                {% translate "Display translations for words and phrases by default" %}
+            </p>
+        </div>
+        <div class="setting-control">
+            <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+    
+    <div class="setting-item">
+        <div class="setting-info">
+            <h3 class="setting-title">{% translate "Show phonetic transcriptions" %}</h3>
+            <p class="setting-description">
+                {% translate "Display phonetic symbols for pronunciation" %}
+            </p>
+        </div>
+        <div class="setting-control">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+{% endblock %}

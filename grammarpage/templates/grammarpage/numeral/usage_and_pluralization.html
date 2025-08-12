@@ -1,0 +1,358 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Cardinal Numerals: Usage and Pluralization" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .number-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .plural-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Cardinal Numerals" %}</span> &raquo;
+            <span>{% translate "Usage and Pluralization" %}</span>
+        </nav>
+
+        <h1>{% translate "Cardinal Numerals: Usage and Pluralization" %}</h1>
+        <p>
+            {% translate "Mastering the usage of cardinal numerals involves understanding their grammatical roles and proper pluralization. These rules are essential for precise communication in both spoken and written English." %}
+        </p>
+
+        <div class="usage-card">
+            <h3>{% translate "1. Grammatical Roles of Cardinal Numerals" %}</h3>
+            <h4>{% translate "As Determiners (Most Common)" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Modify nouns directly" %}
+                    <p class="code-highlight">{% translate "She has <span class=\"example-highlight\">three</span> cats." %}</p>
+                </li>
+                <li>{% translate "Always precede the noun they modify" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Five</span> students arrived late." %}</p>
+                </li>
+                <li>{% translate "Never take plural form in this role" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Seven</span> days (not sevens days)" %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "As Pronouns" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Stand alone without modifying a noun" %}
+                    <p class="code-highlight">{% translate "How many do you need? I need <span class=\"example-highlight\">five</span>." %}</p>
+                </li>
+                <li>{% translate "Can refer to previously mentioned items" %}
+                    <p class="code-highlight">{% translate "She bought twelve apples but only needed <span class=\"example-highlight\">six</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="plural-card">
+            <h3>{% translate "2. Pluralization Rules" %}</h3>
+            <h4>{% translate "When to Pluralize Numerals" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Referring to the numbers themselves" %}
+                    <p class="code-highlight">{% translate "All the <span class=\"example-highlight\">sevens</span> in this document need correction." %}</p>
+                </li>
+                <li>{% translate "Referring to decades" %}
+                    <p class="code-highlight">{% translate "The <span class=\"example-highlight\">nineties</span> were a time of economic growth." %}</p>
+                </li>
+                <li>{% translate "Referring to age groups" %}
+                    <p class="code-highlight">{% translate "This game is popular with <span class=\"example-highlight\">tens</span> and <span class=\"example-highlight\">twelves</span>." %}</p>
+                </li>
+                <li>{% translate "Referring to playing cards or dice" %}
+                    <p class="code-highlight">{% translate "He rolled three <span class=\"example-highlight\">sixes</span> in a row." %}</p>
+                </li>
+            </ul>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Context" %}</th>
+                            <th>{% translate "Singular" %}</th>
+                            <th>{% translate "Plural" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "General counting" %}</td>
+                            <td>three books</td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Referring to digits" %}</td>
+                            <td>the number seven</td>
+                            <td>all the sevens</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Decades" %}</td>
+                            <td>the year 1990</td>
+                            <td>the nineties</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Approximate quantities" %}</td>
+                            <td>a hundred times</td>
+                            <td>hundreds of times</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "3. Special Usage Cases" %}</h3>
+            <h4>{% translate "With Units of Measurement" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Hyphenated compound adjectives" %}
+                    <p class="code-highlight">{% translate "a <span class=\"example-highlight\">five-liter</span> container" %}</p>
+                </li>
+                <li>{% translate "Non-hyphenated when not modifying a noun" %}
+                    <p class="code-highlight">{% translate "The container holds <span class=\"example-highlight\">five liters</span>." %}</p>
+                </li>
+                <li>{% translate "Special cases with foot/feet" %}
+                    <p class="code-highlight">{% translate "a <span class=\"example-highlight\">six-foot</span> tall man (adjective)<br>
+                    The man is <span class=\"example-highlight\">six feet</span> tall (noun)" %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "With Money and Currency" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Singular form for exact amounts" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">fifty dollars</span> (not fifties dollars)" %}</p>
+                </li>
+                <li>{% translate "Plural for approximate amounts" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">hundreds of dollars</span>" %}</p>
+                </li>
+                <li>{% translate "Special forms for some currencies" %}
+                    <p class="code-highlight">{% translate "five <span class=\"example-highlight\">pence</span> (not pences)" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "Common Mistakes and Exceptions" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">One</span> is never pluralized" %}
+                    <p class="code-highlight">{% translate "Correct: the number one<br>
+                    Incorrect: the number ones" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Zero</span> has two plural forms" %}
+                    <p class="code-highlight">{% translate "zeros (mathematics)<br>
+                    zeroes (general usage)" %}</p>
+                </li>
+                <li>{% translate "Collective numbers have fixed forms" %}
+                    <p class="code-highlight">{% translate "a dozen eggs (not dozens eggs)<br>
+                    dozens of eggs (when approximate)" %}</p>
+                </li>
+                <li>{% translate "Avoid double pluralization" %}
+                    <p class="code-highlight">{% translate "Correct: five million people<br>
+                    Incorrect: five millions people" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Expression" %}</th>
+                        <th>{% translate "Correct Form" %}</th>
+                        <th>{% translate "Incorrect Form" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Age description" %}</td>
+                        <td>a group of 10-year-olds</td>
+                        <td>a group of 10-years-old</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Sports scores" %}</td>
+                        <td>The score was three sixes</td>
+                        <td>The score was three six</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Temperature" %}</td>
+                        <td>minus ten degrees</td>
+                        <td>minus tens degrees</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Mathematical operations" %}</td>
+                        <td>two plus two equals four</td>
+                        <td>two plus two equal four</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

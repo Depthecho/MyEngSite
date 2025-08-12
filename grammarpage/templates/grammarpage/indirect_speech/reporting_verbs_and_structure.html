@@ -1,0 +1,273 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Changes in Reporting Verbs and Structure" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Reporting Verbs and Structure" %}</span>
+        </nav>
+
+        <h1>{% translate "Reporting Verbs and Structural Changes in Indirect Speech" %}</h1>
+        <p>
+            {% translate "When converting direct speech to indirect speech, the choice of reporting verb and the subsequent structural changes are crucial for maintaining the original meaning while adapting to grammatical rules." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "1. Statements" %}</h3>
+            <p>{% translate "For reporting statements, we typically use verbs like <span class='verb-highlight'>say</span>, <span class='verb-highlight'>tell</span>, <span class='verb-highlight'>explain</span>, <span class='verb-highlight'>mention</span>, etc." %}</p>
+
+            <h4>{% translate "Structure:" %}</h4>
+            <p class="code-highlight">Subject + <span class="verb-highlight">reporting verb</span> + (that) + reported clause</p>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"I love this song," she said.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">said (that)</span> {% translate "she loved that song." %}</span></i></li>
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"I'll call you tomorrow," he told me.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">told me (that)</span> {% translate "he would call me the next day." %}</span></i></li>
+            </ul>
+
+            <h4>{% translate "Key Points:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The word <span class='term-highlight'>that</span> is often omitted in informal speech" %}</li>
+                <li>{% translate "<span class='verb-highlight'>Tell</span> must be followed by an object (tell me, tell John)" %}</li>
+                <li>{% translate "<span class='verb-highlight'>Say</span> doesn't take an object directly (say to me, not say me)" %}</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Questions" %}</h3>
+            <p>{% translate "Questions are reported using verbs like <span class='verb-highlight'>ask</span>, <span class='verb-highlight'>wonder</span>, <span class='verb-highlight'>inquire</span>, etc." %}</p>
+
+            <h4>{% translate "Structure Types:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Yes/No questions:</span> <span class="code-highlight">Subject + <span class="verb-highlight">asked</span> + if/whether + reported clause</span></li>
+                <li><span class="term-highlight">Wh-questions:</span> <span class="code-highlight">Subject + <span class="verb-highlight">asked</span> + question word + reported clause</span></li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"Are you coming?" she asked.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">asked if</span> {% translate "I was coming." %}</span></i></li>
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"Where do you live?" he asked.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">asked where</span> {% translate "I lived." %}</span></i></li>
+            </ul>
+
+            <h4>{% translate "Important Notes:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Question word order changes to statement order in indirect speech" %}</li>
+                <li>{% translate "No auxiliary 'do/does/did' is used in the reported question" %}</li>
+                <li>{% translate "Question marks are omitted in indirect questions" %}</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Commands and Requests" %}</h3>
+            <p>{% translate "Imperatives are reported using verbs like <span class='verb-highlight'>tell</span>, <span class='verb-highlight'>order</span>, <span class='verb-highlight'>ask</span>, <span class='verb-highlight'>request</span>, etc." %}</p>
+
+            <h4>{% translate "Structure:" %}</h4>
+            <p class="code-highlight">Subject + <span class="verb-highlight">reporting verb</span> + object + to-infinitive</p>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"Sit down!" he told me.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">told me to</span> {% translate "sit down." %}</span></i></li>
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"Please help me," she said.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">asked me to</span> {% translate "help her." %}</span></i></li>
+            </ul>
+
+            <h4>{% translate "Negative Commands:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">{% translate "Direct:" %}</span> <i><span class="code-highlight">"Don't touch that!" he said.</span></i></li>
+                <li><span class="example-highlight">{% translate "Indirect:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">told me not to</span> {% translate "touch that." %}</span></i></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Reporting Verb Variations" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Speech Type" %}</th>
+                    <th>{% translate "Common Reporting Verbs" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Statements" %}</td>
+                    <td>say, tell, explain, mention, state</td>
+                    <td><span class="code-highlight">{% translate "He explained that it was difficult." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Questions" %}</td>
+                    <td>ask, inquire, wonder, want to know</td>
+                    <td><span class="code-highlight">{% translate "She wondered if I was ready." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Commands" %}</td>
+                    <td>tell, order, command, instruct</td>
+                    <td><span class="code-highlight">{% translate "The officer ordered them to stop." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Requests" %}</td>
+                    <td>ask, beg, request, plead</td>
+                    <td><span class="code-highlight">{% translate "She begged him to stay." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Suggestions" %}</td>
+                    <td>suggest, recommend, propose</td>
+                    <td><span class="code-highlight">{% translate "They suggested leaving early." %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases and Advanced Usage" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class='term-highlight'>Reporting modal verbs:</span> Some modals change in indirect speech" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">"I can help" → He said he <span class="auxiliary-highlight">could</span> help</li>
+                    <li><span class="code-highlight">"I must go" → She said she <span class="auxiliary-highlight">had to</span> go</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class='term-highlight'>Reporting verb tense:</span> The reporting verb can affect tense usage" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">Present: <span class="verb-highlight">says</span> → "She says she <span class="auxiliary-highlight">is</span> happy" (no backshift)</li>
+                    <li><span class="code-highlight">Past: <span class="verb-highlight">said</span> → "She said she <span class="auxiliary-highlight">was</span> happy" (backshift)</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class='term-highlight'>Reporting questions with suggestions:</span> Special structures for suggestions" %}
+                <p class="code-highlight">"Why don't we go out?" → He <span class="verb-highlight">suggested going</span> out / He <span class="verb-highlight">suggested that we go</span> out</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

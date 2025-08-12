@@ -1,0 +1,325 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: Grammatical Role and Function" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .prep-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .adj-function {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .adv-function {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .function-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .usage-card {
+            background: rgba(131, 232, 222, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #83e8de;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .function-diagram {
+            background: rgba(76, 201, 240, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "Grammatical Role" %}</span>
+        </nav>
+
+        <h1>{% translate "The Syntactic Functions of Prepositions" %}</h1>
+        <p>
+            {% translate "Prepositions serve as crucial connectors in English grammar, establishing precise relationships between sentence elements and determining how we interpret spatial, temporal, and logical connections." %}
+        </p>
+
+        <div class="structure-card">
+            <h2>{% translate "Core Grammatical Structure" %}</h2>
+            <div class="structure-diagram">
+                <span class="prep-highlight">[Preposition]</span> → <span class="object-highlight">[Object]</span> → <span class="term-highlight">[Modifiers]</span>
+            </div>
+
+            <h3>{% translate "The Head-Object Relationship" %}</h3>
+            <p>{% translate "Every prepositional phrase contains this fundamental relationship:" %}</p>
+            <ul class="styled-list">
+                <li><strong>{% translate "Head:" %}</strong> {% translate "The preposition that governs the phrase" %}</li>
+                <li><strong>{% translate "Object:" %}</strong> {% translate "The noun/pronoun that completes the preposition's meaning" %}</li>
+                <li><strong>{% translate "Modifiers:" %}</strong> {% translate "Optional elements that describe the object" %}</li>
+            </ul>
+
+            <h4>{% translate "Structural Examples" %}</h4>
+            <div class="function-diagram">
+                <p><span class="prep-highlight">under</span> <span class="object-highlight">the bridge</span></p>
+                <p><span class="prep-highlight">with</span> <span class="object-highlight">great enthusiasm</span></p>
+                <p><span class="prep-highlight">after</span> <span class="object-highlight">the long meeting</span></p>
+            </div>
+        </div>
+
+        <div class="function-card">
+            <h2>{% translate "Syntactic Functions in Sentences" %}</h2>
+
+            <h3><span class="adj-function">{% translate "Adjectival Function" %}</span></h3>
+            <p>{% translate "When modifying nouns, prepositional phrases:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Directly follow the nouns they modify" %}</li>
+                <li>{% translate "Answer <span class=\"code-highlight\">which one?</span> or <span class=\"code-highlight\">what kind?</span>" %}</li>
+                <li>{% translate "Cannot be moved without changing meaning" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The keys <span class=\"adj-function\">on the kitchen counter</span> are mine." %}</li>
+                <li>{% translate "A student <span class=\"adj-function\">with perfect grades</span> won the award." %}</li>
+                <li>{% translate "The solution <span class=\"adj-function\">to our problem</span> was simple." %}</li>
+            </ul>
+
+            <h3><span class="adv-function">{% translate "Adverbial Function" %}</span></h3>
+            <p>{% translate "When modifying verbs or clauses, prepositional phrases:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Are more flexible in sentence position" %}</li>
+                <li>{% translate "Answer <span class=\"code-highlight\">where?</span>, <span class=\"code-highlight\">when?</span>, <span class=\"code-highlight\">how?</span>, or <span class=\"code-highlight\">why?</span>" %}</li>
+                <li>{% translate "Can often be moved for stylistic effect" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"adv-function\">After dinner</span>, we went for a walk." %}</li>
+                <li>{% translate "She spoke <span class=\"adv-function\">with confidence</span>." %}</li>
+                <li>{% translate "They traveled <span class=\"adv-function\">to Japan</span> last summer." %}</li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h2>{% translate "Advanced Grammatical Roles" %}</h2>
+
+            <h3>{% translate "Complement vs. Adjunct" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Feature" %}</th>
+                        <th>{% translate "Complement" %}</th>
+                        <th>{% translate "Adjunct" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Relationship" %}</td>
+                        <td>{% translate "Required by the verb" %}</td>
+                        <td>{% translate "Optional information" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Example" %}</td>
+                        <td>{% translate "She depends <span class=\"term-highlight\">on her brother</span>" %}</td>
+                        <td>{% translate "She left <span class=\"term-highlight\">after breakfast</span>" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Removability" %}</td>
+                        <td>{% translate "Creates incomplete sentence" %}</td>
+                        <td>{% translate "Can be removed" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{% translate "Special Grammatical Cases" %}</h3>
+            <ul class="styled-list">
+                <li><strong>{% translate "Verbal Complements:" %}</strong>
+                    <p>{% translate "Some verbs require specific prepositions:" %}</p>
+                    <p class="code-highlight">{% translate "believe <span class=\"prep-highlight\">in</span>, approve <span class=\"prep-highlight\">of</span>, consist <span class=\"prep-highlight\">of</span>" %}</p>
+                </li>
+                <li><strong>{% translate "Passive Constructions:" %}</strong>
+                    <p>{% translate "Prepositions remain after verb passivization:" %}</p>
+                    <p class="code-highlight">{% translate "Active: They talked <span class=\"prep-highlight\">about</span> the project" %}</p>
+                    <p class="code-highlight">{% translate "Passive: The project was talked <span class=\"prep-highlight\">about</span>" %}</p>
+                </li>
+                <li><strong>{% translate "Comparative Structures:" %}</strong>
+                    <p>{% translate "Used in comparative expressions:" %}</p>
+                    <p class="code-highlight">{% translate "better <span class=\"prep-highlight\">than</span>, different <span class=\"prep-highlight\">from</span>, similar <span class=\"prep-highlight\">to</span>" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

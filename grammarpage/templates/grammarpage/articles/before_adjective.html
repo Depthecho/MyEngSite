@@ -1,0 +1,218 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Placement of Articles: Before Adjective" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Articles" %}</a></span> &raquo;
+            <span>{% translate "Placement of Articles" %}</span> &raquo;
+            <span>{% translate "Before Adjective" %}</span>
+        </nav>
+
+        <h1>{% translate "Placement of Articles: Before Adjective" %}</h1>
+        <p>
+            {% translate "When a noun is modified by an adjective, the article moves to a position before the adjective. The structure becomes: <strong>Article + Adjective + Noun</strong>. The article still modifies the noun, but the adjective is placed between them to describe the noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. With Indefinite Articles ('a' and 'an')" %}</h3>
+        <p>
+            {% translate "Remember that the choice between <span class=\"code-highlight\">a</span> and <span class=\"code-highlight\">an</span> is based on the sound of the very next word. When an adjective is present, the choice depends on the sound of that adjective, not the noun." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Correct" %}</th>
+                        <th>{% translate "Incorrect" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "I saw <span class=\"code-highlight\">a</span> <span class=\"term-highlight\">tall</span> <span class=\"capital-highlight\">man</span>." %}</td>
+                        <td>{% translate "I saw <strike>an tall man</strike>." %}</td>
+                        <td>{% translate "The adjective 'tall' starts with a consonant sound, so we use 'a'." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "She is <span class=\"code-highlight\">an</span> <span class=\"term-highlight\">honest</span> <span class=\"capital-highlight\">woman</span>." %}</td>
+                        <td>{% translate "She is <strike>a honest woman</strike>." %}</td>
+                        <td>{% translate "The adjective 'honest' starts with a vowel sound (silent 'h'), so we use 'an'." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. With the Definite Article ('the')" %}</h3>
+        <p>
+            {% translate "The definite article <span class=\"code-highlight\">the</span> is always placed at the very beginning of the noun phrase, before any adjectives." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the" %} + adjective + noun</span></td>
+                        <td>{% translate "We live in <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">old</span> <span class=\"capital-highlight\">house</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the" %} + adjective + noun</span></td>
+                        <td>{% translate "He returned <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">blue</span> <span class=\"capital-highlight\">book</span> to me." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Summary" %}</h3>
+        <p>
+            {% translate "The general rule remains the same: the article is the first word of the noun phrase. The only thing that changes is that an adjective can be placed between the article and the noun." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'articles_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Articles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

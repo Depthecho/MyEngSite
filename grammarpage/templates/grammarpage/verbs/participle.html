@@ -1,0 +1,292 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Participle" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Participle" %}</span>
+        </nav>
+
+        <h1>{% translate "The Participle" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">participle</span> is a non-finite form of a verb that can function as part of a verb phrase (to form tenses or the passive voice) or as an adjective. English has two main types of participles: the Present Participle and the Past Participle." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. The Present Participle (Причастие настоящего времени)" %}</h4>
+        <p>
+            {% translate "The Present Participle is formed by adding <span class=\"ending-highlight\">-ing</span> to the base form of the verb (e.g., <i><span class=\"code-highlight\">walking, studying, doing</span></i>). It looks identical to the gerund, but its function in a sentence is different." %}
+        </p>
+
+        <h5>{% translate "Uses of the Present Participle:" %}</h5>
+        <ol class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "To form Continuous (Progressive) Tenses:" %}</span>
+                <p>
+                    {% translate "Used with the auxiliary verb \"to be\" to indicate ongoing actions." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">am</span> <span class="verb-highlight">reading</span> {% translate "a book." %}</span></i> ({% translate "Present Continuous" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">were</span> <span class="verb-highlight">playing</span> {% translate "football." %}</span></i> ({% translate "Past Continuous" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">will be</span> <span class="verb-highlight">waiting</span> {% translate "for you." %}</span></i> ({% translate "Future Continuous" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "As an Adjective:" %}</span>
+                <p>
+                    {% translate "Describes a noun or pronoun, often indicating something that is performing the action or causing the feeling." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The" %} <span class="verb-highlight">running</span> {% translate "water was cold." %}</span></i> ({% translate "Water that is running" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "It was an" %} <span class="verb-highlight">exciting</span> {% translate "game." %}</span></i> ({% translate "The game caused excitement" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "A" %} <span class="verb-highlight">charming</span> {% translate "smile." %}</span></i> ({% translate "A smile that charms" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "After Verbs of Perception (see, hear, feel, watch, notice) + Object:" %}</span>
+                <p>
+                    {% translate "To indicate an ongoing action that is perceived." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I saw him" %} <span class="verb-highlight">crossing</span> {% translate "the street." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She heard someone" %} <span class="verb-highlight">singing</span>.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To replace a subordinate clause (Participle Clauses):" %}</span>
+                <p>
+                    {% translate "Used to condense sentences, especially when two actions happen at the same time or one after another, or to give a reason." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Walking</span> {% translate "down the street, I saw an old friend." %}</span></i> ({% translate "While I was walking..." %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Feeling</span> {% translate "tired, she went to bed." %}</span></i> ({% translate "Because she felt tired..." %})</li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. The Past Participle (Причастие прошедшего времени)" %}</h4>
+        <p>
+            {% translate "The Past Participle is the third form of a verb (V3). For regular verbs, it ends in <span class=\"ending-highlight\">-ed</span> (e.g., <i><span class=\"code-highlight\">worked, finished, played</span></i>). For irregular verbs, its form varies (e.g., <i><span class=\"code-highlight\">done, seen, written, broken</span></i>)." %}
+        </p>
+
+        <h5>{% translate "Uses of the Past Participle:" %}</h5>
+        <ol class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "To form Perfect Tenses:" %}</span>
+                <p>
+                    {% translate "Used with the auxiliary verb \"to have\" to indicate completed actions relative to a point in time." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">have</span> <span class="verb-highlight">finished</span> {% translate "my homework." %}</span></i> ({% translate "Present Perfect" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">had</span> already <span class="verb-highlight">left</span> {% translate "when I arrived." %}</span></i> ({% translate "Past Perfect" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">will have</span> <span class="verb-highlight">completed</span> {% translate "the project by June." %}</span></i> ({% translate "Future Perfect" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To form the Passive Voice:" %}</span>
+                <p>
+                    {% translate "Used with the auxiliary verb \"to be\" to show that the subject receives the action." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The car" %} <span class="auxiliary-highlight">was</span> <span class="verb-highlight">stolen</span>.</span></i> ({% translate "Past Simple Passive" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The book" %} <span class="auxiliary-highlight">is</span> <span class="verb-highlight">written</span> {% translate "in English." %}</span></i> ({% translate "Present Simple Passive" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The house" %} <span class="auxiliary-highlight">has been</span> <span class="verb-highlight">built</span>.</span></i> ({% translate "Present Perfect Passive" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "As an Adjective:" %}</span>
+                <p>
+                    {% translate "Describes a noun or pronoun, often indicating something that has undergone the action or is affected by it." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The" %} <span class="verb-highlight">broken</span> {% translate "window." %}</span></i> ({% translate "The window was broken" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I ate a" %} <span class="verb-highlight">fried</span> {% translate "egg." %}</span></i> ({% translate "The egg was fried" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He was very" %} <span class="verb-highlight">tired</span>.</span></i> ({% translate "He was made tired" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To replace a subordinate clause (Participle Clauses):" %}</span>
+                <p>
+                    {% translate "Similar to present participle clauses, used to condense sentences, often indicating a completed action that precedes another, or a cause/reason." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Written</span> {% translate "in haste, the report contained many errors." %}</span></i> ({% translate "Because it was written..." %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Having</span> <span class="verb-highlight">finished</span> {% translate "her work, she went home." %}</span></i> ({% translate "After she had finished..." %})</li>
+                </ul>
+            </li>
+        </ol>
+        <p>
+            {% translate "Understanding participles is key to forming complex tenses, passive constructions, and more concise, sophisticated sentences in English." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

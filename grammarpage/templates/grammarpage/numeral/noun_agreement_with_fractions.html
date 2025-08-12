@@ -1,0 +1,346 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Noun Agreement with Fractions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .agreement-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Fractional and Decimal Numerals" %}</span> &raquo;
+            <span>{% translate "Noun Agreement with Fractions" %}</span>
+        </nav>
+
+        <h1>{% translate "Noun Agreement with Fractions" %}</h1>
+        <p>
+            {% translate "Proper noun agreement with fractions ensures grammatical accuracy in both written and spoken English. These rules govern how nouns and verbs interact with fractional quantities." %}
+        </p>
+
+        <div class="rule-card">
+            <h3>{% translate "1. Core Agreement Rules" %}</h3>
+            <h4>{% translate "Fraction Value Determines Agreement" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Fraction Value" %}</th>
+                            <th>{% translate "Noun Form" %}</th>
+                            <th>{% translate "Verb Form" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Less than 1</td>
+                            <td>Singular</td>
+                            <td>Singular</td>
+                            <td>Two-thirds of the cake <span class="agreement-highlight">is</span> eaten</td>
+                        </tr>
+                        <tr>
+                            <td>Equal to 1</td>
+                            <td>Singular</td>
+                            <td>Singular</td>
+                            <td>One whole pie <span class="agreement-highlight">is</span> missing</td>
+                        </tr>
+                        <tr>
+                            <td>Greater than 1</td>
+                            <td>Plural</td>
+                            <td>Plural</td>
+                            <td>One and a half cups <span class="agreement-highlight">are</span> needed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Cases" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Fractions of one with plural nouns:" %}
+                    <p class="code-highlight">Half of the students <span class="agreement-highlight">are</span> present</p>
+                </li>
+                <li>{% translate "Mixed numbers with measurement units:" %}
+                    <p class="code-highlight">1½ teaspoons <span class="agreement-highlight">were</span> added</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "2. Countable vs. Uncountable Nouns" %}</h3>
+            <h4>{% translate "Countable Nouns" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Noun Form" %}</th>
+                            <th>{% translate "Verb Agreement" %}</th>
+                            <th>{% translate "Rule" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Three-quarters of the apples</td>
+                            <td>Plural</td>
+                            <td>Plural</td>
+                            <td>Portion of countable plural</td>
+                        </tr>
+                        <tr>
+                            <td>One-third of the team</td>
+                            <td>Singular</td>
+                            <td>Singular</td>
+                            <td>Collective noun treated as unit</td>
+                        </tr>
+                        <tr>
+                            <td>Two-fifths of the books</td>
+                            <td>Plural</td>
+                            <td>Plural</td>
+                            <td>Multiple countable items</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Uncountable Nouns" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Always singular:" %}
+                    <p class="code-highlight">Three-fourths of the water <span class="agreement-highlight">is</span> contaminated</p>
+                </li>
+                <li>{% translate "No plural form:" %}
+                    <p class="code-highlight">Half of the information <span class="agreement-highlight">is</span> inaccurate</p>
+                </li>
+                <li>{% translate "Measurement units:" %}
+                    <p class="code-highlight">0.75 grams of gold <span class="agreement-highlight">was</span> used</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "3. Special Considerations" %}</h3>
+            <h4>{% translate "Collective Nouns" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Can take singular or plural depending on meaning:" %}
+                    <p class="code-highlight">Half of the team <span class="agreement-highlight">is</span> injured (unit)<br>
+                    Half of the team <span class="agreement-highlight">are</span> arguing (individuals)</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Percentage Equivalents" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Follow same rules as fractions:" %}
+                    <p class="code-highlight">50% of the data <span class="agreement-highlight">is</span> missing<br>
+                    50% of the participants <span class="agreement-highlight">are</span> women</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Money and Measurements" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Treat amounts as singular:" %}
+                    <p class="code-highlight">Three-quarters of a million dollars <span class="agreement-highlight">was</span> spent</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Common Errors" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Incorrect" %}</th>
+                        <th>{% translate "Correct" %}</th>
+                        <th>{% translate "Reason" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Two-thirds of the students is here</td>
+                        <td>Two-thirds of the students <span class="agreement-highlight">are</span> here</td>
+                        <td>Plural countable noun</td>
+                    </tr>
+                    <tr>
+                        <td>One and a half hour passed</td>
+                        <td>One and a half hours passed</td>
+                        <td>Fraction >1 requires plural</td>
+                    </tr>
+                    <tr>
+                        <td>Three-fourths of the equipment are broken</td>
+                        <td>Three-fourths of the equipment <span class="agreement-highlight">is</span> broken</td>
+                        <td>Uncountable noun</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

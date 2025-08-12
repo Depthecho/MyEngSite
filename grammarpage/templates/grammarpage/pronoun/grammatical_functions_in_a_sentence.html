@@ -1,0 +1,207 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Grammatical Functions in a Sentence" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Proper Usage of Pronouns" %}</span> &raquo;
+            <span>{% translate "Grammatical Functions in a Sentence" %}</span>
+        </nav>
+
+        <h1>{% translate "Grammatical Functions of Pronouns" %}</h1>
+        <p>
+            {% translate "Pronouns replace nouns, but they do more than just stand in. They must also take on the same grammatical function as the noun they replace. This function, which is often tied to the pronoun's case, determines its role in the sentence." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Subject of a Sentence" %}</h3>
+        <p>
+            {% translate "The most common function is as the subject, the noun or pronoun that performs the action of the verb. In this role, a pronoun must be in the subjective case (e.g., <span class=\"code-highlight\">I, he, she, they</span>)." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">She</span> went to the library." %}</li>
+            <li>{% translate "<span class=\"term-highlight\">We</span> are working on the project." %}</li>
+        </ul>
+        <p>
+            {% translate "In these examples, <span class=\"code-highlight\">she</span> and <span class=\"code-highlight\">we</span> are performing the actions of going and working, respectively." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Direct Object of a Verb" %}</h3>
+        <p>
+            {% translate "A pronoun can also be the direct object, receiving the action of the verb. In this case, it must be in the objective case (e.g., <span class=\"code-highlight\">me, him, her, them</span>)." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "The dog chased <span class=\"term-highlight\">him</span>." %}</li>
+            <li>{% translate "Sarah saw <span class=\"term-highlight\">us</span> at the concert." %}</li>
+        </ul>
+        <p>
+            {% translate "Here, <span class=\"code-highlight\">him</span> and <span class=\"code-highlight\">us</span> are the receivers of the actions of chasing and seeing." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Object of a Preposition" %}</h3>
+        <p>
+            {% translate "Pronouns that follow prepositions (e.g., <span class=\"code-highlight\">to, for, with, on</span>) also must be in the objective case. This is a common point of confusion for speakers." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "She gave the letter to <span class=\"term-highlight\">him</span>." %} (Correct)</li>
+            <li><strike>{% translate "She gave the letter to he." %}</strike> (Incorrect)</li>
+            <li>{% translate "They shared a pizza with <span class=\"term-highlight\">me</span>." %} (Correct)</li>
+            <li><strike>{% translate "They shared a pizza with I." %}</strike> (Incorrect)</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Subject Complement" %}</h3>
+        <p>
+            {% translate "A subject complement follows a linking verb (e.g., <span class=\"code-highlight\">to be, to seem, to become</span>) and renames or describes the subject. Formally, a pronoun in this position should be in the subjective case, although in casual speech, the objective case is often used." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "Formal: It was <span class=\"term-highlight\">I</span> who called." %}</li>
+            <li>{% translate "Informal: It was <span class=\"term-highlight\">me</span> who called." %}</li>
+        </ul>
+        <p>
+            {% translate "For formal writing and speaking, it is best to use the subjective case in this context." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

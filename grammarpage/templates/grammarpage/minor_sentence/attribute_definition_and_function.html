@@ -1,0 +1,329 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Definition and Function of the Attribute" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #b388ff;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .attribute-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .noun-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'minor_sentence_part_page' %}">{% translate "Minor Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "Definition and Function of the Attribute" %}</span>
+        </nav>
+
+        <h1>{% translate "The Attribute in English Grammar" %}</h1>
+        <p>
+            {% translate "An <span class=\"term-highlight\">attribute</span> is a word, phrase, or clause that modifies a noun or pronoun by providing additional information about its qualities, characteristics, or identity." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "Core Characteristics" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="attribute-highlight">[Attribute]</span> + <span class="noun-highlight">[Noun]</span> OR <span class="noun-highlight">[Noun]</span> + <span class="attribute-highlight">[Attribute]</span>
+            </div>
+
+            <h3>{% translate "Key Functions:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Describes qualities (color, size, shape, etc.)" %}</li>
+                <li>{% translate "Specifies quantity or number" %}</li>
+                <li>{% translate "Indicates possession or ownership" %}</li>
+                <li>{% translate "Provides classifying information" %}</li>
+                <li>{% translate "Expresses subjective evaluation" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">three</span> <span class=\"noun-highlight\">cats</span> slept peacefully." %}</span> (quantity)</li>
+                <li><span class="code-highlight">{% translate "She wore a <span class=\"attribute-highlight\">blue</span> <span class=\"noun-highlight\">dress</span>." %}</span> (quality)</li>
+                <li><span class="code-highlight">{% translate "<span class=\"noun-highlight\">Shakespeare's</span> <span class=\"attribute-highlight\">sonnets</span> are famous." %}</span> (possession)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "Types of Attributes" %}</h2>
+
+            <h3>{% translate "1. Adjectives" %}</h3>
+            <p>{% translate "Single-word descriptors before nouns:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">beautiful</span> <span class=\"noun-highlight\">sunset</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "An <span class=\"attribute-highlight\">interesting</span> <span class=\"noun-highlight\">book</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Noun Modifiers" %}</h3>
+            <p>{% translate "Nouns functioning as adjectives:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Computer</span> <span class=\"noun-highlight\">science</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"attribute-highlight\">Chicken</span> <span class=\"noun-highlight\">soup</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Participial Phrases" %}</h3>
+            <p>{% translate "Verbs in participle form (-ing or -ed) as modifiers:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">barking</span> <span class=\"noun-highlight\">dog</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">broken</span> <span class=\"noun-highlight\">window</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "4. Prepositional Phrases" %}</h3>
+            <p>{% translate "Phrases beginning with prepositions:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The man <span class=\"attribute-highlight\">in the corner</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "A book <span class=\"attribute-highlight\">about whales</span>" %}</span></li>
+            </ul>
+
+            <h3>{% translate "5. Relative Clauses" %}</h3>
+            <p>{% translate "Clauses beginning with relative pronouns:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The person <span class=\"attribute-highlight\">who called you</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "The ideas <span class=\"attribute-highlight\">that we discussed</span>" %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Position of Attributes" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Position" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Notes" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Pre-modification" %}</td>
+                    <td><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">old</span> <span class=\"noun-highlight\">house</span>" %}</span></td>
+                    <td>{% translate "Most common position for single-word attributes" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Post-modification" %}</td>
+                    <td><span class="code-highlight">{% translate "Something <span class=\"attribute-highlight\">interesting</span>" %}</span></td>
+                    <td>{% translate "Used with indefinite pronouns and certain adjectives" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Multiple pre-modifiers" %}</td>
+                    <td><span class="code-highlight">{% translate "A <span class=\"attribute-highlight\">beautiful small round wooden</span> <span class=\"noun-highlight\">table</span>" %}</span></td>
+                    <td>{% translate "Follows specific adjective order rules" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Discontinuous" %}</td>
+                    <td><span class="code-highlight">{% translate "The <span class=\"attribute-highlight\">best</span> <span class=\"noun-highlight\">solution</span> <span class=\"attribute-highlight\">available</span>" %}</span></td>
+                    <td>{% translate "When modifiers are separated for emphasis or clarity" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Special Cases and Challenges" %}</h2>
+        <div class="structure-card">
+            <h3>{% translate "1. Adjective Order" %}</h3>
+            <p>{% translate "English follows a specific sequence for multiple adjectives:" %}</p>
+            <ol class="styled-list">
+                <li>{% translate "Opinion (beautiful, ugly)" %}</li>
+                <li>{% translate "Size (large, small)" %}</li>
+                <li>{% translate "Age (young, old)" %}</li>
+                <li>{% translate "Shape (round, square)" %}</li>
+                <li>{% translate "Color (red, blue)" %}</li>
+                <li>{% translate "Origin (French, solar)" %}</li>
+                <li>{% translate "Material (wooden, silk)" %}</li>
+                <li>{% translate "Purpose (sleeping bag, frying pan)" %}</li>
+            </ol>
+            <p class="code-highlight">{% translate "A <span class=\"attribute-highlight\">lovely little old rectangular green French silver whittling</span> <span class=\"noun-highlight\">knife</span>" %}</p>
+
+            <h3>{% translate "2. Restrictive vs Non-restrictive" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Restrictive:</span> Essential for identifying the noun (no commas)" %}
+                    <p class="code-highlight">{% translate "Students <span class=\"attribute-highlight\">who cheat</span> will fail." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Non-restrictive:</span> Additional information (set off with commas)" %}
+                    <p class="code-highlight">{% translate "Mr. Smith, <span class=\"attribute-highlight\">who lives next door</span>, is a doctor." %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "3. Common Errors" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Misplaced modifiers:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: She served sandwiches to the children <span style=\"color:red\">on paper plates</span>.<br>Right: She served the children sandwiches <span class=\"attribute-highlight\">on paper plates</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Dangling modifiers:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: <span style=\"color:red\">Walking to school</span>, the bus passed by.<br>Right: <span class=\"attribute-highlight\">Walking to school</span>, I saw the bus pass by." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Adjective/adverb confusion:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: She feels <span style=\"color:red\">badly</span>.<br>Right: She feels <span class=\"attribute-highlight\">bad</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'minor_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Minor Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

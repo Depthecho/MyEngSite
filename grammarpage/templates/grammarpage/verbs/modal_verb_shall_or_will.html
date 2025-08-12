@@ -1,0 +1,344 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Shall / Will" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Shall / Will" %}</span>
+        </nav>
+        
+        <h1>{% translate "Shall / Will" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Shall</span> and <span class=\"term-highlight\">Will</span> are modal auxiliary verbs primarily used to form the future tense in English. While \"will\" is the standard and most common choice for expressing future actions or intentions, \"shall\" has more specific and often formal or polite uses, particularly in British English." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of Shall / Will" %}</h4>
+        <p>
+            {% translate "As modal verbs, \"shall\" and \"will\" do not change their form based on the subject. They are always followed by the base form (bare infinitive) of the main verb." %}
+        </p>
+
+        <h5>{% translate "1. Will (Most Common Future Tense Modal)" %}</h5>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + will ('ll) + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "will go" %}</span>.</span><br><span class="code-highlight">{% translate "She" %}<span class="auxiliary-highlight">{% translate "'ll finish" %}</span> {% translate "it." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + will not / won't + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "will not come" %}</span>.</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "won't tell" %}</span> {% translate "anyone." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Interrogative" %}</span></td>
+                        <td>{% translate "Will + Subject + Base Verb?" %}</td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Will you help" %}</span> {% translate "me?" %}</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Will it rain" %}</span> {% translate "tomorrow?" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>{% translate "2. Shall (Less Common, More Formal / Specific Uses)" %}</h5>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + shall + Base Verb (mainly with I/We)" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "shall be" %}</span> {% translate "there." %}</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "shall overcome" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + shall not / shan't + Base Verb (mainly with I/We)" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "shall not wait" %}</span>.</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "shan't forget" %}</span> {% translate "this." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Interrogative" %}</span></td>
+                        <td>{% translate "Shall + I/We + Base Verb?" %}</td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Shall I open" %}</span> {% translate "the window?" %}</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Shall we begin" %}</span>?</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Use of Shall / Will" %}</h4>
+        <p>
+            {% translate "While \"will\" is the general choice for expressing future, \"shall\" has specific and often more formal or idiomatic uses." %}
+        </p>
+
+        <h5>{% translate "1. Expressing Future Actions / Intentions (Main Use)" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Will (General Future):" %}</span> {% translate "This is the standard way to express future events, predictions, or intentions. It's used with all subjects (I, you, he, she, it, we, they)." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "will call" %}</span> {% translate "you tomorrow." %}</span></li>
+                    <li><span class="code-highlight">{% translate "It" %} <span class="auxiliary-highlight">{% translate "will be" %}</span> {% translate "cold tonight." %}</span></li>
+                    <li><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "will arrive" %}</span> {% translate "soon." %}</span></li>
+                </ul>
+            </li>
+            <li><span class="example-highlight">{% translate "Shall (Formal / Traditional Future with I/We):" %}</span> {% translate "In very formal or traditional contexts (especially British English), \"shall\" can be used with \"I\" and \"we\" to simply state a future action. It's much less common than \"will.\"" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "shall be" %}</span> {% translate "glad to assist you." %}</span></li>
+                    <li><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "shall overcome" %}</span>.</span> ({% translate "Often literary or rhetorical" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. Expressing Decisions Made at the Moment of Speaking" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Will:" %}</span> {% translate "Used to announce a decision made spontaneously at the time of speaking." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "\"The phone's ringing.\"" %} - {% translate "\"I" %}<span class="auxiliary-highlight">{% translate "'ll answer" %}</span> {% translate "it.\"" %}</span></li>
+                    <li><span class="code-highlight">{% translate "\"I'm thirsty.\"" %} - {% translate "\"I" %}<span class="auxiliary-highlight">{% translate "'ll get" %}</span> {% translate "you some water.\"" %}</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. Expressing Offers, Suggestions, or Seeking Advice/Permission (Mainly \"Shall\")" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Shall (Offers/Suggestions with I/We):" %}</span> {% translate "This is a very common and natural use of \"shall\" to make offers or suggestions." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Shall I help" %}</span> {% translate "you with that bag?" %}</span> ({% translate "Offer" %})</li>
+                    <li><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Shall we go" %}</span> {% translate "to the cinema tonight?" %}</span> ({% translate "Suggestion" %})</li>
+                </ul>
+            </li>
+            <li><span class="example-highlight">{% translate "Shall (Seeking Advice/Permission with I/We):" %}</span>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "What" %} <span class="auxiliary-highlight">{% translate "shall I do" %}</span>?</span> ({% translate "Seeking advice" %})</li>
+                    <li><span class="code-highlight">{% translate "Where" %} <span class="auxiliary-highlight">{% translate "shall we meet" %}</span>?</span> ({% translate "Seeking advice/agreement" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "4. Promises, Threats, or Determinations" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Will:" %}</span> {% translate "Used for promises, strong intentions, or threats, with all subjects." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "will never forget" %}</span> {% translate "your kindness." %}</span> ({% translate "Promise" %})</li>
+                    <li><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "will regret" %}</span> {% translate "this!" %}</span> ({% translate "Threat" %})</li>
+                    <li><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "will pass" %}</span> {% translate "that exam!" %}</span> ({% translate "Determination" %})</li>
+                </ul>
+            </li>
+            <li><span class="example-highlight">{% translate "Shall (Strong Determination/Command - formal/legal):" %}</span> {% translate "When \"shall\" is used with subjects other than \"I\" or \"we,\" it can indicate a very strong command, determination, or obligation, often found in legal documents or formal rules." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "shall not pass" %}</span>!</span> ({% translate "Strong command/prohibition" %})</li>
+                    <li><span class="code-highlight">{% translate "The tenant" %} <span class="auxiliary-highlight">{% translate "shall pay" %}</span> {% translate "the rent by the first of each month." %}</span> ({% translate "Legal obligation" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "5. Questions about Willingness" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Will:" %}</span> {% translate "Used to ask about someone's willingness or intention." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Will you marry" %}</span> {% translate "me?" %}</span> ({% translate "Asking about willingness" %})</li>
+                    <li><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Will you help" %}</span> {% translate "me with this?" %}</span> ({% translate "Asking for willingness to help" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "6. Habits or Characteristic Behavior (Will)" %}</h5>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Will:" %}</span> {% translate "Used to describe typical or habitual behavior." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "He" %}'<span class="auxiliary-highlight">{% translate "ll sit" %}</span> {% translate "there for hours just staring into space." %}</span></li>
+                    <li><span class="code-highlight">{% translate "Oil" %} <span class="auxiliary-highlight">{% translate "will float" %}</span> {% translate "on water." %}</span> ({% translate "Characteristic behavior" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

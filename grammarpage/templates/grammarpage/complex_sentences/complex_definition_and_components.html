@@ -1,0 +1,260 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Definition and Components of Complex Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .clause-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .conjunction-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Definition and Components" %}</span>
+        </nav>
+
+        <h1>{% translate "Complex Sentences: Structure and Function" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">complex sentence</span> contains one independent clause and at least one dependent (subordinate) clause. These sentences allow us to express more nuanced relationships between ideas than simple sentences." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Key Components" %}</h3>
+
+        <div class="structure-card">
+            <h4><span class="clause-highlight">{% translate "Independent Clause" %}</span></h4>
+            <p>{% translate "A complete thought that can stand alone as a sentence. Contains a subject and predicate." %}</p>
+            <p class="code-highlight">{% translate "She went to work" %}</p>
+            <p class="code-highlight">{% translate "The students passed the exam" %}</p>
+        </div>
+
+        <div class="structure-card">
+            <h4><span class="clause-highlight">{% translate "Dependent Clause" %}</span></h4>
+            <p>{% translate "Cannot stand alone; begins with a subordinating conjunction or relative pronoun. Contains a subject and verb but doesn't express a complete thought." %}</p>
+            <p class="code-highlight">{% translate "although it was raining" %}</p>
+            <p class="code-highlight">{% translate "who lives next door" %}</p>
+            <p class="code-highlight">{% translate "because she studied hard" %}</p>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Types of Dependent Clauses" %}</h3>
+
+        <h4>{% translate "1. Adverbial Clauses" %}</h4>
+        <p>{% translate "Function as adverbs; answer questions like when, where, why, how. Begin with subordinating conjunctions:" %}</p>
+        <div class="code-highlight">
+            {% translate "when, while, after, before, because, since, although, if, unless, whereas" %}
+        </div>
+        <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">When</span> the bell rings, we'll leave." %}</p>
+        <p class="code-highlight">{% translate "She succeeded <span class=\"conjunction-highlight\">because</span> she worked hard." %}</p>
+
+        <h4>{% translate "2. Relative (Adjective) Clauses" %}</h4>
+        <p>{% translate "Function as adjectives; describe nouns. Begin with relative pronouns:" %}</p>
+        <div class="code-highlight">
+            {% translate "who, whom, whose, which, that" %}
+        </div>
+        <p class="code-highlight">{% translate "The book <span class=\"conjunction-highlight\">that</span> I borrowed is fascinating." %}</p>
+        <p class="code-highlight">{% translate "The teacher <span class=\"conjunction-highlight\">who</span> taught us is retiring." %}</p>
+
+        <h4>{% translate "3. Noun Clauses" %}</h4>
+        <p>{% translate "Function as nouns; can be subjects, objects, or complements. Begin with:" %}</p>
+        <div class="code-highlight">
+            {% translate "that, whether, if, what, who, why, how" %}
+        </div>
+        <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">What</span> you say matters." %}</p>
+        <p class="code-highlight">{% translate "I wonder <span class=\"conjunction-highlight\">whether</span> she'll come." %}</p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Sentence Patterns" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Dependent clause first:</span> Use a comma after the dependent clause" %}
+                <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Although</span> it was late, we decided to stay." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Independent clause first:</span> Usually no comma needed" %}
+                <p class="code-highlight">{% translate "We decided to stay <span class=\"conjunction-highlight\">although</span> it was late." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Embedded clause:</span> Relative clauses typically appear in the middle" %}
+                <p class="code-highlight">{% translate "The car <span class=\"conjunction-highlight\">that</span> I bought last week has broken down." %}</p>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Fragment error:</span> Using a dependent clause as a complete sentence" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "Because I was tired." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I went to bed because I was tired." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Comma misuse:</span> Forgetting the comma when the dependent clause comes first" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "While I was cooking the baby cried." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "While I was cooking, the baby cried." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Wrong conjunction:</span> Using coordinating conjunctions (FANBOYS) to begin dependent clauses" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "And I was hungry, I made a sandwich." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "Because I was hungry, I made a sandwich." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Why Use Complex Sentences?" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Show relationships between ideas (cause/effect, time, contrast)" %}</li>
+            <li>{% translate "Add variety to your writing style" %}</li>
+            <li>{% translate "Express more sophisticated thoughts" %}</li>
+            <li>{% translate "Combine information efficiently" %}</li>
+            <li>{% translate "Create emphasis by positioning key information" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

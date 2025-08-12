@@ -1,0 +1,340 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: Common Stranding Scenarios" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .question-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .relative-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .passive-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .infinitive-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .scenario-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .question-card {
+            border-left-color: #83e8de;
+        }
+
+        .relative-card {
+            border-left-color: #b388ff;
+        }
+
+        .passive-card {
+            border-left-color: #4cc9f0;
+        }
+
+        .infinitive-card {
+            border-left-color: #f72585;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .scenario-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "Common Stranding Scenarios" %}</span>
+        </nav>
+
+        <h1>{% translate "Natural Contexts for Stranded Prepositions" %}</h1>
+        <p>
+            {% translate "Preposition stranding occurs naturally in several grammatical constructions where moving the preposition would create awkward or unnatural sentences. These scenarios reflect how native speakers actually use English in daily communication." %}
+        </p>
+
+        <div class="scenario-card question-card">
+            <h2><span class="question-highlight">{% translate "1. Questions with Interrogatives" %}</span></h2>
+            <div class="scenario-diagram">
+                {% translate "Question Word + Auxiliary + Subject + Verb + [Stranded Preposition]" %}
+            </div>
+
+            <h3>{% translate "When It Happens" %}</h3>
+            <p>{% translate "When the question word (who, what, where, etc.) is the object of the preposition, the preposition naturally strands at the end." %}</p>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"question-highlight\">What</span> are you looking <span class=\"term-highlight\">at</span>?" %}</li>
+                <li>{% translate "<span class=\"question-highlight\">Who</span> did you go <span class=\"term-highlight\">with</span>?" %}</li>
+                <li>{% translate "<span class=\"question-highlight\">Where</span> does this bus go <span class=\"term-highlight\">to</span>?" %}</li>
+            </ul>
+
+            <h3>{% translate "Formal Alternatives" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Natural Question" %}</th>
+                        <th>{% translate "Formal Version" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "What are you referring <span class=\"term-highlight\">to</span>?" %}</td>
+                        <td>{% translate "<span class=\"term-highlight\">To what</span> are you referring?" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Who were you speaking <span class=\"term-highlight\">to</span>?" %}</td>
+                        <td>{% translate "<span class=\"term-highlight\">To whom</span> were you speaking?" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scenario-card relative-card">
+            <h2><span class="relative-highlight">{% translate "2. Relative Clauses" %}</span></h2>
+            <div class="scenario-diagram">
+                {% translate "Antecedent + (Relative Pronoun) + Clause + [Stranded Preposition]" %}
+            </div>
+
+            <h3>{% translate "Standard Usage" %}</h3>
+            <p>{% translate "In defining relative clauses, especially with 'that' or omitted relative pronouns, prepositions must strand:" %}</p>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "This is the book <span class=\"relative-highlight\">I told you about</span>." %}</li>
+                <li>{% translate "The person <span class=\"relative-highlight\">you were talking to</span> is my boss." %}</li>
+                <li>{% translate "The chair <span class=\"relative-highlight\">I was sitting on</span> broke." %}</li>
+            </ul>
+
+            <h3>{% translate "Relative Pronoun Variations" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "With 'That'" %}</th>
+                        <th>{% translate "With 'Which/Whom'" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "The house <span class=\"relative-highlight\">that</span> we lived <span class=\"term-highlight\">in</span>" %}</td>
+                        <td>{% translate "The house <span class=\"relative-highlight\">in which</span> we lived" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "The friend <span class=\"relative-highlight\">that</span> I went <span class=\"term-highlight\">with</span>" %}</td>
+                        <td>{% translate "The friend <span class=\"relative-highlight\">with whom</span> I went" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="scenario-card passive-card">
+            <h2><span class="passive-highlight">{% translate "3. Passive Constructions" %}</span></h2>
+            <div class="scenario-diagram">
+                {% translate "Subject + Passive Verb + [Stranded Preposition]" %}
+            </div>
+
+            <h3>{% translate "Common Passive Structures" %}</h3>
+            <p>{% translate "When converting active sentences with prepositional verbs to passive, the preposition remains stranded:" %}</p>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Active: Someone has slept <span class=\"term-highlight\">in</span> this bed." %}</li>
+                <li>{% translate "Passive: This bed has been slept <span class=\"passive-highlight\">in</span>." %}</li>
+                <li>{% translate "Active: They laughed <span class=\"term-highlight\">at</span> his jokes." %}</li>
+                <li>{% translate "Passive: His jokes were laughed <span class=\"passive-highlight\">at</span>." %}</li>
+            </ul>
+
+            <h3>{% translate "Special Cases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Phrasal verbs in passive always strand:" %}
+                    <p class="code-highlight">{% translate "The children were well looked <span class=\"passive-highlight\">after</span>." %}</p>
+                </li>
+                <li>{% translate "Some formal alternatives exist but sound unnatural:" %}
+                    <p class="code-highlight">{% translate "The proposal was agreed <span class=\"passive-highlight\">to</span> (more natural than 'to which was agreed')" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="scenario-card infinitive-card">
+            <h2><span class="infinitive-highlight">{% translate "4. Infinitive Constructions" %}</span></h2>
+            <div class="scenario-diagram">
+                {% translate "Noun + Infinitive + [Stranded Preposition]" %}
+            </div>
+
+            <h3>{% translate "Purpose and Need Expressions" %}</h3>
+            <p>{% translate "When infinitives modify nouns and include prepositions, stranding is natural:" %}</p>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "I need a pen to write <span class=\"infinitive-highlight\">with</span>." %}</li>
+                <li>{% translate "She wants a friend to play <span class=\"infinitive-highlight\">with</span>." %}</li>
+                <li>{% translate "Give me something to lean <span class=\"infinitive-highlight\">on</span>." %}</li>
+            </ul>
+
+            <h3>{% translate "Why Stranding Works Here" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Fronting the preposition creates awkward constructions:" %}
+                    <p class="code-highlight">{% translate "I need a pen with which to write. (grammatical but unnatural)" %}</p>
+                </li>
+                <li>{% translate "The stranded version maintains the natural flow of speech" %}</li>
+                <li>{% translate "This structure is particularly common in spoken English" %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

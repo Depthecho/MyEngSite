@@ -1,0 +1,233 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-user-cog"></i> {% translate "Profile Information" %}
+    </h2>
+
+    <form method="post" enctype="multipart/form-data" class="settings-form">
+        {% csrf_token %}
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Avatar" %}</h3>
+                <p class="setting-description">
+                    {% translate "Upload a new profile picture" %}
+                </p>
+            </div>
+            <div class="setting-control avatar-control">
+                <div class="avatar-preview">
+                    {% if profile.avatar %}
+                        <img src="{{ profile.avatar.url }}" alt="Current Avatar" id="avatarPreview">
+                    {% else %}
+                        <div class="default-avatar" id="avatarPreview">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <label for="id_avatar" class="avatar-upload-button">
+                    <i class="fas fa-camera"></i> {% translate "Change" %}
+                    {{ profile_form.avatar }}
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>{% translate "Username" %}</label>
+                <div class="display-field">
+                    <i class="fas fa-user"></i>
+                    <span>{{ user.username }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ user_form.email.id_for_label }}">{% translate "Email" %}</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    {{ user_form.email }}
+                </div>
+                {% if user_form.email.errors %}
+                    <div class="form-error">{{ user_form.email.errors }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ user_form.first_name.id_for_label }}">{% translate "First Name" %}</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-signature"></i>
+                    {{ user_form.first_name }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ user_form.last_name.id_for_label }}">{% translate "Last Name" %}</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-signature"></i>
+                    {{ user_form.last_name }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label>{% translate "English Level" %}</label>
+                <div class="display-field">
+                    <i class="fas fa-language"></i>
+                    <span>{{ profile.get_english_level_display }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ profile_form.birth_date.id_for_label }}">{% translate "Birth Date" %}</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                    {{ profile_form.birth_date }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ profile_form.bio.id_for_label }}">{% translate "Bio" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-info-circle"></i>
+                {{ profile_form.bio }}
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="update_profile_and_user" class="cta-button primary">
+                <i class="fas fa-save"></i> {% translate "Save Changes" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-lock"></i> {% translate "Privacy Settings" %}
+    </h2>
+
+    <div class="setting-item">
+        <div class="setting-info">
+            <h3 class="setting-title">{% translate "Hide First Name" %}</h3>
+            <p class="setting-description">
+                {% translate "Your first name will not be visible to other users" %}
+            </p>
+        </div>
+        <div class="setting-control">
+            <label class="switch">
+                {{ profile_form.hide_first_name }}
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="setting-item">
+        <div class="setting-info">
+            <h3 class="setting-title">{% translate "Hide Last Name" %}</h3>
+            <p class="setting-description">
+                {% translate "Your last name will not be visible to other users" %}
+            </p>
+        </div>
+        <div class="setting-control">
+            <label class="switch">
+                {{ profile_form.hide_last_name }}
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="setting-item">
+        <div class="setting-info">
+            <h3 class="setting-title">{% translate "Hide Birth Date" %}</h3>
+            <p class="setting-description">
+                {% translate "Your birth date will not be visible to other users" %}
+            </p>
+        </div>
+        <div class="setting-control">
+            <label class="switch">
+                {{ profile_form.hide_birth_date }}
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-key"></i> {% translate "Change Password" %}
+    </h2>
+
+    <form method="post" class="settings-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ password_form.old_password.id_for_label }}">{% translate "Current Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                {{ password_form.old_password }}
+            </div>
+            {% if password_form.old_password.errors %}
+                <div class="form-error">{{ password_form.old_password.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ password_form.new_password1.id_for_label }}">{% translate "New Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-key"></i>
+                {{ password_form.new_password1 }}
+            </div>
+            {% if password_form.new_password1.errors %}
+                <div class="form-error">{{ password_form.new_password1.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ password_form.new_password2.id_for_label }}">{% translate "Confirm New Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-key"></i>
+                {{ password_form.new_password2 }}
+            </div>
+            {% if password_form.new_password2.errors %}
+                <div class="form-error">{{ password_form.new_password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="change_password" class="cta-button secondary">
+                <i class="fas fa-key"></i> {% translate "Change Password" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Preview avatar before upload
+    document.getElementById('id_avatar').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('avatarPreview');
+                if (preview.tagName === 'IMG') {
+                    preview.src = e.target.result;
+                } else {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.alt = 'Avatar Preview';
+                    img.id = 'avatarPreview';
+                    preview.parentNode.replaceChild(img, preview);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+{% endblock %}

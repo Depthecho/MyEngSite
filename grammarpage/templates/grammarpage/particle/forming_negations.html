@@ -1,0 +1,311 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Forming Negations" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .negative-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .auxiliary-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .negation-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .contraction-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "Forming Negations" %}</span>
+        </nav>
+
+        <h1>{% translate "Forming Negations" %}</h1>
+        <p>
+            {% translate "The negative particle <span class=\"negative-highlight\">not</span> is essential for creating negative statements in English, working in conjunction with auxiliary verbs to reverse the meaning of sentences." %}
+        </p>
+
+        <div class="negation-card">
+            <h2>{% translate "Basic Negation Structure" %}</h2>
+            <div class="structure-diagram">
+                <span class="auxiliary-highlight">[Auxiliary]</span> + <span class="negative-highlight">not</span> + <span class="verb-highlight">[Main Verb]</span>
+            </div>
+
+            <h3>{% translate "Key Rules:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always follows an auxiliary/modal verb" %}</li>
+                <li>{% translate "Precedes the main verb in the construction" %}</li>
+                <li>{% translate "Can be contracted with the auxiliary verb in informal contexts" %}</li>
+                <li>{% translate "With simple present/past, requires the dummy auxiliary 'do'" %}</li>
+            </ul>
+        </div>
+
+        <div class="contraction-card">
+            <h2>{% translate "Common Negative Constructions" %}</h2>
+
+            <h3>{% translate "1. With 'Be' Verbs" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I <span class="auxiliary-highlight">am</span> <span class="negative-highlight">not</span> ready.</span></li>
+                <li><span class="code-highlight">She <span class="auxiliary-highlight">is</span> <span class="negative-highlight">not</span> coming.</span></li>
+                <li><span class="code-highlight">They <span class="auxiliary-highlight">were</span> <span class="negative-highlight">not</span> happy.</span></li>
+            </ul>
+
+            <h3>{% translate "2. With Other Auxiliaries" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I <span class="auxiliary-highlight">have</span> <span class="negative-highlight">not</span> seen it.</span></li>
+                <li><span class="code-highlight">We <span class="auxiliary-highlight">should</span> <span class="negative-highlight">not</span> go.</span></li>
+                <li><span class="code-highlight">He <span class="auxiliary-highlight">can</span> <span class="negative-highlight">not</span> swim.</span></li>
+            </ul>
+
+            <h3>{% translate "3. With Main Verbs (using 'do')" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I <span class="auxiliary-highlight">do</span> <span class="negative-highlight">not</span> <span class="verb-highlight">like</span> coffee.</span></li>
+                <li><span class="code-highlight">She <span class="auxiliary-highlight">did</span> <span class="negative-highlight">not</span> <span class="verb-highlight">call</span>.</span></li>
+            </ul>
+        </div>
+
+        <div class="negation-card">
+            <h2>{% translate "Negative Contractions" %}</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Auxiliary Verb" %}</th>
+                        <th>{% translate "Full Form" %}</th>
+                        <th>{% translate "Contracted Form" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>am</td>
+                        <td><span class="code-highlight">am not</span></td>
+                        <td><span class="code-highlight">aren't</span> (in questions)</td>
+                    </tr>
+                    <tr>
+                        <td>is</td>
+                        <td><span class="code-highlight">is not</span></td>
+                        <td><span class="code-highlight">isn't</span></td>
+                    </tr>
+                    <tr>
+                        <td>are</td>
+                        <td><span class="code-highlight">are not</span></td>
+                        <td><span class="code-highlight">aren't</span></td>
+                    </tr>
+                    <tr>
+                        <td>do</td>
+                        <td><span class="code-highlight">do not</span></td>
+                        <td><span class="code-highlight">don't</span></td>
+                    </tr>
+                    <tr>
+                        <td>does</td>
+                        <td><span class="code-highlight">does not</span></td>
+                        <td><span class="code-highlight">doesn't</span></td>
+                    </tr>
+                    <tr>
+                        <td>have</td>
+                        <td><span class="code-highlight">have not</span></td>
+                        <td><span class="code-highlight">haven't</span></td>
+                    </tr>
+                    <tr>
+                        <td>will</td>
+                        <td><span class="code-highlight">will not</span></td>
+                        <td><span class="code-highlight">won't</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="contraction-card">
+            <h2>{% translate "Special Cases and Exceptions" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Negative imperatives:</span> Use 'do not' or 'don't'" %}
+                    <p class="code-highlight"><span class="negative-highlight">Don't</span> <span class="verb-highlight">touch</span> that!</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Non-auxiliary 'have':</span> Requires 'do' support" %}
+                    <p class="code-highlight">I <span class="auxiliary-highlight">do</span> <span class="negative-highlight">not</span> <span class="verb-highlight">have</span> a car.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Negative infinitives:</span> 'not' comes before 'to'" %}
+                    <p class="code-highlight">I decided <span class="negative-highlight">not</span> <span class="verb-highlight">to</span> go.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Negative questions:</span> Inversion with contraction" %}
+                    <p class="code-highlight"><span class="auxiliary-highlight">Didn't</span> you see it?</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="negation-card">
+            <h2>{% translate "Common Mistakes" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Omitting auxiliary 'do':</span>" %}
+                    <p class="code-highlight">Incorrect: I <span class="negative-highlight">not</span> like it.</p>
+                    <p class="code-highlight">Correct: I <span class="auxiliary-highlight">do</span> <span class="negative-highlight">not</span> like it.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Wrong contraction form:</span>" %}
+                    <p class="code-highlight">Incorrect: I amn't ready.</p>
+                    <p class="code-highlight">Correct: I'm <span class="negative-highlight">not</span> ready.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Double negatives:</span>" %}
+                    <p class="code-highlight">Incorrect: I don't know nothing.</p>
+                    <p class="code-highlight">Correct: I don't know anything.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

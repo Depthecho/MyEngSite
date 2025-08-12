@@ -1,0 +1,377 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Time and Place Expression Changes in Reported Speech" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .time-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .place-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .demonstrative-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .exception-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Time and Place Expressions" %}</span>
+        </nav>
+
+        <h1>{% translate "Time and Place Expression Changes in Reported Speech" %}</h1>
+        <p>
+            {% translate "When converting direct speech to indirect speech, expressions of time and place must often be adjusted to maintain the correct temporal and spatial relationships in the new context." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Time Expression Transformations" %}</h3>
+            <p>
+                {% translate "Time references typically shift according to when the reporting occurs relative to the original statement:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="time-highlight">today</span></td>
+                            <td><span class="time-highlight">that day</span></td>
+                            <td><span class="example-highlight">"I'll do it <strong>today</strong>" → She said she'd do it <strong>that day</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="time-highlight">yesterday</span></td>
+                            <td><span class="time-highlight">the day before/the previous day</span></td>
+                            <td><span class="example-highlight">"I saw her <strong>yesterday</strong>" → He said he'd seen her <strong>the day before</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="time-highlight">tomorrow</span></td>
+                            <td><span class="time-highlight">the next day/the following day</span></td>
+                            <td><span class="example-highlight">"I'll call <strong>tomorrow</strong>" → She said she'd call <strong>the following day</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="time-highlight">now</span></td>
+                            <td><span class="time-highlight">then</span></td>
+                            <td><span class="example-highlight">"I'm busy <strong>now</strong>" → He said he was busy <strong>then</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="time-highlight">last week</span></td>
+                            <td><span class="time-highlight">the week before/the previous week</span></td>
+                            <td><span class="example-highlight">"We met <strong>last week</strong>" → They said they'd met <strong>the previous week</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="time-highlight">next month</span></td>
+                            <td><span class="time-highlight">the following month</span></td>
+                            <td><span class="example-highlight">"It opens <strong>next month</strong>" → She said it would open <strong>the following month</strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Place Expression Transformations" %}</h3>
+            <p>
+                {% translate "References to location shift according to the reporter's perspective:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="place-highlight">here</span></td>
+                            <td><span class="place-highlight">there</span></td>
+                            <td><span class="example-highlight">"Put it <strong>here</strong>" → He told me to put it <strong>there</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="place-highlight">this place</span></td>
+                            <td><span class="place-highlight">that place</span></td>
+                            <td><span class="example-highlight">"I love <strong>this place</strong>" → She said she loved <strong>that place</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="place-highlight">over here</span></td>
+                            <td><span class="place-highlight">over there</span></td>
+                            <td><span class="example-highlight">"Come <strong>over here</strong>" → She told me to come <strong>over there</strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Demonstrative Pronoun Changes" %}</h3>
+            <p>
+                {% translate "Demonstratives typically shift to maintain proper reference in the new context:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="demonstrative-highlight">this</span></td>
+                            <td><span class="demonstrative-highlight">that</span></td>
+                            <td><span class="example-highlight">"I want <strong>this</strong> book" → He said he wanted <strong>that</strong> book</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="demonstrative-highlight">these</span></td>
+                            <td><span class="demonstrative-highlight">those</span></td>
+                            <td><span class="example-highlight">"Bring <strong>these</strong> files" → She told me to bring <strong>those</strong> files</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="exception-card">
+            <h3>{% translate "4. Special Cases and Exceptions" %}</h3>
+
+            <h4>{% translate "When Reporting Immediately" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"I'm leaving <strong>now</strong>" (said just now) → She says she's leaving <strong>now</strong></span></li>
+            </ul>
+
+            <h4>{% translate "When Location Hasn't Changed" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"Put it <strong>here</strong>" (same location) → He told me to put it <strong>here</strong></span></li>
+            </ul>
+
+            <h4>{% translate "With Universal Time References" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"The sun rises in the east" → He said the sun rises in the east</span> (no change)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Complete Transformation Reference" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Category" %}</th>
+                        <th>{% translate "Direct Speech" %}</th>
+                        <th>{% translate "Reported Speech" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Days" %}</td>
+                        <td><span class="code-highlight">today, yesterday, tomorrow</span></td>
+                        <td><span class="code-highlight">that day, the day before, the next day</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Weeks/Months" %}</td>
+                        <td><span class="code-highlight">last week, next month</span></td>
+                        <td><span class="code-highlight">the previous week, the following month</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "General Time" %}</td>
+                        <td><span class="code-highlight">now, ago, tonight</span></td>
+                        <td><span class="code-highlight">then, before, that night</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Place" %}</td>
+                        <td><span class="code-highlight">here, this place</span></td>
+                        <td><span class="code-highlight">there, that place</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Demonstratives" %}</td>
+                        <td><span class="code-highlight">this, these</span></td>
+                        <td><span class="code-highlight">that, those</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Practical Tips" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Consider whether the time/place reference would still make sense from the reporter's perspective" %}</li>
+                <li>{% translate "When reporting in the same time/place context, changes may not be necessary" %}</li>
+                <li>{% translate "Universal truths and permanent situations don't require time reference changes" %}</li>
+                <li>{% translate "Practice with real conversations to develop intuition for these transformations" %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

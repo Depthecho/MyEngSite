@@ -1,0 +1,274 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "What is a Particle?" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .particle-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .function-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .type-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "What is a Particle?" %}</span>
+        </nav>
+
+        <h1>{% translate "What is a Particle?" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">particle</span> is a small, uninflected word that serves important grammatical functions but doesn't fit neatly into traditional parts of speech categories. These versatile words modify meaning, indicate relationships, or add nuance to sentences." %}
+        </p>
+
+        <div class="structure-card">
+            <h2>{% translate "Key Characteristics" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Uninflected:</span> Doesn't change form (no conjugation or declension)" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Grammatical function:</span> Modifies or connects other words" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Small size:</span> Typically one or two syllables" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Essential meaning:</span> Often crucial to sentence structure" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Multi-functional:</span> Can serve different purposes in different contexts" %}</li>
+            </ul>
+        </div>
+
+        <div class="type-card">
+            <h2>{% translate "Common Types of Particles" %}</h2>
+            
+            <h3>{% translate "1. Infinitive Marker" %}</h3>
+            <p>{% translate "The word <span class=\"particle-highlight\">to</span> used before base verbs:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I want <span class="particle-highlight">to</span> eat.</span></li>
+                <li><span class="code-highlight">She likes <span class="particle-highlight">to</span> swim.</span></li>
+            </ul>
+            
+            <h3>{% translate "2. Negative Particle" %}</h3>
+            <p>{% translate "The word <span class=\"particle-highlight\">not</span> used for negation:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I do <span class="particle-highlight">not</span> know.</span></li>
+                <li><span class="code-highlight">He is <span class="particle-highlight">not</span> coming.</span></li>
+            </ul>
+            
+            <h3>{% translate "3. Phrasal Verb Particles" %}</h3>
+            <p>{% translate "Words that combine with verbs to create new meanings:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">She <span class="function-highlight">gave up</span> smoking.</span> (<span class="particle-highlight">up</span>)</li>
+                <li><span class="code-highlight">Please <span class="function-highlight">turn on</span> the light.</span> (<span class="particle-highlight">on</span>)</li>
+            </ul>
+            
+            <h3>{% translate "4. Discourse Particles" %}</h3>
+            <p>{% translate "Words that organize conversation or add emphasis:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="particle-highlight">Well</span>, I'm not sure.</span></li>
+                <li><span class="code-highlight"><span class="particle-highlight">Oh</span>, I see now!</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Why Particles Matter" %}</h2>
+        <div class="structure-card">
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Essential for phrasal verbs:</span> Often change a verb's meaning completely" %}
+                    <p class="code-highlight">look <span class="example-highlight">(see)</span> vs. look <span class="particle-highlight">up</span> <span class="example-highlight">(research)</span></p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Create infinitives:</span> Necessary for many verb constructions" %}
+                    <p class="code-highlight">I need <span class="particle-highlight">to</span> go.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Form negations:</span> Fundamental for negative statements" %}
+                    <p class="code-highlight">They are <span class="particle-highlight">not</span> here.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Add nuance:</span> Convey subtle shades of meaning" %}
+                    <p class="code-highlight">I <span class="function-highlight">put up with</span> the noise.</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Particles vs. Other Parts of Speech" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Comparison" %}</th>
+                    <th>{% translate "Particles" %}</th>
+                    <th>{% translate "Similar Words" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Prepositions" %}</td>
+                    <td>{% translate "Modify verbs, no object required" %}</td>
+                    <td>{% translate "Require objects (on the table)" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Adverbs" %}</td>
+                    <td>{% translate "Can't move freely in sentence" %}</td>
+                    <td>{% translate "Can often move (quickly ran/ran quickly)" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Conjunctions" %}</td>
+                    <td>{% translate "Don't connect clauses" %}</td>
+                    <td>{% translate "Connect words/phrases/clauses" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

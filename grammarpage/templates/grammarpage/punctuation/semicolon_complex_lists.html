@@ -1,0 +1,240 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Semicolon - Complex Lists" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .list-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Semicolon: Complex Lists" %}</span>
+        </nav>
+
+        <h1>{% translate "Semicolons in Complex Lists" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">semicolon</span> serves as a 'super-comma' in complex lists, providing clarity when list items contain internal commas or are particularly lengthy." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Primary Usage" %}</h3>
+            <p>
+                {% translate "Use semicolons to separate list items when:" %}
+            </p>
+
+            <ul class="styled-list">
+                <li>{% translate "Items contain commas internally" %}</li>
+                <li>{% translate "Items are long and complex" %}</li>
+                <li>{% translate "Clarity would be compromised with regular commas" %}</li>
+            </ul>
+
+            <h4>{% translate "Basic Structure:" %}</h4>
+            <div class="code-highlight">
+                Item 1, with details<span class="mark-highlight">;</span> Item 2, with details<span class="mark-highlight">;</span> and Item 3, with details
+            </div>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "Types of Complex Lists" %}</h3>
+
+            <h4>1. {% translate "Geographical Lists" %}</h4>
+            <p>{% translate "Cities with their countries or states:" %}</p>
+            <ul class="styled-list">
+         <li><span class="code-highlight">{% translate 'We visited Paris, France<span class="mark-highlight">;</span> Rome, Italy<span class="mark-highlight">;</span> and Barcelona, Spain.' %}</span></li>
+            </ul>
+
+            <h4>2. {% translate "Professional Titles" %}</h4>
+            <p>{% translate "Names with titles or positions:" %}</p>
+            <ul class="styled-list">
+<li><span class="code-highlight">{% translate 'The team includes Dr. Smith, cardiologist<span class="mark-highlight">;</span> Prof. Johnson, researcher<span class="mark-highlight"></span>.' %}</span></li>
+            </ul>
+
+            <h4>3. {% translate "Complex Descriptions" %}</h4>
+            <p>{% translate "Items with multiple descriptors:" %}</p>
+            <ul class="styled-list">
+<li><span class="code-highlight">{% translate 'For the project we need: heavy-duty paper, 80gsm<span class="mark-highlight">;</span> archival-quality ink, black only<span class="mark-highlight"></span>.' %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Comparison: Simple vs Complex Lists" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "List Type" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Punctuation" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Simple" %}</td>
+                    <td><span class="code-highlight">{% translate "apples, oranges, and bananas" %}</span></td>
+                    <td>{% translate "Commas" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Complex" %}</td>
+      <td><span class="code-highlight">{% translate 'apples, preferably red<span class="mark-highlight">;</span> oranges, from Florida<span class="mark-highlight">;</span> and bananas, not too ripe' %}</span></td>
+                    <td>{% translate "Semicolons" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Mixed" %}</td>
+                    <td><span class="code-highlight">{% translate "apples" %}<span class="mark-highlight">;</span> {% translate "oranges, both navel and Valencia" %}<span class="mark-highlight">;</span> {% translate "and bananas" %}</span></td>
+                    <td>{% translate "Semicolons when needed" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Special Considerations" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Oxford comma:</span> Still used before the final 'and' in semicolon lists" %}
+                  <p class="code-highlight">{% translate 'Paris, France<span class="mark-highlight">;</span> London, England<span class="mark-highlight">;</span> and Dublin, Ireland' %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Parallel structure:</span> Maintain consistent formatting for all items" %}
+<p class="code-highlight"><span class="term-highlight">{% translate "Good:" %}</span> {% translate "red, bright" %}<span class="mark-highlight">;</span> {% translate "blue, dark" %}<span class="mark-highlight">;</span> {% translate "green, pale" %}</p>
+<p class="code-highlight"><span class="term-highlight">{% translate "Avoid:" %}</span> {% translate "red, bright" %}<span class="mark-highlight">;</span> {% translate "dark blue" %}<span class="mark-highlight">;</span> {% translate "pale in color" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Capitalization:</span> Don't capitalize after semicolons in lists" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Add semicolons to these complex lists:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "The conference featured speakers from Boston, Massachusetts Chicago, Illinois and Seattle, Washington" %}</li>
+            <li>{% translate "Please bring your passport, valid for six months a recent photograph, 2x2 inches and the application fee, in cash or check" %}</li>
+            <li>{% translate "Our departments include Marketing, headed by J. Smith Accounting, supervised by L. Jones and IT, managed by R. Brown" %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

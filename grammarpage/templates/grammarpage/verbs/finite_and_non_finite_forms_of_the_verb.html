@@ -1,0 +1,252 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Finite and Non-Finite Forms of the Verb" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Finite and Non-Finite Forms of the Verb" %}</span>
+        </nav>
+
+        <h1>{% translate "Finite and Non-Finite Forms of the Verb" %}</h1>
+        <p>
+            {% translate "English verbs can appear in two main categories of forms: <span class=\"term-highlight\">finite verbs</span> and <span class=\"term-highlight\">non-finite verbs</span>. Understanding this distinction is crucial for constructing grammatically correct and complex sentences." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Finite Verbs (Личные формы глагола)" %}</h4>
+        <p>
+            {% translate "<span class=\"term-highlight\">Finite verbs</span> are forms of a verb that show tense (e.g., past, present, future), person (e.g., first, second, third), and number (singular or plural) relative to their subject. They can function as the main verb of an independent or dependent clause, forming the predicate of a sentence." %}
+        </p>
+        <p>
+            {% translate "Key characteristics of finite verbs:" %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "They agree with their subject in person and number (e.g., <i><span class=\"code-highlight\">He <span class=\"verb-highlight\">walks</span></span></i> vs. <i><span class=\"code-highlight\">They <span class=\"verb-highlight\">walk</span></span></i>)." %}</li>
+            <li>{% translate "They indicate a specific tense (e.g., <i><span class=\"code-highlight\">He <span class=\"verb-highlight\">walks</span></span></i> (Present), <i><span class=\"code-highlight\">He <span class=\"verb-highlight\">walked</span></span></i> (Past))." %}</li>
+            <li>{% translate "They can stand alone as the main verb of a sentence or clause." %}</li>
+            <li>{% translate "They typically form questions and negatives using auxiliary verbs (like \"do,\" \"be,\" \"have\")." %}</li>
+        </ul>
+        <p>
+            <span class="example-highlight">{% translate "Examples:" %}</span>
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">sings</span> {% translate "beautifully." %}</span></i> ({% translate "Present Simple, 3rd person singular" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">were</span> <span class="verb-highlight">studying</span> {% translate "when I called." %}</span></i> ({% translate "Past Continuous, 3rd person plural" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">will</span> <span class="verb-highlight">arrive</span> {% translate "tomorrow." %}</span></i> ({% translate "Future Simple, 3rd person singular" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">have</span> <span class="verb-highlight">seen</span> {% translate "that movie." %}</span></i> ({% translate "Present Perfect, 1st person singular" %})</li>
+        </ul>
+        <p>
+            {% translate "Every complete sentence in English must contain at least one finite verb." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Non-Finite Verbs (Неличные формы глагола)" %}</h4>
+        <p>
+            {% translate "<span class=\"term-highlight\">Non-finite verbs</span> do not show tense, person, or number. They cannot function as the main verb of a clause on their own; instead, they act as nouns, adjectives, or adverbs. Non-finite verbs require a finite verb to form a complete sentence." %}
+        </p>
+        <p>
+            {% translate "The three main types of non-finite verbs are:" %}
+        </p>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Infinitives:" %}</span> {% translate "The base form of the verb, often preceded by \"to\" (to-infinitive) but sometimes used without \"to\" (bare infinitive)." %}
+                <ul class="styled-list">
+                    <li>{% translate "As a noun:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">To learn</span> {% translate "is important." %}</span></i></li>
+                    <li>{% translate "As an adjective:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I have a book" %} <span class="verb-highlight">to read</span>.</span></i></li>
+                    <li>{% translate "As an adverb:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He came" %} <span class="verb-highlight">to help</span>.</span></i></li>
+                    <li>{% translate "Bare infinitive after modal verbs:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She can" %} <span class="verb-highlight">swim</span>.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Gerunds:" %}</span> {% translate "The -ing form of a verb used as a noun." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Swimming</span> {% translate "is my hobby." %}</span></i> ({% translate "Subject" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He enjoys" %} <span class="verb-highlight">reading</span>.</span></i> ({% translate "Object" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Participles:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="term-highlight">{% translate "Present Participle (-ing form):" %}</span> {% translate "Used as part of continuous tenses or as an adjective." %}
+                        <ul class="styled-list">
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They are" %} <span class="verb-highlight">playing</span>.</span></i> ({% translate "Part of verb phrase" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The" %} <span class="verb-highlight">running</span> {% translate "water was cold." %}</span></i> ({% translate "Adjective" %})</li>
+                        </ul>
+                    </li>
+                    <li><span class="term-highlight">{% translate "Past Participle (-ed, -en, etc. form):" %}</span> {% translate "Used as part of perfect tenses, in the passive voice, or as an adjective." %}
+                        <ul class="styled-list">
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I have" %} <span class="verb-highlight">finished</span> {% translate "my work." %}</span></i> ({% translate "Part of verb phrase" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The car was" %} <span class="verb-highlight">stolen</span>.</span></i> ({% translate "Part of passive voice" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The" %} <span class="verb-highlight">broken</span> {% translate "glass was sharp." %}</span></i> ({% translate "Adjective" %})</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "Understanding the distinction between finite and non-finite verbs is fundamental for complex sentence construction and grammatical accuracy in English." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

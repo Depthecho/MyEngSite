@@ -1,0 +1,297 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Using Subordinating Conjunctions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .conjunction-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .category-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .conjunction-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .conjunction-item {
+            padding: 8px;
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+            .conjunction-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Using Subordinating Conjunctions" %}</span>
+        </nav>
+
+        <h1>{% translate "Mastering Subordinating Conjunctions" %}</h1>
+        <p>
+            {% translate "Subordinating conjunctions create relationships between independent and dependent clauses, transforming simple statements into complex, nuanced sentences." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "What Subordinating Conjunctions Do" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Introduce dependent (subordinate) clauses" %}</li>
+            <li>{% translate "Show the relationship between clauses (time, cause-effect, condition, etc.)" %}</li>
+            <li>{% translate "Make one clause grammatically dependent on another" %}</li>
+            <li>{% translate "Create complex sentence structures" %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Categories of Subordinating Conjunctions" %}</h3>
+
+        <div class="category-card">
+            <h4><span class="conjunction-highlight">{% translate "Time" %}</span></h4>
+            <div class="conjunction-grid">
+                <div class="conjunction-item">when</div>
+                <div class="conjunction-item">while</div>
+                <div class="conjunction-item">before</div>
+                <div class="conjunction-item">after</div>
+                <div class="conjunction-item">since</div>
+                <div class="conjunction-item">until</div>
+                <div class="conjunction-item">as soon as</div>
+                <div class="conjunction-item">whenever</div>
+            </div>
+            <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">When</span> the phone rang, I answered it immediately." %}</p>
+            <p class="code-highlight">{% translate "She hasn't called <span class=\"conjunction-highlight\">since</span> she left for Paris." %}</p>
+        </div>
+
+        <div class="category-card">
+            <h4><span class="conjunction-highlight">{% translate "Cause & Effect" %}</span></h4>
+            <div class="conjunction-grid">
+                <div class="conjunction-item">because</div>
+                <div class="conjunction-item">since</div>
+                <div class="conjunction-item">as</div>
+                <div class="conjunction-item">so that</div>
+                <div class="conjunction-item">in order that</div>
+            </div>
+            <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Because</span> it was raining, we stayed indoors." %}</p>
+            <p class="code-highlight">{% translate "He studied hard <span class=\"conjunction-highlight\">so that</span> he would pass the exam." %}</p>
+        </div>
+
+        <div class="category-card">
+            <h4><span class="conjunction-highlight">{% translate "Contrast" %}</span></h4>
+            <div class="conjunction-grid">
+                <div class="conjunction-item">although</div>
+                <div class="conjunction-item">though</div>
+                <div class="conjunction-item">even though</div>
+                <div class="conjunction-item">whereas</div>
+                <div class="conjunction-item">while</div>
+            </div>
+            <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Although</span> it was expensive, we decided to buy it." %}</p>
+            <p class="code-highlight">{% translate "She prefers tea <span class=\"conjunction-highlight\">while</span> her brother likes coffee." %}</p>
+        </div>
+
+        <div class="category-card">
+            <h4><span class="conjunction-highlight">{% translate "Condition" %}</span></h4>
+            <div class="conjunction-grid">
+                <div class="conjunction-item">if</div>
+                <div class="conjunction-item">unless</div>
+                <div class="conjunction-item">provided that</div>
+                <div class="conjunction-item">as long as</div>
+                <div class="conjunction-item">in case</div>
+            </div>
+            <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">If</span> you study hard, you'll pass the test." %}</p>
+            <p class="code-highlight">{% translate "We won't go <span class=\"conjunction-highlight\">unless</span> the weather improves." %}</p>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Punctuation Rules" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Dependent clause first:</span> Use a comma after the clause" %}
+                <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Before</span> you leave, please turn off the lights." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Independent clause first:</span> Usually no comma needed" %}
+                <p class="code-highlight">{% translate "Please turn off the lights <span class=\"conjunction-highlight\">before</span> you leave." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Exception:</span> Use commas for contrast even when the dependent clause comes second" %}
+                <p class="code-highlight">{% translate "She agreed to help, <span class=\"conjunction-highlight\">although</span> she was very busy." %}</p>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Using coordinating conjunctions (FANBOYS) to begin dependent clauses</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "And I was tired, I went to bed early." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"conjunction-highlight\">Because</span> I was tired, I went to bed early." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Creating sentence fragments with dependent clauses</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "When the movie ended." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "We left when the movie ended." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Misplacing the dependent clause</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Unclear:" %}</span> {% translate "I saw the dog walking to school that was barking loudly." %}</li>
+                    <li><span class="code-highlight">{% translate "Clear:" %}</span> {% translate "Walking to school, I saw the dog that was barking loudly." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Advanced Usage Tips" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Vary sentence structure by changing clause order:" %}
+                <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Although</span> it was late, we continued working." %}</p>
+                <p class="code-highlight">{% translate "We continued working <span class=\"conjunction-highlight\">although</span> it was late." %}</p>
+            </li>
+            <li>{% translate "Combine multiple relationships in one sentence:" %}
+                <p class="code-highlight">{% translate "<span class=\"conjunction-highlight\">If</span> you finish early, we can leave <span class=\"conjunction-highlight\">before</span> the traffic gets bad." %}</p>
+            </li>
+            <li>{% translate "Use for emphasis by placing important information in independent clauses" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

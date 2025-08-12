@@ -1,0 +1,230 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Definition and Structure of Compound Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Definition and Structure of Compound Sentences" %}</span>
+        </nav>
+
+        <h1>{% translate "Compound Sentences in English" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">compound sentence</span> consists of two or more independent clauses joined together. Each clause has equal importance and can stand alone as a complete sentence." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Key Characteristics" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Contains <span class=\"term-highlight\">two or more independent clauses</span>" %}</li>
+            <li>{% translate "Clauses are joined by <span class=\"term-highlight\">coordinating conjunctions</span> (FANBOYS) or <span class=\"term-highlight\">semicolons</span>" %}</li>
+            <li>{% translate "Expresses related ideas of equal importance" %}</li>
+            <li>{% translate "Each clause could stand alone as a complete sentence" %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Structure Patterns" %}</h3>
+        <h4>{% translate "1. With Coordinating Conjunctions (FANBOYS)" %}</h4>
+        <p>{% translate "The seven coordinating conjunctions are:" %}</p>
+        <div class="code-highlight">For, And, Nor, But, Or, Yet, So</div>
+
+        <p>{% translate "Pattern:" %}</p>
+        <p class="code-highlight">{% translate "Independent clause + , + coordinating conjunction + independent clause" %}</p>
+
+        <h5>{% translate "Examples:" %}</h5>
+        <ul class="styled-list">
+            <li><span class="code-highlight">{% translate "I wanted to go swimming, but the pool was closed." %}</span></li>
+            <li><span class="code-highlight">{% translate "She studied hard for the exam, and she passed with flying colors." %}</span></li>
+            <li><span class="code-highlight">{% translate "We can go to the cinema, or we can stay home and watch TV." %}</span></li>
+        </ul>
+
+        <h4>{% translate "2. With Semicolons" %}</h4>
+        <p>{% translate "Pattern:" %}</p>
+        <p class="code-highlight">{% translate "Independent clause + ; + independent clause" %}</p>
+
+        <h5>{% translate "Examples:" %}</h5>
+        <ul class="styled-list">
+            <li><span class="code-highlight">{% translate "The rain stopped; the sun came out." %}</span></li>
+            <li><span class="code-highlight">{% translate "I have a big test tomorrow; I can't go out tonight." %}</span></li>
+        </ul>
+
+        <h4>{% translate "3. With Conjunctive Adverbs" %}</h4>
+        <p>{% translate "Pattern:" %}</p>
+        <p class="code-highlight">{% translate "Independent clause + ; + conjunctive adverb + , + independent clause" %}</p>
+
+        <h5>{% translate "Common Conjunctive Adverbs:" %}</h5>
+        <div class="code-highlight">
+            however, therefore, moreover, nevertheless, consequently, furthermore, otherwise
+        </div>
+
+        <h5>{% translate "Examples:" %}</h5>
+        <ul class="styled-list">
+            <li><span class="code-highlight">{% translate "I wanted to buy the car; however, it was too expensive." %}</span></li>
+            <li><span class="code-highlight">{% translate "She practiced daily; consequently, she improved rapidly." %}</span></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Comma splice:</span> Using just a comma without a conjunction" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I love reading, it relaxes me." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I love reading, for it relaxes me." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Missing comma:</span> Forgetting the comma before the conjunction" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I wanted to go but I was too tired." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I wanted to go, but I was too tired." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Unequal clauses:</span> Combining an independent clause with a dependent clause" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I went to bed early and because I was tired." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Why Use Compound Sentences?" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "To show that ideas are related and equally important" %}</li>
+            <li>{% translate "To create more fluid writing by combining short, choppy sentences" %}</li>
+            <li>{% translate "To express more complex relationships between ideas" %}</li>
+            <li>{% translate "To improve the rhythm and flow of your writing" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

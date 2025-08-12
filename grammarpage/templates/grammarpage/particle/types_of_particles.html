@@ -1,0 +1,318 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Types of Particles" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .infinitive-particle {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .negative-particle {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .phrasal-particle {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .discourse-particle {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .particle-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .phrasal-verb-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "Types of Particles" %}</span>
+        </nav>
+
+        <h1>{% translate "Types of Particles" %}</h1>
+        <p>
+            {% translate "Particles serve various grammatical functions in English. Understanding these types helps master sentence structure and meaning." %}
+        </p>
+
+        <div class="particle-card">
+            <h2>{% translate "1. Infinitive Particle (<span class=\"infinitive-particle\">to</span>)" %}</h2>
+            <p>{% translate "Marks the infinitive form of verbs, creating the 'to + verb' construction:" %}</p>
+            
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always precedes the base form of a verb" %}</li>
+                <li>{% translate "Doesn't carry meaning on its own" %}</li>
+                <li>{% translate "Essential for many verb constructions" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I want <span class="infinitive-particle">to</span> eat.</span></li>
+                <li><span class="code-highlight">She needs <span class="infinitive-particle">to</span> study.</span></li>
+                <li><span class="code-highlight">It's nice <span class="infinitive-particle">to</span> meet you.</span></li>
+            </ul>
+
+            <h3>{% translate "Special Cases:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Bare infinitives (without 'to') after modal verbs:" %}
+                    <p class="code-highlight">I can <span class="example-highlight">swim</span>.</p>
+                </li>
+                <li>{% translate "Split infinitives (adverbs between 'to' and verb):" %}
+                    <p class="code-highlight">I need <span class="infinitive-particle">to</span> <span class="example-highlight">quickly</span> finish.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="particle-card">
+            <h2>{% translate "2. Negative Particle (<span class=\"negative-particle\">not</span>)" %}</h2>
+            <p>{% translate "Creates negative statements by negating verbs or other elements:" %}</p>
+            
+            <h3>{% translate "Usage Patterns:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "After auxiliary verbs in standard negation" %}
+                    <p class="code-highlight">She <span class="example-highlight">does</span> <span class="negative-particle">not</span> (doesn't) know.</p>
+                </li>
+                <li>{% translate "With non-auxiliary verbs (requires 'do' support)" %}
+                    <p class="code-highlight">I <span class="example-highlight">do</span> <span class="negative-particle">not</span> (don't) understand.</p>
+                </li>
+                <li>{% translate "Contracted forms common in speech" %}
+                    <p class="code-highlight">They <span class="negative-particle">aren't</span> (are not) coming.</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Positioning Rules:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Before main verbs with auxiliaries" %}
+                    <p class="code-highlight">You <span class="example-highlight">should</span> <span class="negative-particle">not</span> go.</p>
+                </li>
+                <li>{% translate "After 'to be' when it's the main verb" %}
+                    <p class="code-highlight">He <span class="negative-particle">isn't</span> happy.</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="phrasal-verb-card">
+            <h2>{% translate "3. Phrasal Verb Particles" %}</h2>
+            <p>{% translate "Combine with verbs to create new meanings, often idiomatic:" %}</p>
+            
+            <h3>{% translate "Common Particles:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="phrasal-particle">up</span>: <span class="code-highlight">give <span class="phrasal-particle">up</span>, clean <span class="phrasal-particle">up</span></span></li>
+                <li><span class="phrasal-particle">out</span>: <span class="code-highlight">find <span class="phrasal-particle">out</span>, work <span class="phrasal-particle">out</span></span></li>
+                <li><span class="phrasal-particle">off</span>: <span class="code-highlight">put <span class="phrasal-particle">off</span>, show <span class="phrasal-particle">off</span></span></li>
+                <li><span class="phrasal-particle">on</span>: <span class="code-highlight">put <span class="phrasal-particle">on</span>, try <span class="phrasal-particle">on</span></span></li>
+            </ul>
+
+            <h3>{% translate "Types of Phrasal Verbs:" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Type" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Note" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Intransitive" %}</td>
+                        <td><span class="code-highlight">show <span class="phrasal-particle">up</span></span></td>
+                        <td>{% translate "No direct object" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Transitive separable" %}</td>
+                        <td><span class="code-highlight">turn <span class="phrasal-particle">off</span> the light</span></td>
+                        <td>{% translate "Object can separate verb and particle" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Transitive inseparable" %}</td>
+                        <td><span class="code-highlight">look <span class="phrasal-particle">after</span> the child</span></td>
+                        <td>{% translate "Particle must stay with verb" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="particle-card">
+            <h2>{% translate "4. Discourse Particles" %}</h2>
+            <p>{% translate "Organize conversation flow and express attitudes:" %}</p>
+            
+            <h3>{% translate "Common Functions:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Hesitation markers:</span> um, uh, er" %}
+                    <p class="code-highlight">"I was thinking, <span class="discourse-particle">uh</span>, maybe we should leave."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Response signals:</span> yeah, okay, right" %}
+                    <p class="code-highlight">"<span class="discourse-particle">Right</span>, I understand now."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Emphasis markers:</span> just, even, only" %}
+                    <p class="code-highlight">"I <span class="discourse-particle">just</span> don't know!"</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Conversation managers:</span> well, so, anyway" %}
+                    <p class="code-highlight">"<span class="discourse-particle">Well</span>, what do you think?"</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Usage Notes:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "More common in spoken than written English" %}</li>
+                <li>{% translate "Often considered informal" %}</li>
+                <li>{% translate "Vary significantly by dialect and region" %}</li>
+                <li>{% translate "Help maintain conversational rhythm" %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

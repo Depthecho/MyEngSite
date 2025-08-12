@@ -1,0 +1,244 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Concrete vs Abstract Nouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+      .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Concrete vs Abstract Nouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Concrete vs Abstract Nouns" %}</h1>
+        <p>
+            {% translate "Nouns can be classified based on whether they refer to tangible things that can be perceived with the five senses or intangible concepts. This distinction helps to better understand the nature of a noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Concrete Nouns" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Concrete nouns</span> refer to things that you can experience with your five senses: sight, sound, smell, touch, or taste. They are physical, tangible objects." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sense" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Sight" %}</td>
+                        <td>{% translate "book, car, cloud" %}</td>
+                        <td>{% translate "He saw a large <span class=\"code-highlight\">cloud</span> in the sky." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Sound" %}</td>
+                        <td>{% translate "music, thunder, whisper" %}</td>
+                        <td>{% translate "The <span class=\"code-highlight\">music</span> was very loud." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Smell" %}</td>
+                        <td>{% translate "perfume, smoke, coffee" %}</td>
+                        <td>{% translate "I love the smell of fresh <span class=\"code-highlight\">coffee</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Touch" %}</td>
+                        <td>{% translate "stone, blanket, chair" %}</td>
+                        <td>{% translate "She sat on the hard <span class=\"code-highlight\">chair</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Taste" %}</td>
+                        <td>{% translate "sugar, salt, apple" %}</td>
+                        <td>{% translate "This <span class=\"code-highlight\">apple</span> is very sweet." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "Most common nouns and all proper nouns are concrete nouns." %}
+        </p>
+        
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Abstract Nouns" %}</h3>
+        <p>
+            {% translate "<span class=\"term-highlight\">Abstract nouns</span> refer to intangible things such as ideas, concepts, emotions, qualities, or states of being. They cannot be perceived with the five senses." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Type" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Emotions" %}</td>
+                        <td>{% translate "happiness, anger, fear" %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">Happiness</span> is the most important thing." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Qualities" %}</td>
+                        <td>{% translate "bravery, honesty, wisdom" %}</td>
+                        <td>{% translate "His <span class=\"code-highlight\">bravery</span> saved the day." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Concepts" %}</td>
+                        <td>{% translate "freedom, justice, democracy" %}</td>
+                        <td>{% translate "They fought for <span class=\"code-highlight\">freedom</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "States" %}</td>
+                        <td>{% translate "childhood, poverty, rest" %}</td>
+                        <td>{% translate "His <span class=\"code-highlight\">childhood</span> was difficult." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "Some abstract nouns can be formed by adding a suffix to an adjective or verb (e.g., <span class=\"code-highlight\">kind</span> -> <span class=\"code-highlight\">kindness</span>, <span class=\"code-highlight\">decide</span> -> <span class=\"code-highlight\">decision</span>)." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

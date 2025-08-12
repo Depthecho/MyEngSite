@@ -1,0 +1,272 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Verb 'To Be'" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .main-container {
+            padding-top: 40px;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Verb 'To Be'" %}</span>
+        </nav>
+
+        <h1>{% translate "The Verb 'To Be'" %}</h1>
+        <p>
+            {% translate "The verb <span class=\"term-highlight\">\"to be\"</span> is undeniably the most important and irregular verb in the English language. It is used to express existence, state, condition, or quality. It plays a crucial role in forming various grammatical structures and tenses." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of the Verb 'To Be'" %}</h4>
+        <p>
+            {% translate "Unlike most verbs, \"to be\" has numerous distinct forms across different tenses and persons:" %}
+        </p>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Present Simple:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="pronoun-highlight">{% translate "I" %}</span> <span class="auxiliary-highlight">am</span></li>
+                    <li><span class="pronoun-highlight">{% translate "You / We / They" %}</span> <span class="auxiliary-highlight">are</span></li>
+                    <li><span class="pronoun-highlight">{% translate "He / She / It" %}</span> <span class="auxiliary-highlight">is</span></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Past Simple:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="pronoun-highlight">{% translate "I / He / She / It" %}</span> <span class="auxiliary-highlight">was</span></li>
+                    <li><span class="pronoun-highlight">{% translate "You / We / They" %}</span> <span class="auxiliary-highlight">were</span></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Simple:" %}</span> <span class="auxiliary-highlight">will be</span> ({% translate "for all persons" %})</li>
+            <li><span class="term-highlight">{% translate "Present Participle (V-ing form):" %}</span> <span class="verb-highlight">being</span></li>
+            <li><span class="term-highlight">{% translate "Past Participle (V3 form):" %}</span> <span class="verb-highlight">been</span></li>
+            <li><span class="term-highlight">{% translate "Infinitive:" %}</span> ({% translate "to" %}) <span class="verb-highlight">be</span></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Uses of the Verb 'To Be'" %}</h4>
+        <p>
+            {% translate "\"To be\" has several fundamental roles in English sentences:" %}
+        </p>
+        <ol class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "As a Linking (Copular) Verb:" %}</span> {% translate "It connects the subject of a sentence to a noun, pronoun, or adjective that describes or identifies the subject." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">is</span> {% translate "a doctor." %}</span></i> ({% translate "links \"she\" to \"doctor\"" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">are</span> {% translate "happy." %}</span></i> ({% translate "links \"they\" to \"happy\"" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The sky" %} <span class="auxiliary-highlight">is</span> {% translate "blue." %}</span></i> ({% translate "links \"sky\" to \"blue\"" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "As an Auxiliary (Helping) Verb:" %}</span> {% translate "It is used to form various tenses and voices." %}
+                <ul class="styled-list">
+                    <li><span class="term-highlight">{% translate "In Continuous (Progressive) Tenses:" %}</span> {% translate "Used with the present participle (-ing form) to describe ongoing actions." %}
+                        <ul class="styled-list">
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">am</span> <span class="verb-highlight">{% translate "studying" %}</span> {% translate "English." %}</span></i> ({% translate "Present Continuous" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">were</span> <span class="verb-highlight">{% translate "watching" %}</span> {% translate "TV." %}</span></i> ({% translate "Past Continuous" %})</li>
+                        </ul>
+                    </li>
+                    <li><span class="term-highlight">{% translate "In the Passive Voice:" %}</span> {% translate "Used with the past participle (V3 form) to indicate that the subject is receiving the action." %}
+                        <ul class="styled-list">
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The letter" %} <span class="auxiliary-highlight">was</span> <span class="verb-highlight">{% translate "written" %}</span> {% translate "by John." %}</span></i> ({% translate "Past Simple Passive" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The house" %} <span class="auxiliary-highlight">is</span> <span class="auxiliary-highlight">being</span> <span class="verb-highlight">{% translate "built" %}</span>.</span></i> ({% translate "Present Continuous Passive" %})</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To express existence or location (with \"there\"):" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "There" %} <span class="auxiliary-highlight">is</span> {% translate "a book on the table." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "There" %} <span class="auxiliary-highlight">were</span> {% translate "many people at the party." %}</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To express age:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">is</span> {% translate "25 years old." %}</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "To describe weather or time:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "It" %} <span class="auxiliary-highlight">is</span> {% translate "raining." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "It" %} <span class="auxiliary-highlight">is</span> {% translate "3 o'clock." %}</span></i></li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Common Contractions with 'To Be'" %}</h4>
+        <p>
+            {% translate "In informal speech and writing, \"to be\" is frequently contracted with pronouns:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="code-highlight">I'm</span> ({% translate "I am" %})</li>
+            <li><span class="code-highlight">You're</span> ({% translate "You are" %})</li>
+            <li><span class="code-highlight">He's</span> ({% translate "He is" %}) / <span class="code-highlight">She's</span> ({% translate "She is" %}) / <span class="code-highlight">It's</span> ({% translate "It is" %})</li>
+            <li><span class="code-highlight">We're</span> ({% translate "We are" %})</li>
+            <li><span class="code-highlight">They're</span> ({% translate "They are" %})</li>
+            <li><span class="code-highlight">Wasn't</span> ({% translate "was not" %})</li>
+            <li><span class="code-highlight">Weren't</span> ({% translate "were not" %})</li>
+        </ul>
+        <p>
+            {% translate "Mastering the verb \"to be\" is fundamental to understanding and speaking English correctly, as it forms the backbone of many sentence structures." %}
+        </p>
+        
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

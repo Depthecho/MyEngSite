@@ -1,0 +1,229 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Situations without Indefinite Articles" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Articles" %}</a></span> &raquo;
+            <span>{% translate "Situations without Indefinite Articles" %}</span>
+        </nav>
+
+        <h1>{% translate "Situations without Indefinite Articles" %}</h1>
+        <p>
+            {% translate "The indefinite articles <span class=\"code-highlight\">a</span> and <span class=\"code-highlight\">an</span> are only used with singular, countable nouns. Therefore, there are many situations where they cannot or should not be used." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. With Plural Nouns" %}</h3>
+        <p>
+            {% translate "Since <span class=\"code-highlight\">a</span> and <span class=\"code-highlight\">an</span> mean 'one,' they cannot be used with plural nouns. Instead, we use no article (the zero article) to refer to a general group." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Correct" %}</th>
+                        <th>{% translate "Incorrect" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">I saw cars.</span>" %}</td>
+                        <td>{% translate "I saw <strike>a cars</strike>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">They bought tickets.</span>" %}</td>
+                        <td>{% translate "They bought <strike>a tickets</strike>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. With Uncountable Nouns" %}</h3>
+        <p>
+            {% translate "Uncountable nouns (e.g., <span class=\"code-highlight\">water, information, advice, furniture</span>) cannot be counted individually, so they do not take indefinite articles." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "I need <span class=\"code-highlight\">some</span> water." %} <span class=\"example-highlight\">({% translate "Correct" %})</span></li>
+            <li>{% translate "I need <strike>a water</strike>." %} <span class=\"example-highlight\">({% translate "Incorrect" %})</span></li>
+            <li>{% translate "He gave me <span class=\"code-highlight\">some</span> good advice." %} <span class=\"example-highlight\">({% translate "Correct" %})</span></li>
+            <li>{% translate "He gave me <strike>an advice</strike>." %} <span class=\"example-highlight\">({% translate "Incorrect" %})</span></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. With Names and Titles" %}</h3>
+        <p>
+            {% translate "When referring to a specific person or a unique title, no indefinite article is used." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "This is <span class=\"code-highlight\">Mary</span>." %}</li>
+            <li>{% translate "<span class=\"code-highlight\">President Biden</span> gave a speech." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. With Possessive Adjectives and Demonstratives" %}</h3>
+        <p>
+            {% translate "You cannot use an indefinite article with a noun that is already preceded by a possessive adjective (<span class=\"code-highlight\">my, your, his</span>) or a demonstrative (<span class=\"code-highlight\">this, that, these, those</span>), as these words already specify the noun." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Correct" %}</th>
+                        <th>{% translate "Incorrect" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">My</span> car is red." %}</td>
+                        <td>{% translate "<strike>A my car</strike> is red." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Is <span class=\"code-highlight\">this</span> an umbrella?" %}</td>
+                        <td>{% translate "Is <strike>a this umbrella</strike>?" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'articles_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Articles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

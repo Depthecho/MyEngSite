@@ -1,0 +1,391 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronoun Changes in Reported Speech" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .subject-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .possessive-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .reflexive-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .special-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Pronoun Changes" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronoun Changes in Reported Speech" %}</h1>
+        <p>
+            {% translate "When converting direct speech to indirect speech, pronouns must change to reflect the shift in perspective from the original speaker to the reporter. These changes are essential for maintaining logical relationships between speakers and listeners." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Personal Pronoun Changes" %}</h3>
+            <p>
+                {% translate "Personal pronouns typically shift according to the following patterns:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="subject-highlight">I</span></td>
+                            <td><span class="subject-highlight">he/she</span></td>
+                            <td><span class="example-highlight">"<strong>I</strong> am tired" → He said <strong>he</strong> was tired</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="subject-highlight">we</span></td>
+                            <td><span class="subject-highlight">they</span></td>
+                            <td><span class="example-highlight">"<strong>We</strong> are ready" → She said <strong>they</strong> were ready</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="object-highlight">you</span> (singular)</td>
+                            <td><span class="object-highlight">I/me/he/him/she/her</span></td>
+                            <td><span class="example-highlight">"I'll call <strong>you</strong>" → He said he'd call <strong>me</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="object-highlight">you</span> (plural)</td>
+                            <td><span class="object-highlight">them/us</span></td>
+                            <td><span class="example-highlight">"I'll help <strong>you</strong>" → She said she'd help <strong>them</strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-card">
+                <h4>{% translate "Important Notes" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "First person pronouns (<span class=\"code-highlight\">I, we</span>) change according to the speaker" %}</li>
+                    <li>{% translate "Second person pronouns (<span class=\"code-highlight\">you</span>) change according to who is being addressed" %}</li>
+                    <li>{% translate "Third person pronouns (<span class=\"code-highlight\">he, she, they</span>) typically remain unchanged" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Possessive Pronoun Changes" %}</h3>
+            <p>
+                {% translate "Possessive pronouns and adjectives follow similar transformation rules:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="possessive-highlight">my</span></td>
+                            <td><span class="possessive-highlight">his/her</span></td>
+                            <td><span class="example-highlight">"It's <strong>my</strong> book" → She said it was <strong>her</strong> book</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="possessive-highlight">your</span> (singular)</td>
+                            <td><span class="possessive-highlight">my/his/her</span></td>
+                            <td><span class="example-highlight">"Is this <strong>your</strong> pen?" → He asked if it was <strong>my</strong> pen</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="possessive-highlight">your</span> (plural)</td>
+                            <td><span class="possessive-highlight">our/their</span></td>
+                            <td><span class="example-highlight">"Take <strong>your</strong> seats" → She told us to take <strong>our</strong> seats</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="possessive-highlight">our</span></td>
+                            <td><span class="possessive-highlight">their</span></td>
+                            <td><span class="example-highlight">"It's <strong>our</strong> decision" → They said it was <strong>their</strong> decision</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Reflexive Pronoun Changes" %}</h3>
+            <p>
+                {% translate "Reflexive pronouns must also adapt to the new context in reported speech:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="reflexive-highlight">myself</span></td>
+                            <td><span class="reflexive-highlight">himself/herself</span></td>
+                            <td><span class="example-highlight">"I hurt <strong>myself</strong>" → He said he hurt <strong>himself</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="reflexive-highlight">yourself</span></td>
+                            <td><span class="reflexive-highlight">myself/himself/herself</span></td>
+                            <td><span class="example-highlight">"Take care of <strong>yourself</strong>" → She told me to take care of <strong>myself</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="reflexive-highlight">ourselves</span></td>
+                            <td><span class="reflexive-highlight">themselves</span></td>
+                            <td><span class="example-highlight">"We enjoyed <strong>ourselves</strong>" → They said they enjoyed <strong>themselves</strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="special-card">
+            <h3>{% translate "4. Special Cases and Exceptions" %}</h3>
+
+            <h4>{% translate "When the Speaker Reports Their Own Words" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"I said, '<strong>I</strong> will go'" → I said <strong>I</strong> would go</span> (no change)</li>
+            </ul>
+
+            <h4>{% translate "When Reporting General Truths" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"<strong>You</strong> should drink water" → He said <strong>people</strong> should drink water</span></li>
+            </ul>
+
+            <h4>{% translate "With Generic 'You'" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"<strong>You</strong> never know" → She said <strong>you</strong> never know</span> (generic 'you' remains)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Complete Pronoun Transformation Guide" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Pronoun Type" %}</th>
+                        <th>{% translate "Direct Speech" %}</th>
+                        <th>{% translate "Reported Speech" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Subject" %}</td>
+                        <td><span class="code-highlight">I, you, he, she, we, they</span></td>
+                        <td><span class="code-highlight">he/she, I/he/she, he, she, they, they</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Object" %}</td>
+                        <td><span class="code-highlight">me, you, him, her, us, them</span></td>
+                        <td><span class="code-highlight">him/her, me/him/her, him, her, us, them</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Possessive Adjective" %}</td>
+                        <td><span class="code-highlight">my, your, his, her, our, their</span></td>
+                        <td><span class="code-highlight">his/her, my/his/her, his, her, their, their</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Possessive Pronoun" %}</td>
+                        <td><span class="code-highlight">mine, yours, his, hers, ours, theirs</span></td>
+                        <td><span class="code-highlight">his/hers, mine/his/hers, his, hers, theirs, theirs</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Reflexive" %}</td>
+                        <td><span class="code-highlight">myself, yourself, himself, herself, ourselves, themselves</span></td>
+                        <td><span class="code-highlight">himself/herself, myself/himself/herself, himself, herself, themselves, themselves</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Practical Tips" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Always consider who is speaking to whom in the original and reported contexts" %}</li>
+                <li>{% translate "When in doubt, diagram the speaker-listener relationships" %}</li>
+                <li>{% translate "Remember that pronoun changes often occur alongside verb tense changes" %}</li>
+                <li>{% translate "Practice with dialogues to develop intuition for pronoun shifts" %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

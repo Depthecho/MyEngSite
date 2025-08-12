@@ -1,0 +1,226 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Verb Agreement Rules" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Verb Agreement Rules" %}</span>
+        </nav>
+
+        <h1>{% translate "Verb Agreement Rules" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Subject-verb agreement</span> is the grammatical rule that states the verb in a sentence must agree in number (singular or plural) with its subject. This is a crucial rule for forming correct sentences in English." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Basic Rules" %}</h3>
+        <p>
+            {% translate "The most fundamental rule is that a singular subject takes a singular verb, and a plural subject takes a plural verb." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Subject Type" %}</th>
+                        <th>{% translate "Verb Type" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "Singular Subject" %}</td><td>{% translate "Singular Verb" %}</td><td>{% translate "The <span class=\"code-highlight\">dog</span> <span class=\"term-highlight\">chases</span> the cat." %}</td></tr>
+                    <tr><td>{% translate "Plural Subject" %}</td><td>{% translate "Plural Verb" %}</td><td>{% translate "The <span class=\"code-highlight\">dogs</span> <span class=\"term-highlight\">chase</span> the cat." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases and Exceptions" %}</h3>
+        
+        <h4>{% translate "Collective Nouns" %}</h4>
+        <p>
+            {% translate "Collective nouns (e.g., <span class=\"code-highlight\">team, family, government</span>) can be tricky. The verb agreement depends on whether the group is acting as a single unit or as individual members." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Usage" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "As a single unit (singular verb)" %}</td>
+                        <td>{% translate "The <span class=\"code-highlight\">team</span> <span class=\"term-highlight\">is</span> playing today." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "As individuals (plural verb)" %}</td>
+                        <td>{% translate "The <span class=\"code-highlight\">team</span> <span class=\"term-highlight\">are</span> putting on their shoes." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Nouns joined by 'and'" %}</h4>
+        <p>
+            {% translate "When two or more subjects are joined by <span class=\"code-highlight\">and</span>, use a plural verb." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"code-highlight\">Maria and Tom</span> <span class=\"term-highlight\">are</span> going to the store." %}</li>
+        </ul>
+        <p>
+            {% translate "However, if the two nouns refer to a single person or idea, use a singular verb." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"code-highlight\">Macaroni and cheese</span> <span class=\"term-highlight\">is</span> my favorite dish." %}</li>
+        </ul>
+
+        <h4>{% translate "Nouns joined by 'or' or 'nor'" %}</h4>
+        <p>
+            {% translate "When subjects are joined by <span class=\"code-highlight\">or</span> or <span class=\"code-highlight\">nor</span>, the verb agrees with the subject closest to it." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "Neither the student nor the <span class=\"code-highlight\">teachers</span> <span class=\"term-highlight\">know</span> the answer." %}</li>
+            <li>{% translate "Neither the teachers nor the <span class=\"code-highlight\">student</span> <span class=\"term-highlight\">knows</span> the answer." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

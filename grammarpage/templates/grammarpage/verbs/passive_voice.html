@@ -1,0 +1,381 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Passive Voice" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+        
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Passive Voice" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Passive Voice" %}</h1>
+        <p>
+            {% translate "<b>The Passive Voice</b> is a grammatical construction where the subject of the sentence receives the action of the verb, rather than performing it. This contrasts with the active voice, where the subject performs the action. The passive voice focuses attention on the action itself or the recipient of the action, often when the doer is unknown, unimportant, or obvious from the context." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Formation of the Passive Voice" %}</h3>
+        <p>
+            {% translate "The passive voice is consistently formed using a specific structure: a form of the verb" %} <span class="term-highlight">"to be"</span> {% translate "followed by the" %} <span class="term-highlight">"past participle"</span> {% translate "of the main verb. Optionally, the doer of the action (the \"agent\") can be included using" %} <span class="term-highlight">"by + agent"</span>.
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "General Formula:" %}</h4>
+        <p><span class="term-highlight">{% translate "Subject + Form of \"to be\" + Past Participle (+ by + Agent)" %}</span></p>
+        <ul class="styled-list">
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "subject" %}</span> {% translate "in a passive sentence is the object of the active sentence." %}</li>
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "form of \"to be\"" %}</span> {% translate "changes according to the tense." %}</li>
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "past participle" %}</span> {% translate "of the main verb always remains the same for a given verb." %}</li>
+            <li>{% translate "The" %} <span class="term-highlight">{% translate "agent" %}</span> ({% translate "the person or thing performing the action in the active voice" %}) {% translate "is often omitted but can be included with \"by\"." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Passive Voice Across Different Tenses:" %}</h4>
+
+        <h5>{% translate "1. Simple Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Simple Passive:" %}</span> <span class="code-highlight">{% translate "is / are + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "Someone" %} <span class="verb-highlight">{% translate "writes" %}</span> {% translate "the letter." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The letter" %} <span class="verb-highlight">{% translate "is written" %}</span>.</i></li>
+                    <li>{% translate "Passive (with agent):" %} <i>{% translate "The letter" %} <span class="verb-highlight">{% translate "is written by" %}</span> {% translate "John." %}</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Simple Passive:" %}</span> <span class="code-highlight">{% translate "was / were + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "Someone" %} <span class="verb-highlight">{% translate "broke" %}</span> {% translate "the window." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The window" %} <span class="verb-highlight">{% translate "was broken" %}</span>.</i></li>
+                    <li>{% translate "Passive (with agent):" %} <i>{% translate "The window" %} <span class="verb-highlight">{% translate "was broken by" %}</span> {% translate "the children." %}</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Simple Passive:" %}</span> <span class="code-highlight">{% translate "will be + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "will deliver" %}</span> {% translate "the package tomorrow." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The package" %} <span class="verb-highlight">{% translate "will be delivered" %}</span> {% translate "tomorrow." %}</i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. Continuous Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Continuous Passive:" %}</span> <span class="code-highlight">{% translate "is / are being + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "are building" %}</span> {% translate "a new bridge." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "A new bridge" %} <span class="verb-highlight">{% translate "is being built" %}</span>.</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Continuous Passive:" %}</span> <span class="code-highlight">{% translate "was / were being + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "She" %} <span class="verb-highlight">{% translate "was reading" %}</span> {% translate "a book." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "A book" %} <span class="verb-highlight">{% translate "was being read" %}</span> ({% translate "by her" %}).</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Continuous Passive:" %}</span> ({% translate "Rarely used, often avoided" %})
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "will be discussing" %}</span> {% translate "the issue." %}</i></li>
+                    <li>{% translate "Passive (less common):" %} <i>{% translate "The issue" %} <span class="verb-highlight">{% translate "will be being discussed" %}</span>.</i> ({% translate "Often rephrased" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. Perfect Tenses" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Present Perfect Passive:" %}</span> <span class="code-highlight">{% translate "has / have been + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "Someone" %} <span class="verb-highlight">{% translate "has stolen" %}</span> {% translate "my wallet." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "My wallet" %} <span class="verb-highlight">{% translate "has been stolen" %}</span>.</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Perfect Passive:" %}</span> <span class="code-highlight">{% translate "had been + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "had completed" %}</span> {% translate "the work before the deadline." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The work" %} <span class="verb-highlight">{% translate "had been completed" %}</span> {% translate "before the deadline." %}</i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Future Perfect Passive:" %}</span> <span class="code-highlight">{% translate "will have been + Past Participle" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "will have finished" %}</span> {% translate "the report by Friday." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The report" %} <span class="verb-highlight">{% translate "will have been finished" %}</span> {% translate "by Friday." %}</i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "4. Modals in Passive Voice" %}</h5>
+        <p>
+            {% translate "Modal verbs (can, could, may, might, must, should, will, would, etc.) are followed by" %} <span class="term-highlight">"be" + Past Participle</span>.
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Active:" %} <i>{% translate "You" %} <span class="verb-highlight">{% translate "must clean" %}</span> {% translate "your room." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "Your room" %} <span class="verb-highlight">{% translate "must be cleaned" %}</span>.</i></li>
+                    <li>{% translate "Active:" %} <i>{% translate "She" %} <span class="verb-highlight">{% translate "can solve" %}</span> {% translate "the problem." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The problem" %} <span class="verb-highlight">{% translate "can be solved" %}</span>.</i></li>
+                    <li>{% translate "Active:" %} <i>{% translate "They" %} <span class="verb-highlight">{% translate "should fix" %}</span> {% translate "the roof." %}</i></li>
+                    <li>{% translate "Passive:" %} <i>{% translate "The roof" %} <span class="verb-highlight">{% translate "should be fixed" %}</span>.</i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Use of the Passive Voice" %}</h3>
+        <p>
+            {% translate "While the active voice is generally preferred for clarity and directness, the passive voice is essential in certain situations to shift focus, emphasize different elements, or when specific information is unavailable or unimportant." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. When the Doer of the Action (Agent) is Unknown or Unimportant" %}</h4>
+        <p>
+            {% translate "This is the most common reason to use the passive voice. When we don't know who performed an action, or it's irrelevant to the message, the passive voice is ideal." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "The window" %} <span class="verb-highlight">{% translate "was broken" %}</span>.</span></i> ({% translate "We don't know who broke it." %})</li>
+                    <li><i><span class="code-highlight">{% translate "My car" %} <span class="verb-highlight">{% translate "was stolen" %}</span> {% translate "last night." %}</span></i> ({% translate "The identity of the thief isn't the main point." %})</li>
+                    <li><i><span class="code-highlight">{% translate "English" %} <span class="verb-highlight">{% translate "is spoken" %}</span> {% translate "all over the world." %}</span></i> ({% translate "The speakers are too numerous or obvious to mention." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. When the Action Itself or the Recipient of the Action is More Important than the Doer" %}</h4>
+        <p>
+            {% translate "In scientific, academic, or formal contexts, the process or outcome is often more significant than who performed it. This leads to frequent use of the passive voice." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "Many experiments" %} <span class="verb-highlight">{% translate "are conducted" %}</span> {% translate "daily in this lab." %}</span></i> ({% translate "Focus on the experiments, not the scientists." %})</li>
+                    <li><i><span class="code-highlight">{% translate "The new policy" %} <span class="verb-highlight">{% translate "was announced" %}</span> {% translate "yesterday." %}</span></i> ({% translate "Focus on the policy, not who announced it." %})</li>
+                    <li><i><span class="code-highlight">{% translate "The theory of relativity" %} <span class="verb-highlight">{% translate "was developed" %}</span> {% translate "by Albert Einstein." %}</span></i> ({% translate "While the doer is known, the focus is on the theory's development." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "3. To Maintain Objectivity or Formality" %}</h4>
+        <p>
+            {% translate "The passive voice can create a more impersonal and objective tone, which is often desirable in academic writing, reports, and news articles." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "Mistakes" %} <span class="verb-highlight">{% translate "were made" %}</span>.</span></i> ({% translate "Avoids blaming a specific person." %})</li>
+                    <li><i><span class="code-highlight">{% translate "Research" %} <span class="verb-highlight">{% translate "has been conducted" %}</span> {% translate "to prove this hypothesis." %}</span></i> ({% translate "More formal than \"We have conducted research...\"" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "4. To Vary Sentence Structure and Flow" %}</h4>
+        <p>
+            {% translate "Occasionally, using the passive voice can help improve the flow and readability of a paragraph by avoiding repetitive sentence structures or by placing emphasis on different parts of the sentence." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "The artist painted a beautiful landscape. Then, a new exhibition" %} <span class="verb-highlight">{% translate "was opened" %}</span> {% translate "by the gallery." %}</span></i> ({% translate "Connects the two sentences smoothly by focusing on the exhibition." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "When to Avoid the Passive Voice:" %}</h4>
+        <p>
+            {% translate "While useful, overuse of the passive voice can make writing seem:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Vague:" %}</span> {% translate "Hiding the agent can lead to ambiguity." %}</li>
+            <li><span class="term-highlight">{% translate "Wordy:" %}</span> {% translate "Passive constructions often use more words than active ones." %}</li>
+            <li><span class="term-highlight">{% translate "Less Direct:" %}</span> {% translate "It can sometimes sound evasive or overly formal where directness is needed." %}</li>
+            <li><span class="term-highlight">{% translate "Weak:" %}</span> {% translate "The active voice is generally more dynamic and engaging." %}</li>
+        </ul>
+        <p>
+            {% translate "Always consider whether the passive voice serves a specific purpose in your writing. If the doer is important and known, or if you want clear, direct communication, the active voice is usually the better choice." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

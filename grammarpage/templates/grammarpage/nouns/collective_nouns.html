@@ -1,0 +1,252 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Collective Nouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Collective Nouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Collective Nouns" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">collective noun</span> is a word that refers to a group of people, animals, or things as a single unit. Examples include <span class=\"code-highlight\">family</span>, <span class=\"code-highlight\">team</span>, and <span class=\"code-highlight\">flock</span>. Although they refer to multiple members, they are typically treated as a singular noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Collective Nouns" %}</h3>
+        
+        <h4>{% translate "For People" %}</h4>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Group of" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "class" %}</td><td>{% translate "students" %}</td></tr>
+                    <tr><td>{% translate "crew" %}</td><td>{% translate "sailors or workers" %}</td></tr>
+                    <tr><td>{% translate "family" %}</td><td>{% translate "relatives" %}</td></tr>
+                    <tr><td>{% translate "team" %}</td><td>{% translate "players" %}</td></tr>
+                    <tr><td>{% translate "choir" %}</td><td>{% translate "singers" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "For Animals" %}</h4>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Group of" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "flock" %}</td><td>{% translate "birds or sheep" %}</td></tr>
+                    <tr><td>{% translate "herd" %}</td><td>{% translate "cattle or elephants" %}</td></tr>
+                    <tr><td>{% translate "pack" %}</td><td>{% translate "dogs or wolves" %}</td></tr>
+                    <tr><td>{% translate "swarm" %}</td><td>{% translate "insects or bees" %}</td></tr>
+                    <tr><td>{% translate "pride" %}</td><td>{% translate "lions" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "For Things" %}</h4>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Group of" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "bouquet" %}</td><td>{% translate "flowers" %}</td></tr>
+                    <tr><td>{% translate "bundle" %}</td><td>{% translate "sticks or clothes" %}</td></tr>
+                    <tr><td>{% translate "set" %}</td><td>{% translate "tools or dishes" %}</td></tr>
+                    <tr><td>{% translate "deck" %}</td><td>{% translate "cards" %}</td></tr>
+                    <tr><td>{% translate "collection" %}</td><td>{% translate "objects" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Verb Agreement Rules" %}</h3>
+        <p>
+            {% translate "Whether to use a singular or plural verb with a collective noun depends on the context and the dialect (British vs. American English)." %}
+        </p>
+
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Singular Verb (as a single unit):" %}</span>
+                <p>{% translate "Use a singular verb when the group is acting together as one unit." %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "The team <span class=\"example-highlight\">is</span> celebrating its victory." %}</span>
+                        <br>{% translate "The entire team is acting as one entity." %}</li>
+                    <li><span class="code-highlight">{% translate "The committee <span class=\"example-highlight\">has</span> decided on a new policy." %}</span>
+                        <br>{% translate "The committee is making a single, unified decision." %}</li>
+                </ul>
+            </li>
+            <li><span class="example-highlight">{% translate "Plural Verb (as individual members):" %}</span>
+                <p>{% translate "Use a plural verb when the members of the group are acting individually." %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "The team <span class=\"example-highlight\">are</span> trying on their new uniforms." %}</span>
+                        <br>{% translate "Each member of the team is trying on their own uniform." %}</li>
+                    <li><span class="code-highlight">{% translate "The committee <span class=\"example-highlight\">are</span> arguing about the proposal." %}</span>
+                        <br>{% translate "The members of the committee are in disagreement." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>{% translate "BrE vs AmE Usage" %}</h4>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "American English (AmE):" %}</span>
+                <p>{% translate "Typically favors singular verb agreement for collective nouns, treating the group as a single unit in most cases." %}</p>
+                <span class="code-highlight">{% translate "The band is playing tonight." %}</span>
+            </li>
+            <li><span class="example-highlight">{% translate "British English (BrE):" %}</span>
+                <p>{% translate "More often uses plural verb agreement, especially when referring to groups of people, emphasizing the individual members." %}</p>
+                <span class="code-highlight">{% translate "The government are not listening to the people." %}</span>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

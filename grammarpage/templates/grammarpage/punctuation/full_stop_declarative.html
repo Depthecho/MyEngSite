@@ -1,0 +1,305 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Full Stop (Period) - Declarative Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .punctuation-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .declarative-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .imperative-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .special-card {
+            background: rgba(243, 114, 44, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #f3722c;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Full Stop: Declarative Sentences" %}</span>
+        </nav>
+
+        <h1>{% translate "The Full Stop (Period) in Declarative Sentences" %}</h1>
+        <p>
+            {% translate "The <span class='term-highlight'>full stop</span> (known as <span class='term-highlight'>period</span> in American English) is the most fundamental punctuation mark, primarily used to mark the end of declarative sentences that make statements or convey facts." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Primary Usage in Declarative Sentences" %}</h3>
+            <p>{% translate "Full stops are most commonly used to terminate declarative sentences that:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Make Statements of Fact" %}</h4>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The capital of France <span class="declarative-highlight">is</span> Paris<span class="punctuation-highlight">.</span></span></li>
+                    <li><span class="code-highlight">Water <span class="declarative-highlight">freezes</span> at 0°C<span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Express Opinions or Beliefs" %}</h4>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">I <span class="declarative-highlight">believe</span> this is the right decision<span class="punctuation-highlight">.</span></span></li>
+                    <li><span class="code-highlight">The movie <span class="declarative-highlight">was</span> better than I expected<span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Provide Descriptions" %}</h4>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The house <span class="declarative-highlight">has</span> three bedrooms and two bathrooms<span class="punctuation-highlight">.</span></span></li>
+                    <li><span class="code-highlight">She <span class="declarative-highlight">wears</span> glasses for reading<span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Additional Uses of the Full Stop" %}</h3>
+            <p>{% translate "While primarily used for declarative sentences, full stops have other important functions:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. In Imperative Sentences" %}</h4>
+                <p>{% translate "For commands or requests that don't require emphasis:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="imperative-highlight">Close</span> the door behind you<span class="punctuation-highlight">.</span></span></li>
+                    <li><span class="code-highlight"><span class="imperative-highlight">Please send</span> me the report by Friday<span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. With Indirect Questions" %}</h4>
+                <p>{% translate "When reporting a question rather than asking it directly:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">She asked why I <span class="declarative-highlight">was</span> late<span class="punctuation-highlight">.</span></span></li>
+                    <li><span class="code-highlight">I wonder what time it <span class="declarative-highlight">is</span><span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. In Abbreviations" %}</h4>
+                <p>{% translate "Though increasingly optional in modern usage:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">Dr<span class="punctuation-highlight">.</span> Smith will see you now.</span></li>
+                    <li><span class="code-highlight">The meeting is at 2 p<span class="punctuation-highlight">.</span>m<span class="punctuation-highlight">.</span></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <p>{% translate "There are specific situations where full stop usage requires special attention:" %}</p>
+
+            <div class="special-card">
+                <h4>{% translate "1. After Titles and Headings" %}</h4>
+                <p>{% translate "Full stops are generally omitted after titles, headings, or standalone phrases:" %}</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Correct" %}</th>
+                            <th>{% translate "Incorrect" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chapter Three: The Discovery</td>
+                            <td>Chapter Three: The Discovery<span class="punctuation-highlight">.</span></td>
+                        </tr>
+                        <tr>
+                            <td>How to Bake a Cake</td>
+                            <td>How to Bake a Cake<span class="punctuation-highlight">.</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "2. In Vertical Lists" %}</h4>
+                <p>{% translate "Full stops are typically omitted in bulleted or numbered lists unless items are complete sentences:" %}</p>
+                <ul class="styled-list">
+                    <li>Apples</li>
+                    <li>Oranges</li>
+                    <li>Bananas</li>
+                </ul>
+                <p>{% translate "But required for complete sentences:" %}</p>
+                <ul class="styled-list">
+                    <li>The experiment yielded three key results<span class="punctuation-highlight">.</span></li>
+                    <li>All measurements were within expected parameters<span class="punctuation-highlight">.</span></li>
+                    <li>The hypothesis was confirmed<span class="punctuation-highlight">.</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "3. With Other Punctuation" %}</h4>
+                <p>{% translate "Full stops interact differently with other punctuation marks:" %}</p>
+                <ul class="styled-list">
+                    <li>{% translate "After abbreviations at sentence end: <span class='code-highlight'>We arrived at 5 p.m<span class='punctuation-highlight'>.</span></span>" %}</li>
+                    <li>{% translate "With quotation marks: <span class='code-highlight'>She said, \"I'll be there soon\"<span class='punctuation-highlight'>.</span></span>" %}</li>
+                    <li>{% translate "Not used after question marks or exclamation points: <span class='code-highlight'>Did he say \"hello\"<span class='punctuation-highlight'>?</span></span>" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Common Errors to Avoid" %}</h3>
+            <p>{% translate "Be mindful of these frequent mistakes with full stops:" %}</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Error" %}</th>
+                        <th>{% translate "Correction" %}</th>
+                        <th>{% translate "Rule" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I like swimming, it's fun</td>
+                        <td>I like swimming<span class="punctuation-highlight">.</span> It's fun<span class="punctuation-highlight">.</span></td>
+                        <td>{% translate "Don't use commas between independent clauses (comma splice)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>The meeting starts at 3pm .</td>
+                        <td>The meeting starts at 3pm<span class="punctuation-highlight">.</span></td>
+                        <td>{% translate "No space before full stop" %}</td>
+                    </tr>
+                    <tr>
+                        <td>She asked "Are you coming"?</td>
+                        <td>She asked, "Are you coming<span class="punctuation-highlight">?</span>"</td>
+                        <td>{% translate "Question mark inside quotation marks for direct speech" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

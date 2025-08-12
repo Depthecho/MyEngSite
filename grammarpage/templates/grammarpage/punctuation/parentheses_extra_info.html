@@ -1,0 +1,248 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Parentheses - Extra Information" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Parentheses: Extra Information" %}</span>
+        </nav>
+
+        <h1>{% translate "Parentheses: Usage and Rules" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Parentheses</span> ( ) are punctuation marks used to enclose additional, non-essential information within a sentence. They provide supplementary details that could be omitted without changing the core meaning of the sentence." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "1. Basic Usage" %}</h3>
+            <p>{% translate "Parentheses are used to insert explanatory or qualifying information that isn't crucial to the main point of the sentence." %}</p>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "The conference will be held in Paris" %} <span class="term-highlight">(weather permitting)</span> {% translate "next June." %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "She finally answered" %} <span class="term-highlight">(after taking five minutes to think)</span> {% translate "that she didn't <br> understand the question." %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "The results" %} <span class="term-highlight">(see Figure 2)</span> {% translate "show a significant increase." %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "2. Special Cases" %}</h3>
+            <h4>{% translate "A. Acronyms and Abbreviations" %}</h4>
+            <p>{% translate "Parentheses are used to provide the full form of an acronym when it first appears in a text." %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The WHO" %} <span class="term-highlight">(World Health Organization)</span> {% translate "issued new guidelines." %}</span></li>
+            </ul>
+
+            <h4>{% translate "B. In-text Citations" %}</h4>
+            <p>{% translate "In academic writing, parentheses are used for citations." %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Recent studies" %} <span class="term-highlight">(Smith, 2020; Johnson et al., 2021)</span> {% translate "support this theory." %}</span></li>
+            </ul>
+
+            <h4>{% translate "C. Numbered or Lettered Lists" %}</h4>
+            <p>{% translate "Parentheses can enclose numbers or letters in lists within sentences." %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The steps are:" %} <span class="term-highlight">(1)</span> {% translate "prepare," %} <span class="term-highlight">(2)</span> {% translate "execute," %} <span class="term-highlight">(3)</span> {% translate "review." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Punctuation with Parentheses" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Case" %}</th>
+                    <th>{% translate "Rule" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Complete sentence in parentheses" %}</td>
+                    <td>{% translate "Capitalize first word and end with period inside" %}</td>
+                    <td><span class="code-highlight">{% translate "The results were surprising." %} <span class="term-highlight">(See Appendix A for complete data.)</span></span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Partial sentence in parentheses" %}</td>
+                    <td>{% translate "No capitalization or period inside" %}</td>
+                    <td><span class="code-highlight">{% translate "The experiment" %} <span class="term-highlight">(conducted over three weeks)</span> {% translate "yielded positive results." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Parentheses at end of sentence" %}</td>
+                    <td>{% translate "Period goes outside the closing parenthesis" %}</td>
+                    <td><span class="code-highlight">{% translate "They moved to Seattle" %} <span class="term-highlight">(where it rains frequently)</span>.</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Parentheses within parentheses" %}</td>
+                    <td>{% translate "Use square brackets for nested information" %}</td>
+                    <td><span class="code-highlight">{% translate "The author stated" %} <span class="term-highlight">(see his earlier work [1998, p. 34] for details)</span>.</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "3. Parentheses vs. Other Punctuation" %}</h3>
+            <h4>{% translate "Comparison with Commas and Dashes" %}</h4>
+            <p>{% translate "Parentheses, commas, and dashes can all set off non-essential information, but with different emphasis:" %}</p>
+
+            <ul class="styled-list">
+                <li><span class="term-highlight">{% translate "Commas:" %}</span> {% translate "For closely related information" %}
+                    <p class="code-highlight">{% translate "The CEO, who joined last year, announced new policies." %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Dashes:" %}</span> {% translate "For dramatic or surprising information" %}
+                    <p class="code-highlight">{% translate "The results—completely unexpected—changed our approach." %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Parentheses:" %}</span> {% translate "For truly supplementary information" %}
+                    <p class="code-highlight">{% translate "The results (see page 12) confirmed our hypothesis." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Overuse:</span> Too many parentheses can make writing hard to follow" %}
+                <p class="code-highlight">{% translate "Poor: The study (conducted in 2020) showed (contrary to expectations) that the method (previously considered unreliable) actually worked (in 78% of cases)." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Essential information:</span> Don't put crucial information in parentheses" %}
+                <p class="code-highlight">{% translate "Poor: The meeting will be canceled (on Friday)." %}</p>
+                <p class="code-highlight">{% translate "Better: The Friday meeting will be canceled." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Punctuation errors:</span> Remember proper placement of periods and commas" %}
+                <p class="code-highlight">{% translate "Incorrect: The package arrived late (it was supposed to come yesterday.)" %}</p>
+                <p class="code-highlight">{% translate "Correct: The package arrived late (it was supposed to come yesterday)." %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

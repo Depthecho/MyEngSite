@@ -1,0 +1,223 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Indefinite Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Types of Pronouns" %}</span> &raquo;
+            <span>{% translate "Indefinite Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronouns: Indefinite Pronouns" %}</h1>
+        <p>
+            {% translate "Indefinite pronouns refer to nonspecific people, places, or things. They do not refer to a particular person, place, or thing. They can be singular, plural, or both, which affects the verb they take." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Common Indefinite Pronouns" %}</h3>
+        <p>
+            {% translate "Indefinite pronouns can be grouped into several categories based on their meaning." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Category" %}</th>
+                        <th>{% translate "Pronouns" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "Singular" %}</span></td>
+                        <td>{% translate "another, anybody, anything, everyone, nobody, someone, something" %}</td>
+                        <td>{% translate "<span class=\"capital-highlight\">Everyone</span> is here." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "Plural" %}</span></td>
+                        <td>{% translate "both, few, many, others, several" %}</td>
+                        <td>{% translate "<span class=\"capital-highlight\">Many</span> are called, but <span class=\"code-highlight\">few</span> are chosen." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "Singular or Plural" %}</span></td>
+                        <td>{% translate "all, any, more, most, none, some" %}</td>
+                        <td>{% translate "<span class=\"capital-highlight\">Most</span> of the work <span class=\"code-highlight\">is</span> finished. <span class=\"capital-highlight\">Most</span> of the students <span class=\"code-highlight\">are</span> here." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Singular Indefinite Pronouns and Verb Agreement" %}</h3>
+        <p>
+            {% translate "Most indefinite pronouns that end in <span class=\"code-highlight\">-one</span>, <span class=\"code-highlight\">-body</span>, or <span class=\"code-highlight\">-thing</span> (e.g., everyone, somebody, nothing) are always singular and therefore require a singular verb." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "Everyone <span class=\"term-highlight\">loves</span> pizza." %}</span> (not <strike>love</strike>)</li>
+            <li><span class=\"example-highlight\">{% translate "Something <span class=\"term-highlight\">is</span> wrong with this computer." %}</span> (not <strike>are</strike>)</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Plural Indefinite Pronouns" %}</h3>
+        <p>
+            {% translate "Pronouns like <span class=\"code-highlight\">both</span>, <span class=\"code-highlight\">few</span>, <span class=\"code-highlight\">many</span>, <span class=\"code-highlight\">others</span>, and <span class=\"code-highlight\">several</span> are always plural and require a plural verb." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "<span class=\"term-highlight\">Both</span> of the children <span class=\"example-highlight\">are</span> playing." %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "<span class=\"term-highlight\">Several</span> students <span class=\"example-highlight\">have</span> arrived." %}</span></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. The 'Either'/'Or' Conundrum" %}</h3>
+        <p>
+            {% translate "When using pronouns that can be singular or plural, the verb's number depends on the noun or pronoun it refers to." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"example-highlight\">All</span> of the cake <span class=\"code-highlight\">is</span> gone." %} (singular)</li>
+            <li>{% translate "<span class=\"example-highlight\">All</span> of the cookies <span class=\"code-highlight\">are</span> gone." %} (plural)</li>
+        </ul>
+        <p>
+            {% translate "When the pronoun refers to a countable noun (cookies), it is plural. When it refers to an uncountable noun (cake), it is singular." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

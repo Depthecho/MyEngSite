@@ -1,0 +1,244 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Subject/Object Functions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Subject/Object Functions" %}</span>
+        </nav>
+
+        <h1>{% translate "Subject/Object Functions" %}</h1>
+        <p>
+            {% translate "Nouns play a crucial role in sentences by performing actions or being affected by them. The main functions of a noun in a sentence are to act as the <span class=\"term-highlight\">subject</span> or the <span class=\"term-highlight\">object</span>." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "The Subject" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">subject</span> of a sentence is the noun or pronoun that performs the action of the verb. It usually comes before the main verb." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun as Subject" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                        <th>{% translate "Verb" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "The dog" %}</td><td>{% translate "The <span class=\"code-highlight\">dog</span> barked loudly." %}</td><td>{% translate "barked" %}</td></tr>
+                    <tr><td>{% translate "Maria" %}</td><td>{% translate "<span class=\"code-highlight\">Maria</span> reads a book." %}</td><td>{% translate "reads" %}</td></tr>
+                    <tr><td>{% translate "The students" %}</td><td>{% translate "The <span class=\"code-highlight\">students</span> arrived late." %}</td><td>{% translate "arrived" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "The Object" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">object</span> is the noun or pronoun that receives the action of the verb. There are several types of objects." %}
+        </p>
+
+        <h4>{% translate "Direct Object" %}</h4>
+        <p>
+            {% translate "The <span class=\"term-highlight\">direct object</span> directly receives the action of the verb. It answers the question “What?” or “Whom?”" %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Verb" %}</th>
+                        <th>{% translate "Direct Object" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "reads" %}</td><td>{% translate "a book" %}</td><td>{% translate "Maria reads <span class=\"code-highlight\">a book</span>." %}</td></tr>
+                    <tr><td>{% translate "ate" %}</td><td>{% translate "the pizza" %}</td><td>{% translate "I ate <span class=\"code-highlight\">the pizza</span>." %}</td></tr>
+                    <tr><td>{% translate "saw" %}</td><td>{% translate "the famous actor" %}</td><td>{% translate "We saw <span class=\"code-highlight\">the famous actor</span>." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Indirect Object" %}</h4>
+        <p>
+            {% translate "The <span class=\"term-highlight\">indirect object</span> tells us to whom or for whom the action of the verb is performed. It usually comes between the verb and the direct object." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Verb" %}</th>
+                        <th>{% translate "Indirect Object" %}</th>
+                        <th>{% translate "Direct Object" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "gave" %}</td><td>{% translate "her" %}</td><td>{% translate "the flowers" %}</td><td>{% translate "He gave <span class=\"code-highlight\">her</span> the flowers." %}</td></tr>
+                    <tr><td>{% translate "sent" %}</td><td>{% translate "me" %}</td><td>{% translate "a gift" %}</td><td>{% translate "They sent <span class=\"code-highlight\">me</span> a gift." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Object of a Preposition" %}</h4>
+        <p>
+            {% translate "A noun can also be the object of a preposition, which is the noun that follows a preposition (e.g., <span class=\"code-highlight\">in, on, at, with</span>)." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Preposition" %}</th>
+                        <th>{% translate "Object" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "in" %}</td><td>{% translate "the box" %}</td><td>{% translate "The keys are <span class=\"code-highlight\">in the box</span>." %}</td></tr>
+                    <tr><td>{% translate "with" %}</td><td>{% translate "my friend" %}</td><td>{% translate "I went to the cinema <span class=\"code-highlight\">with my friend</span>." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,352 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Full Stop (Period) - Abbreviations" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .abbr-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .am-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .br-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .special-card {
+            background: rgba(243, 114, 44, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #f3722c;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Full Stop: Abbreviations" %}</span>
+        </nav>
+
+        <h1>{% translate "Full Stop (Period) in Abbreviations and Acronyms" %}</h1>
+        <p>
+            {% translate "The use of full stops in abbreviations varies significantly between style guides and English variants, with American English generally using more periods in abbreviations than British English." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "General Rules for Abbreviations" %}</h3>
+            <p>{% translate "Full stops are used differently depending on the type of abbreviation and English variant:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Initialisms vs. Acronyms" %}</h4>
+                <p>{% translate "Initialisms (pronounced as individual letters) and acronyms (pronounced as words) have different conventions:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Type" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Punctuation" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Initialism (American)</td>
+                            <td>U.S.A., F.B.I.</td>
+                            <td>Periods after each letter</td>
+                        </tr>
+                        <tr>
+                            <td>Initialism (British)</td>
+                            <td>USA, FBI</td>
+                            <td>No periods</td>
+                        </tr>
+                        <tr>
+                            <td>Acronym</td>
+                            <td>NASA, NATO</td>
+                            <td>No periods in any variant</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Latin Abbreviations" %}</h4>
+                <p>{% translate "Common Latin abbreviations typically use periods in all English variants:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">e.g<span class="term-highlight">.</span> (exempli gratia - for example)</span></li>
+                    <li><span class="code-highlight">i.e<span class="term-highlight">.</span> (id est - that is)</span></li>
+                    <li><span class="code-highlight">etc<span class="term-highlight">.</span> (et cetera - and so forth)</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Titles and Measurements" %}</h4>
+                <p>{% translate "Usage varies between American and British English:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Abbreviation" %}</th>
+                            <th>{% translate "American" %}</th>
+                            <th>{% translate "British" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mister</td>
+                            <td>Mr<span class="am-highlight">.</span></td>
+                            <td>Mr</td>
+                        </tr>
+                        <tr>
+                            <td>Doctor</td>
+                            <td>Dr<span class="am-highlight">.</span></td>
+                            <td>Dr</td>
+                        </tr>
+                        <tr>
+                            <td>Ante meridiem</td>
+                            <td>a.m<span class="am-highlight">.</span></td>
+                            <td>am</td>
+                        </tr>
+                        <tr>
+                            <td>Post meridiem</td>
+                            <td>p.m<span class="am-highlight">.</span></td>
+                            <td>pm</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Modern Trends and Style Guides" %}</h3>
+            <p>{% translate "Contemporary usage shows these patterns in different contexts:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Digital Communication" %}</h4>
+                <p>{% translate "Periods are increasingly omitted in informal digital communication:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">txt msg (text message)</span></li>
+                    <li><span class="code-highlight">info (information)</span></li>
+                    <li><span class="code-highlight">app (application)</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Academic and Formal Writing" %}</h4>
+                <p>{% translate "Style guides differ in their recommendations:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Style Guide" %}</th>
+                            <th>{% translate "Approach" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>APA (American)</td>
+                            <td>Minimal periods</td>
+                            <td>US, PhD, eg</td>
+                        </tr>
+                        <tr>
+                            <td>Chicago Manual</td>
+                            <td>Traditional periods</td>
+                            <td>U.S., Ph.D., e.g.</td>
+                        </tr>
+                        <tr>
+                            <td>Oxford Style</td>
+                            <td>No periods in acronyms</td>
+                            <td>UK, EU, BBC</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <p>{% translate "These situations require special attention:" %}</p>
+
+            <div class="special-card">
+                <h4>{% translate "1. Abbreviations at Sentence End" %}</h4>
+                <p>{% translate "When an abbreviation ends a sentence, use only one period:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The meeting is at 3 p.m<span class="term-highlight">.</span></span> (not "3 p.m..")</li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "2. Plural Abbreviations" %}</h4>
+                <p>{% translate "Form plurals of abbreviations without apostrophes:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">CDs (not CD's)</span></li>
+                    <li><span class="code-highlight">the 1990s (not 1990's)</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "3. Measurements and Symbols" %}</h4>
+                <p>{% translate "Units of measurement typically don't use periods:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">5 kg (not 5 kg.)</span></li>
+                    <li><span class="code-highlight">10 cm (not 10 cm.)</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Common Errors to Avoid" %}</h3>
+            <p>{% translate "Be mindful of these frequent mistakes:" %}</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Error" %}</th>
+                        <th>{% translate "Correction" %}</th>
+                        <th>{% translate "Rule" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>U.S.A</td>
+                        <td>USA or U.S.A<span class="term-highlight">.</span></td>
+                        <td>{% translate "Be consistent - either all periods or none" %}</td>
+                    </tr>
+                    <tr>
+                        <td>etc,</td>
+                        <td>etc<span class="term-highlight">.</span>,</td>
+                        <td>{% translate "The comma follows the period in 'etc.'" %}</td>
+                    </tr>
+                    <tr>
+                        <td>Ph.D</td>
+                        <td>Ph.D<span class="term-highlight">.</span></td>
+                        <td>{% translate "Don't omit the final period in academic titles" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

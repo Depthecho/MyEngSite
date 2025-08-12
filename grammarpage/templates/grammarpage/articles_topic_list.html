@@ -1,0 +1,210 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Articles" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+<style>
+    .grammar-list-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #e0e0e0;
+    }
+
+    .grammar-main-title {
+        color: #4cc9f0;
+        font-size: 28px;
+        margin-bottom: 25px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .grammar-section {
+        margin-bottom: 30px;
+        background: rgba(30, 40, 50, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        border: 1px solid #444;
+    }
+
+    .grammar-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .main-topic {
+        font-weight: bold;
+        color: #4cc9f0;
+        font-size: 22px;
+        margin: 25px 0 15px;
+        padding: 10px 15px;
+        background: rgba(20, 30, 40, 0.5);
+        border-radius: 8px;
+        border-left: 5px solid #ff9e7d;
+    }
+
+    .topic-item {
+        margin: 18px 0;
+        position: relative;
+        transition: all 0.3s ease;
+    }
+
+    .topic-item a {
+        color: #83e8de;
+        font-size: 18px;
+        font-weight: 600;
+        padding: 12px 20px;
+        display: block;
+        background: linear-gradient(90deg, rgba(60,70,80,0.4) 0%, rgba(40,50,60,0.2) 100%);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        border-left: 4px solid #4cc9f0;
+    }
+
+    .topic-item a:hover {
+        background: linear-gradient(90deg, rgba(76,201,240,0.2) 0%, rgba(40,50,60,0.3) 100%);
+        color: #ffda47;
+        transform: translateX(8px);
+        border-left-color: #ff9e7d;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .sub-list {
+        list-style-type: none;
+        padding-left: 30px;
+        margin-top: 12px;
+        border-left: 2px dashed #4cc9f0;
+    }
+
+    .sub-item {
+        margin: 15px 0;
+        position: relative;
+    }
+
+    .sub-item a {
+        color: #b0b0b0;
+        font-size: 16px;
+        margin-right: 30px;
+        padding: 8px 15px 8px 25px;
+        display: block;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        border-radius: 6px;
+        position: relative;
+    }
+
+    .sub-item a:before {
+        content: "•";
+        color: #4cc9f0;
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 18px;
+    }
+
+    .sub-item a:hover {
+        color: #83e8de;
+        background: rgba(76, 201, 240, 0.1);
+        padding-left: 30px;
+    }
+
+    .grammar-divider {
+        border: 1px solid #444;
+        margin: 20px 0;
+    }
+
+    @media (max-width: 768px) {
+        .topic-item a {
+            padding: 10px 15px;
+            font-size: 16px;
+        }
+
+        .sub-item a {
+            font-size: 15px;
+            padding: 6px 12px 6px 22px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span>{% translate "Articles" %}</span>
+        </nav>
+
+        <div class="grammar-list-container">
+            <h1 class="grammar-main-title">{% translate "Articles" %}</h1>
+            <p>
+                {% translate "Articles are a type of determiner that always precede a noun (or a noun phrase) to specify its definiteness or indefiniteness. They are among the most frequently used words in English and are crucial for clear communication." %}
+            </p>
+
+            <div class="grammar-section">
+                <ul class="grammar-list">
+                    <li class="main-topic">{% translate "Articles" %}</li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "Articles: Definition, Types, and Usage" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'introduction_to_articles' %}">{% translate "Introduction to Articles" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'types_of_articles' %}">{% translate "Types of Articles" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'summary_table' %}">{% translate "Summary Table" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "The Definite Article 'The'" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'core_function_specificity' %}">{% translate "Core Function: Specificity" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'usage_with_categories' %}">{% translate "Usage with Categories" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'usage_with_geographic_names' %}">{% translate "Usage with Geographic Names" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'other_specific_uses' %}">{% translate "Other Specific Uses" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "The Indefinite Articles 'A' and 'An'" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'using_a_vs_an' %}">{% translate "Using 'A' vs. 'An'" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'key_uses_of_indefinite_articles' %}">{% translate "Key Uses of Indefinite Articles" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'situations_without_indefinite_articles' %}">{% translate "Situations without Indefinite Articles" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "The Zero Article" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'zero_article_with_general_nouns' %}">{% translate "With General Nouns" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'zero_article_with_proper_nouns' %}">{% translate "With Proper Nouns" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'zero_article_with_fixed_expressions' %}">{% translate "With Fixed Expressions" %}</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="topic-item">
+                        <a href="#">{% translate "Placement of Articles" %}</a>
+                        <ul class="sub-list">
+                            <li class="sub-item"><a href="{% url 'before_noun' %}">{% translate "Before Noun" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'before_adjective' %}">{% translate "Before Adjective" %}</a></li>
+                            <li class="sub-item"><a href="{% url 'after_determiners' %}">{% translate "After Determiners" %}</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'grammar_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Grammar" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

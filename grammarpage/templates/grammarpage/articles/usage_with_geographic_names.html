@@ -1,0 +1,211 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Usage with Geographic Names" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "The Definite Article 'The'" %}</span> &raquo;
+            <span>{% translate "Usage with Geographic Names" %}</span>
+        </nav>
+
+        <h1>{% translate "Usage with Geographic Names" %}</h1>
+        <p>
+            {% translate "The use of the definite article <span class=\"code-highlight\">the</span> with geographical names can be complex, but it follows a set of specific rules. These rules are generally based on whether the name refers to a singular, unique entity or a group/collective entity." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "When to Use 'the'" %}</h3>
+        <p>
+            {% translate "Use <span class=\"code-highlight\">the</span> with the following types of geographic names:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "Countries with plural names or descriptive words:" %}</span><br>{% translate "<span class=\"code-highlight\">the</span> United States, <span class=\"code-highlight\">the</span> Philippines, <span class=\"code-highlight\">the</span> Netherlands, <span class=\"code-highlight\">the</span> United Kingdom." %}</li>
+            <li><span class=\"example-highlight\">{% translate "Oceans, seas, rivers, and canals:" %}</span><br>{% translate "<span class=\"code-highlight\">the</span> Atlantic Ocean, <span class=\"code-highlight\">the</span> Mediterranean Sea, <span class=\"code-highlight\">the</span> Nile River, <span class=\"code-highlight\">the</span> Suez Canal." %}</li>
+            <li><span class=\"example-highlight\">{% translate "Mountain ranges and groups of islands:" %}</span><br>{% translate "<span class=\"code-highlight\">the</span> Alps, <span class=\"code-highlight\">the</span> Himalayas, <span class=\"code-highlight\">the</span> Bahamas, <span class=\"code-highlight\">the</span> Canary Islands." %}</li>
+            <li><span class=\"example-highlight\">{% translate "Deserts and certain regions:" %}</span><br>{% translate "<span class=\"code-highlight\">the</span> Sahara Desert, <span class=\"code-highlight\">the</span> Middle East, <span class=\"code-highlight\">the</span> Amazon." %}</li>
+            <li><span class=\"example-highlight\">{% translate "Points on the globe:" %}</span><br>{% translate "<span class=\"code-highlight\">the</span> Equator, <span class=\"code-highlight\">the</span> North Pole." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "When NOT to Use 'the'" %}</h3>
+        <p>
+            {% translate "Do not use <span class=\"code-highlight\">the</span> with the following:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "Most countries (with a single-word name):" %}</span><br>{% translate "<span class=\"code-highlight\">France, China, Brazil, Germany.</span>" %}</li>
+            <li><span class=\"example-highlight\">{% translate "Continents, cities, states, and provinces:" %}</span><br>{% translate "<span class=\"code-highlight\">Europe, Asia, Paris, London, California, Texas.</span>" %}</li>
+            <li><span class=\"example-highlight\">{% translate "Single mountains and islands:" %}</span><br>{% translate "<span class=\"code-highlight\">Mount Everest, Mount Fuji, Hawaii, Sicily.</span>" %}</li>
+            <li><span class=\"example-highlight\">{% translate "Lakes:" %}</span><br>{% translate "<span class=\"code-highlight\">Lake Michigan, Lake Baikal.</span> (But: <span class=\"code-highlight\">the Great Lakes</span>, because it's a group)." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Summary Table" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Use 'the'" %}</th>
+                        <th>{% translate "Do NOT Use 'the'" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Plural country names (the Philippines)" %}</td>
+                        <td>{% translate "Most country names (France)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Mountain ranges (the Alps)" %}</td>
+                        <td>{% translate "Single mountains (Mount Everest)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Groups of islands (the Bahamas)" %}</td>
+                        <td>{% translate "Single islands (Hawaii)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Oceans, seas, rivers (the Pacific, the Nile)" %}</td>
+                        <td>{% translate "Lakes (Lake Victoria)" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

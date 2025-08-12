@@ -1,0 +1,252 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Exclamation Mark - Commands and Exclamations" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .command-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .exclamation-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #ffda47;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .type-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Exclamation Mark: Commands" %}</span>
+        </nav>
+
+        <h1>{% translate "Commands and Exclamations in English" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">exclamation mark</span> (!) transforms ordinary statements into forceful commands or emotional exclamations, adding urgency or intensity to the message." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Forceful Commands" %}</h3>
+            <p>
+                {% translate "Exclamation marks give commands a sense of urgency or importance:" %}
+            </p>
+
+            <h4>{% translate "Characteristics:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Often begin with a verb (imperative form)" %}</li>
+                <li>{% translate "Typically short and direct" %}</li>
+                <li>{% translate "May omit the subject (implied 'you')" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="command-highlight">Stop</span> that right now<span class="mark-highlight">!</span></span></li>
+                <li><span class="code-highlight"><span class="command-highlight">Don't touch</span> that wire<span class="mark-highlight">!</span></span></li>
+                <li><span class="code-highlight"><span class="command-highlight">Get out</span> of here<span class="mark-highlight">!</span></span></li>
+            </ul>
+        </div>
+
+        <div class="type-card">
+            <h3>{% translate "Types of Exclamatory Sentences" %}</h3>
+
+            <h4>1. {% translate "What/How Exclamations" %}</h4>
+            <p>{% translate "Begin with 'what' or 'how' to express strong emotion:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="exclamation-highlight">What a</span> beautiful sunset<span class="mark-highlight">!</span></span></li>
+                <li><span class="code-highlight"><span class="exclamation-highlight">How wonderful</span> you look today<span class="mark-highlight">!</span></span></li>
+            </ul>
+
+            <h4>2. {% translate "Interjections" %}</h4>
+            <p>{% translate "Standalone words expressing sudden emotion:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="exclamation-highlight">Ouch</span><span class="mark-highlight">!</span> That hurt!</span></li>
+                <li><span class="code-highlight"><span class="exclamation-highlight">Wow</span><span class="mark-highlight">!</span> That's amazing!</span></li>
+            </ul>
+
+            <h4>3. {% translate "Emphatic Declaratives" %}</h4>
+            <p>{% translate "Regular statements with added emotional weight:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">I can't believe you did that<span class="mark-highlight">!</span></span></li>
+                <li><span class="code-highlight">That's absolutely ridiculous<span class="mark-highlight">!</span></span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Usage Guidelines" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Context" %}</th>
+                    <th>{% translate "With Exclamation" %}</th>
+                    <th>{% translate "Without Exclamation" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Warnings" %}</td>
+                    <td><span class="code-highlight">Danger<span class="mark-highlight">!</span> High voltage</span></td>
+                    <td><span class="code-highlight">Caution: wet floor</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Instructions" %}</td>
+                    <td><span class="code-highlight">Shake well before use<span class="mark-highlight">!</span></span></td>
+                    <td><span class="code-highlight">Shake before using</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Emotional Speech" %}</td>
+                    <td><span class="code-highlight">I hate you<span class="mark-highlight">!</span></span></td>
+                    <td><span class="code-highlight">I dislike that</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Rhetorical Questions" %}</td>
+                    <td><span class="code-highlight">How could you<span class="mark-highlight">!</span></span></td>
+                    <td><span class="code-highlight">Why would you do that</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Special Considerations" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Formal writing:</span> Use sparingly in academic or business contexts" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Multiple marks:</span> Avoid using multiple exclamation marks (!!!) in formal writing" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Combination marks:</span> ?! is acceptable for rhetorical questions, but !? is non-standard" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Tone indicators:</span> In digital communication, exclamation marks can soften tone ('Thanks!' vs 'Thanks.')" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Add exclamation marks where appropriate and identify the type:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "Look out for that tree" %}</li>
+            <li>{% translate "What a delicious meal" %}</li>
+            <li>{% translate "The meeting starts at 3 pm" %}</li>
+            <li>{% translate "Congratulations on your promotion" %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

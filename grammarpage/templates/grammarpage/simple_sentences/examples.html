@@ -1,0 +1,269 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Examples of Simple Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .subject-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .predicate-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-box {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'simple_sentences_page' %}">{% translate "Simple Sentences" %}</a></span> &raquo;
+            <span>{% translate "Examples" %}</span>
+        </nav>
+
+        <h1>{% translate "Comprehensive Examples of Simple Sentences" %}</h1>
+        <p>
+            {% translate "Simple sentences demonstrate how single independent clauses can express complete thoughts in various forms, from basic to complex structures." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="example-card">
+            <h3>{% translate "1. Basic Structures" %}</h3>
+
+            <h4>{% translate "Simple Subject + Simple Predicate" %}</h4>
+            <div class="structure-box">
+                <span class="subject-highlight">{% translate "Subject" %}</span> +
+                <span class="predicate-highlight">{% translate "Predicate" %}</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">Birds</span> <span class=\"predicate-highlight\">fly</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The sun</span> <span class=\"predicate-highlight\">shines</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">She</span> <span class=\"predicate-highlight\">laughed</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="example-card">
+            <h3>{% translate "2. Expanded Structures" %}</h3>
+
+            <h4>{% translate "With Modifiers" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The small brown bird</span> <span class=\"predicate-highlight\">sang beautifully</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">My elderly neighbor</span> <span class=\"predicate-highlight\">gardens daily</span>." %}</span></li>
+            </ul>
+
+            <h4>{% translate "With Prepositional Phrases" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The book</span> <span class=\"predicate-highlight\">fell off the shelf</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">We</span> <span class=\"predicate-highlight\">ate dinner at sunset</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="example-card">
+            <h3>{% translate "3. Compound Elements" %}</h3>
+            <p>{% translate "These remain simple sentences because they contain one independent clause, despite having multiple subjects or verbs." %}</p>
+
+            <h4>{% translate "Compound Subjects" %}</h4>
+            <div class="structure-box">
+                <span class="subject-highlight">{% translate "Subject + Subject" %}</span> +
+                <span class="predicate-highlight">{% translate "Predicate" %}</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">Tom and Jerry</span> <span class=\"predicate-highlight\">argue constantly</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The teacher and the students</span> <span class=\"predicate-highlight\">celebrated the achievement</span>." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Compound Predicates" %}</h4>
+            <div class="structure-box">
+                <span class="subject-highlight">{% translate "Subject" %}</span> +
+                <span class="predicate-highlight">{% translate "Verb + Verb" %}</span>
+            </div>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">She</span> <span class=\"predicate-highlight\">sings and dances</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The athlete</span> <span class=\"predicate-highlight\">trained hard but lost the match</span>." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Compound Subject and Predicate" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">My brother and I</span> <span class=\"predicate-highlight\">study and work</span> in the city." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="example-card">
+            <h3>{% translate "4. Functional Variations" %}</h3>
+
+            <h4>{% translate "Declarative" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The meeting starts at nine." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Interrogative" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Does the train leave soon?" %}</span></li>
+            </ul>
+
+            <h4>{% translate "Imperative" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Please close the door." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Exclamatory" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "What a beautiful day it is!" %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Advanced Examples" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">With verb phrases:</span>" %}
+                <p class="code-highlight">{% translate "The project <span class=\"predicate-highlight\">has been completed</span> ahead of schedule." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">With multiple modifiers:</span>" %}
+                <p class="code-highlight">{% translate "The <span class=\"subject-highlight\">tall, mysterious stranger in the black coat</span> <span class=\"predicate-highlight\">left quietly through the back door</span>." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">With appositives:</span>" %}
+                <p class="code-highlight">{% translate "<span class=\"subject-highlight\">Mr. Johnson, our neighbor</span>, <span class=\"predicate-highlight\">waves every morning</span>." %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'simple_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Simple Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

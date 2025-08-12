@@ -1,0 +1,335 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Ordinal Numerals - Definition and Formation" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .ordinal-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .formation-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .irregular-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Ordinal Numerals" %}</span> &raquo;
+            <span>{% translate "Definition and Formation" %}</span>
+        </nav>
+
+        <h1>{% translate "Ordinal Numerals: Definition and Formation" %}</h1>
+        <p>
+            {% translate "Ordinal numerals indicate position or order in a sequence, answering the question '<span class=\"term-highlight\">which one?</span>' They are essential for describing rankings, dates, floors in buildings, and competition results." %}
+        </p>
+
+        <div class="formation-card">
+            <h3>{% translate "1. Key Characteristics" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always modify nouns (function as adjectives)" %}</li>
+                <li>{% translate "Can be written as words (third) or numerals with suffixes (3rd)" %}</li>
+                <li>{% translate "Typically precede the noun they modify" %}</li>
+                <li>{% translate "Often used with definite articles (the first, the second)" %}</li>
+                <li>{% translate "Formed differently from cardinal numbers" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Formation Rules" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Number Range" %}</th>
+                        <th>{% translate "Pattern" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                        <th>{% translate "Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1-3</td>
+                        <td>{% translate "Irregular" %}</td>
+                        <td>first, second, third</td>
+                        <td>{% translate "Must be memorized" %}</td>
+                    </tr>
+                    <tr>
+                        <td>4-20</td>
+                        <td>{% translate "Add <span class=\"code-highlight\">-th</span>" %}</td>
+                        <td>fourth, eleventh, twentieth</td>
+                        <td>{% translate "Note: fifth (not fiveth), twelfth (not twelveth)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>21-99</td>
+                        <td>{% translate "Tens + ordinal unit" %}</td>
+                        <td>twenty-first, thirty-second</td>
+                        <td>{% translate "Hyphenate between tens and unit" %}</td>
+                    </tr>
+                    <tr>
+                        <td>100+</td>
+                        <td>{% translate "Cardinal + ordinal" %}</td>
+                        <td>one hundred first, two hundred twenty-second</td>
+                        <td>{% translate "No hyphen after hundred" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="irregular-card">
+            <h4>{% translate "Special Spelling Cases" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"ordinal-highlight\">five → fifth</span> (ve → f)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">eight → eighth</span> (drop one t)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">nine → ninth</span> (drop e)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">twelve → twelfth</span> (ve → f)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">twenty → twentieth</span> (y → ie)" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Written Forms" %}</h3>
+        <div class="usage-card">
+            <h4>{% translate "Numerical Representation" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Use last two letters of written word:" %}
+                    <p class="code-highlight">1st, 2nd, 3rd, 4th, 21st, 32nd, 43rd, 100th</p>
+                </li>
+                <li>{% translate "In dates, always use this form:" %}
+                    <p class="code-highlight">May 1st, November 22nd</p>
+                </li>
+                <li>{% translate "In formal writing, often spelled out:" %}
+                    <p class="code-highlight">the first day, the twenty-second of November</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "When to Spell Out vs. Use Numerals" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Spell out in formal writing and at sentence beginnings" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Twenty-fifth</span> Anniversary" %}</p>
+                </li>
+                <li>{% translate "Use numerals in dates, addresses, and footnotes" %}
+                    <p class="code-highlight">{% translate "January <span class=\"example-highlight\">15th</span>, 2023" %}</p>
+                </li>
+                <li>{% translate "Use numerals for large ordinals" %}
+                    <p class="code-highlight">{% translate "the <span class=\"example-highlight\">125th</span> edition" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Common Usage Patterns" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Context" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Dates" %}</td>
+                        <td>the 1st of July<br>July first</td>
+                        <td>{% translate "Both forms acceptable" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Floors" %}</td>
+                        <td>the 5th floor<br>fifth floor</td>
+                        <td>{% translate "American: first floor = ground<br>British: first floor = above ground" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Monarchs" %}</td>
+                        <td>Elizabeth II<br>Elizabeth the Second</td>
+                        <td>{% translate "Read as 'the Second'" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "School grades" %}</td>
+                        <td>third grade<br>Grade 3</td>
+                        <td>{% translate "US: cardinal for grades<br>UK: ordinal for years" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Anniversaries" %}</td>
+                        <td>50th anniversary<br>golden jubilee</td>
+                        <td>{% translate "Special names for milestones" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="irregular-card">
+            <h4>{% translate "Special Ordinal Terms" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"ordinal-highlight\">Primary, secondary, tertiary</span> (1st, 2nd, 3rd)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">Ultimate</span> (last in a series)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">Penultimate</span> (second to last)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">Antepenultimate</span> (third from last)" %}</li>
+                <li>{% translate "<span class=\"ordinal-highlight\">Inaugural</span> (first in a series)" %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

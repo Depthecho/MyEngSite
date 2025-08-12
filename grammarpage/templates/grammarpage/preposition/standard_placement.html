@@ -1,0 +1,316 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: Standard Placement Rules" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .prep-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .formal-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .informal-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .rule-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .placement-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .placement-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "Standard Placement" %}</span>
+        </nav>
+
+        <h1>{% translate "Standard Preposition Placement Rules" %}</h1>
+        <p>
+            {% translate "In standard English grammar, prepositions typically precede their objects, creating clear and unambiguous relationships between sentence elements. This placement is essential for formal writing and precise communication." %}
+        </p>
+
+        <div class="rule-card">
+            <h2>{% translate "The Fundamental Placement Rule" %}</h2>
+            <div class="placement-diagram">
+                <span class="prep-highlight">[Preposition]</span> + <span class="object-highlight">[Object]</span> = <span class="term-highlight">Prepositional Phrase</span>
+            </div>
+
+            <p>{% translate "This structure creates a complete prepositional phrase that can function as an adjective or adverb in the sentence." %}</p>
+
+            <h3>{% translate "Core Examples" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "The keys are <span class=\"prep-highlight\">on</span> <span class=\"object-highlight\">the table</span>." %}</li>
+                <li>{% translate "We talked <span class=\"prep-highlight\">about</span> <span class=\"object-highlight\">the project</span>." %}</li>
+                <li>{% translate "She arrived <span class=\"prep-highlight\">after</span> <span class=\"object-highlight\">dinner</span>." %}</li>
+            </ul>
+
+            <h3>{% translate "Why This Matters" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Maintains clarity in complex sentences" %}</li>
+                <li>{% translate "Required in formal and academic writing" %}</li>
+                <li>{% translate "Prevents ambiguity in professional communication" %}</li>
+            </ul>
+        </div>
+
+        <div class="placement-card">
+            <h2>{% translate "Formal vs. Informal Usage" %}</h2>
+
+            <h3>{% translate "Standard (Formal) Placement" %}</h3>
+            <p>{% translate "In formal contexts, prepositions always precede their objects, especially in:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Academic writing" %}</li>
+                <li>{% translate "Business communications" %}</li>
+                <li>{% translate "Legal documents" %}</li>
+                <li>{% translate "Official reports" %}</li>
+            </ul>
+
+            <h4>{% translate "Formal Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"formal-highlight\">To whom</span> should I address the letter?" %}</li>
+                <li>{% translate "This is the house <span class=\"formal-highlight\">in which</span> I grew up." %}</li>
+                <li>{% translate "The person <span class=\"formal-highlight\">with whom</span> I spoke was helpful." %}</li>
+            </ul>
+
+            <h3>{% translate "Informal Variations" %}</h3>
+            <p>{% translate "In casual speech and writing, prepositions sometimes appear at the end of clauses:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"informal-highlight\">Who</span> should I address the letter <span class=\"informal-highlight\">to</span>?" %}</li>
+                <li>{% translate "This is the house I grew up <span class=\"informal-highlight\">in</span>." %}</li>
+                <li>{% translate "The person I spoke <span class=\"informal-highlight\">with</span> was helpful." %}</li>
+            </ul>
+
+            <h4>{% translate "When Informal is Acceptable" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Conversational English" %}</li>
+                <li>{% translate "Creative writing" %}</li>
+                <li>{% translate "Dialogue in fiction" %}</li>
+                <li>{% translate "Personal communications" %}</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <h2>{% translate "Special Cases and Exceptions" %}</h2>
+
+            <h3>{% translate "1. Relative Clauses" %}</h3>
+            <p>{% translate "In relative clauses with prepositions, formal English requires the preposition to precede the relative pronoun:" %}</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Formal" %}</th>
+                        <th>{% translate "Informal" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "The book <span class=\"formal-highlight\">about which</span> we spoke" %}</td>
+                        <td>{% translate "The book we spoke <span class=\"informal-highlight\">about</span>" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "The man <span class=\"formal-highlight\">to whom</span> I gave it" %}</td>
+                        <td>{% translate "The man I gave it <span class=\"informal-highlight\">to</span>" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{% translate "2. Questions with Prepositions" %}</h3>
+            <p>{% translate "In formal questions, prepositions typically precede the question word:" %}</p>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Formal" %}</th>
+                        <th>{% translate "Informal" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"formal-highlight\">From where</span> did you come?" %}</td>
+                        <td>{% translate "<span class=\"informal-highlight\">Where</span> did you come <span class=\"informal-highlight\">from</span>?" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "<span class=\"formal-highlight\">About what</span> are you thinking?" %}</td>
+                        <td>{% translate "<span class=\"informal-highlight\">What</span> are you thinking <span class=\"informal-highlight\">about</span>?" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{% translate "3. Passive Constructions" %}</h3>
+            <p>{% translate "In passive voice, prepositions remain with their original verbs:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Active: They talked <span class=\"prep-highlight\">about</span> the issue." %}</li>
+                <li>{% translate "Passive: The issue was talked <span class=\"prep-highlight\">about</span>." %}</li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

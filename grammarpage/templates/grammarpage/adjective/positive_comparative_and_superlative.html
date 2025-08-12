@@ -1,0 +1,217 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjective: Degrees of Comparison" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Degrees of Comparison" %}</span> &raquo;
+            <span>{% translate "Positive, Comparative, and Superlative" %}</span>
+        </nav>
+
+        <h1>{% translate "Positive, Comparative, and Superlative Degrees" %}</h1>
+        <p>
+            {% translate "Adjectives are words that describe the qualities of nouns. They can exist in three different forms, or 'degrees,' to show a comparison between things." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. The Positive Degree" %}</h3>
+        <p>
+            {% translate "The positive degree is the basic, unmodified form of the adjective. It simply describes a quality without making any comparison." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "This is a <span class=\"term-highlight\">tall</span> building." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">tall</span>' describes the building's height without comparing it to anything else." %}</li>
+            <li><span class=\"example-highlight\">{% translate "She has a <span class=\"term-highlight\">beautiful</span> voice." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">beautiful</span>' describes the voice's quality." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. The Comparative Degree" %}</h3>
+        <p>
+            {% translate "The comparative degree is used to compare two things. It shows that one thing has a certain quality to a greater or lesser extent than another." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "This building is <span class=\"term-highlight\">taller</span> than that one." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">taller</span>' compares the height of two buildings." %}</li>
+            <li><span class=\"example-highlight\">{% translate "My voice is <span class=\"term-highlight\">more beautiful</span> than hers." %}</span><br>{% translate "The phrase '<span class=\"term-highlight\">more beautiful</span>' compares the quality of two voices." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. The Superlative Degree" %}</h3>
+        <p>
+            {% translate "The superlative degree is used to compare three or more things. It indicates that one thing has the highest or lowest degree of a certain quality among a group." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "This is the <span class=\"term-highlight\">tallest</span> building in the city." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">tallest</span>' indicates that this building surpasses all others in height." %}</li>
+            <li><span class=\"example-highlight\">{% translate "She has the <span class=\"term-highlight\">most beautiful</span> voice of all." %}</span><br>{% translate "The phrase '<span class=\"term-highlight\">most beautiful</span>' indicates that her voice is the best among a group." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Summary Table" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Degree" %}</th>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Positive" %}</span></td>
+                        <td>{% translate "Describes one item (no comparison)." %}</td>
+                        <td>{% translate "a fast car" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Comparative" %}</span></td>
+                        <td>{% translate "Compares two items." %}</td>
+                        <td>{% translate "a fast<span class=\"code-highlight\">er</span> car" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Superlative" %}</span></td>
+                        <td>{% translate "Compares three or more items." %}</td>
+                        <td>{% translate "the fast<span class=\"code-highlight\">est</span> car" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

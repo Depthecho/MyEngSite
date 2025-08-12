@@ -1,0 +1,282 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "As Discourse Markers" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .marker-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .function-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .discourse-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .function-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "As Discourse Markers" %}</span>
+        </nav>
+
+        <h1>{% translate "Discourse Particles as Markers" %}</h1>
+        <p>
+            {% translate "Discourse markers are small words or phrases that organize conversation, express attitudes, and guide listeners through the flow of speech without adding substantial meaning to the content." %}
+        </p>
+
+        <div class="discourse-card">
+            <h2>{% translate "Key Characteristics" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "Primarily used in spoken language" %}</li>
+                <li>{% translate "Help structure conversation and manage turn-taking" %}</li>
+                <li>{% translate "Express speaker's attitude or emotional state" %}</li>
+                <li>{% translate "Often considered informal but serve important functions" %}</li>
+                <li>{% translate "Vary significantly across dialects and social groups" %}</li>
+            </ul>
+        </div>
+
+        <div class="function-card">
+            <h2>{% translate "Common Discourse Markers" %}</h2>
+
+            <h3>{% translate "1. Filler Particles" %}</h3>
+            <p>{% translate "Maintain speech flow during pauses:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="marker-highlight">um</span>, <span class="marker-highlight">uh</span>, <span class="marker-highlight">er</span></span></li>
+                <li><span class="code-highlight">"I was, <span class="marker-highlight">um</span>, thinking about it."</span></li>
+            </ul>
+
+            <h3>{% translate "2. Attitude Markers" %}</h3>
+            <p>{% translate "Express speaker's perspective:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="marker-highlight">well</span>, <span class="marker-highlight">like</span>, <span class="marker-highlight">you know</span></span></li>
+                <li><span class="code-highlight">"<span class="marker-highlight">Well</span>, that's unexpected."</span></li>
+            </ul>
+
+            <h3>{% translate "3. Response Signals" %}</h3>
+            <p>{% translate "Acknowledge or continue conversation:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="marker-highlight">right</span>, <span class="marker-highlight">okay</span>, <span class="marker-highlight">so</span></span></li>
+                <li><span class="code-highlight">"<span class="marker-highlight">Right</span>, let's move on."</span></li>
+            </ul>
+        </div>
+
+        <div class="discourse-card">
+            <h2>{% translate "Functions in Conversation" %}</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Markers" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="function-highlight">{% translate "Hesitation" %}</span></td>
+                        <td>um, uh, er</td>
+                        <td><span class="code-highlight">"I, <span class="marker-highlight">uh</span>, need more time."</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-highlight">{% translate "Emphasis" %}</span></td>
+                        <td>really, just, actually</td>
+                        <td><span class="code-highlight">"That's <span class="marker-highlight">just</span> amazing!"</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-highlight">{% translate "Topic Shift" %}</span></td>
+                        <td>anyway, so, well</td>
+                        <td><span class="code-highlight">"<span class="marker-highlight">Anyway</span>, back to our topic."</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="function-highlight">{% translate "Agreement" %}</span></td>
+                        <td>right, exactly, sure</td>
+                        <td><span class="code-highlight">"<span class="marker-highlight">Exactly</span>! That's what I meant."</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="function-card">
+            <h2>{% translate "Register and Appropriateness" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Formal contexts:</span> Limit discourse markers to more neutral ones" %}
+                    <p class="code-highlight">"<span class="marker-highlight">Furthermore</span>, we must consider..."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Informal speech:</span> More markers and fillers are acceptable" %}
+                    <p class="code-highlight">"<span class="marker-highlight">Like</span>, I was <span class="marker-highlight">you know</span> totally surprised."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Cultural variations:</span> Some markers are region-specific" %}
+                    <p class="code-highlight">"<span class="marker-highlight">Innit</span>?" (UK) vs. "<span class="marker-highlight">right</span>?" (US)</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="discourse-card">
+            <h2>{% translate "Common Mistakes" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Overuse:</span> Too many markers can make speech sound uncertain" %}
+                    <p class="code-highlight">"I was, <span class="marker-highlight">like</span>, going to, <span class="marker-highlight">you know</span>, say something, <span class="marker-highlight">I mean</span>, important."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Inappropriate formality:</span> Using casual markers in formal writing" %}
+                    <p class="code-highlight">Incorrect in essay: "<span class="marker-highlight">Well</span>, the data shows..."</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Non-native usage:</span> Misusing culturally specific markers" %}
+                    <p class="code-highlight">Incorrect for US: "It's hot, <span class="marker-highlight">innit</span>?"</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="grammar-topic-container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% for crumb in breadcrumbs %}
+                <li class="breadcrumb-item {% if not crumb.url %}active{% endif %}">
+                    {% if crumb.url %}
+                        <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+                    {% else %}
+                        {{ crumb.title }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+
+    <h2 class="grammar-topic-title">{% trans "Classification of English Verbs" %}</h2>
+    
+    <div class="grammar-topic-content">
+        <h3>{% trans "By meaning and function" %}</h3>
+        <p>{% trans "English verbs can be classified in several ways based on their meaning, function, and grammatical properties." %}</p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% trans "By meaning and function:" %}</h4>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% trans "Notional verbs:" %}</span> 
+                {% trans "express actions or states and can function as simple predicates." %} <br>
+                <i><span class="example-highlight">{% trans "Examples:" %}</span> 
+                <span class="code-highlight">to work</span>, <span class="code-highlight">to read</span>, 
+                <span class="code-highlight">to live</span>, <span class="code-highlight">to speak</span>.</i>
+            </li>
+            
+            <li>
+                <span class="term-highlight">{% trans "Auxiliary verbs:" %}</span> 
+                {% trans "help form grammatical structures but don't have full meaning on their own." %} <br>
+                <i><span class="example-highlight">{% trans "Examples:" %}</span> 
+                <span class="code-highlight">to be</span>, <span class="code-highlight">to have</span>, 
+                <span class="code-highlight">to do</span>. 
+                ({% trans "e.g." %} "I <span class="auxiliary-highlight">am</span> reading", 
+                "He <span class="auxiliary-highlight">has</span> finished", 
+                "<span class="auxiliary-highlight">Do</span> you like?").</i>
+            </li>
+            
+            <!-- остальные пункты по аналогии -->
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% trans "By relation to direct object:" %}</h4>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% trans "Transitive verbs:" %}</span> 
+                {% trans "require a direct object to complete their meaning." %} <br>
+                <i><span class="example-highlight">{% trans "Examples:" %}</span> 
+                <span class="code-highlight">to give</span> (something), 
+                <span class="code-highlight">to buy</span> (something), 
+                <span class="code-highlight">to write</span> (something).</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% trans "Intransitive verbs:" %}</span> 
+                {% trans "do not require a direct object." %} <br>
+                <i><span class="example-highlight">{% trans "Examples:" %}</span> 
+                <span class="code-highlight">to sleep</span>, 
+                <span class="code-highlight">to walk</span>, 
+                <span class="code-highlight">to arrive</span>.</i>
+            </li>
+        </ul>
+        
+        <div class="grammar-note">
+            <p>{% trans "Note: Some verbs can be both transitive and intransitive depending on usage." %}</p>
+        </div>
+    </div>
+</div>
+
+<style>
+ .term-highlight {
+                                    color: #ff9e7d;
+                                    font-weight: 600;
+                                }
+
+                                .auxiliary-highlight {
+                                    color: #83e8de;
+                                    font-weight: 600;
+                                }
+
+                                .code-highlight {
+                                    font-family: 'Courier New', monospace;
+                                    background: rgba(0, 0, 0, 0.2);
+                                    padding: 2px 4px;
+                                    border-radius: 4px;
+                                    color: #83e8de;
+                                }
+
+                                .example-highlight {
+                                    color: #4cc9f0;
+                                    font-weight: 500;
+                                }
+
+                                .grammar-divider {
+                                    border: 1px solid #444;
+                                    margin: 20px 0;
+                                }
+
+                                .styled-list {
+                                    padding-left: 20px;
+                                    list-style-type: none;
+                                }
+
+                                .styled-list li {
+                                    margin: 8px 0;
+                                    position: relative;
+                                }
+
+                                .styled-list li:before {
+                                    content: "•";
+                                    color: #4cc9f0;
+                                    font-weight: bold;
+                                    display: inline-block;
+                                    width: 1em;
+                                    margin-left: -1em;
+                                }
+</style>
+{% endblock %}

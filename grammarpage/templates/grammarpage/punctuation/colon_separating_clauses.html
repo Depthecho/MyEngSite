@@ -1,0 +1,247 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Colon - Separating Clauses" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .clause-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Colon: Separating Clauses" %}</span>
+        </nav>
+
+        <h1>{% translate "The Colon Between Clauses" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">colon</span> creates a deliberate pause between independent clauses when the second clause explains, illustrates, or amplifies the first. It signals a closer relationship than a period would suggest." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Primary Usage" %}</h3>
+            <p>
+                {% translate "Use a colon between clauses when:" %}
+            </p>
+
+            <ul class="styled-list">
+                <li>{% translate "The second clause explains or illustrates the first" %}</li>
+                <li>{% translate "The second clause provides a logical consequence" %}</li>
+                <li>{% translate "You want to emphasize the relationship between ideas" %}</li>
+            </ul>
+
+            <h4>{% translate "Structure:" %}</h4>
+            <div class="code-highlight">
+                {% translate "Independent clause" %}<span class="mark-highlight">:</span> {% translate "Related independent clause" %}
+            </div>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "Types of Clause Relationships" %}</h3>
+
+            <h4>1. {% translate "Explanation/Illustration" %}</h4>
+            <p>{% translate "The second clause provides clarification:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="clause-highlight">The instructions were clear</span><span class="mark-highlight">:</span> <span class="clause-highlight">we needed to start over</span>.</span></li>
+                <li><span class="code-highlight"><span class="clause-highlight">She had one great talent</span><span class="mark-highlight">:</span> <span class="clause-highlight">she could solve complex problems quickly</span>.</span></li>
+            </ul>
+
+            <h4>2. {% translate "Cause and Effect" %}</h4>
+            <p>{% translate "The second clause shows a direct consequence:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="clause-highlight">The road was icy</span><span class="mark-highlight">:</span> <span class="clause-highlight">several cars slid off the pavement</span>.</span></li>
+            </ul>
+
+            <h4>3. {% translate "Formal Announcement" %}</h4>
+            <p>{% translate "The second clause formally presents information:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="clause-highlight">The judge made this ruling</span><span class="mark-highlight">:</span> <span class="clause-highlight">the defendant would serve five years</span>.</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Colon vs Other Punctuation" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Punctuation" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Effect" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Colon" %}</td>
+                 <td><span class="code-highlight">{% translate 'She had one rule<span class="mark-highlight">:</span> punctuality was mandatory.' %}</span></td>
+                    <td>{% translate "Formal, explanatory relationship" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Semicolon" %}</td>
+<td><span class="code-highlight">{% translate "She had one rule" %}<span class="mark-highlight">;</span> {% translate "it concerned punctuality." %}</span></td>
+                    <td>{% translate "Related but independent ideas" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Dash" %}</td>
+                    <td><span class="code-highlight">{% translate "She had one rule — punctuality mattered most." %}</span></td>
+                    <td>{% translate "Informal, emphatic connection" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Period" %}</td>
+                    <td><span class="code-highlight">{% translate "She had one rule. Punctuality was essential." %}</span></td>
+                    <td>{% translate "Complete separation of ideas" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Special Rules and Exceptions" %}</h3>
+  <ul class="styled-list">
+    <li>{% translate '<span class="term-highlight">Capitalization:</span> Capitalize the first word after a colon if it begins a complete sentence' %}
+        <p class="code-highlight">{% translate 'Remember this<span class="mark-highlight">:</span> <span class="term-highlight">P</span>ractice leads to perfection.' %}</p>
+    </li>
+    <li>{% translate '<span class="term-highlight">Formality:</span> Colons are more formal than dashes for this purpose' %}</li>
+    <li>{% translate '<span class="term-highlight">No colon:</span> Don\'t use a colon if the first clause isn\'t complete' %}
+        <p class="code-highlight">{% translate '<span class="term-highlight">Incorrect:</span> The reasons being<span class="mark-highlight">:</span> lack of time and resources.' %}</p>
+    </li>
+    <li>{% translate '<span class="term-highlight">Overuse:</span> Avoid using multiple colons in one sentence' %}</li>
+</ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Add colons between clauses where appropriate:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "The solution was obvious we needed more data" %}</li>
+            <li>{% translate "He made an important discovery gravity affects time" %}</li>
+            <li>{% translate "The results were surprising the control group performed better" %}</li>
+            <li>{% translate "She offered this advice always double-check your work" %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

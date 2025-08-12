@@ -1,0 +1,259 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Key Characteristics of Simple Sentences" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .feature-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'simple_sentences_page' %}">{% translate "Simple Sentences" %}</a></span> &raquo;
+            <span>{% translate "Key Characteristics" %}</span>
+        </nav>
+
+        <h1>{% translate "Essential Features of Simple Sentences" %}</h1>
+        <p>
+            {% translate "Simple sentences form the foundation of English grammar. They express complete thoughts with minimal structural elements while maintaining clarity and precision." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="feature-card">
+            <h3>{% translate "1. Single Independent Clause" %}</h3>
+            <p>{% translate "A simple sentence contains exactly one independent clause that can stand alone as a complete thought." %}</p>
+
+            <h4>{% translate "Components:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">{% translate "Subject:" %}</span> {% translate "The person, place, thing, or idea performing the action" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">The cat</span> sleeps peacefully." %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Predicate:" %}</span> {% translate "The action or state of being (verb phrase)" %}
+                    <p class="code-highlight">{% translate "The cat <span class=\"example-highlight\">sleeps peacefully</span>." %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Birds sing." %}</span></li>
+                <li><span class="code-highlight">{% translate "The sun rises in the east." %}</span></li>
+                <li><span class="code-highlight">{% translate "She completed her assignment." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>{% translate "2. Complete Thought" %}</h3>
+            <p>{% translate "Simple sentences express a complete idea that doesn't require additional information to be understood." %}</p>
+
+            <h4>{% translate "Characteristics:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Answers a basic question (who did what?)" %}</li>
+                <li>{% translate "Makes sense when standing alone" %}</li>
+                <li>{% translate "Conveys a clear message without ambiguity" %}</li>
+            </ul>
+
+            <h4>{% translate "Complete vs Incomplete:" %}</h4>
+            <table class="comparison-table">
+                <tr>
+                    <th>{% translate "Complete" %}</th>
+                    <th>{% translate "Incomplete" %}</th>
+                </tr>
+                <tr>
+                    <td><span class="code-highlight">{% translate "The train arrived." %}</span></td>
+                    <td><span class="code-highlight">{% translate "When the train arrived" %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="code-highlight">{% translate "She writes novels." %}</span></td>
+                    <td><span class="code-highlight">{% translate "Because she writes novels" %}</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="feature-card">
+            <h3>{% translate "3. Single Main Verb" %}</h3>
+            <p>{% translate "While a simple sentence may contain compound verbs or helping verbs, it expresses one main action or state of being." %}</p>
+
+            <h4>{% translate "Verb Types in Simple Sentences:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">{% translate "Single verb:" %}</span>
+                    <p class="code-highlight">{% translate "He <span class=\"example-highlight\">runs</span> daily." %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Compound verb:" %}</span>
+                    <p class="code-highlight">{% translate "She <span class=\"example-highlight\">sings and dances</span> beautifully." %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Verb phrase:" %}</span>
+                    <p class="code-highlight">{% translate "They <span class=\"example-highlight\">have been waiting</span> for hours." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Misconceptions" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Length doesn't determine simplicity:</span> A simple sentence can be long if it has one subject-verb pair" %}
+                <p class="code-highlight">{% translate "The quick brown fox jumps over the lazy dog in the early morning sunlight." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Compound elements don't make compound sentences:</span> Multiple subjects or verbs can still be simple sentences" %}
+                <p class="code-highlight">{% translate "Tom and Jerry chase and tease each other constantly." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Simple ≠ simplistic:</span> Simple sentences can express complex ideas" %}
+                <p class="code-highlight">{% translate "Quantum physics challenges classical mechanics." %}</p>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Why Simple Sentences Matter" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Form the foundation for more complex structures" %}</li>
+            <li>{% translate "Provide clarity in communication" %}</li>
+            <li>{% translate "Create emphasis in writing" %}</li>
+            <li>{% translate "Essential for instructions and directions" %}</li>
+            <li>{% translate "Improve readability when used strategically" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'simple_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Simple Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

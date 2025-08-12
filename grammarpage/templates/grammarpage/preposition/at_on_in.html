@@ -1,0 +1,351 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: Mastering At, On, and In" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .at-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .on-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .in-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .place-card {
+            border-left-color: #83e8de;
+        }
+
+        .time-card {
+            border-left-color: #b388ff;
+        }
+
+        .exception-card {
+            border-left-color: #f72585;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .concept-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "At, On, and In" %}</span>
+        </nav>
+
+        <h1>{% translate "The Hierarchy of At, On, and In" %}</h1>
+        <p>
+            {% translate "These three prepositions form a hierarchy from specific to general, creating a mental framework that applies to both time and space. Understanding this pattern is key to mastering their usage." %}
+        </p>
+
+        <div class="usage-card place-card">
+            <h2><span class="term-highlight">{% translate "Spatial Relationships" %}</span></h2>
+            <div class="concept-diagram">
+                <span class="at-highlight">AT</span> (point) → <span class="on-highlight">ON</span> (surface) → <span class="in-highlight">IN</span> (enclosed space)
+            </div>
+
+            <h3><span class="at-highlight">AT</span> - Specific Points</h3>
+            <ul class="styled-list">
+                <li>{% translate "Exact locations and addresses" %}
+                    <p class="code-highlight">{% translate "at 221B Baker Street, at the corner, at the bus stop" %}</p>
+                </li>
+                <li>{% translate "General locations when the exact position isn't important" %}
+                    <p class="code-highlight">{% translate "at school, at work, at home" %}</p>
+                </li>
+            </ul>
+
+            <h3><span class="on-highlight">ON</span> - Surfaces and Lines</h3>
+            <ul class="styled-list">
+                <li>{% translate "Horizontal and vertical surfaces" %}
+                    <p class="code-highlight">{% translate "on the table, on the wall, on the ceiling" %}</p>
+                </li>
+                <li>{% translate "Transportation (except cars)" %}
+                    <p class="code-highlight">{% translate "on the bus, on the plane, on the train" %}</p>
+                </li>
+                <li>{% translate "Streets and roads" %}
+                    <p class="code-highlight">{% translate "on Main Street, on the highway" %}</p>
+                </li>
+            </ul>
+
+            <h3><span class="in-highlight">IN</span> - Enclosed Spaces</h3>
+            <ul class="styled-list">
+                <li>{% translate "Geographical areas" %}
+                    <p class="code-highlight">{% translate "in France, in Tokyo, in the mountains" %}</p>
+                </li>
+                <li>{% translate "Enclosed containers" %}
+                    <p class="code-highlight">{% translate "in the box, in the drawer, in my pocket" %}</p>
+                </li>
+                <li>{% translate "Transportation (cars)" %}
+                    <p class="code-highlight">{% translate "in the car, in the taxi" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card time-card">
+            <h2><span class="term-highlight">{% translate "Temporal Relationships" %}</span></h2>
+            <div class="concept-diagram">
+                <span class="at-highlight">AT</span> (point) → <span class="on-highlight">ON</span> (day) → <span class="in-highlight">IN</span> (period)
+            </div>
+
+            <h3><span class="at-highlight">AT</span> - Precise Times</h3>
+            <ul class="styled-list">
+                <li>{% translate "Clock times" %}
+                    <p class="code-highlight">{% translate "at 3:30, at noon, at midnight" %}</p>
+                </li>
+                <li>{% translate "Specific points in daily routines" %}
+                    <p class="code-highlight">{% translate "at breakfast time, at night, at the moment" %}</p>
+                </li>
+                <li>{% translate "Holiday periods (when referring to the time itself)" %}
+                    <p class="code-highlight">{% translate "at Christmas (the day itself), at Easter" %}</p>
+                </li>
+            </ul>
+
+            <h3><span class="on-highlight">ON</span> - Specific Days</h3>
+            <ul class="styled-list">
+                <li>{% translate "Days of the week" %}
+                    <p class="code-highlight">{% translate "on Monday, on Fridays" %}</p>
+                </li>
+                <li>{% translate "Dates" %}
+                    <p class="code-highlight">{% translate "on June 5th, on the 15th" %}</p>
+                </li>
+                <li>{% translate "Special days" %}
+                    <p class="code-highlight">{% translate "on my birthday, on New Year's Day" %}</p>
+                </li>
+                <li>{% translate "Day parts with modifiers" %}
+                    <p class="code-highlight">{% translate "on Monday morning, on the afternoon of July 3rd" %}</p>
+                </li>
+            </ul>
+
+            <h3><span class="in-highlight">IN</span> - Longer Periods</h3>
+            <ul class="styled-list">
+                <li>{% translate "Months" %}
+                    <p class="code-highlight">{% translate "in January, in December" %}</p>
+                </li>
+                <li>{% translate "Seasons" %}
+                    <p class="code-highlight">{% translate "in summer, in the winter" %}</p>
+                </li>
+                <li>{% translate "Years" %}
+                    <p class="code-highlight">{% translate "in 2020, in the 1990s" %}</p>
+                </li>
+                <li>{% translate "Centuries" %}
+                    <p class="code-highlight">{% translate "in the 21st century" %}</p>
+                </li>
+                <li>{% translate "General day parts" %}
+                    <p class="code-highlight">{% translate "in the morning, in the evening" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card exception-card">
+            <h2>{% translate "Special Cases and Exceptions" %}</h2>
+
+            <h3>{% translate "1. Time Expressions That Break the Pattern" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Expression" %}</th>
+                        <th>{% translate "Preposition" %}</th>
+                        <th>{% translate "Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Weekend" %}</td>
+                        <td><span class="code-highlight">at/on</span></td>
+                        <td>{% translate "British: at the weekend; American: on the weekend" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Present" %}</td>
+                        <td><span class="code-highlight">at</span></td>
+                        <td>{% translate "at present (not 'in present')" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "The weekend" %}</td>
+                        <td><span class="code-highlight">over</span></td>
+                        <td>{% translate "over the weekend (duration)" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{% translate "2. Place Expressions That Break the Pattern" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"code-highlight\">in</span> bed (but <span class=\"code-highlight\">on</span> the couch)" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">in</span> the newspaper (but <span class=\"code-highlight\">on</span> TV)" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">in</span> the picture/photograph" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">on</span> the island (but <span class=\"code-highlight\">in</span> the city)" %}</li>
+            </ul>
+
+            <h3>{% translate "3. When Prepositions Are Omitted" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Before <span class=\"code-highlight\">last/next/this/every</span>" %}
+                    <p class="code-highlight">{% translate "I saw her last Tuesday (not 'on last Tuesday')" %}</p>
+                </li>
+                <li>{% translate "Before <span class=\"code-highlight\">today/yesterday/tomorrow</span>" %}
+                    <p class="code-highlight">{% translate "We'll meet tomorrow (not 'on tomorrow')" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

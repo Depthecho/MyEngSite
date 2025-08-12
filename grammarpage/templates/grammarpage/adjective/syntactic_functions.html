@@ -1,0 +1,206 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjective: Syntactic Functions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Syntactic Functions" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjective: Syntactic Functions" %}</h1>
+        <p>
+            {% translate "In a sentence, adjectives primarily perform one of two syntactic functions: they can either describe a noun directly within a noun phrase (attributive function) or serve as the complement of a verb (predicative function)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Attributive Function" %}</h3>
+        <p>
+            {% translate "An adjective used attributively modifies a noun or pronoun directly. It typically comes right before the noun it describes." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "This is a <span class=\"term-highlight\">beautiful</span> flower." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">beautiful</span>' is part of the noun phrase '<span class=\"term-highlight\">a beautiful flower</span>' and describes 'flower'." %}</li>
+            <li><span class=\"example-highlight\">{% translate "He saw an <span class=\"term-highlight\">old</span> house." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">old</span>' modifies the noun 'house'." %}</li>
+        </ul>
+        <p>
+            {% translate "<strong>Note:</strong> In some cases, usually with multi-word adjectives or for emphasis, the adjective can come after the noun (e.g., <span class=\"code-highlight\">'a man <span class=\"term-highlight\">brave and true</span>'</span>)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Predicative Function" %}</h3>
+        <p>
+            {% translate "An adjective used predicatively describes the subject of a sentence, but it is separated from the subject by a verb, typically a linking verb like <span class=\"code-highlight\">'to be'</span>, <span class=\"code-highlight\">'to seem'</span>, <span class=\"code-highlight\">'to become'</span>, etc." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "The flower is <span class=\"term-highlight\">beautiful</span>." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">beautiful</span>' follows the verb 'is' and describes the subject 'flower'." %}</li>
+            <li><span class=\"example-highlight\">{% translate "The soup tastes <span class=\"term-highlight\">delicious</span>." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">delicious</span>' follows the linking verb 'tastes' and describes the subject 'soup'." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Summary Table" %}</h3>
+        <p>
+            {% translate "This table summarizes the two main syntactic functions of adjectives." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Position" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Attributive" %}</span></td>
+                        <td>{% translate "Before the noun." %}</td>
+                        <td>{% translate "a <span class=\"term-highlight\">cold</span> day" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Predicative" %}</span></td>
+                        <td>{% translate "After a linking verb." %}</td>
+                        <td>{% translate "The day is <span class=\"term-highlight\">cold</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

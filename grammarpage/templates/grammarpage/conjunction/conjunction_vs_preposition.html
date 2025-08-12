@@ -1,0 +1,202 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Conjunction vs. Preposition" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight { color: #ff9e7d; font-weight: 600; }
+        .example-highlight { color: #83e8de; font-weight: 500; }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover { background-color: #ff9e7d; }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+<div class="grammar-detail-container">
+    <nav class="breadcrumbs">
+        <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+        <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+        <span><a href="{% url 'conjunction_page' %}">{% translate "Conjunctions" %}</a></span> &raquo;
+        <span>{% translate "Conjunction vs. Preposition" %}</span>
+    </nav>
+
+    <h1>{% translate "Conjunction vs. Preposition" %}</h1>
+    <p>{% translate "Some words in English, like <span class='code-highlight'>after</span> or <span class='code-highlight'>before</span>, can be either conjunctions or prepositions depending on the context." %}</p>
+    <p>{% translate "The main difference lies in what the word is connecting: prepositions connect nouns/pronouns to other words, while conjunctions connect clauses." %}</p>
+
+    <hr class="grammar-divider">
+
+    <div class="structure-card">
+        <h3>{% translate "1. Prepositions" %}</h3>
+        <p>{% translate "A preposition links a noun or pronoun to another word in the sentence. It is always followed by a noun phrase (object of the preposition)." %}</p>
+        <ul class="styled-list">
+            <li>{% translate "We will leave <span class='example-highlight'>after</span> <b>lunch</b>." %}</li>
+            <li>{% translate "I arrived <span class='example-highlight'>before</span> <b>him</b>." %}</li>
+        </ul>
+        <p>{% translate "Here, the words following <span class='code-highlight'>after</span> and <span class='code-highlight'>before</span> are nouns or pronouns, making these words prepositions." %}</p>
+    </div>
+
+    <div class="structure-card">
+        <h3>{% translate "2. Conjunctions" %}</h3>
+        <p>{% translate "A conjunction connects two clauses and is followed by a subject and a verb." %}</p>
+        <ul class="styled-list">
+            <li>{% translate "We will leave <span class='example-highlight'>after</span> <b>the speech ends</b>." %}</li>
+            <li>{% translate "I arrived <span class='example-highlight'>before</span> <b>he came</b>." %}</li>
+        </ul>
+        <p>{% translate "Here, <span class='code-highlight'>after</span> and <span class='code-highlight'>before</span> introduce full clauses, so they function as subordinating conjunctions." %}</p>
+    </div>
+
+    <hr class="grammar-divider">
+
+    <h3>{% translate "Comparison Table" %}</h3>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>{% translate "Feature" %}</th>
+                <th>{% translate "Preposition" %}</th>
+                <th>{% translate "Conjunction" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{% translate "Connects" %}</td>
+                <td>{% translate "Noun/pronoun to another word" %}</td>
+                <td>{% translate "Clause to another clause" %}</td>
+            </tr>
+            <tr>
+                <td>{% translate "Followed by" %}</td>
+                <td>{% translate "Noun or pronoun" %}</td>
+                <td>{% translate "Subject + verb" %}</td>
+            </tr>
+            <tr>
+                <td>{% translate "Example" %}</td>
+                <td><span class="code-highlight">{% translate "After lunch, we left." %}</span></td>
+                <td><span class="code-highlight">{% translate "We left after the show ended." %}</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="grammar-divider">
+
+    <h3>{% translate "Tips for Learners" %}</h3>
+    <ul class="styled-list">
+        <li>{% translate "<span class='term-highlight'>Look at the word after:</span> If it's a noun or pronoun → preposition; if it's a subject + verb → conjunction." %}</li>
+        <li>{% translate "Some words (like 'since', 'until', 'as') can also function both ways." %}</li>
+        <li>{% translate "Changing the structure changes the role of the word." %}</li>
+    </ul>
+
+    <div class="navigation-links">
+        <a href="{% url 'conjunction_page' %}" class="back-to-list-btn">
+            <i class="fas fa-arrow-left"></i> {% translate "Back to Conjunctions" %}
+        </a>
+    </div>
+</div>
+{% endblock %}

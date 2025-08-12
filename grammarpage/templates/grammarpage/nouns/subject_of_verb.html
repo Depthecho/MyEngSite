@@ -1,0 +1,209 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Subject of Verb" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Subject of Verb" %}</span>
+        </nav>
+
+        <h1>{% translate "Subject of Verb" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">subject</span> of a verb is the noun or pronoun that performs the action described by the verb. It answers the question 'Who or what is performing the action?' The subject is a fundamental part of a sentence and determines the form of the verb (singular or plural)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Identifying the Subject" %}</h3>
+        <p>
+            {% translate "The subject typically appears at the beginning of a sentence before the verb. It can be a single noun or a noun phrase." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Verb" %}</th>
+                        <th>{% translate "Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="code-highlight">{% translate "The teacher" %}</span></td><td>{% translate "explained" %}</td><td>{% translate "The <span class=\"example-highlight\">teacher</span> explained the lesson." %}</td></tr>
+                    <tr><td><span class="code-highlight">{% translate "My best friend" %}</span></td><td>{% translate "called" %}</td><td>{% translate "<span class=\"example-highlight\">My best friend</span> called me yesterday." %}</td></tr>
+                    <tr><td><span class="code-highlight">{% translate "The tall building" %}</span></td><td>{% translate "is" %}</td><td>{% translate "The <span class=\"example-highlight\">tall building</span> is a hotel." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Subject in Questions" %}</h3>
+        <p>
+            {% translate "In questions, the subject often comes after a helping verb (e.g., <span class=\"code-highlight\">do, does, have, is</span>) but still performs the main action." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Question" %}</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Main Verb" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "Does <span class=\"example-highlight\">he</span> sing?" %}</td><td>{% translate "he" %}</td><td>{% translate "sing" %}</td></tr>
+                    <tr><td>{% translate "Are <span class=\"example-highlight\">the children</span> playing?" %}</td><td>{% translate "the children" %}</td><td>{% translate "playing" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Subject-Verb Agreement" %}</h3>
+        <p>
+            {% translate "The subject must agree with the verb in number. A singular subject takes a singular verb, and a plural subject takes a plural verb." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Singular:" %}</span><br>{% translate "The <span class=\"code-highlight\">cat</span> <span class=\"term-highlight\">sleeps</span>." %}</li>
+            <li><span class="example-highlight">{% translate "Plural:" %}</span><br>{% translate "The <span class=\"code-highlight\">cats</span> <span class=\"term-highlight\">sleep</span>." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

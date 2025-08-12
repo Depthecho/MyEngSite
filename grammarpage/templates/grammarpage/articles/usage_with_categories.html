@@ -1,0 +1,223 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Usage with Categories" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "The Definite Article 'The'" %}</span> &raquo;
+            <span>{% translate "Usage with Categories" %}</span>
+        </nav>
+
+        <h1>{% translate "Usage with Categories" %}</h1>
+        <p>
+            {% translate "Beyond referring to a specific item, the definite article <span class=\"code-highlight\">the</span> can also be used to refer to an entire class or category of things. This usage allows us to talk about a group as a single, representative unit." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Representing a Class of Animals or Inventions" %}</h3>
+        <p>
+            {% translate "You can use <span class=\"code-highlight\">the</span> with a singular noun to represent the entire species or category. This is often seen when discussing animals or historical inventions." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Representing a species." %}</td>
+                        <td>{% translate "The <span class=\"code-highlight\">dog</span> is a loyal companion." %}</td>
+                        <td>{% translate "This refers to the species of dog in general, not a specific dog." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Representing an invention." %}</td>
+                        <td>{% translate "Who invented <span class=\"code-highlight\">the telephone</span>?" %}</td>
+                        <td>{% translate "This refers to the invention itself, not a specific telephone." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            {% translate "Note that for animals, you can also use a plural noun without an article to achieve the same meaning: <span class=\"code-highlight\">'Dogs are loyal companions.'</span>" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Usage with Adjectives to Refer to Groups" %}</h3>
+        <p>
+            {% translate "The definite article can be combined with an adjective to refer to an entire group of people who share that characteristic. The resulting phrase functions as a plural noun." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Phrase" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the young" %}</span></td>
+                        <td>{% translate "All young people." %}</td>
+                        <td>{% translate "The future belongs to <span class=\"code-highlight\">the young</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the rich" %}</span></td>
+                        <td>{% translate "All rich people." %}</td>
+                        <td>{% translate "Taxes on <span class=\"code-highlight\">the rich</span> have increased." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the homeless" %}</span></td>
+                        <td>{% translate "All homeless people." %}</td>
+                        <td>{% translate "More support is needed for <span class=\"code-highlight\">the homeless</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

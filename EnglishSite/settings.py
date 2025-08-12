@@ -43,10 +43,10 @@ INSTALLED_APPS = [
     'cardspage.apps.CardspageConfig',
     'textspage.apps.TextspageConfig',
     'testspage.apps.TestspageConfig',
-    'grammarpage.apps.GrammarpageConfig',
     'translator.apps.TranslatorConfig',
     'messenger.apps.MessengerConfig',
-    'settingspage.apps.SettingspageConfig'
+    'settingspage.apps.SettingspageConfig',
+    'grammarpage.apps.GrammarpageConfig',
 ]
 
 MIDDLEWARE = [

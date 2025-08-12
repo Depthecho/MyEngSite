@@ -1,0 +1,420 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Past Simple" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .time-highlight {
+            color: #b388ff;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Past Simple" %}</span>
+        </nav>
+
+        <h1>{% translate "The Past Simple" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Past Simple</span> tense (also known as the Simple Past) is used to describe actions or states that started and finished at a specific time in the past. It's one of the most common tenses for narrating past events." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Formation of the Past Simple" %}</h4>
+        <p>
+            {% translate "The formation of the Past Simple differs for <span class=\"term-highlight\">regular</span> and <span class=\"term-highlight\">irregular</span> verbs." %}
+        </p>
+
+        <h5>{% translate "1. Affirmative Sentences" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Regular Verbs:" %}</span> {% translate "Add" %} <span class="ending-highlight">-ed</span> {% translate "to the base form of the verb." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">work</span> → <span class="code-highlight">work<span class="ending-highlight">ed</span></span></li>
+                    <li><span class="code-highlight">play</span> → <span class="code-highlight">play<span class="ending-highlight">ed</span></span></li>
+                    <li><span class="code-highlight">visit</span> → <span class="code-highlight">visit<span class="ending-highlight">ed</span></span></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Irregular Verbs:" %}</span> {% translate "These verbs have unique past simple forms that must be memorized." %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">go</span> → <span class="code-highlight">went</span></li>
+                    <li><span class="code-highlight">see</span> → <span class="code-highlight">saw</span></li>
+                    <li><span class="code-highlight">eat</span> → <span class="code-highlight">ate</span></li>
+                    <li><span class="code-highlight">be</span> → <span class="code-highlight">was / were</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Person / Number" %}</th>
+                        <th>{% translate "Regular Verb" %} (<span class="code-highlight">to work</span>)</th>
+                        <th>{% translate "Irregular Verb" %} (<span class="code-highlight">to go</span>)</th>
+                        <th>{% translate "Verb" %} (<span class="code-highlight">to be</span>)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="pronoun-highlight">I</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>was</td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>were</td></tr>
+                    <tr><td><span class="pronoun-highlight">He / She / It</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>was</td></tr>
+                    <tr><td><span class="pronoun-highlight">We</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>were</td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>were</td></tr>
+                    <tr><td><span class="pronoun-highlight">They</span></td><td>work<span class="ending-highlight">ed</span></td><td>went</td><td>were</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p><span class="term-highlight">{% translate "Spelling Rules for Adding -ed to Regular Verbs:" %}</span></p>
+        <ul class="styled-list">
+            <li>{% translate "Most verbs simply add" %} <span class="ending-highlight">-ed</span>:
+                <ul class="styled-list">
+                    <li><span class="code-highlight">open</span> → <span class="code-highlight">open<span class="ending-highlight">ed</span></span></li>
+                    <li><span class="code-highlight">start</span> → <span class="code-highlight">start<span class="ending-highlight">ed</span></span></li>
+                </ul>
+            </li>
+            <li>{% translate "Verbs ending in" %} <span class="ending-highlight">-e</span>, {% translate "just add" %} <span class="ending-highlight">-d</span>:
+                <ul class="styled-list">
+                    <li><span class="code-highlight">live</span> → <span class="code-highlight">liv<span class="ending-highlight">ed</span></span></li>
+                    <li><span class="code-highlight">love</span> → <span class="code-highlight">lov<span class="ending-highlight">ed</span></span></li>
+                </ul>
+            </li>
+            <li>{% translate "Verbs ending in a <span class=\"term-highlight\">consonant + y</span>, change" %} <span class="ending-highlight">y</span> {% translate "to" %} <span class="ending-highlight">i</span> {% translate "and add" %} <span class="ending-highlight">-ed</span>:
+                <ul class="styled-list">
+                    <li><span class="code-highlight">study</span> → <span class="code-highlight">stud<span class="ending-highlight">ied</span></span></li>
+                    <li><span class="code-highlight">try</span> → <span class="code-highlight">tr<span class="ending-highlight">ied</span></span></li>
+                </ul>
+            </li>
+            <li>{% translate "Verbs ending in a <span class=\"term-highlight\">vowel + y</span>, simply add" %} <span class="ending-highlight">-ed</span> ({% translate "the" %} <span class="code-highlight">y</span> {% translate "does not change" %}):
+                <ul class="styled-list">
+                    <li><span class="code-highlight">play</span> → <span class="code-highlight">play<span class="ending-highlight">ed</span></span></li>
+                    <li><span class="code-highlight">enjoy</span> → <span class="code-highlight">enjoy<span class="ending-highlight">ed</span></span></li>
+                </ul>
+            </li>
+            <li>{% translate "Verbs ending in <span class=\"term-highlight\">CVC</span> (consonant-vowel-consonant) and stressed on the last syllable (or one-syllable verbs), double the final consonant and add" %} <span class="ending-highlight">-ed</span>:
+                <ul class="styled-list">
+                    <li><span class="code-highlight">stop</span> → <span class="code-highlight">sto<span class="ending-highlight">pped</span></span></li>
+                    <li><span class="code-highlight">plan</span> → <span class="code-highlight">pla<span class="ending-highlight">nned</span></span></li>
+                    <li><span class="code-highlight">refer</span> → <span class="code-highlight">refer<span class="ending-highlight">red</span></span></li>
+                </ul>
+                <p><i>{% translate "Note:" %}</i> {% translate "In British English, verbs ending in a single <span class=\"code-highlight\">-l</span> after a single vowel usually double the <span class=\"code-highlight\">l</span> (e.g.," %} <span class="code-highlight">travel</span> → <span class="code-highlight">travel<span class="ending-highlight">led</span></span>). {% translate "In American English, the" %} <span class="code-highlight">l</span> {% translate "is not doubled unless the last syllable is stressed." %}</p>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h5>{% translate "2. Negative Sentences" %}</h5>
+        <p>
+            {% translate "To form negative sentences, we use the auxiliary verb <span class=\"auxiliary-highlight\">'did not' (didn't)</span> before the base form of the main verb." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Person / Number" %}</th>
+                        <th>{% translate "Full Form" %}</th>
+                        <th>{% translate "Contracted Form" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="pronoun-highlight">I</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                    <tr><td><span class="pronoun-highlight">He / She / It</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                    <tr><td><span class="pronoun-highlight">We</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                    <tr><td><span class="pronoun-highlight">You</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                    <tr><td><span class="pronoun-highlight">They</span></td><td><span class="auxiliary-highlight">did</span> not work</td><td><span class="auxiliary-highlight">didn't</span> work</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I didn't like the movie." %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She didn't go to the party last night." %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They did not finish their project." %}</span></i></li>
+        </ul>
+        <p><span class="term-highlight">{% translate "Note:" %}</span> {% translate "The verb" %} <span class="code-highlight">'to be'</span> {% translate "does not use" %} <span class="code-highlight">'did not'</span> {% translate "for negatives." %}</p>
+        <ul class="styled-list">
+            <li><i><span class="code-highlight">{% translate "I was not hungry." %}</span></i> / <i><span class="code-highlight">{% translate "I wasn't hungry." %}</span></i> ({% translate "NOT" %} <i><span class="code-highlight">{% translate "I didn't be hungry." %}</span></i>)</li>
+            <li><i><span class="code-highlight">{% translate "They were not at home." %}</span></i> / <i><span class="code-highlight">{% translate "They weren't at home." %}</span></i></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h5>{% translate "3. Interrogative Sentences (Questions)" %}</h5>
+        <p>
+            {% translate "To form questions, we use the auxiliary verb <span class=\"auxiliary-highlight\">'did'</span> before the subject, followed by the base form of the main verb." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Auxiliary Verb" %} (<span class="code-highlight">did</span>)</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Main Verb (Base Form)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">I</span></td><td>work?</td></tr>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">you</span></td><td>work?</td></tr>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">he / she / it</span></td><td>work?</td></tr>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">we</span></td><td>work?</td></tr>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">you</span></td><td>work?</td></tr>
+                    <tr><td><span class="auxiliary-highlight">Did</span></td><td><span class="pronoun-highlight">they</span></td><td>work?</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Did you play sports yesterday?" %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Did she call you?" %}</span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Where did they go last weekend?" %}</span></i> ({% translate "for Wh-questions" %})</li>
+        </ul>
+        <p><span class="term-highlight">{% translate "Note:" %}</span> {% translate "Again," %} <span class="code-highlight">'to be'</span> {% translate "forms questions differently." %}</p>
+        <ul class="styled-list">
+            <li><i><span class="code-highlight">{% translate "Was he here?" %}</span></i> ({% translate "NOT" %} <i><span class="code-highlight">{% translate "Did he be here?" %}</span></i>)</li>
+            <li><i><span class="code-highlight">{% translate "Were they tired?" %}</span></i></li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Uses of the Past Simple" %}</h4>
+        <p>
+            {% translate "The Past Simple is used to express:" %}
+        </p>
+        <ol class="styled-list">
+            <li><span class="term-highlight">{% translate "Completed Actions in the Past at a Specific Time:" %}</span> {% translate "The action began and ended in the past, and the time is usually mentioned or implied." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">visited</span> {% translate "London last year." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">finished</span> {% translate "her homework an hour ago." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">bought</span> {% translate "a new car yesterday." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "A Series of Completed Actions in the Past:" %}</span> {% translate "Used to describe events in chronological order, often in storytelling." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">woke up</span>, <span class="verb-highlight">had</span> {% translate "breakfast, and" %} <span class="verb-highlight">left</span> {% translate "for work." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">opened</span> {% translate "the door," %} <span class="verb-highlight">walked</span> {% translate "in, and" %} <span class="verb-highlight">sat down</span>.</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Past Habits or Routines:" %}</span> {% translate "Actions that happened regularly in the past but don't happen anymore. Often used with adverbs like" %} <span class="code-highlight">always</span>, <span class="code-highlight">often</span>, <span class="code-highlight">usually</span>, <span class="code-highlight">every day</span> ({% translate "in the past" %}).
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "When I was a child, I often" %} <span class="verb-highlight">played</span> {% translate "in the park." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">smoked</span> {% translate "for 20 years, but he" %} <span class="verb-highlight">stopped</span> {% translate "last year." %}</span></i></li>
+                </ul>
+                <p><i>{% translate "Note:" %}</i> <span class="code-highlight">{% translate "Used to" %}</span> {% translate "is also common for past habits: <i>" %} <span class="code-highlight">{% translate "I used to play in the park." %}</span></i></p>
+            </li>
+            <li><span class="term-highlight">{% translate "Facts or Generalizations About the Past:" %}</span> {% translate "States that were true in the past but may not be true now." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">was</span> {% translate "a very talented student." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "The Roman Empire" %} <span class="verb-highlight">existed</span> {% translate "for centuries." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "In Type 2 Conditional Sentences:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "If I" %} <span class="verb-highlight">had</span> {% translate "more money, I would travel the world." %}</span></i></li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Time Expressions Used with the Past Simple" %}</h4>
+        <p>
+            {% translate "Common time expressions that indicate a specific past time and are typically used with the Past Simple include:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="time-highlight">{% translate "yesterday" %}</span></li>
+            <li><span class="time-highlight">{% translate "last night / week / month / year" %}</span></li>
+            <li><span class="time-highlight">{% translate "ago" %}</span> (<span class="code-highlight">{% translate "two days ago" %}</span>, <span class="code-highlight">{% translate "a week ago" %}</span>)</li>
+            <li><span class="time-highlight">{% translate "in 1990" %}</span> ({% translate "or any specific year" %})</li>
+            <li><span class="time-highlight">{% translate "on Monday" %}</span> ({% translate "or any specific day" %})</li>
+            <li><span class="time-highlight">{% translate "when I was young" %}</span> ({% translate "or any specific past period" %})</li>
+        </ul>
+        <p>{% translate "The Past Simple is fundamental for talking about history, personal anecdotes, and any events that have concluded in the past." %}</p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

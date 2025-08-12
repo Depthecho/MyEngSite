@@ -1,0 +1,357 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Conjunctions: Definition, Types and Usage" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .coordinating-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .subordinating-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .correlative-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .conjunction-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .usage-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ff9e7d;
+            margin: 15px 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'conjunction_page' %}">{% translate "Conjunctions" %}</a></span> &raquo;
+            <span>{% translate "Definition and Types" %}</span>
+        </nav>
+
+        <h1>{% translate "Conjunctions: The Connectors of English" %}</h1>
+        <p>
+            {% translate "Conjunctions are the <span class=\"term-highlight\'>grammatical glue</span> that holds sentences together, allowing us to express complex thoughts and relationships between ideas." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="conjunction-card">
+            <h2>{% translate "Definition and Core Functions" %}</h2>
+            <p>
+                {% translate "A <span class=\"term-highlight\">conjunction</span> is a word that connects words, phrases, clauses, or sentences. They serve three primary functions:" %}
+            </p>
+
+            <h3>{% translate "1. Joining Words" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Connects two or more words of the same type (nouns, verbs, adjectives, etc.)" %}</li>
+                <li><span class="code-highlight">{% translate "I like coffee <span class=\"example-highlight\">and</span> tea." %}</span></li>
+                <li><span class="code-highlight">{% translate "She is quick <span class=\"example-highlight\">but</span> careful." %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Joining Phrases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Links prepositional phrases, verb phrases, etc." %}</li>
+                <li><span class="code-highlight">{% translate "We can go by car <span class=\"example-highlight\">or</span> by train." %}</span></li>
+                <li><span class="code-highlight">{% translate "He was not only late <span class=\"example-highlight\">but also</span> unprepared." %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Joining Clauses" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Connects independent and/or dependent clauses" %}</li>
+                <li><span class="code-highlight">{% translate "I wanted to go, <span class=\"example-highlight\">but</span> I was too tired." %}</span></li>
+                <li><span class="code-highlight">{% translate "I'll call you <span class=\"example-highlight\">when</span> I arrive." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Types of Conjunctions" %}</h2>
+
+        <div class="conjunction-card">
+            <h3 class="coordinating-highlight">{% translate "1. Coordinating Conjunctions (FANBOYS)" %}</h3>
+            <p>{% translate "Join elements of equal grammatical rank (words with words, phrases with phrases, etc.)" %}</p>
+
+            <div class="usage-note">
+                <p><strong>FANBOYS</strong> - {% translate "The 7 coordinating conjunctions:" %}</p>
+                <p><span class="code-highlight">{% translate "For, And, Nor, But, Or, Yet, So" %}</span></p>
+            </div>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She likes tea <span class=\"coordinating-highlight\">but</span> I prefer coffee." %}</span></li>
+                <li><span class="code-highlight">{% translate "You can study now <span class=\"coordinating-highlight\">or</span> you can fail the test." %}</span></li>
+                <li><span class="code-highlight">{% translate "He was tired, <span class=\"coordinating-highlight\">yet</span> he continued working." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Usage Rules:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Use a comma before the conjunction when joining two independent clauses" %}</li>
+                <li>{% translate "No comma needed when joining words or short phrases" %}</li>
+                <li>{% translate "\"Nor\" requires inversion of the following auxiliary verb" %}</li>
+            </ul>
+        </div>
+
+        <div class="conjunction-card">
+            <h3 class="subordinating-highlight">{% translate "2. Subordinating Conjunctions" %}</h3>
+            <p>{% translate "Introduce dependent clauses and show their relationship to the main clause" %}</p>
+
+            <h4>{% translate "Common Subordinating Conjunctions:" %}</h4>
+            <p><span class="code-highlight">{% translate "after, although, as, because, before, if, since, though, unless, until, when, where, while" %}</span></p>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subordinating-highlight\">Although</span> it was raining, we went for a walk." %}</span></li>
+                <li><span class="code-highlight">{% translate "I'll stay <span class=\"subordinating-highlight\">until</span> you return." %}</span></li>
+                <li><span class="code-highlight">{% translate "She failed the test <span class=\"subordinating-highlight\">because</span> she didn't study." %}</span></li>
+            </ul>
+
+            <h4>{% translate "Key Functions:" %}</h4>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Relationship" %}</th>
+                        <th>{% translate "Conjunctions" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Time" %}</td>
+                        <td>when, before, after, while</td>
+                        <td><span class="code-highlight">{% translate "<span class=\"subordinating-highlight\">When</span> she arrives, we'll eat." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Cause/Effect" %}</td>
+                        <td>because, since, as</td>
+                        <td><span class="code-highlight">{% translate "He left <span class=\"subordinating-highlight\">because</span> he was tired." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Condition" %}</td>
+                        <td>if, unless</td>
+                        <td><span class="code-highlight">{% translate "<span class=\"subordinating-highlight\">If</span> it rains, we'll cancel." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Contrast" %}</td>
+                        <td>although, though, whereas</td>
+                        <td><span class="code-highlight">{% translate "<span class=\"subordinating-highlight\">Although</span> it's expensive, it's worth it." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="conjunction-card">
+            <h3 class="correlative-highlight">{% translate "3. Correlative Conjunctions" %}</h3>
+            <p>{% translate "Pairs of conjunctions that work together to join elements" %}</p>
+
+            <h4>{% translate "Common Correlative Pairs:" %}</h4>
+            <ul class="styled-list">
+                <li>both...and</li>
+                <li>either...or</li>
+                <li>neither...nor</li>
+                <li>not only...but also</li>
+                <li>whether...or</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"correlative-highlight\">Both</span> my sister <span class=\"correlative-highlight\">and</span> my brother are doctors." %}</span></li>
+                <li><span class="code-highlight">{% translate "You must <span class=\"correlative-highlight\">either</span> study hard <span class=\"correlative-highlight\">or</span> fail the exam." %}</span></li>
+                <li><span class="code-highlight">{% translate "She is <span class=\"correlative-highlight\">not only</span> intelligent <span class=\"correlative-highlight\">but also</span> kind." %}</span></li>
+            </ul>
+
+            <div class="usage-note">
+                <h4>{% translate "Important Rules:" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Maintain parallel structure between the connected elements" %}</li>
+                    <li>{% translate "Subject-verb agreement follows the second element in 'or/nor' pairs" %}</li>
+                    <li>{% translate "Place the correlative conjunctions immediately before the elements being connected" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Common Errors and How to Avoid Them" %}</h2>
+        <div class="conjunction-card">
+            <h3>{% translate "1. Comma Splices" %}</h3>
+            <p>{% translate "Using a comma alone to join two independent clauses (a comma splice)" %}</p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Incorrect:</span> I like coffee, she prefers tea." %}</span></p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Correct:</span> I like coffee, <span class=\"coordinating-highlight\">but</span> she prefers tea." %}</span></p>
+
+            <h3>{% translate "2. Misplaced Correlatives" %}</h3>
+            <p>{% translate "Breaking the parallel structure in correlative conjunctions" %}</p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Incorrect:</span> She <span class=\"correlative-highlight\">not only</span> speaks French <span class=\"correlative-highlight\">but also</span> Spanish." %}</span></p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Correct:</span> She speaks <span class=\"correlative-highlight\">not only</span> French <span class=\"correlative-highlight\">but also</span> Spanish." %}</span></p>
+
+            <h3>{% translate "3. Overusing 'And'" %}</h3>
+            <p>{% translate "Stringing together too many ideas with 'and'" %}</p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Weak:</span> I woke up and I brushed my teeth and I had breakfast and I went to work." %}</span></p>
+            <p><span class="code-highlight">{% translate "<span class=\"term-highlight\">Better:</span> I woke up, brushed my teeth, had breakfast, and then went to work." %}</span></p>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Practice Tips" %}</h2>
+        <ul class="styled-list">
+            <li>{% translate "Analyze sentences in books/articles - identify conjunction types" %}</li>
+            <li>{% translate "Practice rewriting simple sentences into complex ones using conjunctions" %}</li>
+            <li>{% translate "Create flashcards for different conjunction types and their functions" %}</li>
+            <li>{% translate "Pay special attention to punctuation rules with different conjunctions" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'conjunction_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Conjunctions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

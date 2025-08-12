@@ -1,0 +1,328 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Comma - Separating Items in a List" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .comma-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .oxford-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .clarity-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .special-card {
+            background: rgba(243, 114, 44, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #f3722c;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Comma: Separating Lists" %}</span>
+        </nav>
+
+        <h1>{% translate "The Comma in List Separation" %}</h1>
+        <p>
+            {% translate "Commas serve as essential separators in lists, helping to clearly distinguish between multiple items while maintaining readability and preventing ambiguity." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Basic Rules for List Commas" %}</h3>
+            <p>{% translate "These fundamental rules govern comma usage in lists:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. The Oxford (Serial) Comma" %}</h4>
+                <p>{% translate "The comma before the final conjunction in a list is called the Oxford comma. Its usage varies by style:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Style" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Usage Note" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>With Oxford comma</td>
+                            <td>red<span class="comma-highlight">,</span> white<span class="comma-highlight">,</span> and blue</td>
+                            <td>Required in Chicago, APA, MLA styles</td>
+                        </tr>
+                        <tr>
+                            <td>Without Oxford comma</td>
+                            <td>red<span class="comma-highlight">,</span> white and blue</td>
+                            <td>Common in journalism (AP style)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Lists of Phrases and Clauses" %}</h4>
+                <p>{% translate "Commas separate longer list items for clarity:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">She enjoys hiking in the mountains<span class="comma-highlight">,</span> swimming in the ocean<span class="comma-highlight">,</span> and cycling through the countryside.</span></li>
+                    <li><span class="code-highlight">The report should include sales figures for Q1<span class="comma-highlight">,</span> marketing campaign results<span class="comma-highlight">,</span> and customer feedback analysis.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Complex List Items" %}</h4>
+                <p>{% translate "When list items contain internal commas, use semicolons as separators:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The conference attendees came from Paris<span class="comma-highlight">,</span> France<span class="oxford-highlight">;</span> London<span class="comma-highlight">,</span> England<span class="oxford-highlight">;</span> and Berlin<span class="comma-highlight">,</span> Germany.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "When the Oxford Comma is Essential" %}</h3>
+            <p>{% translate "These cases demonstrate why the Oxford comma matters for clarity:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Preventing Ambiguity" %}</h4>
+                <p>{% translate "Without the Oxford comma, some lists become confusing:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Ambiguous Without" %}</th>
+                            <th>{% translate "Clear With" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>I love my parents<span class="comma-highlight">,</span> Lady Gaga and Albert Einstein.</td>
+                            <td>I love my parents<span class="comma-highlight">,</span> Lady Gaga<span class="comma-highlight">,</span> and Albert Einstein.</td>
+                        </tr>
+                        <tr>
+                            <td>We invited the strippers<span class="comma-highlight">,</span> JFK and Stalin.</td>
+                            <td>We invited the strippers<span class="comma-highlight">,</span> JFK<span class="comma-highlight">,</span> and Stalin.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Legal and Technical Writing" %}</h4>
+                <p>{% translate "Precision is crucial in these contexts:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The contract covers employees in New York<span class="comma-highlight">,</span> California<span class="comma-highlight">,</span> and Texas.</span> (clear jurisdiction)</li>
+                    <li><span class="code-highlight">The software supports Windows 10<span class="comma-highlight">,</span> macOS 11<span class="comma-highlight">,</span> and Linux distributions.</span> (exact compatibility)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <p>{% translate "These situations require special attention with list commas:" %}</p>
+
+            <div class="special-card">
+                <h4>{% translate "1. Two-Item Lists" %}</h4>
+                <p>{% translate "Generally no comma needed for two items joined by 'and' or 'or':" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">bread and butter</span> (correct)</li>
+                    <li><span class="code-highlight">bread<span class="comma-highlight">,</span> and butter</span> (incorrect)</li>
+                </ul>
+                <p>{% translate "Exception: When the items are long or contain internal commas:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The study examined environmental impacts in urban areas<span class="comma-highlight">,</span> and socioeconomic factors in rural communities.</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "2. Lists Ending with 'etc.' or 'and so on'" %}</h4>
+                <p>{% translate "Place a comma before these terms when they conclude a list:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">Bring paper<span class="comma-highlight">,</span> pens<span class="comma-highlight">,</span> notebooks<span class="comma-highlight">,</span> etc.</span></li>
+                    <li><span class="code-highlight">The toolbox contained hammers<span class="comma-highlight">,</span> screwdrivers<span class="comma-highlight">,</span> wrenches<span class="comma-highlight">,</span> and so on.</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "3. Vertical Lists" %}</h4>
+                <p>{% translate "In vertical lists, commas are typically replaced by line breaks:" %}</p>
+                <ul class="styled-list">
+                    <li>Required materials:
+                        <ul class="styled-list">
+                            <li>Textbook</li>
+                            <li>Notebook</li>
+                            <li>Pens and pencils</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>{% translate "For complete sentences in vertical lists, use proper punctuation:" %}</p>
+                <ul class="styled-list">
+                    <li>Project goals:
+                        <ul class="styled-list">
+                            <li>Increase customer satisfaction by 20%<span class="comma-highlight">.</span></li>
+                            <li>Reduce production costs by 15%<span class="comma-highlight">.</span></li>
+                            <li>Expand to two new markets<span class="comma-highlight">.</span></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Common Errors to Avoid" %}</h3>
+            <p>{% translate "Be mindful of these frequent mistakes with list commas:" %}</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Error" %}</th>
+                        <th>{% translate "Correction" %}</th>
+                        <th>{% translate "Rule" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>apples, oranges and bananas</td>
+                        <td>apples<span class="comma-highlight">,</span> oranges<span class="comma-highlight">,</span> and bananas</td>
+                        <td>{% translate "Use Oxford comma for clarity in formal writing" %}</td>
+                    </tr>
+                    <tr>
+                        <td>red, white, and, blue</td>
+                        <td>red<span class="comma-highlight">,</span> white<span class="comma-highlight">,</span> and blue</td>
+                        <td>{% translate "No comma after conjunction" %}</td>
+                    </tr>
+                    <tr>
+                        <td>Paris France, London England and Berlin Germany</td>
+                        <td>Paris<span class="comma-highlight">,</span> France<span class="oxford-highlight">;</span> London<span class="comma-highlight">,</span> England<span class="oxford-highlight">;</span> and Berlin<span class="comma-highlight">,</span> Germany</td>
+                        <td>{% translate "Use semicolons when items contain commas" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

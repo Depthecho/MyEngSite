@@ -1,0 +1,264 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Examples of Tense Sequence" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .present-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .past-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .perfect-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .modal-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .example-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Examples of Tense Sequence" %}</span>
+        </nav>
+
+        <h1>{% translate "Tense Sequence in Indirect Speech" %}</h1>
+        <p>
+            {% translate "These examples demonstrate how verb tenses systematically change when converting direct speech to indirect speech, particularly when the reporting verb is in the past tense." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Comprehensive Tense Sequence Examples" %}</h3>
+            <p>{% translate "The following examples show complete tense transformations with explanations:" %}</p>
+
+            <div class="example-card">
+                <h4>{% translate "Present Simple → Past Simple" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">work</span> at a bank," he said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He said he <span class="past-highlight">worked</span> at a bank.</span></p>
+                <p><em>{% translate "Note: The present simple tense shifts to past simple in reported speech." %}</em></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Present Continuous → Past Continuous" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">am studying</span> English," she said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She said she <span class="past-highlight">was studying</span> English.</span></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Present Perfect → Past Perfect" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">have finished</span> my homework," they said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">They said they <span class="perfect-highlight">had finished</span> their homework.</span></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Past Simple → Past Perfect" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="past-highlight">saw</span> that movie," he said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He said he <span class="perfect-highlight">had seen</span> that movie.</span></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Future Simple → Conditional" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">will call</span> you," she promised.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She promised she <span class="past-highlight">would call</span> me.</span></p>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Modal Verb Transformations" %}</h3>
+            <p>{% translate "Modal verbs undergo specific changes in indirect speech:" %}</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Direct Speech" %}</th>
+                        <th>{% translate "Indirect Speech" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="modal-highlight">can</span></td>
+                        <td><span class="modal-highlight">could</span></td>
+                        <td><span class="code-highlight">"I <span class="modal-highlight">can</span> swim" → She said she <span class="modal-highlight">could</span> swim</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="modal-highlight">may</span></td>
+                        <td><span class="modal-highlight">might</span></td>
+                        <td><span class="code-highlight">"I <span class="modal-highlight">may</span> go" → He said he <span class="modal-highlight">might</span> go</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="modal-highlight">must</span></td>
+                        <td><span class="modal-highlight">had to</span></td>
+                        <td><span class="code-highlight">"I <span class="modal-highlight">must</span> leave" → She said she <span class="modal-highlight">had to</span> leave</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="modal-highlight">shall</span></td>
+                        <td><span class="modal-highlight">should</span></td>
+                        <td><span class="code-highlight">"I <span class="modal-highlight">shall</span> return" → He said he <span class="modal-highlight">should</span> return</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Mixed Tense Examples" %}</h3>
+            <p>{% translate "Real-life examples often contain multiple tense changes:" %}</p>
+
+            <div class="example-card">
+                <h4>{% translate "Complex Statement" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">have been</span> working here since I <span class="past-highlight">graduated</span>, and I <span class="present-highlight">will continue</span> until I <span class="present-highlight">find</span> a better job," he said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He said he <span class="perfect-highlight">had been</span> working there since he <span class="perfect-highlight">had graduated</span>, and he <span class="past-highlight">would continue</span> until he <span class="past-highlight">found</span> a better job.</span></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Question with Multiple Tenses" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"Why <span class="present-highlight">haven't</span> you <span class="present-highlight">finished</span> the work I <span class="past-highlight">gave</span> you yesterday?" she asked.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She asked why I <span class="perfect-highlight">hadn't finished</span> the work she <span class="perfect-highlight">had given</span> me the day before.</span></p>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <p>{% translate "Some situations don't follow the standard backshift rules:" %}</p>
+
+            <div class="example-card">
+                <h4>{% translate "General Truths" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"The sun <span class="present-highlight">rises</span> in the east," the teacher said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">The teacher said the sun <span class="present-highlight">rises</span> in the east.</span></p>
+                <p><em>{% translate "Note: General truths remain in present tense." %}</em></p>
+            </div>
+
+            <div class="example-card">
+                <h4>{% translate "Reporting Immediately" %}</h4>
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">am</span> hungry," he says.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He says he <span class="present-highlight">is</span> hungry.</span></p>
+                <p><em>{% translate "Note: No backshift when reporting verb is in present tense." %}</em></p>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

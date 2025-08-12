@@ -1,0 +1,340 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Ordinal Numerals: Usage with Articles and Prepositions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .article-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .preposition-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .article-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .preposition-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Ordinal Numerals" %}</span> &raquo;
+            <span>{% translate "Usage with Articles and Prepositions" %}</span>
+        </nav>
+
+        <h1>{% translate "Ordinal Numerals: Usage with Articles and Prepositions" %}</h1>
+        <p>
+            {% translate "Proper use of articles and prepositions with ordinal numerals is essential for precise communication. These grammatical elements help establish clear relationships between items in a sequence." %}
+        </p>
+
+        <div class="article-card">
+            <h3>{% translate "1. Article Usage with Ordinals" %}</h3>
+            <h4>{% translate "Definite Article 'the'" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Used in <span class=\"term-highlight\">99% of cases</span> with ordinals" %}</li>
+                <li>{% translate "Specifies exact position in a sequence" %}
+                    <p class="code-highlight">{% translate "She won <span class=\"article-highlight\">the</span> first prize." %}</p>
+                </li>
+                <li>{% translate "Required with superlatives" %}
+                    <p class="code-highlight">{% translate "This is <span class=\"article-highlight\">the</span> second largest city." %}</p>
+                </li>
+                <li>{% translate "Used in dates" %}
+                    <p class="code-highlight">{% translate "<span class=\"article-highlight\">the</span> fifteenth of March" %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Indefinite Article 'a/an'" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Used when referring to <span class=\"term-highlight\">another</span> item in sequence" %}
+                    <p class="code-highlight">{% translate "We need <span class=\"article-highlight\">a</span> third opinion." %}</p>
+                </li>
+                <li>{% translate "Indicates non-specific order" %}
+                    <p class="code-highlight">{% translate "He made <span class=\"article-highlight\">a</span> second attempt." %}</p>
+                </li>
+                <li>{% translate "Used in expressions of approximation" %}
+                    <p class="code-highlight">{% translate "This happened <span class=\"article-highlight\">a</span> fifth time." %}</p>
+                </li>
+            </ul>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Context" %}</th>
+                            <th>{% translate "Article" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Specific position" %}</td>
+                            <td>the</td>
+                            <td>the third chapter</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Another in sequence" %}</td>
+                            <td>a/an</td>
+                            <td>a third option</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Superlatives" %}</td>
+                            <td>the</td>
+                            <td>the second tallest</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Approximation" %}</td>
+                            <td>a/an</td>
+                            <td>a fifth time</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="preposition-card">
+            <h3>{% translate "2. Preposition Usage with Ordinals" %}</h3>
+            <h4>{% translate "Common Preposition Patterns" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Preposition" %}</th>
+                            <th>{% translate "Usage" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Notes" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>on</td>
+                            <td>{% translate "Floors, dates, surfaces" %}</td>
+                            <td>on the 5th floor<br>on the 3rd of May</td>
+                            <td>{% translate "Physical location" %}</td>
+                        </tr>
+                        <tr>
+                            <td>in</td>
+                            <td>{% translate "Centuries, periods" %}</td>
+                            <td>in the 21st century<br>in the first week</td>
+                            <td>{% translate "Time periods" %}</td>
+                        </tr>
+                        <tr>
+                            <td>of</td>
+                            <td>{% translate "Sequences, groups" %}</td>
+                            <td>the first of July<br>the third of his children</td>
+                            <td>{% translate "Partitive meaning" %}</td>
+                        </tr>
+                        <tr>
+                            <td>at</td>
+                            <td>{% translate "Specific points" %}</td>
+                            <td>at the second intersection</td>
+                            <td>{% translate "Precise locations" %}</td>
+                        </tr>
+                        <tr>
+                            <td>by</td>
+                            <td>{% translate "Deadlines" %}</td>
+                            <td>by the first deadline</td>
+                            <td>{% translate "Time limits" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Prepositional Phrases" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"preposition-highlight\">For the first/second time</span>" %}
+                    <p class="code-highlight">{% translate "I visited Paris <span class=\"example-highlight\">for the first time</span> last year." %}</p>
+                </li>
+                <li>{% translate "<span class=\"preposition-highlight\">In the first/second place</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">In the first place</span>, we should consider costs." %}</p>
+                </li>
+                <li>{% translate "<span class=\"preposition-highlight\">On the one hand... on the other hand</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">On the one hand</span> it's cheap, <span class=\"example-highlight\">on the other hand</span> it's low quality." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "3. Common Mistakes and Special Cases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Omitting 'the' with ordinals</span>" %}
+                    <p class="code-highlight">{% translate "Incorrect: He won first prize.<br>Correct: He won <span class=\"article-highlight\">the</span> first prize." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Confusing 'in' and 'on' with dates</span>" %}
+                    <p class="code-highlight">{% translate "Incorrect: in the 5th of June<br>Correct: <span class=\"preposition-highlight\">on</span> the 5th of June" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Misusing articles with proper nouns</span>" %}
+                    <p class="code-highlight">{% translate "Incorrect: the First Avenue<br>Correct: First Avenue" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Special cases without articles</span>" %}
+                    <p class="code-highlight">{% translate "He became <span class=\"article-highlight\">the</span> first president. (position)<br>He was elected president <span class=\"example-highlight\">first</span>. (adverbial)" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,317 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Reading Years and Dates" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .year-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .date-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Usage of Numerals in Specific Contexts" %}</span> &raquo;
+            <span>{% translate "Reading Years and Dates" %}</span>
+        </nav>
+
+        <h1>{% translate "Reading Years and Dates in English" %}</h1>
+        <p>
+            {% translate "Understanding how to properly read years and dates is essential for clear communication in English. This guide covers all the conventions and special cases you need to know." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Reading Years" %}</h3>
+            <p>
+                {% translate "English has specific patterns for reading years that vary depending on the century and digit configuration." %}
+            </p>
+
+            <h4>{% translate "Four-Digit Years" %}</h4>
+            <p>{% translate "Most four-digit years are read as two two-digit numbers:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">1999</span>: <span class="example-highlight">nineteen ninety-nine</span></li>
+                <li><span class="code-highlight">1845</span>: <span class="example-highlight">eighteen forty-five</span></li>
+                <li><span class="code-highlight">1066</span>: <span class="example-highlight">ten sixty-six</span> (Battle of Hastings)</li>
+            </ul>
+
+            <h4>{% translate "21st Century Years" %}</h4>
+            <p>{% translate "Years from 2000-2099 have two common reading patterns:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">2005</span>: <span class="example-highlight">two thousand five</span> (more common) or <span class="example-highlight">twenty oh-five</span></li>
+                <li><span class="code-highlight">2023</span>: <span class="example-highlight">two thousand twenty-three</span> or <span class="example-highlight">twenty twenty-three</span></li>
+            </ul>
+
+            <h4>{% translate "Special Year Cases" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Years ending in 00:" %} <span class="code-highlight">1900</span> - <span class="example-highlight">nineteen hundred</span></li>
+                <li>{% translate "The year 2000:" %} <span class="code-highlight">2000</span> - <span class="example-highlight">two thousand</span> (never "twenty hundred")</li>
+                <li>{% translate "Years before 1000:" %} <span class="code-highlight">876</span> - <span class="example-highlight">eight seventy-six</span> or <span class="example-highlight">eight hundred seventy-six</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Reading Full Dates" %}</h3>
+            <p>
+                {% translate "Date formats differ between American and British English, affecting how they're read aloud." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Format" %}</th>
+                            <th>{% translate "Written" %}</th>
+                            <th>{% translate "Spoken" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "American English (Month-Day-Year)" %}</td>
+                            <td><span class="code-highlight">March 10, 2024</span></td>
+                            <td>{% translate "March <span class=\"term-highlight\">tenth</span>, twenty twenty-four" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "British English (Day-Month-Year)" %}</td>
+                            <td><span class="code-highlight">10 March 2024</span></td>
+                            <td>{% translate "<span class=\"term-highlight\">the tenth of</span> March twenty twenty-four" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Ordinal Numbers in Dates" %}</h4>
+            <p>{% translate "Days are always read as ordinal numbers, even when written as cardinals:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">May 1</span> → <span class="example-highlight">May first</span> (not "May one")</li>
+                <li><span class="code-highlight">July 4</span> → <span class="example-highlight">July fourth</span> (U.S. Independence Day)</li>
+                <li><span class="code-highlight">November 11</span> → <span class="example-highlight">November eleventh</span> (Veterans Day)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Special Date Formats" %}</h3>
+
+            <h4>{% translate "Decades" %}</h4>
+            <p>{% translate "Decades are typically referred to in these patterns:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">1990s</span> → <span class="example-highlight">the nineties</span> or <span class="example-highlight">the nineteen nineties</span></li>
+                <li><span class="code-highlight">2000s</span> → <span class="example-highlight">the two thousands</span></li>
+                <li><span class="code-highlight">2010s</span> → <span class="example-highlight">the twenty-tens</span></li>
+            </ul>
+
+            <h4>{% translate "Centuries" %}</h4>
+            <p>{% translate "Centuries are ordinal numbers one higher than the year's first digits:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">1800-1899</span> → <span class="example-highlight">the nineteenth century</span></li>
+                <li><span class="code-highlight">2000-2099</span> → <span class="example-highlight">the twenty-first century</span></li>
+            </ul>
+
+            <h4>{% translate "Historical Events" %}</h4>
+            <p>{% translate "Some historical events have special names:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">9/11</span> → <span class="example-highlight">nine eleven</span> (September 11 attacks)</li>
+                <li><span class="code-highlight">7/7</span> → <span class="example-highlight">seven seven</span> (London bombings)</li>
+            </ul>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Important Notes" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Never use \"and\" when reading years: <span class=\"code-highlight\">1995</span> is <span class=\"example-highlight\">nineteen ninety-five</span>, not \"nineteen and ninety-five\"" %}</li>
+                <li>{% translate "For years 2001-2009, \"two thousand\" is more common than \"twenty oh\"" %}</li>
+                <li>{% translate "In formal writing, always write dates with the year: <span class=\"code-highlight\">January 1, 2023</span> (not just \"January 1\")" %}</li>
+                <li>{% translate "When writing dates numerically, remember the format differences: <span class=\"code-highlight\">01/02/2023</span> is January 2 in US, February 1 in UK" %}</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Common Date Reading Patterns" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Type" %}</th>
+                        <th>{% translate "Written Form" %}</th>
+                        <th>{% translate "Spoken Form" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Full Date (US)" %}</td>
+                        <td><span class="code-highlight">December 25, 2023</span></td>
+                        <td><span class="example-highlight">December twenty-fifth, twenty twenty-three</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Full Date (UK)" %}</td>
+                        <td><span class="code-highlight">25 December 2023</span></td>
+                        <td><span class="example-highlight">the twenty-fifth of December twenty twenty-three</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Year Only" %}</td>
+                        <td><span class="code-highlight">1776</span></td>
+                        <td><span class="example-highlight">seventeen seventy-six</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Decade" %}</td>
+                        <td><span class="code-highlight">1980s</span></td>
+                        <td><span class="example-highlight">the nineteen eighties</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

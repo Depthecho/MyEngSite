@@ -1,0 +1,212 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Demonstrative Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Types of Pronouns" %}</span> &raquo;
+            <span>{% translate "Demonstrative Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronouns: Demonstrative Pronouns" %}</h1>
+        <p>
+            {% translate "Demonstrative pronouns are used to point to or identify a noun or a group of nouns. They indicate the distance of the item(s) from the speaker, in terms of both physical and temporal distance." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. The Four Demonstrative Pronouns" %}</h3>
+        <p>
+            {% translate "There are four main demonstrative pronouns, which are categorized by number (singular or plural) and distance (near or far)." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Number" %}</th>
+                        <th>{% translate "Near to Speaker" %}</th>
+                        <th>{% translate "Far from Speaker" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "Singular" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "this" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "that" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "Plural" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "these" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "those" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "These pronouns can refer to both tangible objects and abstract concepts." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Examples of Usage" %}</h3>
+        <p>
+            {% translate "Demonstrative pronouns stand alone in a sentence, replacing a noun. They do not modify a noun, which would make them demonstrative adjectives." %}
+        </p>
+        <ul class="styled-list">
+            <li><strong>{% translate "This" %}</strong>: {% translate "used for a singular noun that is near." %}<br>{% translate "<span class=\"example-highlight\">This</span> is my favorite song. (I'm listening to it now.)" %}</li>
+            <li><strong>{% translate "That" %}</strong>: {% translate "used for a singular noun that is far." %}<br>{% translate "<span class=\"example-highlight\">That</span> was a difficult year. (referring to a time in the past.)" %}</li>
+            <li><strong>{% translate "These" %}</strong>: {% translate "used for plural nouns that are near." %}<br>{% translate "<span class=\"example-highlight\">These</span> are the pictures from our trip." %}</li>
+            <li><strong>{% translate "Those" %}</strong>: {% translate "used for plural nouns that are far." %}<br>{% translate "<span class=\"example-highlight\">Those</span> are the stars I was telling you about." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Demonstrative Pronouns vs. Adjectives" %}</h3>
+        <p>
+            {% translate "It's important to distinguish between demonstrative pronouns and demonstrative adjectives. The word is the same, but its function in the sentence is different." %}
+        </p>
+        <ul class="styled-list">
+            <li><strong>{% translate "Pronoun" %}</strong>: {% translate "replaces a noun. The word stands alone." %}<br>{% translate "<span class=\"term-highlight\">This</span> is my car." %}</li>
+            <li><strong>{% translate "Adjective" %}</strong>: {% translate "modifies a noun. The word is followed by a noun." %}<br>{% translate "<span class=\"term-highlight\">This</span> car is mine." %}</li>
+        </ul>
+        <p>
+            {% translate "In the first example, <span class=\"code-highlight\">This</span> is a pronoun standing in for the car. In the second, <span class=\"code-highlight\">This</span> is an adjective modifying the noun <span class=\"code-highlight\">car</span>." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

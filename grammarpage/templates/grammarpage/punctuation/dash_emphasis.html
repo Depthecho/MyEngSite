@@ -1,0 +1,259 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Dash - Emphasis and Interruption" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .dash-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Dash: Emphasis and Interruption" %}</span>
+        </nav>
+
+        <h1>{% translate "The Dash: Usage and Rules" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">dash</span> <span class=\"dash-highlight\">—</span> is a versatile punctuation mark used for emphasis, interruption, or to set off parenthetical information. There are two main types: the <span class=\"term-highlight\">em dash</span> (—) and the <span class=\"term-highlight\">en dash</span> (–), with the em dash being most common for these purposes." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "1. Primary Uses of the Em Dash" %}</h3>
+            <h4>{% translate "A. Emphasis and Dramatic Pause" %}</h4>
+            <p>{% translate "Dashes create stronger breaks than commas, adding dramatic emphasis to the enclosed text." %}</p>
+
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "After years of waiting" %} <span class="dash-highlight">—</span> {% translate "at long last" %} <span class="dash-highlight">—</span> {% translate "the day had arrived." %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "There was only one thing left to do" %} <span class="dash-highlight">—</span> {% translate "run!" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Interruptions and Abrupt Changes" %}</h4>
+            <p>{% translate "Dashes can indicate an interruption in thought or speech." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "\"I was going to say" %} <span class="dash-highlight">—</span> {% translate "oh never mind.\"" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "\"If you would just let me fin" %} <span class="dash-highlight">—</span> {% translate "\" \"No, I won't!\"" %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "2. Parenthetical and Additional Information" %}</h3>
+            <h4>{% translate "A. Parenthetical Statements" %}</h4>
+            <p>{% translate "Dashes can set off parenthetical information with more emphasis than commas or parentheses." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "The ingredients" %} <span class="dash-highlight">—</span> {% translate "flour, sugar, and eggs" %} <span class="dash-highlight">—</span> {% translate "were all on the counter." %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Appositives with Extra Emphasis" %}</h4>
+            <p>{% translate "Dashes highlight appositives (renaming phrases) more dramatically than commas." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "Three countries" %} <span class="dash-highlight">—</span> {% translate "France, Spain, and Italy" %} <span class="dash-highlight">—</span> {% translate "border the Mediterranean." %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Dash vs. Other Punctuation" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Punctuation" %}</th>
+                    <th>{% translate "Effect" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Comma" %}</td>
+                    <td>{% translate "Standard separation" %}</td>
+                    <td><span class="code-highlight">{% translate "The book, which was heavy, fell." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Parentheses" %}</td>
+                    <td>{% translate "Subdued, supplementary info" %}</td>
+                    <td><span class="code-highlight">{% translate "The book (a first edition) fell." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Dash" %}</td>
+                    <td>{% translate "Dramatic, emphasized info" %}</td>
+                    <td><span class="code-highlight">{% translate "The book" %} <span class="dash-highlight">—</span> {% translate "a priceless antique" %} <span class="dash-highlight">—</span> {% translate "fell." %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "3. Special Cases and Rules" %}</h3>
+            <h4>{% translate "A. En Dash Usage" %}</h4>
+            <p>{% translate "The shorter en dash (–) has specific uses:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Number ranges:" %} <span class="code-highlight">{% translate "pages 10" %} <span class="dash-highlight">–</span> {% translate "15" %}</span></li>
+                <li>{% translate "Connections between words:" %} <span class="code-highlight">{% translate "the London" %} <span class="dash-highlight">–</span> {% translate "Paris flight" %}</span></li>
+                <li>{% translate "Scores and conflicts:" %} <span class="code-highlight">{% translate "The Lakers won 98" %} <span class="dash-highlight">–</span> {% translate "95" %}</span></li>
+            </ul>
+
+            <h4>{% translate "B. Spacing Rules" %}</h4>
+            <p>{% translate "Style guides differ on spacing around dashes:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "AP Style:" %} {% translate "space before and after em dash" %}</li>
+                <li>{% translate "Chicago Manual:" %} {% translate "no spaces around em dash" %}</li>
+                <li>{% translate "En dashes:" %} {% translate "typically have spaces around them" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Overuse:</span> Too many dashes can make writing seem choppy" %}
+                <p class="code-highlight">{% translate "Poor: The day" %} <span class="dash-highlight">—</span> {% translate "bright and sunny" %} <span class="dash-highlight">—</span> {% translate "was perfect" %} <span class="dash-highlight">—</span> {% translate "or so we thought" %} <span class="dash-highlight">—</span> {% translate "for the picnic." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Confusing dashes:</span> Don't mix up hyphens (-), en dashes (–), and em dashes (—)" %}
+                <p class="code-highlight">{% translate "Incorrect: 1990-2000 (should be en dash)" %}</p>
+                <p class="code-highlight">{% translate "Incorrect: The answer-no-was unexpected (should be em dashes)" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Inconsistent usage:</span> Choose one style and stick with it" %}
+                <p class="code-highlight">{% translate "Inconsistent: The results" %} <span class="dash-highlight">—</span> {% translate "surprising to all" %} <span class="dash-highlight">—</span> {% translate "were announced (but later uses parentheses for similar constructions)" %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

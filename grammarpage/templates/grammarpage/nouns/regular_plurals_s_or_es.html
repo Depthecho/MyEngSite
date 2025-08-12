@@ -1,0 +1,204 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Regular Plurals (-s/-es)" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Regular Plurals (-s/-es)" %}</span>
+        </nav>
+
+        <h1>{% translate "Regular Plurals (-s/-es)" %}</h1>
+        <p>
+            {% translate "The majority of English nouns form their plural by adding either <span class=\"term-highlight\">-s</span> or <span class=\"term-highlight\">-es</span> to the end of the singular form. These are known as regular plurals." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Adding -s" %}</h3>
+        <p>
+            {% translate "For most nouns, you simply add an <span class=\"code-highlight\">-s</span> to the end of the singular form to make it plural." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "cat" %}</td><td>{% translate "cats" %}</td><td>{% translate "I saw three <span class=\"code-highlight\">cats</span> in the garden." %}</td></tr>
+                    <tr><td>{% translate "house" %}</td><td>{% translate "houses" %}</td><td>{% translate "There are many new <span class=\"code-highlight\">houses</span> in the city." %}</td></tr>
+                    <tr><td>{% translate "car" %}</td><td>{% translate "cars" %}</td><td>{% translate "He has two <span class=\"code-highlight\">cars</span>." %}</td></tr>
+                    <tr><td>{% translate "table" %}</td><td>{% translate "tables" %}</td><td>{% translate "The restaurant has five <span class=\"code-highlight\">tables</span>." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Adding -es" %}</h3>
+        <p>
+            {% translate "You add <span class=\"code-highlight\">-es</span> to the singular form of a noun that ends in <span class=\"code-highlight\">-s, -ss, -sh, -ch, -x,</span> or <span class=\"code-highlight\">-z</span>. This is done to make the plural form easier to pronounce." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Ending" %}</th>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "-s" %}</td><td>{% translate "bus" %}</td><td>{% translate "buses" %}</td><td>{% translate "The city has ten <span class=\"code-highlight\">buses</span>." %}</td></tr>
+                    <tr><td>{% translate "-ss" %}</td><td>{% translate "glass" %}</td><td>{% translate "glasses" %}</td><td>{% translate "I bought two <span class=\"code-highlight\">glasses</span> for the wine." %}</td></tr>
+                    <tr><td>{% translate "-sh" %}</td><td>{% translate "dish" %}</td><td>{% translate "dishes" %}</td><td>{% translate "Please wash the <span class=\"code-highlight\">dishes</span>." %}</td></tr>
+                    <tr><td>{% translate "-ch" %}</td><td>{% translate "church" %}</td><td>{% translate "churches" %}</td><td>{% translate "There are many beautiful <span class=\"code-highlight\">churches</span> here." %}</td></tr>
+                    <tr><td>{% translate "-x" %}</td><td>{% translate "box" %}</td><td>{% translate "boxes" %}</td><td>{% translate "He carried three heavy <span class=\"code-highlight\">boxes</span>." %}</td></tr>
+                    <tr><td>{% translate "-z" %}</td><td>{% translate "quiz" %}</td><td>{% translate "quizzes" %}</td><td>{% translate "The teacher gave us two short <span class=\"code-highlight\">quizzes</span>." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

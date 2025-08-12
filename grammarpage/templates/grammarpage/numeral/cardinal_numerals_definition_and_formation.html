@@ -1,0 +1,398 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Cardinal Numerals - Definition and Formation" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .number-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .number-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Cardinal Numerals" %}</span> &raquo;
+            <span>{% translate "Definition and Formation" %}</span>
+        </nav>
+
+        <h1>{% translate "Cardinal Numerals: Definition and Formation" %}</h1>
+        <p>
+            {% translate "Cardinal numerals (also known as cardinal numbers) are words that represent specific quantities. They answer the question '<span class=\"term-highlight\">how many?</span>' and are fundamental for counting, measuring, and quantifying in English." %}
+        </p>
+
+        <div class="number-card">
+            <h3>{% translate "Key Characteristics" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Represent exact quantities (one, two, three)" %}</li>
+                <li>{% translate "Used for counting objects, people, or abstract concepts" %}</li>
+                <li>{% translate "Form the basis for mathematical operations" %}</li>
+                <li>{% translate "Can function as determiners or pronouns" %}</li>
+                <li>{% translate "Distinct from ordinal numbers (first, second, third)" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Basic Number Formation" %}</h3>
+        <p>{% translate "English cardinal numbers follow specific patterns that make them relatively easy to learn, though there are some irregularities." %}</p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Range" %}</th>
+                        <th>{% translate "Pattern" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                        <th>{% translate "Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0-12</td>
+                        <td>{% translate "Unique words" %}</td>
+                        <td><span class="code-highlight">zero, one, five, twelve</span></td>
+                        <td>{% translate "Must be memorized" %}</td>
+                    </tr>
+                    <tr>
+                        <td>13-19</td>
+                        <td>{% translate "Base + <span class=\"code-highlight\">-teen</span>" %}</td>
+                        <td><span class="code-highlight">thir<span class="term-highlight">teen</span>, fifteen, nine<span class="term-highlight">teen</span></span></td>
+                        <td>{% translate "Note: thirteen (not threeteen)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>20-90 (tens)</td>
+                        <td>{% translate "Base + <span class=\"code-highlight\">-ty</span>" %}</td>
+                        <td><span class="code-highlight">twenty, fifty, ninety</span></td>
+                        <td>{% translate "Note: forty (not fourty)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>21-99</td>
+                        <td>{% translate "Tens + hyphen + unit" %}</td>
+                        <td><span class="code-highlight">twenty-one, sixty-five, ninety-nine</span></td>
+                        <td>{% translate "Hyphen required" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="special-note">
+            <h4>{% translate "Pronunciation Tips" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">-teen</span> numbers have stress on the last syllable: thir<span class=\"example-highlight\">TEEN</span>" %}</li>
+                <li>{% translate "Tens numbers have stress on the first syllable: <span class=\"example-highlight\">TWEN</span>ty" %}</li>
+                <li>{% translate "In compound numbers (21-99), both parts are stressed: <span class=\"example-highlight\">TWEN</span>ty-<span class=\"example-highlight\">ONE</span>" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Large Number Formation" %}</h3>
+        <p>{% translate "English uses specific terms for large numbers, with some differences between American and British English." %}</p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Number" %}</th>
+                        <th>{% translate "American English" %}</th>
+                        <th>{% translate "British English" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>100</td>
+                        <td>one hundred</td>
+                        <td>one hundred</td>
+                    </tr>
+                    <tr>
+                        <td>1,000</td>
+                        <td>one thousand</td>
+                        <td>one thousand</td>
+                    </tr>
+                    <tr>
+                        <td>1,000,000</td>
+                        <td>one million</td>
+                        <td>one million</td>
+                    </tr>
+                    <tr>
+                        <td>1,000,000,000</td>
+                        <td>one billion</td>
+                        <td>one thousand million</td>
+                    </tr>
+                    <tr>
+                        <td>1,000,000,000,000</td>
+                        <td>one trillion</td>
+                        <td>one billion</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="number-card">
+            <h4>{% translate "Forming Large Numbers" %}</h4>
+            <p>{% translate "When writing or saying large numbers:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Start with the largest place value" %}</li>
+                <li>{% translate "Use commas to separate thousands, millions, etc." %}</li>
+                <li>{% translate "Use 'and' before the last two digits in British English" %}</li>
+                <li>{% translate "Don't use 'and' in American English except for decimals" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">125</span>: {% translate "one hundred twenty-five (US) / one hundred <span class=\"term-highlight\">and</span> twenty-five (UK)" %}</li>
+                <li><span class="code-highlight">3,450</span>: {% translate "three thousand, four hundred fifty (US) / three thousand, four hundred <span class=\"term-highlight\">and</span> fifty (UK)" %}</li>
+                <li><span class="code-highlight">2,000,307</span>: {% translate "two million, three hundred seven (US) / two million, three hundred <span class=\"term-highlight\">and</span> seven (UK)" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Special Cases and Exceptions" %}</h3>
+        <div class="number-card">
+            <h4>{% translate "Irregular Forms" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"number-highlight\">0</span>: zero, nought (UK), oh (in phone numbers)" %}</li>
+                <li>{% translate "<span class=\"number-highlight\">11, 12</span>: eleven, twelve (not oneteen, twoteen)" %}</li>
+                <li>{% translate "<span class=\"number-highlight\">13, 15</span>: thirteen, fifteen (not threeteen, fiveteen)" %}</li>
+                <li>{% translate "<span class=\"number-highlight\">20, 30, 40, 50</span>: twenty, thirty, forty, fifty" %}</li>
+            </ul>
+        </div>
+
+        <div class="number-card">
+            <h4>{% translate "Collective Numerals" %}</h4>
+            <p>{% translate "Some numbers have special forms when counting specific items:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"code-highlight\">a pair of</span> (for two items usually used together)" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">a dozen</span> (12)" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">a score</span> (20 - archaic)" %}</li>
+                <li>{% translate "<span class=\"code-highlight\">a gross</span> (144)" %}</li>
+            </ul>
+        </div>
+
+        <div class="special-note">
+            <h4>{% translate "Common Mistakes to Avoid" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Using plural forms incorrectly: <span class=\"example-highlight\">three hundred</span> (not three hundreds)" %}</li>
+                <li>{% translate "Forgetting hyphens in compound numbers: <span class=\"example-highlight\">twenty-one</span> (not twenty one)" %}</li>
+                <li>{% translate "Mixing American and British conventions in the same text" %}</li>
+                <li>{% translate "Using 'and' incorrectly in American English: <span class=\"example-highlight\">one hundred five</span> (not one hundred and five)" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Practical Usage Examples" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Context" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Counting objects" %}</td>
+                        <td><span class="code-highlight">There are twenty-four students in the class.</span></td>
+                        <td>{% translate "Hyphen required" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Age" %}</td>
+                        <td><span class="code-highlight">She is sixteen (years old).</span></td>
+                        <td>{% translate "\"Years old\" is optional" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Temperature" %}</td>
+                        <td><span class="code-highlight">It's minus five degrees.</span></td>
+                        <td>{% translate "Use \"minus\" for negative" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Money" %}</td>
+                        <td><span class="code-highlight">$4.50 - four dollars and fifty cents</span></td>
+                        <td>{% translate "\"And\" used before cents" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Phone numbers" %}</td>
+                        <td><span class="code-highlight">555-0198 - five five five, oh one nine eight</span></td>
+                        <td>{% translate "Digits read individually" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

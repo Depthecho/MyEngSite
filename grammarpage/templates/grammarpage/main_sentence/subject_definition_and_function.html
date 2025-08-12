@@ -1,0 +1,315 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Definition and Function of the Subject" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #b388ff;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .subject-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .predicate-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'main_sentence_part_page' %}">{% translate "Main Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "Definition and Function of the Subject" %}</span>
+        </nav>
+
+        <h1>{% translate "The Subject in English Grammar" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">subject</span> is the essential core of a sentence that indicates what the sentence is about - the person, thing, or concept that performs the action or is being described." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "Core Definition" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="subject-highlight">[Subject]</span> + <span class="predicate-highlight">[Predicate]</span>
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Typically a noun, pronoun, or noun phrase" %}</li>
+                <li>{% translate "Answers the questions <span class=\"code-highlight\">who?</span> or <span class=\"code-highlight\">what?</span>" %}</li>
+                <li>{% translate "Determines verb agreement in number and person" %}</li>
+                <li>{% translate "Usually precedes the verb in declarative sentences" %}</li>
+                <li>{% translate "Can be simple (single word) or complete (including modifiers)" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">Birds</span> <span class=\"predicate-highlight\">fly</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The old oak tree</span> <span class=\"predicate-highlight\">stood tall</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">She</span> <span class=\"predicate-highlight\">is reading a book</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "Primary Functions" %}</h2>
+
+            <h3>{% translate "1. Agent of Action" %}</h3>
+            <p>{% translate "The doer/performer in active voice constructions:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The chef</span> <span class=\"predicate-highlight\">prepared the meal</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">Rain</span> <span class=\"predicate-highlight\">fell all day</span>." %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Theme/Experiencer" %}</h3>
+            <p>{% translate "The entity affected by or experiencing the action:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The window</span> <span class=\"predicate-highlight\">was broken</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">I</span> <span class=\"predicate-highlight\">heard a strange noise</span>." %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Subject of Description" %}</h3>
+            <p>{% translate "The entity being described or identified:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">This book</span> <span class=\"predicate-highlight\">is fascinating</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">She</span> <span class=\"predicate-highlight\">became a doctor</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Grammatical Properties" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Property" %}</th>
+                    <th>{% translate "Description" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Number Agreement" %}</td>
+                    <td>{% translate "Determines verb form (singular/plural)" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"subject-highlight\">He runs</span>" %}</span> vs <span class="code-highlight">{% translate "<span class=\"subject-highlight\">They run</span>" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Case" %}</td>
+                    <td>{% translate "Nominative case for pronouns" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"subject-highlight\">I</span> went" %}</span> vs <span class="code-highlight">{% translate "He saw <span class=\"subject-highlight\">me</span>" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Position" %}</td>
+                    <td>{% translate "Typically precedes the verb in statements" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"subject-highlight\">The sun</span> rises" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Omission" %}</td>
+                    <td>{% translate "Optional in imperative sentences" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"subject-highlight\">(You)</span> Sit down!" %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Special Cases" %}</h2>
+        <div class="structure-card">
+            <h3>{% translate "1. Dummy Subjects" %}</h3>
+            <p>{% translate "Existential and weather expressions with 'it' or 'there':" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">It</span> is raining." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"subject-highlight\">There</span> are many options." %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Inverted Subjects" %}</h3>
+            <p>{% translate "Subjects following verbs in questions or special constructions:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Where <span class=\"subject-highlight\">are you</span>?" %}</span></li>
+                <li><span class="code-highlight">{% translate "Never have <span class=\"subject-highlight\">I</span> seen such beauty." %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Complex Subjects" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Gerund subjects:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"subject-highlight\">Swimming</span> is good exercise." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Infinitive subjects:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"subject-highlight\">To err</span> is human." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Clause subjects:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"subject-highlight\">What you say</span> matters." %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "4. Common Errors" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Subject-verb disagreement:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: The list of items <span style=\"color:red\">are</span> long.<br>Right: The list of items <span class=\"predicate-highlight\">is</span> long." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Case errors:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: <span style=\"color:red\">Me</span> and John went.<br>Right: <span class=\"subject-highlight\">John and I</span> went." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'main_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Main Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

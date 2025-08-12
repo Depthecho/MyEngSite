@@ -1,0 +1,339 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Expressing Time" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .time-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .format-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .time-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Usage of Numerals in Specific Contexts" %}</span> &raquo;
+            <span>{% translate "Expressing Time" %}</span>
+        </nav>
+
+        <h1>{% translate "Expressing Time in English" %}</h1>
+        <p>
+            {% translate "Mastering time expressions is essential for daily communication. This guide covers all methods of telling time, including special cases and regional variations." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Traditional 'Past/To' Method (Analog Time)" %}</h3>
+            <p>
+                {% translate "This conversational method divides the hour into halves, using 'past' for the first half and 'to' for the second half." %}
+            </p>
+
+            <h4>{% translate "First Half-Hour (00-30 minutes)" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">5:10</span>: <span class="example-highlight">ten past five</span></li>
+                <li><span class="code-highlight">2:15</span>: <span class="example-highlight">a quarter past two</span></li>
+                <li><span class="code-highlight">7:30</span>: <span class="example-highlight">half past seven</span></li>
+            </ul>
+
+            <h4>{% translate "Second Half-Hour (31-59 minutes)" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">5:40</span>: <span class="example-highlight">twenty to six</span></li>
+                <li><span class="code-highlight">3:45</span>: <span class="example-highlight">a quarter to four</span></li>
+                <li><span class="code-highlight">8:55</span>: <span class="example-highlight">five to nine</span></li>
+            </ul>
+
+            <h4>{% translate "Special Time Expressions" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">On the hour:</span> <span class="code-highlight">9:00</span> → <span class="example-highlight">nine o'clock</span></li>
+                <li><span class="term-highlight">15 minutes:</span> <span class="example-highlight">a quarter past/to</span></li>
+                <li><span class="term-highlight">30 minutes:</span> <span class="example-highlight">half past</span> (never "half to")</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Digital Time Method" %}</h3>
+            <p>
+                {% translate "This straightforward method is used in formal contexts, schedules, and digital displays." %}
+            </p>
+
+            <h4>{% translate "Basic Digital Reading" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">6:25</span>: <span class="example-highlight">six twenty-five</span></li>
+                <li><span class="code-highlight">10:05</span>: <span class="example-highlight">ten oh-five</span></li>
+                <li><span class="code-highlight">12:00</span>: <span class="example-highlight">twelve hundred</span> (military time)</li>
+            </ul>
+
+            <h4>{% translate "24-Hour Clock (Military Time)" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">13:00</span>: <span class="example-highlight">thirteen hundred</span> (1 PM)</li>
+                <li><span class="code-highlight">17:45</span>: <span class="example-highlight">seventeen forty-five</span> (5:45 PM)</li>
+                <li><span class="code-highlight">00:30</span>: <span class="example-highlight">zero zero thirty</span> or <span class="example-highlight">twelve thirty AM</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. AM/PM Time Designations" %}</h3>
+            <p>
+                {% translate "These Latin abbreviations help distinguish morning from afternoon/evening times." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Notation" %}</th>
+                            <th>{% translate "Meaning" %}</th>
+                            <th>{% translate "Examples" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code-highlight">AM</span></td>
+                            <td>{% translate "Ante meridiem (before noon)" %}</td>
+                            <td><span class="example-highlight">8:00 AM - eight in the morning</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">PM</span></td>
+                            <td>{% translate "Post meridiem (after noon)" %}</td>
+                            <td><span class="example-highlight">8:00 PM - eight in the evening</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">12:00 PM</span></td>
+                            <td>{% translate "Noon (midday)" %}</td>
+                            <td><span class="example-highlight">twelve noon</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">12:00 AM</span></td>
+                            <td>{% translate "Midnight" %}</td>
+                            <td><span class="example-highlight">twelve midnight</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="time-card">
+            <h3>{% translate "4. Special Time Expressions" %}</h3>
+
+            <h4>{% translate "Approximate Times" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">About/around:</span> <span class="example-highlight">about seven o'clock</span></li>
+                <li><span class="term-highlight">Just after/before:</span> <span class="example-highlight">just after nine</span></li>
+                <li><span class="term-highlight">Almost/nearly:</span> <span class="example-highlight">almost ten thirty</span></li>
+            </ul>
+
+            <h4>{% translate "Time-Related Phrases" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Sharp:</span> <span class="example-highlight">at six o'clock sharp</span></li>
+                <li><span class="term-highlight">On the dot:</span> <span class="example-highlight">at seven on the dot</span></li>
+                <li><span class="term-highlight">In the morning/afternoon/evening:</span> <span class="example-highlight">at 8 in the morning</span></li>
+            </ul>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Important Notes About Time Expressions" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "In formal writing, always use figures with <span class=\"code-highlight\">AM/PM</span>: <span class=\"example-highlight\">7:00 PM</span> (not \"seven p.m.\")" %}</li>
+                <li>{% translate "Use <span class=\"code-highlight\">o'clock</span> only with exact hours: <span class=\"example-highlight\">3 o'clock</span> (not \"3:15 o'clock\")" %}</li>
+                <li>{% translate "British English sometimes uses <span class=\"code-highlight\">a.m.</span> and <span class=\"code-highlight\">p.m.</span> with periods" %}</li>
+                <li>{% translate "For 12:00, specify <span class=\"code-highlight\">noon</span> or <span class=\"code-highlight\">midnight</span> to avoid confusion" %}</li>
+                <li>{% translate "In the 24-hour system, no AM/PM is needed: <span class=\"code-highlight\">14:00</span> (not \"14:00 PM\")" %}</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Time Expression Comparison" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Time" %}</th>
+                        <th>{% translate "Traditional" %}</th>
+                        <th>{% translate "Digital" %}</th>
+                        <th>{% translate "24-Hour" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">8:15</span></td>
+                        <td><span class="example-highlight">a quarter past eight</span></td>
+                        <td><span class="example-highlight">eight fifteen</span></td>
+                        <td><span class="example-highlight">08:15</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">14:30</span></td>
+                        <td><span class="example-highlight">half past two</span></td>
+                        <td><span class="example-highlight">two thirty PM</span></td>
+                        <td><span class="example-highlight">14:30</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">23:45</span></td>
+                        <td><span class="example-highlight">a quarter to twelve</span></td>
+                        <td><span class="example-highlight">eleven forty-five PM</span></td>
+                        <td><span class="example-highlight">23:45</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

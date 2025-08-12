@@ -1,0 +1,202 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Male/Female Pairs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Male/Female Pairs" %}</span>
+        </nav>
+
+        <h1>{% translate "Male/Female Pairs" %}</h1>
+        <p>
+            {% translate "In English, some nouns have distinct forms to specify the gender of a person or an animal. These are known as <span class=\"term-highlight\">male/female pairs</span>." %}
+        </p>
+        <p>
+            {% translate "While many of these pairs exist, modern English tends to favor gender-neutral terms (e.g., <span class=\"code-highlight\">flight attendant</span> instead of <span class=\"code-highlight\">steward/stewardess</span>) to avoid gender bias." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Pairs for People" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Masculine" %}</th>
+                        <th>{% translate "Feminine" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "man" %}</td><td>{% translate "woman" %}</td></tr>
+                    <tr><td>{% translate "boy" %}</td><td>{% translate "girl" %}</td></tr>
+                    <tr><td>{% translate "father" %}</td><td>{% translate "mother" %}</td></tr>
+                    <tr><td>{% translate "king" %}</td><td>{% translate "queen" %}</td></tr>
+                    <tr><td>{% translate "prince" %}</td><td>{% translate "princess" %}</td></tr>
+                    <tr><td>{% translate "actor" %}</td><td>{% translate "actress" %}</td></tr>
+                    <tr><td>{% translate "waiter" %}</td><td>{% translate "waitress" %}</td></tr>
+                    <tr><td>{% translate "hero" %}</td><td>{% translate "heroine" %}</td></tr>
+                    <tr><td>{% translate "husband" %}</td><td>{% translate "wife" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Pairs for Animals" %}</h3>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Masculine" %}</th>
+                        <th>{% translate "Feminine" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "bull" %}</td><td>{% translate "cow" %}</td></tr>
+                    <tr><td>{% translate "rooster" %}</td><td>{% translate "hen" %}</td></tr>
+                    <tr><td>{% translate "drake" %}</td><td>{% translate "duck" %}</td></tr>
+                    <tr><td>{% translate "stallion" %}</td><td>{% translate "mare" %}</td></tr>
+                    <tr><td>{% translate "dog" %}</td><td>{% translate "bitch" %}</td></tr>
+                    <tr><td>{% translate "gander" %}</td><td>{% translate "goose" %}</td></tr>
+                    <tr><td>{% translate "tiger" %}</td><td>{% translate "tigress" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,305 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Using Coordinating Conjunctions (FANBOYS)" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .conjunction-highlight {
+            color: #4cc9f0;
+            font-weight: bold;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .fanboys-acronym {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .fanboys-letter {
+            text-align: center;
+            padding: 10px;
+            min-width: 80px;
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .fanboys-letter strong {
+            display: block;
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+            .fanboys-letter {
+                min-width: 60px;
+                padding: 5px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Using Coordinating Conjunctions" %}</span>
+        </nav>
+
+        <h1>{% translate "Coordinating Conjunctions (FANBOYS)" %}</h1>
+        <p>
+            {% translate "Coordinating conjunctions (FANBOYS) are used to connect words, phrases, or independent clauses of equal grammatical importance in a sentence. They are essential for creating <span class=\"term-highlight\">compound sentences</span>." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "The FANBOYS Acronym" %}</h3>
+        <div class="fanboys-acronym">
+            <div class="fanboys-letter">
+                <strong>F</strong>
+                <span>{% translate "For" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>A</strong>
+                <span>{% translate "And" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>N</strong>
+                <span>{% translate "Nor" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>B</strong>
+                <span>{% translate "But" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>O</strong>
+                <span>{% translate "Or" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>Y</strong>
+                <span>{% translate "Yet" %}</span>
+            </div>
+            <div class="fanboys-letter">
+                <strong>S</strong>
+                <span>{% translate "So" %}</span>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Usage Rules" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Use a <span class=\"term-highlight\">comma before the conjunction</span> when connecting two independent clauses" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "She wanted to go to the party, but she had too much work." %}</span></li>
+                </ul>
+            </li>
+            <li>{% translate "No comma is needed when connecting words or phrases" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "I like tea and coffee." %}</span></li>
+                </ul>
+            </li>
+            <li>{% translate "Each conjunction expresses a specific relationship between ideas:" %}
+                <ul class="styled-list">
+                    <li><span class="conjunction-highlight">{% translate "For" %}</span>: {% translate "indicates reason or cause (similar to 'because')" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "And" %}</span>: {% translate "adds information" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "Nor" %}</span>: {% translate "presents a negative alternative" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "But" %}</span>: {% translate "shows contrast" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "Or" %}</span>: {% translate "presents alternatives" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "Yet" %}</span>: {% translate "shows unexpected contrast" %}</li>
+                    <li><span class="conjunction-highlight">{% translate "So" %}</span>: {% translate "indicates result or consequence" %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Detailed Usage with Examples" %}</h3>
+
+        <h4><span class="conjunction-highlight">{% translate "For" %}</span></h4>
+        <p>{% translate "Indicates reason or cause (similar to 'because'). More formal and less common in spoken English." %}</p>
+        <p class="code-highlight">{% translate "I stayed home, for I was feeling ill." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "And" %}</span></h4>
+        <p>{% translate "Adds information or connects similar ideas." %}</p>
+        <p class="code-highlight">{% translate "She opened the door and walked inside." %}</p>
+        <p class="code-highlight">{% translate "He likes swimming, and she prefers running." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "Nor" %}</span></h4>
+        <p>{% translate "Connects two negative alternatives. Note that verb comes before subject after 'nor'." %}</p>
+        <p class="code-highlight">{% translate "He didn't call, nor did he send a message." %}</p>
+        <p class="code-highlight">{% translate "I don't like coffee, nor do I enjoy tea." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "But" %}</span></h4>
+        <p>{% translate "Shows contrast between two different ideas." %}</p>
+        <p class="code-highlight">{% translate "I wanted to go to the beach, but it started raining." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "Or" %}</span></h4>
+        <p>{% translate "Presents alternatives or possibilities." %}</p>
+        <p class="code-highlight">{% translate "We can go by train, or we can drive." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "Yet" %}</span></h4>
+        <p>{% translate "Shows unexpected contrast (similar to 'but')." %}</p>
+        <p class="code-highlight">{% translate "She studied hard, yet she failed the exam." %}</p>
+
+        <h4><span class="conjunction-highlight">{% translate "So" %}</span></h4>
+        <p>{% translate "Indicates result or consequence." %}</p>
+        <p class="code-highlight">{% translate "It was getting late, so we decided to leave." %}</p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Comma splice:</span> Using just a comma without a conjunction" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I love reading, it relaxes me." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I love reading, for it relaxes me." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Missing comma:</span> Forgetting the comma before the conjunction" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I wanted to go but I was too tired." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I wanted to go, but I was too tired." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Overuse of 'and':</span> Creating run-on sentences" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Poor style:" %}</span> {% translate "I woke up and I brushed my teeth and I had breakfast and I went to work." %}</li>
+                    <li><span class="code-highlight">{% translate "Better:" %}</span> {% translate "I woke up, brushed my teeth, had breakfast, and went to work." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Tips" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Try rewriting simple sentences using different FANBOYS conjunctions" %}</li>
+            <li>{% translate "When proofreading, check for comma splices and add appropriate conjunctions" %}</li>
+            <li>{% translate "Vary your conjunctions to express different relationships between ideas" %}</li>
+            <li>{% translate "Read aloud to check if the conjunctions create natural-sounding connections" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

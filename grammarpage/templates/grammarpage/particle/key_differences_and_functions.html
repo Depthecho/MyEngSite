@@ -1,0 +1,402 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Key Differences and Functions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .particle-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .adverb-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .preposition-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .grammar-table thead th {
+            background: rgba(0, 0, 0, 0.4);
+            font-weight: bold;
+            text-align: left;
+            color: #ff9e7d;
+            padding: 12px;
+            border: 1px solid #444;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table tbody td {
+            color: #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .grammar-table tr:hover {
+            background-color: rgba(76, 201, 240, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .function-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "Key Differences and Functions" %}</span>
+        </nav>
+
+        <h1>{% translate "Distinguishing Particles from Similar Words" %}</h1>
+        <p>
+            {% translate "Particles often resemble adverbs and prepositions but serve distinct grammatical functions. Recognizing these differences is essential for proper sentence construction and meaning interpretation." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "Core Functional Differences" %}</h2>
+            <p>{% translate "These three word types may look identical but behave differently in sentences:" %}</p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Grammatical Unit" %}</th>
+                            <th>{% translate "Primary Function" %}</th>
+                            <th>{% translate "Key Characteristics" %}</th>
+                            <th>{% translate "Examples" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="particle-highlight">{% translate "Particle" %}</span></td>
+                            <td>{% translate "Forms phrasal verbs with new meanings" %}</td>
+                            <td>
+                                <ul class="styled-list">
+                                    <li>{% translate "Combines with verbs to create idiomatic meanings" %}</li>
+                                    <li>{% translate "Can often be separated from verb" %}</li>
+                                    <li>{% translate "No independent meaning" %}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="code-highlight">{% translate "Turn <span class=\"particle-highlight\">off</span> the lights" %}</span><br>
+                                <span class="code-highlight">{% translate "Give <span class=\"particle-highlight\">up</span> smoking" %}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="adverb-highlight">{% translate "Adverb" %}</span></td>
+                            <td>{% translate "Modifies verbs, adjectives or other adverbs" %}</td>
+                            <td>
+                                <ul class="styled-list">
+                                    <li>{% translate "Answers how, when, where, or to what degree" %}</li>
+                                    <li>{% translate "Can modify without combining" %}</li>
+                                    <li>{% translate "Often movable in sentence" %}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="code-highlight">{% translate "He fell <span class=\"adverb-highlight\">down</span>" %}</span><br>
+                                <span class="code-highlight">{% translate "Come <span class=\"adverb-highlight\">in</span>!" %}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="preposition-highlight">{% translate "Preposition" %}</span></td>
+                            <td>{% translate "Shows relationships between nouns and other words" %}</td>
+                            <td>
+                                <ul class="styled-list">
+                                    <li>{% translate "Always followed by its object (noun phrase)" %}</li>
+                                    <li>{% translate "Forms prepositional phrases" %}</li>
+                                    <li>{% translate "Indicates location, time, direction" %}</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <span class="code-highlight">{% translate "The cat is <span class=\"preposition-highlight\">on</span> the mat" %}</span><br>
+                                <span class="code-highlight">{% translate "We'll meet <span class=\"preposition-highlight\">after</span> lunch" %}</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="function-card">
+            <h2>{% translate "Identification Strategies" %}</h2>
+            <p>{% translate "Use these techniques to determine whether a word is functioning as a particle, adverb, or preposition:" %}</p>
+
+            <div class="structure-diagram">
+                <span class="term-highlight">[Test]</span> → <span class="particle-highlight">[Particle]</span> | <span class="adverb-highlight">[Adverb]</span> | <span class="preposition-highlight">[Preposition]</span>
+            </div>
+
+            <h3>{% translate "1. Movement Test" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"particle-highlight\">Particles</span> can often move after the object:" %}
+                    <p class="code-highlight">{% translate "Turn <span class=\"particle-highlight\">off</span> the light → Turn the light <span class=\"particle-highlight\">off</span>" %}</p>
+                </li>
+                <li>{% translate "<span class=\"adverb-highlight\">Adverbs</span> can move to different positions:" %}
+                    <p class="code-highlight">{% translate "He ran <span class=\"adverb-highlight\">away</span> → <span class=\"adverb-highlight\">Away</span> he ran" %}</p>
+                </li>
+                <li>{% translate "<span class=\"preposition-highlight\">Prepositions</span> cannot be separated from their objects:" %}
+                    <p class="code-highlight">{% translate "*Walk the street <span class=\"preposition-highlight\">down</span> (incorrect)" %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "2. Question Test" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Prepositional objects can become question subjects:" %}
+                    <p class="code-highlight">{% translate "She sat <span class=\"preposition-highlight\">on</span> the chair → What did she sit <span class=\"preposition-highlight\">on</span>?" %}</p>
+                </li>
+                <li>{% translate "Particle objects cannot:" %}
+                    <p class="code-highlight">{% translate "*What did she turn <span class=\"particle-highlight\">on</span>? (ambiguous)" %}</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "3. Replacement Test" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Particles can often be replaced with single-word verbs:" %}
+                    <p class="code-highlight">{% translate "Put <span class=\"particle-highlight\">off</span> the meeting = Postpone the meeting" %}</p>
+                </li>
+                <li>{% translate "Adverbs and prepositions cannot be replaced this way" %}</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "Common Problem Words" %}</h2>
+            <p>{% translate "These words frequently cause confusion because they can function in multiple ways:" %}</p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Word" %}</th>
+                            <th>{% translate "As Particle" %}</th>
+                            <th>{% translate "As Adverb" %}</th>
+                            <th>{% translate "As Preposition" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="term-highlight">up</span></td>
+                            <td>{% translate "Give <span class=\"particle-highlight\">up</span> (surrender)" %}</td>
+                            <td>{% translate "Look <span class=\"adverb-highlight\">up</span> (direction)" %}</td>
+                            <td>{% translate "Walk <span class=\"preposition-highlight\">up</span> the hill" %}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="term-highlight">off</span></td>
+                            <td>{% translate "Call <span class=\"particle-highlight\">off</span> (cancel)" %}</td>
+                            <td>{% translate "Take <span class=\"adverb-highlight\">off</span> (remove)" %}</td>
+                            <td>{% translate "Jump <span class=\"preposition-highlight\">off</span> the wall" %}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="term-highlight">out</span></td>
+                            <td>{% translate "Find <span class=\"particle-highlight\">out</span> (discover)" %}</td>
+                            <td>{% translate "Go <span class=\"adverb-highlight\">out</span> (exit)" %}</td>
+                            <td>{% translate "Look <span class=\"preposition-highlight\">out</span> the window" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>{% translate "Special Cases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">To</span> as infinitive marker (particle) vs preposition:" %}
+                    <p class="code-highlight">{% translate "I want <span class=\"particle-highlight\">to</span> go (particle)" %}</p>
+                    <p class="code-highlight">{% translate "Give it <span class=\"preposition-highlight\">to</span> me (preposition)" %}</p>
+                </li>
+                <li>{% translate "Words that are only particles (e.g., <span class=\"code-highlight\">not</span> in contractions):" %}
+                    <p class="code-highlight">{% translate "Don't (do + <span class=\"particle-highlight\">not</span>)" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="function-card">
+            <h2>{% translate "Practical Application Exercises" %}</h2>
+            <p>{% translate "Test your understanding with these analysis challenges:" %}</p>
+
+            <h3>{% translate "Identify the Function" %}</h3>
+            <ol class="styled-list">
+                <li>{% translate "She made <span class=\"example-highlight\">up</span> a story" %} <span class="term-highlight">(Answer: particle)</span></li>
+                <li>{% translate "The plane took <span class=\"example-highlight\">off</span> smoothly" %} <span class="term-highlight">(Answer: adverb)</span></li>
+                <li>{% translate "Put the book <span class=\"example-highlight\">on</span> the shelf" %} <span class="term-highlight">(Answer: preposition)</span></li>
+                <li>{% translate "He turned <span class=\"example-highlight\">down</span> the offer" %} <span class="term-highlight">(Answer: particle)</span></li>
+                <li>{% translate "She walked <span class=\"example-highlight\">down</span> the street" %} <span class="term-highlight">(Answer: preposition)</span></li>
+            </ol>
+
+            <h3>{% translate "Transformation Practice" %}</h3>
+            <p>{% translate "Convert these sentences by changing the word's function:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Original (particle): She <span class=\"particle-highlight\">looked up</span> the information" %}<br>
+                    {% translate "Modified (preposition): She looked <span class=\"preposition-highlight\">up</span> the chimney" %}
+                </li>
+                <li>{% translate "Original (adverb): The light was <span class=\"adverb-highlight\">on</span>" %}<br>
+                    {% translate "Modified (particle): She turned <span class=\"particle-highlight\">on</span> the light" %}
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

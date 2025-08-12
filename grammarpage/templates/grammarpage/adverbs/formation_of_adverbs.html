@@ -1,0 +1,360 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adverbs: Formation of Adverbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .adv-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .usage-table th, .usage-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .usage-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .formation-rules {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .exception-box {
+            background: rgba(255, 138, 101, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff8a65;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+
+            .usage-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adverb_page' %}">{% translate "Adverbs" %}</a></span> &raquo;
+            <span>{% translate "Formation of Adverbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Comprehensive Guide to Adverb Formation" %}</h1>
+        <p>
+            {% translate "Understanding how adverbs are formed from adjectives is crucial for accurate English usage. While the -ly suffix is most common, several patterns and exceptions exist." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="adv-card">
+            <h2>{% translate "1. Standard -ly Formation" %}</h2>
+            <h3>{% translate "The Basic Rule" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adjective" %}</th>
+                        <th>{% translate "Adverb" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">quick</span></td>
+                        <td><span class="code-highlight">quickly</span></td>
+                        <td>{% translate "She answered <span class=\"example-highlight\">quickly</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">careful</span></td>
+                        <td><span class="code-highlight">carefully</span></td>
+                        <td>{% translate "He drove <span class=\"example-highlight\">carefully</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">beautiful</span></td>
+                        <td><span class="code-highlight">beautifully</span></td>
+                        <td>{% translate "She sings <span class=\"example-highlight\">beautifully</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="formation-rules">
+                <h4>{% translate "Pronunciation Note:" %}</h4>
+                <p>{% translate "The -ly ending is typically pronounced /li/ after a consonant sound and /əli/ after an /l/ sound:" %}</p>
+                <ul class="styled-list">
+                    <li>{% translate "<span class=\"example-highlight\">quickly</span> /ˈkwɪkli/" %}</li>
+                    <li>{% translate "<span class=\"example-highlight\">carefully</span> /ˈkeəfəli/" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="adv-card">
+            <h2>{% translate "2. Special Spelling Rules" %}</h2>
+            <h3>{% translate "Modified -ly Endings" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Rule" %}</th>
+                        <th>{% translate "Adjective → Adverb" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "-y to -ily" %}</td>
+                        <td><span class="code-highlight">happy → happily</span></td>
+                        <td>{% translate "They lived <span class=\"example-highlight\">happily</span> ever after." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "-le to -ly" %}</td>
+                        <td><span class="code-highlight">terrible → terribly</span></td>
+                        <td>{% translate "She sang <span class=\"example-highlight\">terribly</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "-ic to -ically" %}</td>
+                        <td><span class="code-highlight">basic → basically</span></td>
+                        <td>{% translate "<span class=\"example-highlight\">Basically</span>, we agree." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "-ue to -uly" %}</td>
+                        <td><span class="code-highlight">true → truly</span></td>
+                        <td>{% translate "I <span class=\"example-highlight\">truly</span> believe you." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="exception-box">
+                <h4>{% translate "Important Exceptions:" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "<span class=\"term-highlight\">public</span> → <span class=\"example-highlight\">publicly</span> (not publically)" %}</li>
+                    <li>{% translate "<span class=\"term-highlight\">dry</span> → <span class=\"example-highlight\">dryly</span> (not drily)" %}</li>
+                    <li>{% translate "<span class=\"term-highlight\">shy</span> → <span class=\"example-highlight\">shyly</span>" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="adv-card">
+            <h2>{% translate "3. Irregular Adverb Forms" %}</h2>
+            <h3>{% translate "Adjectives That Don't Follow the -ly Pattern" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Type" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                        <th>{% translate "Usage Notes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Same form" %}</td>
+                        <td><span class="code-highlight">fast, hard, late</span></td>
+                        <td>{% translate "No -ly added (\"He works <span class=\"example-highlight\">hard</span>\")" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Different meaning" %}</td>
+                        <td><span class="code-highlight">hard/hardly, late/lately</span></td>
+                        <td>{% translate "\"Hardly\" means \"almost not\"; \"lately\" means \"recently\"" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "No adverb form" %}</td>
+                        <td><span class="code-highlight">friendly, lovely</span></td>
+                        <td>{% translate "Use adverbial phrase (\"in a friendly way\")" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="exception-box">
+                <h4>{% translate "Common Confusion Points:" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "<span class=\"term-highlight\">Good</span> (adj.) → <span class=\"example-highlight\">well</span> (adv.)" %}
+                        <p class="code-highlight">{% translate "She is a <span class=\"example-highlight\">good</span> singer. She sings <span class=\"example-highlight\">well</span>." %}</p>
+                    </li>
+                    <li>{% translate "<span class=\"term-highlight\">Fast</span> vs <span class=\"example-highlight\">fastly</span>" %}
+                        <p class="code-highlight">{% translate "Correct: He runs <span class=\"example-highlight\">fast</span>." %}</p>
+                        <p class="code-highlight">{% translate "Incorrect: He runs <span class=\"example-highlight\">fastly</span>." %}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="adv-card">
+            <h2>{% translate "4. Comparative and Superlative Adverbs" %}</h2>
+            <h3>{% translate "Forming Degrees of Comparison" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Regular Formation" %}</th>
+                        <th>{% translate "Irregular Forms" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Comparative" %}</td>
+                        <td><span class="code-highlight">more + adverb</span></td>
+                        <td><span class="code-highlight">better, worse, farther/further</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Superlative" %}</td>
+                        <td><span class="code-highlight">most + adverb</span></td>
+                        <td><span class="code-highlight">best, worst, farthest/furthest</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="formation-rules">
+                <h4>{% translate "Examples:" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "She works <span class=\"example-highlight\">more efficiently</span> than her colleagues." %}</li>
+                    <li>{% translate "He runs <span class=\"example-highlight\">faster</span> than anyone else." %}</li>
+                    <li>{% translate "This machine operates <span class=\"example-highlight\">most quietly</span> of all." %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="navigation-links">
+            <a href="{% url 'adverb_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adverbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

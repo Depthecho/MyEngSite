@@ -1,0 +1,212 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjectives Used as Nouns: To Refer to Abstract Concepts" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Adjectives Used as Nouns" %}</span> &raquo;
+            <span>{% translate "To Refer to Abstract Concepts" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjectives Used as Nouns: To Refer to Abstract Concepts" %}</h1>
+        <p>
+            {% translate "Similar to how adjectives can refer to a group of people, they can also be used with the definite article <span class=\"code-highlight\">the</span> to refer to abstract ideas, qualities, or conditions." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. The Basic Rule" %}</h3>
+        <p>
+            {% translate "The structure is <span class=\"code-highlight\">the + adjective</span>. The resulting phrase functions as a singular, abstract noun, often referring to a quality or a state of being." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adjective" %}</th>
+                        <th>{% translate "Phrase (Abstract Concept)" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "good" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "the good" %}</span></td>
+                        <td>{% translate "He fights for <span class=\"code-highlight\">the good</span> in the world." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "true" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "the true" %}</span></td>
+                        <td>{% translate "She always seeks to know <span class=\"code-highlight\">the true</span> meaning of things." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "beautiful" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "the beautiful" %}</span></td>
+                        <td>{% translate "Art is a way to appreciate <span class=\"code-highlight\">the beautiful</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. How it Differs from Plural Nouns" %}</h3>
+        <p>
+            {% translate "Unlike the use of adjectives to refer to a group of people, which takes a plural verb, this construction refers to a singular, abstract concept and typically takes a singular verb." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "The good <span class=\"term-highlight\">is</span> often found in simple things." %}</span><br>{% translate "(<span class=\"term-highlight\">The good</span> here is a singular concept, not a group of people)." %}</li>
+            <li><span class=\"example-highlight\">{% translate "The poor <span class=\"term-highlight\">are</span> often found in developing countries." %}</span><br>{% translate "(<span class=\"term-highlight\">The poor</span> here is a plural noun referring to people)." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Context is Key" %}</h3>
+        <p>
+            {% translate "Whether an adjective used as a noun refers to people or an abstract concept is determined by context." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "In a philosophical discussion: 'What is <span class=\"code-highlight\">the divine</span>?' (referring to a concept)." %}</li>
+            <li>{% translate "In a religious text: 'The prayers of <span class=\"code-highlight\">the righteous</span>.' (referring to people)." %}</li>
+        </ul>
+        <p>
+            {% translate "This subtle difference is crucial for both understanding and using these phrases correctly." %}
+        </p>
+        
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

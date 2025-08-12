@@ -1,0 +1,213 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Gender Suffixes" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Gender Suffixes" %}</span>
+        </nav>
+
+        <h1>{% translate "Gender Suffixes" %}</h1>
+        <p>
+            {% translate "In some cases, the gender of a noun is indicated by a special suffix added to the root word. These suffixes typically turn a masculine noun into a feminine one." %}
+        </p>
+        <p>
+            {% translate "While these forms were common in the past, modern English tends to use gender-neutral nouns to avoid gender bias, making many of these suffixes less common today." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Gender Suffixes" %}</h3>
+        <p>
+            {% translate "The most common suffix used to create a feminine noun is <span class=\"code-highlight\">-ess</span>." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Masculine" %}</th>
+                        <th>{% translate "Feminine" %}</th>
+                        <th>{% translate "Note" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "actor" %}</td><td>{% translate "actress" %}</td><td>{% translate "Still common, but <span class=\"code-highlight\">actor</span> is now often used for both." %}</td></tr>
+                    <tr><td>{% translate "waiter" %}</td><td>{% translate "waitress" %}</td><td>{% translate "Gender-neutral <span class=\"code-highlight\">server</span> is now preferred." %}</td></tr>
+                    <tr><td>{% translate "prince" %}</td><td>{% translate "princess" %}</td><td>{% translate "Very common." %}</td></tr>
+                    <tr><td>{% translate "steward" %}</td><td>{% translate "stewardess" %}</td><td>{% translate "Gender-neutral <span class=\"code-highlight\">flight attendant</span> is now standard." %}</td></tr>
+                    <tr><td>{% translate "heir" %}</td><td>{% translate "heiress" %}</td><td>{% translate "Still in use." %}</td></tr>
+                    <tr><td>{% translate "host" %}</td><td>{% translate "hostess" %}</td><td>{% translate "Gender-neutral <span class=\"code-highlight\">host</span> is becoming more common." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Other Suffixes" %}</h4>
+        <p>
+            {% translate "Other, less common suffixes can also indicate gender." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Masculine" %}</th>
+                        <th>{% translate "Feminine" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "hero" %}</td><td>{% translate "heroine" %}</td></tr>
+                    <tr><td>{% translate "czar" %}</td><td>{% translate "czarina" %}</td></tr>
+                    <tr><td>{% translate "testator" %}</td><td>{% translate "testatrix" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Modern Usage and Recommendations" %}</h3>
+        <p>
+            {% translate "In contemporary writing and speech, it is generally recommended to use gender-neutral nouns unless the gender is specific and relevant to the context." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "Instead of <span class=\"code-highlight\">policeman/policewoman</span>, use <span class=\"code-highlight\">police officer</span>." %}</li>
+            <li>{% translate "Instead of <span class=\"code-highlight\">salesman</span>, use <span class=\"code-highlight\">salesperson</span> or <span class=\"code-highlight\">sales associate</span>." %}</li>
+            <li>{% translate "Instead of <span class=\"code-highlight\">fireman</span>, use <span class=\"code-highlight\">firefighter</span>." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

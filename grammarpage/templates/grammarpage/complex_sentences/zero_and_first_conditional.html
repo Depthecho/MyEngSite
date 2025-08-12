@@ -1,0 +1,289 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Zero and First Conditional" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .condition-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .result-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .conditional-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-box {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Zero and First Conditional" %}</span>
+        </nav>
+
+        <h1>{% translate "Conditional Sentences: Zero and First Types" %}</h1>
+        <p>
+            {% translate "Conditional sentences express possible or impossible situations and their consequences. The <span class=\"term-highlight\">zero conditional</span> describes universal truths, while the <span class=\"term-highlight\">first conditional</span> deals with real future possibilities." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="conditional-card">
+            <h3>{% translate "Zero Conditional" %}</h3>
+            <p>{% translate "Used for general truths, scientific facts, and situations that are always true." %}</p>
+
+            <div class="structure-box">
+                <span class="condition-highlight">{% translate "If + Present Simple" %}</span>,
+                <span class="result-highlight">{% translate "Present Simple" %}</span>
+            </div>
+
+            <h5>{% translate "Examples:" %}</h5>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If you heat ice</span>, <span class=\"result-highlight\">it melts</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If people don't eat</span>, <span class=\"result-highlight\">they get hungry</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">When you mix blue and yellow</span>, <span class=\"result-highlight\">you get green</span>." %}</span></li>
+            </ul>
+
+            <h5>{% translate "Key Features:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "Both clauses use present simple tense" %}</li>
+                <li>{% translate "Can use 'when' instead of 'if' with no change in meaning" %}</li>
+                <li>{% translate "Often used for scientific facts, general truths, and routines" %}</li>
+                <li>{% translate "The condition always leads to the result (100% certainty)" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="conditional-card">
+            <h3>{% translate "First Conditional" %}</h3>
+            <p>{% translate "Used for real and possible situations in the future, often with predictions, promises, warnings, or threats." %}</p>
+
+            <div class="structure-box">
+                <span class="condition-highlight">{% translate "If + Present Simple" %}</span>,
+                <span class="result-highlight">{% translate "will + base verb" %}</span>
+            </div>
+
+            <h5>{% translate "Examples:" %}</h5>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If it rains tomorrow</span>, <span class=\"result-highlight\">we will cancel the picnic</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If you study hard</span>, <span class=\"result-highlight\">you will pass the exam</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">Unless you hurry</span>, <span class=\"result-highlight\">you will miss the bus</span>." %}</span> ({% translate "unless = if not" %})</li>
+            </ul>
+
+            <h5>{% translate "Variations:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Modal verbs:</span> can, may, might, should instead of will" %}
+                    <p class="code-highlight">{% translate "If you finish early, <span class=\"result-highlight\">you can leave</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Imperative:</span> For instructions or suggestions" %}
+                    <p class="code-highlight">{% translate "If you feel sick, <span class=\"result-highlight\">call a doctor</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Going to future:</span> For existing plans" %}
+                    <p class="code-highlight">{% translate "If it snows, <span class=\"result-highlight\">we're going to build a snowman</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Comparing Zero and First Conditionals" %}</h3>
+        <div class="structure-box">
+            <table style="width:100%; border-collapse: collapse;">
+                <tr>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "Feature" %}</th>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "Zero Conditional" %}</th>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "First Conditional" %}</th>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Usage" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "General truths" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Future possibilities" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Condition Tense" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Present Simple" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Present Simple" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Result Tense" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Present Simple" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "will + verb" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Certainty" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "100% (always true)" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Probable (likely to happen)" %}</td>
+                </tr>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Using future tense in the if-clause</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "If it will rain, we will stay home." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If it rains</span>, <span class=\"result-highlight\">we will stay home</span>." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Confusing zero and first conditionals</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "If water reaches 100°C, it will boil." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If water reaches 100°C</span>, <span class=\"result-highlight\">it boils</span>." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Misplacing commas</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "You'll succeed if you work hard." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If you work hard</span>, <span class=\"result-highlight\">you'll succeed</span>." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background-attachment: fixed;
+    background-size: cover;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+.grammar-detail-container {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 5px rgba(255, 255, 255, 0.05);
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.grammar-detail-container::before {
+    content: '';
+    position: absolute;
+    top: -2px; bottom: -2px; left: -2px; right: -2px;
+    background: linear-gradient(135deg, #ffda47 0%, #2575fc 100%);
+    z-index: -1;
+    border-radius: 22px;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.grammar-detail-container:hover::before {
+    opacity: 0.2;
+}
+
+.grammar-detail-container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3.8rem;
+    color: #ffda47;
+    margin-bottom: 25px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 8px rgba(0, 0, 0, 0.6);
+    letter-spacing: 2px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.intro-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 60px;
+    opacity: 0.8;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.main-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25), inset 0 0 15px rgba(255, 255, 255, 0.08);
+}
+
+.category-card {
+    display: block;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    text-align: left;
+    text-decoration: none;
+    color: #f0f0f0;
+    transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #ffda47;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.category-card h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #ffda47;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.category-card p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.navigation-links {
+    margin-top: 60px;
+    text-align: center;
+}
+
+.back-to-list-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #ffda47;``
+    color: #6a11cb;
+    padding: 16px 35px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-to-list-btn i {
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+.back-to-list-btn:hover {
+    background-color: #e6b800;
+    color: #fff;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 768px) {
+    .grammar-detail-container {
+        margin: 30px 15px;
+        padding: 25px;
+        border-radius: 15px;
+    }
+    .grammar-detail-container h1 {
+        font-size: 2.8rem;
+        letter-spacing: 1px;
+    }
+    .intro-text {
+        font-size: 1.05rem;
+        margin-bottom: 30px;
+    }
+    .main-categories-grid {
+        gap: 20px;
+        padding: 15px;
+    }
+    .category-card {
+        padding: 20px;
+    }
+    .category-card h3 {
+        font-size: 1.5rem;
+    }
+    .back-to-list-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}

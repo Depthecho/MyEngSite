@@ -1,0 +1,219 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Reflexive, Intensive, and Reciprocal Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Types of Pronouns" %}</span> &raquo;
+            <span>{% translate "Reflexive, Intensive, and Reciprocal Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronouns: Reflexive, Intensive, and Reciprocal Pronouns" %}</h1>
+        <p>
+            {% translate "While some pronouns replace nouns, others serve more specialized functions, such as referring back to the subject or emphasizing a noun. This page covers reflexive, intensive, and reciprocal pronouns, which are often confused but serve distinct purposes." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Reflexive Pronouns" %}</h3>
+        <p>
+            {% translate "A reflexive pronoun is used as a direct or indirect object when the object is the same person or thing as the subject of the verb. It 'reflects' the action back to the subject. They are formed by adding <span class=\"code-highlight\">-self</span> (singular) or <span class=\"code-highlight\">-selves</span> (plural) to a personal pronoun." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "myself" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "ourselves" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "yourself" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "yourselves" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "himself, herself, itself" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "themselves" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "<strong>Example:</strong> <span class=\"example-highlight\">He hurt <span class=\"term-highlight\">himself</span> while cooking.</span>" %}<br>
+            {% translate "In this sentence, <span class=\"code-highlight\">He</span> is both the subject and the object of the action." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Intensive Pronouns" %}</h3>
+        <p>
+            {% translate "Intensive pronouns have the exact same form as reflexive pronouns but are used for a different purpose: to add emphasis to a noun or pronoun that is already stated. They are not essential to the meaning of the sentence and can be removed without changing the core meaning." %}
+        </p>
+        <p>
+            {% translate "<strong>Example:</strong> <span class=\"example-highlight\">The president <span class=\"term-highlight\">herself</span> announced the news.</span>" %}<br>
+            {% translate "The pronoun <span class=\"code-highlight\">herself</span> emphasizes that the president, and no one else, made the announcement. The sentence still makes sense without it: <span class=\"example-highlight\">The president announced the news.</span>" %}
+        </p>
+        <p>
+            {% translate "A common error is using intensive pronouns in place of personal pronouns, for example, <strike>My friend and myself went to the store.</strike> The correct form is <span class=\"example-highlight\">My friend and I went to the store.</span>" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Reciprocal Pronouns" %}</h3>
+        <p>
+            {% translate "Reciprocal pronouns are used to show that two or more people or things are performing the same action to or for each other. There are only two reciprocal pronouns in English:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "each other" %}</span>: {% translate "Used for two people or things." %}</li>
+            <li><span class=\"code-highlight\">{% translate "one another" %}</span>: {% translate "Used for more than two people or things." %}</li>
+        </ul>
+        <p>
+            {% translate "<strong>Examples:</strong>" %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "John and Mary gave gifts to <span class=\"term-highlight\">each other</span>." %}</li>
+            <li>{% translate "The members of the team respect <span class=\"term-highlight\">one another</span>." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

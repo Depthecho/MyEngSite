@@ -1,0 +1,374 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Interrogative, Relative, and Conjunctive Adverbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .adv-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .usage-table th, .usage-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .usage-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .function-guide {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .common-mistakes {
+            background: rgba(255, 138, 101, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 3px solid #ff8a65;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+
+            .usage-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adverb_page' %}">{% translate "Adverbs" %}</a></span> &raquo;
+            <span>{% translate "Interrogative, Relative, and Conjunctive Adverbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Connective Adverbs: Interrogative, Relative, and Conjunctive" %}</h1>
+        <p>
+            {% translate "These specialized adverbs serve crucial functions in forming questions, connecting ideas, and establishing relationships between clauses in complex sentences." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="adv-card">
+            <h2>{% translate "1. Interrogative Adverbs" %}</h2>
+            <h3>{% translate "Forming Information Questions" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adverb" %}</th>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Example Questions" %}</th>
+                        <th>{% translate "Possible Answers" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">where</span></td>
+                        <td>{% translate "Asks about place" %}</td>
+                        <td>{% translate "<span class=\"example-highlight\">Where</span> do you live?" %}</td>
+                        <td>{% translate "In Paris" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">when</span></td>
+                        <td>{% translate "Asks about time" %}</td>
+                        <td>{% translate "<span class=\"example-highlight\">When</span> does the train leave?" %}</td>
+                        <td>{% translate "At 3:15 PM" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">why</span></td>
+                        <td>{% translate "Asks about reason" %}</td>
+                        <td>{% translate "<span class=\"example-highlight\">Why</span> are you crying?" %}</td>
+                        <td>{% translate "Because I'm happy" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">how</span></td>
+                        <td>{% translate "Asks about manner/condition" %}</td>
+                        <td>{% translate "<span class=\"example-highlight\">How</span> did you solve the problem?" %}</td>
+                        <td>{% translate "By thinking creatively" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="function-guide">
+                <h4>{% translate "Special Interrogative Forms" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "<span class=\"term-highlight\">How + adjective/adverb:</span> For specific qualities" %}
+                        <p class="code-highlight">{% translate "<span class=\"example-highlight\">How tall</span> are you?" %}</p>
+                        <p class="code-highlight">{% translate "<span class=\"example-highlight\">How quickly</span> can you type?" %}</p>
+                    </li>
+                    <li>{% translate "<span class=\"term-highlight\">How come:</span> Informal alternative to 'why'" %}
+                        <p class="code-highlight">{% translate "<span class=\"example-highlight\">How come</span> you're not coming?" %}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="adv-card">
+            <h2>{% translate "2. Relative Adverbs" %}</h2>
+            <h3>{% translate "Connecting Clauses to Nouns" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adverb" %}</th>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Example Sentences" %}</th>
+                        <th>{% translate "Noun Being Modified" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">where</span></td>
+                        <td>{% translate "Refers to place" %}</td>
+                        <td>{% translate "This is the town <span class=\"example-highlight\">where</span> I was born." %}</td>
+                        <td>{% translate "town" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">when</span></td>
+                        <td>{% translate "Refers to time" %}</td>
+                        <td>{% translate "Summer is the season <span class=\"example-highlight\">when</span> we travel." %}</td>
+                        <td>{% translate "season" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">why</span></td>
+                        <td>{% translate "Refers to reason" %}</td>
+                        <td>{% translate "That's the reason <span class=\"example-highlight\">why</span> I called you." %}</td>
+                        <td>{% translate "reason" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="function-guide">
+                <h4>{% translate "Alternative Structures" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Preposition + which:" %}
+                        <p class="code-highlight">{% translate "The house <span class=\"example-highlight\">where</span> I live." %}</p>
+                        <p class="code-highlight">{% translate "The house <span class=\"example-highlight\">in which</span> I live." %}</p>
+                    </li>
+                    <li>{% translate "That or omission:" %}
+                        <p class="code-highlight">{% translate "The reason <span class=\"example-highlight\">why</span> I left." %}</p>
+                        <p class="code-highlight">{% translate "The reason <span class=\"example-highlight\">that</span> I left." %}</p>
+                        <p class="code-highlight">{% translate "The reason I left." %}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="adv-card">
+            <h2>{% translate "3. Conjunctive Adverbs" %}</h2>
+            <h3>{% translate "Linking Independent Clauses" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Relationship" %}</th>
+                        <th>{% translate "Common Adverbs" %}</th>
+                        <th>{% translate "Example Sentences" %}</th>
+                        <th>{% translate "Punctuation" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Addition" %}</td>
+                        <td><span class="code-highlight">furthermore, moreover, additionally</span></td>
+                        <td>{% translate "She's qualified; <span class=\"example-highlight\">furthermore</span>, she's bilingual." %}</td>
+                        <td>{% translate "semicolon + comma" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Contrast" %}</td>
+                        <td><span class="code-highlight">however, nevertheless, nonetheless</span></td>
+                        <td>{% translate "It was raining; <span class=\"example-highlight\">however</span>, we went hiking." %}</td>
+                        <td>{% translate "semicolon + comma" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Cause/Effect" %}</td>
+                        <td><span class="code-highlight">therefore, consequently, thus</span></td>
+                        <td>{% translate "He forgot his passport; <span class=\"example-highlight\">therefore</span>, he missed the flight." %}</td>
+                        <td>{% translate "semicolon + comma" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Time" %}</td>
+                        <td><span class="code-highlight">meanwhile, subsequently, finally</span></td>
+                        <td>{% translate "She was studying; <span class=\"example-highlight\">meanwhile</span>, her friends were partying." %}</td>
+                        <td>{% translate "semicolon + comma" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="function-guide">
+                <h4>{% translate "Flexible Positioning" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Between sentences:" %}
+                        <p class="code-highlight">{% translate "The results were disappointing. <span class=\"example-highlight\">However</span>, we learned valuable lessons." %}</p>
+                    </li>
+                    <li>{% translate "Within sentences:" %}
+                        <p class="code-highlight">{% translate "We were tired; we decided to continue, <span class=\"example-highlight\">however</span>." %}</p>
+                    </li>
+                    <li>{% translate "Parenthetical use:" %}
+                        <p class="code-highlight">{% translate "The project was, <span class=\"example-highlight\">nevertheless</span>, a success." %}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="common-mistakes">
+            <h3>{% translate "Common Errors and Special Notes" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Confusing relative adverbs with relative pronouns:</span>" %}
+                    <p class="code-highlight">{% translate "Correct: The day <span class=\"example-highlight\">when</span> we met." %}</p>
+                    <p class="code-highlight">{% translate "Incorrect: The day <span class=\"example-highlight\">which</span> we met." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Punctuation with conjunctive adverbs:</span>" %}
+                    <p class="code-highlight">{% translate "Correct: It was late; <span class=\"example-highlight\">therefore</span>, we left." %}</p>
+                    <p class="code-highlight">{% translate "Incorrect: It was late, <span class=\"example-highlight\">therefore</span> we left." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Overusing conjunctive adverbs:</span> Vary your transitional phrases" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">How vs. what ... like:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">How</span> is your teacher?" %} (asking about health/condition)</p>
+                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">What</span> is your teacher <span class=\"example-highlight\">like</span>?" %} (asking about personality)</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="navigation-links">
+            <a href="{% url 'adverb_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adverbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

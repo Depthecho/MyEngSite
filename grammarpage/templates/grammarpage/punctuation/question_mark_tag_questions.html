@@ -1,0 +1,243 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Question Mark - Tag Questions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .tag-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .auxiliary-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Question Mark: Tag Questions" %}</span>
+        </nav>
+
+        <h1>{% translate "Tag Questions in English" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">tag question</span> is a short question added to the end of a statement, used to confirm information or seek agreement. It always ends with a question mark." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Basic Structure" %}</h3>
+            <p>
+                {% translate "Tag questions follow this pattern:" %}
+            </p>
+
+            <div class="code-highlight">
+                {% translate "Statement" %}<span class="mark-highlight">,</span> {% translate "auxiliary verb" %} + {% translate "pronoun" %}<span class="mark-highlight">?</span>
+            </div>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+            <li><span class="code-highlight">{% translate 'You\'re coming with us<span class="mark-highlight">,</span> <span class="auxiliary-highlight">aren\'t</span> you' %}<span class="mark-highlight">?</span></span></li>
+<li><span class="code-highlight">{% translate 'She doesn\'t know about this<span class="mark-highlight">,</span> <span class="auxiliary-highlight">does</span> she' %}<span class="mark-highlight">?</span></span></li>
+<li><span class="code-highlight">{% translate 'They\'ve finished their work<span class="mark-highlight">,</span> <span class="auxiliary-highlight">haven\'t</span> they' %}<span class="mark-highlight">?</span></span></li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "Formation Rules" %}</h3>
+
+            <h4>1. {% translate "Positive-Negative Pattern" %}</h4>
+            <p>{% translate "When the statement is positive, the tag is negative:" %}</p>
+            <ul class="styled-list">
+<li><span class="code-highlight">{% translate 'You <span class="tag-highlight">like</span> coffee<span class="mark-highlight">,</span> <span class="auxiliary-highlight">don\'t</span> you' %}<span class="mark-highlight">?</span></span></li>
+            </ul>
+
+            <h4>2. {% translate "Negative-Positive Pattern" %}</h4>
+            <p>{% translate "When the statement is negative, the tag is positive:" %}</p>
+            <ul class="styled-list">
+<li><span class="code-highlight">{% translate 'You <span class="tag-highlight">don\'t like</span> tea<span class="mark-highlight">,</span> <span class="auxiliary-highlight">do</span> you' %}<span class="mark-highlight">?</span></span></li>
+            </ul>
+
+            <h4>3. {% translate "Auxiliary Verb Matching" %}</h4>
+            <p>{% translate "The tag uses the same auxiliary verb as the main clause:" %}</p>
+            <ul class="styled-list">
+<li><span class="code-highlight">{% translate 'She <span class="tag-highlight">is</span> coming<span class="mark-highlight">,</span> <span class="auxiliary-highlight">isn\'t</span> she' %}<span class="mark-highlight">?</span></span></li>
+<li><span class="code-highlight">{% translate 'You <span class="tag-highlight">can</span> swim<span class="mark-highlight">,</span> <span class="auxiliary-highlight">can\'t</span> you' %}<span class="mark-highlight">?</span></span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases and Exceptions" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Case" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Rule" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Imperatives" %}</td>
+<td><span class="code-highlight">{% translate 'Let\'s go<span class="mark-highlight">,</span> shall we' %}<span class="mark-highlight">?</span></span></td>
+                    <td>{% translate "Use 'shall we' for suggestions" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "I am" %}</td>
+<td><span class="code-highlight">{% translate 'I\'m late<span class="mark-highlight">,</span> aren\'t I' %}<span class="mark-highlight">?</span></span></td>
+                    <td>{% translate "Exception to auxiliary matching" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "No auxiliary" %}</td>
+<td><span class="code-highlight">{% translate 'You like it<span class="mark-highlight">,</span> don\'t you' %}<span class="mark-highlight">?</span></span></td>
+                    <td>{% translate "Use 'do/does/did' when no auxiliary" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Negative words" %}</td>
+<td><span class="code-highlight">{% translate 'You never listen<span class="mark-highlight">,</span> do you' %}<span class="mark-highlight">?</span></span></td>
+                    <td>{% translate "Words like 'never' count as negative" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Intonation and Meaning" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Falling intonation:</span> Speaker expects agreement" %}
+<p class="code-highlight">{% translate 'It\'s cold today<span class="mark-highlight">,</span> <span class="auxiliary-highlight">isn\'t it</span>' %}<span class="mark-highlight">↘?</span></p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Rising intonation:</span> Genuine question" %}
+<p class="code-highlight">{% translate 'You haven\'t seen my keys<span class="mark-highlight">,</span> <span class="auxiliary-highlight">have you</span>' %}<span class="mark-highlight">↗?</span></p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Sarcastic use:</span> When the answer is obvious" %}
+<p class="code-highlight">{% translate 'Oh, you broke it<span class="mark-highlight">,</span> <span class="auxiliary-highlight">did you</span>' %}<span class="mark-highlight">?</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

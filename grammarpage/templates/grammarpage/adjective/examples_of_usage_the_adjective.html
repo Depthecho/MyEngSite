@@ -1,0 +1,247 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Order of Adjectives: Examples of Usage" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Order of Adjectives" %}</span> &raquo;
+            <span>{% translate "Examples of Usage" %}</span>
+        </nav>
+
+        <h1>{% translate "Order of Adjectives: Examples of Usage" %}</h1>
+        <p>
+            {% translate "The best way to understand the standard order of adjectives (OSASCOMP) is to see it in action. Here are several examples combining adjectives from different categories to describe a single noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Example 1: Describing a Car" %}</h3>
+        <p>
+            {% translate "Let's describe a car using a few adjectives. The correct order is based on the OSASCOMP rule: <span class=\"code-highlight\">Opinion - Size - Age - Color - Noun</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "a <span class=\"term-highlight\">beautiful</span> <span class=\"capital-highlight\">big</span> <span class=\"example-highlight\">old</span> <span class=\"code-highlight\">red</span> car." %}</li>
+        </ul>
+        <p>
+            {% translate "Here's the breakdown:" %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adjective" %}</th>
+                        <th>{% translate "Category" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "beautiful" %}</span></td>
+                        <td>{% translate "Opinion" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"capital-highlight\">{% translate "big" %}</span></td>
+                        <td>{% translate "Size" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"example-highlight\">{% translate "old" %}</span></td>
+                        <td>{% translate "Age" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "red" %}</span></td>
+                        <td>{% translate "Color" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Example 2: Describing an Object" %}</h3>
+        <p>
+            {% translate "Let's describe a piece of furniture with a more detailed combination. The order is: <span class=\"code-highlight\">Opinion - Size - Shape - Color - Material - Noun</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "a <span class=\"term-highlight\">lovely</span> <span class=\"capital-highlight\">small</span> <span class=\"example-highlight\">round</span> <span class=\"code-highlight\">wooden</span> table." %}</li>
+        </ul>
+        <p>
+            {% translate "Notice that the 'Color' category is skipped here, as there is no color adjective, but the rule still holds." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Adjective" %}</th>
+                        <th>{% translate "Category" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "lovely" %}</span></td>
+                        <td>{% translate "Opinion" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"capital-highlight\">{% translate "small" %}</span></td>
+                        <td>{% translate "Size" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"example-highlight\">{% translate "round" %}</span></td>
+                        <td>{% translate "Shape" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "wooden" %}</span></td>
+                        <td>{% translate "Material" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Example 3: Describing a Person's Clothes" %}</h3>
+        <p>
+            {% translate "Here's an example that includes an adjective of origin: <span class=\"code-highlight\">Opinion - Size - Age - Color - Origin - Material - Noun</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "She was wearing a <span class=\"term-highlight\">pretty</span> <span class=\"capital-highlight\">new</span> <span class=\"example-highlight\">blue</span> <span class=\"code-highlight\">silk</span> dress." %}</li>
+        </ul>
+        <p>
+            {% translate "This example shows that you don't need to have an adjective from every category to follow the rule. You simply place the adjectives in the correct order for the categories you are using." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Sequence of Tenses" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Sequence of Tenses" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Sequence of Tenses" %}</h1>
+        <p>
+            {% translate "This section explains the rules for how tenses are used in a main clause and a subordinate clause when the main clause is in a past tense." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "General Rule for Sequence of Tenses" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Sequence of Tenses</span> (also known as \"backshifting\" or \"concord of tenses\") is a fundamental grammatical rule that dictates how verb tenses in <span class=\"term-highlight\">subordinate clauses</span> change when the main verb of a sentence is in a <span class=\"term-highlight\">past tense</span>. This rule ensures <span class=\"term-highlight\">logical consistency in time references</span>, making it clear when events happened relative to each other." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "The Core Principle" %}</h4>
+        <p>
+            {% translate "The general rule is simple: <span class=\"term-highlight\">When the main verb (or independent clause verb) of a sentence is in a past tense, the verb in the subordinate clause usually also takes a past form.</span>" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Example:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="term-highlight">{% translate "Direct Speech:" %}</span> <i><span class="code-highlight">{% translate "He said, \"I" %} <span class="verb-highlight">{% translate "am" %}</span> {% translate "tired.\"" %}</span></i> ({% translate "Present tense in direct speech" %})</li>
+                    <li><span class="term-highlight">{% translate "Reported Speech (Indirect Speech):" %}</span> <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "was" %}</span> {% translate "tired." %}</span></i> ({% translate "The present tense \"am\" shifts to the past tense \"was\" because \"said\" is in the past." %})</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "This \"backshifting\" isn't always about moving to the <i>simple past</i>; it's about moving \"back\" in time relative to the main past tense verb." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Why is the Sequence of Tenses Important?" %}</h4>
+        <p>
+            {% translate "Adhering to the sequence of tenses is crucial for:" %}
+        </p>
+        <ol class="styled-list">
+            <li><span class="term-highlight">{% translate "Clarity and Coherence:" %}</span> {% translate "It helps avoid confusion about the timeline of events. If the main verb is past, but the subordinate clause is present, it can create a jarring and illogical sense of time." %}</li>
+            <li><span class="term-highlight">{% translate "Grammatical Correctness:" %}</span> {% translate "It's a standard rule in formal and often informal English, and ignoring it can lead to grammatically incorrect sentences." %}</li>
+            <li><span class="term-highlight">{% translate "Natural Flow:" %}</span> {% translate "Sentences that follow this rule sound more natural and are easier for native speakers to understand." %}</li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Common Scenarios for Sequence of Tenses" %}</h4>
+        <p>
+            {% translate "The rule applies most frequently in sentences involving <span class=\"term-highlight\">reported speech</span> and <span class=\"term-highlight\">subordinate clauses</span> that begin with conjunctions like <span class=\"code-highlight\">that</span>, <span class=\"code-highlight\">if</span>, <span class=\"code-highlight\">whether</span>, <span class=\"code-highlight\">when</span>, <span class=\"code-highlight\">before</span>, <span class=\"code-highlight\">after</span>, etc." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Original Tense (in Direct Speech / Independent Clause)" %}</th>
+                        <th>{% translate "Backshifted Tense (in Subordinate Clause)" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="term-highlight">{% translate "Present Simple" %}</span> (<span class="code-highlight">am/is/are</span>, <span class="code-highlight">V1</span>)</td><td><span class="term-highlight">{% translate "Past Simple" %}</span> (<span class="code-highlight">was/were</span>, <span class="code-highlight">V2</span>)</td><td><i><span class="code-highlight">{% translate "He said, \"I" %} <span class="verb-highlight">{% translate "am" %}</span> {% translate "happy.\"" %}</span></i> → <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "was" %}</span> {% translate "happy." %}</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Present Continuous" %}</span> (<span class="code-highlight">am/is/are doing</span>)</td><td><span class="term-highlight">{% translate "Past Continuous" %}</span> (<span class="code-highlight">was/were doing</span>)</td><td><i><span class="code-highlight">{% translate "She said, \"I" %} <span class="verb-highlight">{% translate "am working" %}</span>.</span></i> → <i><span class="code-highlight">{% translate "She said that she" %} <span class="verb-highlight">{% translate "was working" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Present Perfect" %}</span> (<span class="code-highlight">have/has done</span>)</td><td><span class="term-highlight">{% translate "Past Perfect" %}</span> (<span class="code-highlight">had done</span>)</td><td><i><span class="code-highlight">{% translate "They said, \"We" %} <span class="verb-highlight">{% translate "have finished" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "They said that they" %} <span class="verb-highlight">{% translate "had finished" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Present Perfect Continuous" %}</span> (<span class="code-highlight">have/has been doing</span>)</td><td><span class="term-highlight">{% translate "Past Perfect Continuous" %}</span> (<span class="code-highlight">had been doing</span>)</td><td><i><span class="code-highlight">{% translate "He said, \"I" %} <span class="verb-highlight">{% translate "have been waiting" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "had been waiting" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Past Simple" %}</span> (<span class="code-highlight">V2</span>)</td><td><span class="term-highlight">{% translate "Past Perfect" %}</span> (<span class="code-highlight">had done</span>)</td><td><i><span class="code-highlight">{% translate "She said, \"I" %} <span class="verb-highlight">{% translate "saw" %}</span> {% translate "him.\"" %}</span></i> → <i><span class="code-highlight">{% translate "She said that she" %} <span class="verb-highlight">{% translate "had seen" %}</span> {% translate "him." %}</span></i> ({% translate "The past simple often shifts to past perfect for clarity" %})</td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Past Continuous" %}</span> (<span class="code-highlight">was/were doing</span>)</td><td><span class="term-highlight">{% translate "Past Perfect Continuous" %}</span> (<span class="code-highlight">had been doing</span>)</td><td><i><span class="code-highlight">{% translate "He said, \"I" %} <span class="verb-highlight">{% translate "was sleeping" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "had been sleeping" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Future Simple" %}</span> (<span class="code-highlight">will do</span>)</td><td><span class="term-highlight">{% translate "Conditional Simple" %}</span> (<span class="code-highlight">would do</span>)</td><td><i><span class="code-highlight">{% translate "They said, \"We" %} <span class="verb-highlight">{% translate "will go" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "They said that they" %} <span class="verb-highlight">{% translate "would go" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Future Continuous" %}</span> (<span class="code-highlight">will be doing</span>)</td><td><span class="term-highlight">{% translate "Conditional Continuous" %}</span> (<span class="code-highlight">would be doing</span>)</td><td><i><span class="code-highlight">{% translate "She said, \"I" %} <span class="verb-highlight">{% translate "will be studying" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "She said that she" %} <span class="verb-highlight">{% translate "would be studying" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Future Perfect" %}</span> (<span class="code-highlight">will have done</span>)</td><td><span class="term-highlight">{% translate "Conditional Perfect" %}</span> (<span class="code-highlight">would have done</span>)</td><td><i><span class="code-highlight">{% translate "He said, \"I" %} <span class="verb-highlight">{% translate "will have finished" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "would have finished" %}</span>.</span></i></td></tr>
+                    <tr><td><span class="term-highlight">{% translate "Future Perfect Continuous" %}</span> (<span class="code-highlight">will have been doing</span>)</td><td><span class="term-highlight">{% translate "Conditional Perfect Continuous" %}</span> (<span class="code-highlight">would have been doing</span>)</td><td><i><span class="code-highlight">{% translate "They said, \"We" %} <span class="verb-highlight">{% translate "will have been traveling" %}</span>.\"</span></i> → <i><span class="code-highlight">{% translate "They said that they" %} <span class="verb-highlight">{% translate "would have been traveling" %}</span>.</span></i></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Exceptions to the Rule" %}</h4>
+        <p>
+            {% translate "While the rule is generally consistent, there are important exceptions where backshifting does <i>not</i> occur:" %}
+        </p>
+        <ol class="styled-list">
+            <li><span class="term-highlight">{% translate "General Truths or Facts:" %}</span> {% translate "If the reported statement expresses a universal truth or a timeless fact, the tense in the subordinate clause remains present." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He taught us that the Earth" %} <span class="verb-highlight">{% translate "is" %}</span> {% translate "round." %}</span></i> ({% translate "Not \"was\" round, because it's still round." %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She mentioned that water" %} <span class="verb-highlight">{% translate "boils" %}</span> {% translate "at 100°C." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Statements that are Still True/Relevant in the Present:" %}</span> {% translate "If the reported statement is still true or relevant at the time of reporting, the tense in the subordinate clause can often remain in its original present form. This is especially common in informal contexts." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She said that she" %} <span class="verb-highlight">{% translate "is" %}</span> {% translate "tired." %}</span></i> ({% translate "If she is still tired right now." %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He told me that he" %} <span class="verb-highlight">{% translate "lives" %}</span> {% translate "in London." %}</span></i> ({% translate "If he still lives in London." %})</li>
+                    <li>{% translate "However, backshifting is always grammatically safe:" %} <i><span class="code-highlight">{% translate "He told me that he" %} <span class="verb-highlight">{% translate "lived" %}</span> {% translate "in London." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Hypothetical Situations/Unreal Conditionals:" %}</span> {% translate "Tenses in conditional clauses (Type 2 and Type 3) generally do not backshift." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He said, \"If I" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "rich, I would travel.\"" %}</span></i> → <i><span class="code-highlight">{% translate "He said that if he" %} <span class="verb-highlight">{% translate "were" %}</span> {% translate "rich, he would travel." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She said, \"If I" %} <span class="verb-highlight">{% translate "had known" %}</span>, {% translate "I would have helped.\"" %}</span></i> → <i><span class="code-highlight">{% translate "She said that if she" %} <span class="verb-highlight">{% translate "had known" %}</span>, {% translate "she would have helped." %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Specific Time Reference (Optional Backshift):" %}</span> {% translate "If the subordinate clause includes a specific time reference that makes the past action clear, backshifting the Past Simple is often optional (though Past Perfect is always safe)." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He said, \"I went to Paris" %} <span class="term-highlight">{% translate "yesterday" %}</span>.\"</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "went" %}</span> {% translate "to Paris yesterday." %}</span></i> ({% translate "Still clear it was yesterday" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He said that he" %} <span class="verb-highlight">{% translate "had gone" %}</span> {% translate "to Paris yesterday." %}</span></i> ({% translate "Also correct and safe" %})</li>
+                </ul>
+            </li>
+        </ol>
+        <p>
+            {% translate "Understanding the General Rule for Sequence of Tenses, along with its exceptions, is key to forming grammatically correct and clear complex sentences in English, particularly when reporting what someone else said or thought." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

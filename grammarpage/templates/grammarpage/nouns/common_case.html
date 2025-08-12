@@ -1,0 +1,198 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Common Case" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Common Case" %}</span>
+        </nav>
+
+        <h1>{% translate "Common Case" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">common case</span> is the base form of a noun in English. It is the form you use when the noun is not showing possession. Most nouns in English are used in the common case, acting as either the subject or the object of a sentence without any change to their spelling." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns as Subjects" %}</h3>
+        <p>
+            {% translate "When a noun in the common case performs the action in a sentence, it is the subject." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Subject Noun" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "The cat" %}</td><td>{% translate "The <span class=\"code-highlight\">cat</span> slept on the bed." %}</td></tr>
+                    <tr><td>{% translate "My friend" %}</td><td>{% translate "My <span class=\"code-highlight\">friend</span> and I went to the movies." %}</td></tr>
+                    <tr><td>{% translate "The books" %}</td><td>{% translate "The <span class=\"code-highlight\">books</span> are on the shelf." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Nouns as Objects" %}</h3>
+        <p>
+            {% translate "When a noun in the common case receives the action of the verb, it is the object." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Object Noun" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "the letter" %}</td><td>{% translate "She wrote <span class=\"code-highlight\">the letter</span>." %}</td></tr>
+                    <tr><td>{% translate "a car" %}</td><td>{% translate "He bought <span class=\"code-highlight\">a car</span> yesterday." %}</td></tr>
+                    <tr><td>{% translate "coffee" %}</td><td>{% translate "I prefer to drink <span class=\"code-highlight\">coffee</span> in the morning." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "It's important to note that the form of the noun (<span class=\"code-highlight\">cat</span>, <span class=\"code-highlight\">friend</span>, <span class=\"code-highlight\">letter</span>, etc.) does not change whether it is the subject or the object. This is a key feature of the common case in English." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

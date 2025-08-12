@@ -1,0 +1,226 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Gender in Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Gender in Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Gender in Pronouns" %}</h1>
+        <p>
+            {% translate "While English nouns themselves do not have grammatical gender, personal pronouns are chosen based on the natural gender of the person or animal they refer to. Understanding this relationship is crucial for correct sentence construction." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Pronouns for People" %}</h3>
+        <p>
+            {% translate "Pronouns are used to replace nouns. The choice of pronoun depends on the gender of the person." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Gender" %}</th>
+                        <th>{% translate "Subject" %}</th>
+                        <th>{% translate "Object" %}</th>
+                        <th>{% translate "Possessive" %}</th>
+                        <th>{% translate "Reflexive" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "Masculine" %}</td><td>{% translate "he" %}</td><td>{% translate "him" %}</td><td>{% translate "his" %}</td><td>{% translate "himself" %}</td></tr>
+                    <tr><td>{% translate "Feminine" %}</td><td>{% translate "she" %}</td><td>{% translate "her" %}</td><td>{% translate "her/hers" %}</td><td>{% translate "herself" %}</td></tr>
+                    <tr><td>{% translate "Common/Unknown" %}</td><td>{% translate "they" %}</td><td>{% translate "them" %}</td><td>{% translate "their/theirs" %}</td><td>{% translate "themselves" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "Modern English widely uses singular <span class=\"code-highlight\">they</span> as a gender-neutral pronoun when the gender of the person is unknown or when referring to a non-binary person." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="code-highlight">{% translate "The student left <span class=\"example-highlight\">their</span> book on the desk." %}</span></li>
+            <li><span class="code-highlight">{% translate "If a client calls, tell <span class=\"example-highlight\">them</span> I’ll be back soon." %}</span></li>
+        </ul>
+        
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Pronouns for Objects and Animals" %}</h3>
+        <p>
+            {% translate "The pronoun <span class=\"code-highlight\">it</span> is used for inanimate objects and typically for animals whose gender is unknown." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Category" %}</th>
+                        <th>{% translate "Pronoun" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "Object" %}</td><td>{% translate "it" %}</td><td>{% translate "I found a pen. <span class=\"code-highlight\">It</span> is on the floor." %}</td></tr>
+                    <tr><td>{% translate "Animal" %}</td><td>{% translate "it" %}</td><td>{% translate "The cat is sleeping. <span class=\"code-highlight\">It</span> looks comfortable." %}</td></tr>
+                    <tr><td>{% translate "Plural" %}</td><td>{% translate "they" %}</td><td>{% translate "I have a lot of books. <span class=\"code-highlight\">They</span> are very old." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Exceptions for Animals" %}</h4>
+        <p>
+            {% translate "When the gender of a pet or a specific animal is known, it is common to use <span class=\"code-highlight\">he</span> or <span class=\"code-highlight\">she</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "My dog's name is Max. <span class=\"code-highlight\">He</span> loves to play fetch." %}</li>
+            <li>{% translate "Our cat is a girl. <span class=\"code-highlight\">She</span> is very cuddly." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Figurative Gender" %}</h3>
+        <p>
+            {% translate "In some contexts, especially in poetic or traditional language, inanimate objects can be personified and referred to with gender-specific pronouns. This is becoming less common in modern usage." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Ships and boats:" %}</span> {% translate "The Titanic sank on <span class=\"code-highlight\">her</span> maiden voyage." %}</li>
+            <li><span class="example-highlight">{% translate "Countries:" %}</span> {% translate "France is proud of <span class=\"code-highlight\">her</span> history." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

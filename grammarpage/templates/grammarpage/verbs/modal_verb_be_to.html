@@ -1,0 +1,302 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Be to" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Be to" %}</span>
+        </nav>
+        
+        <h1>{% translate "Be to" %}</h1>
+        <p>
+            {% translate "The construction <span class=\"term-highlight\">\"be to\"</span> (e.g., \"am to,\" \"is to,\" \"are to,\" \"was to,\" \"were to\") functions as a semi-modal verb in English. It is used to express pre-arranged plans, instructions/orders, obligation, possibility (especially in formal contexts), or destiny/fate." %}
+        </p>
+        <p>
+            {% translate "Unlike true modal verbs, \"be to\" changes form according to the subject and tense (e.g., \"I am to,\" \"she is to,\" \"they were to\"). It is always followed by the base form of the main verb." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of Be to" %}</h4>
+        <p>
+            {% translate "The \"be to\" construction is formed by conjugating the verb \"to be\" according to the subject and tense, and then adding \"to\" followed by the base form of the main verb." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Tense" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example (Affirmative)" %}</th>
+                        <th>{% translate "Example (Negative)" %}</th>
+                        <th>{% translate "Example (Interrogative)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Present Simple" %}</span></td>
+                        <td>{% translate "Subject + am/is/are + to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "am to meet" %}</span> {% translate "him." %}</span><br><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "is to arrive" %}</span> {% translate "soon." %}</span><br><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "are to finish" %}</span> {% translate "today." %}</span></td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "am not to meet" %}</span> {% translate "him." %}</span><br><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "is not to arrive" %}</span> {% translate "soon." %}</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Am I to meet" %}</span> {% translate "him?" %}</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Is she to arrive" %}</span> {% translate "soon?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Past Simple" %}</span></td>
+                        <td>{% translate "Subject + was/were + to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "was to speak" %}</span> {% translate "at the conference." %}</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "were to leave" %}</span> {% translate "at noon." %}</span></td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "was not to speak" %}</span>.</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "were not to leave" %}</span>.</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Was he to speak" %}</span>?</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Were you to leave" %}</span>?</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Present Perfect" %}</span></td>
+                        <td>{% translate "Subject + have/has been + to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "have been to see" %}</span> {% translate "the doctor." %}</span> ({% translate "Less common for 'be to' function, more for perfect tense of 'go'" %})</td>
+                        <td><span class="code-highlight">{% translate "Not typical." %}</span></td>
+                        <td><span class="code-highlight">{% translate "Not typical." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Passive Voice" %}</span></td>
+                        <td>{% translate "Subject + form of \"be to\" + be + Past Participle" %}</td>
+                        <td><span class="code-highlight">{% translate "The work" %} <span class="auxiliary-highlight">{% translate "is to be completed" %}</span> {% translate "by Friday." %}</span><br><span class="code-highlight">{% translate "The problem" %} <span class="auxiliary-highlight">{% translate "was to be discussed" %}</span>.</span></td>
+                        <td><span class="code-highlight">{% translate "The work" %} <span class="auxiliary-highlight">{% translate "is not to be completed" %}</span>.</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Is the work to be completed" %}</span>?</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Use of Be to" %}</h4>
+        <p>
+            {% translate "The \"be to\" construction is primarily used in formal or semi-formal contexts to convey pre-arranged plans, instructions, obligations, or destiny." %}
+        </p>
+
+        <h5>{% translate "1. Expressing Pre-arranged Plans or Scheduled Events" %}</h5>
+        <p>
+            {% translate "This is one of the most common uses, indicating an arrangement, plan, or official schedule for the future." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "The President" %} <span class="auxiliary-highlight">{% translate "is to visit" %}</span> {% translate "Russia next month." %}</span> ({% translate "Official schedule/arrangement" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "are to meet" %}</span> {% translate "at 10 AM sharp." %}</span> ({% translate "Pre-arranged meeting" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "The train" %} <span class="auxiliary-highlight">{% translate "is to arrive" %}</span> {% translate "at 5 o'clock." %}</span> ({% translate "Scheduled event" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "were to get married" %}</span> {% translate "last year, but they postponed it." %}</span> ({% translate "Past unfulfilled plan" %})</li>
+        </ul>
+
+        <h5>{% translate "2. Giving Instructions or Orders" %}</h5>
+        <p>
+            {% translate "It can convey a command or an instruction, often implying that the instruction comes from an authority or an agreement." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "are to report" %}</span> {% translate "to the manager immediately." %}</span> ({% translate "Order/Instruction" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "No one" %} <span class="auxiliary-highlight">{% translate "is to leave" %}</span> {% translate "the room before the bell." %}</span> ({% translate "Prohibition/Instruction" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "This form" %} <span class="auxiliary-highlight">{% translate "is to be filled" %}</span> {% translate "out completely." %}</span> ({% translate "Instruction in passive voice" %})</li>
+        </ul>
+
+        <h5>{% translate "3. Expressing Obligation or Necessity" %}</h5>
+        <p>
+            {% translate "Similar to \"must\" or \"have to,\" but often implies a duty or a moral obligation rather than a strict external rule." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "are to respect" %}</span> {% translate "your elders." %}</span> ({% translate "Moral obligation/duty" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "is to ensure" %}</span> {% translate "that all tasks are completed." %}</span> ({% translate "Duty/Responsibility" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "What" %} <span class="auxiliary-highlight">{% translate "am I to do" %}</span> {% translate "now?" %}</span> ({% translate "Expressing a dilemma or need for instruction" %})</li>
+        </ul>
+
+        <h5>{% translate "4. Expressing Possibility (especially with \"never\" or in questions)" %}</h5>
+        <p>
+            {% translate "In formal contexts, particularly with negative constructions or in questions, \"be to\" can indicate possibility or something that can/cannot happen." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "No solution" %} <span class="auxiliary-highlight">{% translate "is to be found" %}</span>.</span> ({% translate "It is impossible to find a solution" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "was nowhere to be seen" %}</span>.</span> ({% translate "He couldn't be seen" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "The ruins" %} <span class="auxiliary-highlight">{% translate "are to be seen" %}</span> {% translate "from the road." %}</span> ({% translate "They can be seen" %})</li>
+        </ul>
+
+        <h5>{% translate "5. Expressing Destiny or Fate" %}</h5>
+        <p>
+            {% translate "Used to talk about events that are destined or fated to happen, often with a sense of inevitability or tragedy." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "were to meet" %}</span> {% translate "again many years later." %}</span> ({% translate "Fated meeting" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "was to become" %}</span> {% translate "a great leader." %}</span> ({% translate "Destiny" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "was to die" %}</span> {% translate "young." %}</span> ({% translate "Tragic fate" %})</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

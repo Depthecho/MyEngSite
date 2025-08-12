@@ -1,0 +1,249 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Quotation Marks - Titles of Short Works" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .title-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .type-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Quotation Marks: Titles" %}</span>
+        </nav>
+
+        <h1>{% translate "Titles of Short Works in English" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Quotation marks</span> are used to designate titles of short works that are part of larger publications or collections, distinguishing them from longer standalone works which are typically italicized." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "General Rule" %}</h3>
+            <p>
+                {% translate "Use quotation marks for titles of:" %}
+            </p>
+
+            <ul class="styled-list">
+                <li>{% translate "Works that are part of larger wholes" %}</li>
+                <li>{% translate "Short, self-contained creative works" %}</li>
+                <li>{% translate "Works that would not typically be published alone" %}</li>
+            </ul>
+
+            <h4>{% translate "Basic Structure:" %}</h4>
+            <div class="code-highlight">
+                <span class="mark-highlight">"</span>{% translate "Title of Short Work" %}<span class="mark-highlight">"</span>
+            </div>
+        </div>
+
+        <div class="type-card">
+            <h3>{% translate "Types of Short Works" %}</h3>
+
+            <h4>1. {% translate "Literary Works" %}</h4>
+            <p>{% translate "Short stories, poems, essays, and articles:" %}</p>
+<ul class="styled-list">
+    <li><span class="code-highlight">{% translate 'The short story <span class="mark-highlight">"</span>The Lottery<span class="mark-highlight">"</span> shocked readers.' %}</span></li>
+    <li><span class="code-highlight">{% translate 'Did you read <span class="mark-highlight">"</span>A Modest Proposal<span class="mark-highlight">"</span>?' %}</span></li>
+</ul>
+
+            <h4>2. {% translate "Musical Works" %}</h4>
+            <p>{% translate "Songs, arias, and short musical compositions:" %}</p>
+<ul class="styled-list">
+    <li><span class="code-highlight">{% translate '<span class="mark-highlight">"</span>Bohemian Rhapsody<span class="mark-highlight">"</span> remains popular.' %}</span></li>
+    <li><span class="code-highlight">{% translate 'She performed <span class="mark-highlight">"</span>O mio babbino caro<span class="mark-highlight">"</span> beautifully.' %}</span></li>
+</ul>
+
+            <h4>3. {% translate "Media Works" %}</h4>
+            <p>{% translate "TV episodes, short films, and podcast episodes:" %}</p>
+<ul class="styled-list">
+    <li><span class="code-highlight">{% translate 'The episode <span class="mark-highlight">"</span>The One Where Everyone Finds Out<span class="mark-highlight">"</span> is classic.' %}</span></li>
+    <li><span class="code-highlight">{% translate 'Watch <span class="mark-highlight">"</span>La Jetée<span class="mark-highlight">"</span>, a 28-minute film.' %}</span></li>
+</ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Short Works vs Long Works" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Format" %}</th>
+                    <th>{% translate "Short Works (Quotes)" %}</th>
+                    <th>{% translate "Long Works (Italics)" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+<tr>
+    <td>{% translate "Literature" %}</td>
+    <td><span class="code-highlight">{% translate '<span class="mark-highlight">"</span>The Tell-Tale Heart<span class="mark-highlight">"</span> (short story)' %}</span></td>
+    <td><span class="code-highlight"><i>{% translate "The Complete Stories of Edgar Allan Poe" %}</i></span></td>
+</tr>
+<tr>
+    <td>{% translate "Music" %}</td>
+    <td><span class="code-highlight">{% translate '<span class="mark-highlight">"</span>Imagine<span class="mark-highlight">"</span> (song)' %}</span></td>
+    <td><span class="code-highlight"><i>{% translate "Imagine" %}</i> (album)</span></td>
+</tr>
+<tr>
+    <td>{% translate "Periodicals" %}</td>
+    <td><span class="code-highlight">{% translate '<span class="mark-highlight">"</span>How to Bake Perfect Bread<span class="mark-highlight">"</span> (article)' %}</span></td>
+    <td><span class="code-highlight"><i>{% translate "Bon Appétit" %}</i> (magazine)</span></td>
+</tr>
+<tr>
+    <td>{% translate "Media" %}</td>
+    <td><span class="code-highlight">{% translate '<span class="mark-highlight">"</span>The Winds of Winter<span class="mark-highlight">"</span> (TV episode)' %}</span></td>
+    <td><span class="code-highlight"><i>{% translate "Game of Thrones" %}</i> (series)</span></td>
+</tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">British English:</span> Often reverses the American style (single quotes for titles)" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Sacred texts:</span> Neither quoted nor italicized (Bible, Quran)" %}</li>
+                <li>{% translate "<span class=\"term-highlight\">Series of works:</span> Individual lectures in a series may be quoted" %}
+                <p class="code-highlight">{% translate 'The lecture <span class="mark-highlight">"</span>Introduction to Semiotics<span class="mark-highlight">"</span> was fascinating.' %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Punctuation:</span> Periods and commas go inside quotation marks in American English" %}
+<p class="code-highlight">{% translate 'I love <span class="mark-highlight">"</span>The Road Not Taken,<span class="mark-highlight">"</span> especially the last stanza.' %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Add proper formatting to these titles:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "Have you read the poem Ode to a Nightingale?" %}</li>
+            <li>{% translate "Her article The Future of Work was published in The Atlantic." %}</li>
+            <li>{% translate "The song Blinding Lights appears on the album After Hours." %}</li>
+            <li>{% translate "Chapter 3, titled Methodology, was particularly helpful." %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

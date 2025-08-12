@@ -1,0 +1,301 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Second and Third Conditional" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .condition-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .result-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .conditional-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-box {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Second and Third Conditional" %}</span>
+        </nav>
+
+        <h1>{% translate "Unreal Conditionals: Second and Third Types" %}</h1>
+        <p>
+            {% translate "These conditionals describe hypothetical or impossible situations. The <span class=\"term-highlight\">second conditional</span> imagines present/future scenarios, while the <span class=\"term-highlight\">third conditional</span> reflects on past events that cannot be changed." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="conditional-card">
+            <h3>{% translate "Second Conditional" %}</h3>
+            <p>{% translate "Used for unreal, imaginary, or unlikely situations in the present or future." %}</p>
+
+            <div class="structure-box">
+                <span class="condition-highlight">{% translate "If + Past Simple" %}</span>,
+                <span class="result-highlight">{% translate "would + base verb" %}</span>
+            </div>
+
+            <h5>{% translate "Examples:" %}</h5>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If I were president</span>, <span class=\"result-highlight\">I would change the education system</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If we had more time</span>, <span class=\"result-highlight\">we would visit the museum</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If you spoke Chinese</span>, <span class=\"result-highlight\">you could get that job</span>." %}</span></li>
+            </ul>
+
+            <h5>{% translate "Key Features:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "Uses past tense in if-clause but refers to present/future" %}</li>
+                <li>{% translate "Often uses 'were' instead of 'was' for all subjects (more formal)" %}</li>
+                <li>{% translate "Can use 'could' or 'might' instead of 'would'" %}</li>
+                <li>{% translate "Expresses dreams, hypotheticals, or unlikely situations" %}</li>
+            </ul>
+
+            <h5>{% translate "Special Cases:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Polite requests:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"condition-highlight\">If you were available</span>, <span class=\"result-highlight\">I would appreciate your help</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Advice:</span>" %}
+                    <p class="code-highlight">{% translate "<span class=\"condition-highlight\">If I were you</span>, <span class=\"result-highlight\">I would apologize</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="conditional-card">
+            <h3>{% translate "Third Conditional" %}</h3>
+            <p>{% translate "Used for impossible past situations and their imaginary results - things that cannot be changed." %}</p>
+
+            <div class="structure-box">
+                <span class="condition-highlight">{% translate "If + Past Perfect" %}</span>,
+                <span class="result-highlight">{% translate "would have + past participle" %}</span>
+            </div>
+
+            <h5>{% translate "Examples:" %}</h5>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If I had known about the traffic</span>, <span class=\"result-highlight\">I would have left earlier</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">If she had studied medicine</span>, <span class=\"result-highlight\">she would have become a doctor</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"condition-highlight\">Had we arrived on time</span>, <span class=\"result-highlight\">we wouldn't have missed the show</span>." %}</span> ({% translate "formal inversion" %})</li>
+            </ul>
+
+            <h5>{% translate "Key Features:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "Expresses regret or criticism about past events" %}</li>
+                <li>{% translate "Often used for missed opportunities" %}</li>
+                <li>{% translate "Can use 'could have' or 'might have' instead of 'would have'" %}</li>
+                <li>{% translate "In formal English, can invert subject and auxiliary ('Had I known...')" %}</li>
+            </ul>
+
+            <h5>{% translate "Special Cases:" %}</h5>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Mixed conditionals:</span> Combining time references" %}
+                    <p class="code-highlight">{% translate "<span class=\"condition-highlight\">If I had studied harder</span>, <span class=\"result-highlight\">I would be at university now</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Comparing Second and Third Conditionals" %}</h3>
+        <div class="structure-box">
+            <table style="width:100%; border-collapse: collapse;">
+                <tr>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "Feature" %}</th>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "Second Conditional" %}</th>
+                    <th style="border:1px solid #444; padding:8px; text-align:left;">{% translate "Third Conditional" %}</th>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Time Reference" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Present/Future" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Past" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "If-clause" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Past Simple" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Past Perfect" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Result Clause" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "would + base verb" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "would have + past participle" %}</td>
+                </tr>
+                <tr>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Possibility" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Unlikely but possible" %}</td>
+                    <td style="border:1px solid #444; padding:8px;">{% translate "Impossible (past is fixed)" %}</td>
+                </tr>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Mixing second and third conditional forms</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "If I had a million dollars, I would have bought a mansion." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If I had a million dollars</span>, <span class=\"result-highlight\">I would buy a mansion</span>." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Using wrong verb forms</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "If I would be taller, I would play basketball." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If I were taller</span>, <span class=\"result-highlight\">I would play basketball</span>." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Confusing time references</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "If you had called me yesterday, I will help you." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "<span class=\"condition-highlight\">If you had called me yesterday</span>, <span class=\"result-highlight\">I would have helped you</span>." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

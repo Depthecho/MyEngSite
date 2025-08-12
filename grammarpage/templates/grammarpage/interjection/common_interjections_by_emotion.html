@@ -1,0 +1,358 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Common Interjections by Emotion" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .emotion-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .emotion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .emotion-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #b388ff;
+        }
+
+        .interjection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .interjection-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 12px;
+            border-left: 3px solid #b388ff;
+        }
+
+        .interjection-term {
+            color: #f72585;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .interjection-example {
+            color: #4cc9f0;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .grammar-table thead th {
+            background: rgba(0, 0, 0, 0.3);
+            font-weight: bold;
+            text-align: left;
+            color: #ff9e7d;
+            padding: 15px;
+            border: 1px solid #444;
+            text-transform: uppercase;
+            font-size: 0.85em;
+            letter-spacing: 1px;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .grammar-table tbody td {
+            color: #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .grammar-table tr:hover {
+            background-color: rgba(76, 201, 240, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        .emotion-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .interjection-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-style: italic;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+
+            .interjection-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grammar-table thead th {
+                padding: 10px 8px;
+                font-size: 0.8em;
+            }
+
+            .grammar-table th, .grammar-table td {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'interjection_page' %}">{% translate "Interjection" %}</a></span> &raquo;
+            <span>{% translate "Common Interjections by Emotion" %}</span>
+        </nav>
+
+        <h1>{% translate "Common Interjections by Emotion" %}</h1>
+        <p>
+            {% translate "Interjections are the emotional punctuation of our speech. This comprehensive guide organizes them by the feelings they express, with examples and usage notes." %}
+        </p>
+
+        <div class="emotion-card">
+            <div class="emotion-header">
+                <span class="emotion-icon">😲</span>
+                <h3>{% translate "Surprise & Amazement" %}</h3>
+            </div>
+            <p>{% translate "Expressions of sudden wonder, shock, or unexpected events:" %}</p>
+
+            <div class="interjection-grid">
+                <div class="interjection-card">
+                    <div class="interjection-term">Wow!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Wow!</span> That's incredible!"</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Oh!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Oh!</span> I didn't see you there."</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Whoa!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Whoa!</span> Slow down!"</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Ah!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Ah!</span> Now I understand!"</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="emotion-card">
+            <div class="emotion-header">
+                <span class="emotion-icon">😫</span>
+                <h3>{% translate "Pain & Discomfort" %}</h3>
+            </div>
+            <p>{% translate "Instant reactions to physical or emotional pain:" %}</p>
+
+            <div class="interjection-grid">
+                <div class="interjection-card">
+                    <div class="interjection-term">Ouch!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Ouch!</span> That really hurt!"</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Ow!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Ow!</span> Stop pinching me!"</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Argh!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Argh!</span> This is so frustrating!"</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Ugh!</div>
+                    <div class="interjection-example">"<span class="interjection-highlight">Ugh!</span> I feel terrible."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Emotion Category" %}</th>
+                        <th>{% translate "Common Interjections" %}</th>
+                        <th>{% translate "Example Usage" %}</th>
+                        <th>{% translate "Punctuation" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Joy & Celebration" %}</span></td>
+                        <td>Yay, Hurray, Woo-hoo, Yippee</td>
+                        <td>"<span class="interjection-highlight">Yay!</span> We won the game!"</td>
+                        <td>!</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Disgust & Dislike" %}</span></td>
+                        <td>Ew, Yuck, Blech, Ick</td>
+                        <td>"<span class="interjection-highlight">Ew!</span> That smells awful!"</td>
+                        <td>!</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Relief" %}</span></td>
+                        <td>Phew, Whew, Ah</td>
+                        <td>"<span class="interjection-highlight">Phew,</span> that was close!"</td>
+                        <td>, or !</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Hesitation & Pausing" %}</span></td>
+                        <td>Um, Uh, Er, Hmm</td>
+                        <td>"I think, <span class="interjection-highlight">um</span>, we should go now."</td>
+                        <td>,</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Greeting & Attention" %}</span></td>
+                        <td>Hey, Hi, Hello, Yo</td>
+                        <td>"<span class="interjection-highlight">Hey,</span> look at this!"</td>
+                        <td>, or !</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Realization" %}</span></td>
+                        <td>Ah, Oh, Aha</td>
+                        <td>"<span class="interjection-highlight">Ah!</span> Now I get it!"</td>
+                        <td>! or ,</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Disappointment" %}</span></td>
+                        <td>Aw, Oh no, Darn, Shoot</td>
+                        <td>"<span class="interjection-highlight">Aw,</span> my ice cream fell."</td>
+                        <td>, or !</td>
+                    </tr>
+                    <tr>
+                        <td><span class="emotion-highlight">{% translate "Encouragement" %}</span></td>
+                        <td>There, Bravo, Attaboy</td>
+                        <td>"<span class="interjection-highlight">There!</span> You did it!"</td>
+                        <td>!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="emotion-card">
+            <h3>{% translate "Cultural & Regional Variations" %}</h3>
+            <p>{% translate "Interjections often vary by language and region. Here are some interesting examples:" %}</p>
+
+            <div class="interjection-grid">
+                <div class="interjection-card">
+                    <div class="interjection-term">Aiya! (Chinese)</div>
+                    <div class="interjection-example">Expresses frustration or surprise</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Opa! (Greek)</div>
+                    <div class="interjection-example">Joy or surprise during celebrations</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Oy! (Yiddish)</div>
+                    <div class="interjection-example">Exasperation or dismay</div>
+                </div>
+                <div class="interjection-card">
+                    <div class="interjection-term">Aigoo! (Korean)</div>
+                    <div class="interjection-example">Frustration or sympathy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'interjection_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Interjections" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

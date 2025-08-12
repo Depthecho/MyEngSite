@@ -1,0 +1,446 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adverbs: Formation Rules of Comparison" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .positive-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .comparative-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .superlative-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .rule-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .exception-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adverb_page' %}">{% translate "Adverbs" %}</a></span> &raquo;
+            <span>{% translate "Formation Rules of Comparison" %}</span>
+        </nav>
+
+        <h1>{% translate "Comparative and Superlative Adverbs: Formation Rules" %}</h1>
+        <p>
+            {% translate "Adverbs, like adjectives, can show different degrees of comparison. The formation rules depend on the adverb's structure and origin." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="rule-card">
+            <h3>{% translate "1. One-Syllable Adverbs" %}</h3>
+            <p>
+                {% translate "Most one-syllable adverbs form their comparative and superlative by adding <span class=\"code-highlight\">-er</span> and <span class=\"code-highlight\">-est</span> respectively." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Positive" %}</th>
+                            <th>{% translate "Comparative (-er)" %}</th>
+                            <th>{% translate "Superlative (-est)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "fast" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "faster" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "fastest" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "hard" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "harder" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "hardest" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "soon" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "sooner" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "soonest" %}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Usage Examples:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "She runs <span class=\"comparative-highlight\">faster</span> than her brother." %}</li>
+                <li>{% translate "He works <span class=\"superlative-highlight\">hardest</span> in our team." %}</li>
+                <li>{% translate "Please reply <span class=\"comparative-highlight\">sooner</span> next time." %}</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "2. Adverbs Ending in -ly" %}</h3>
+            <p>
+                {% translate "Most adverbs formed by adding <span class=\"code-highlight\">-ly</span> to adjectives use <span class=\"code-highlight\">more</span> and <span class=\"code-highlight\">most</span> for comparison." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Positive" %}</th>
+                            <th>{% translate "Comparative (more)" %}</th>
+                            <th>{% translate "Superlative (most)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "quickly" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more quickly" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most quickly" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "carefully" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more carefully" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most carefully" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "easily" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more easily" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most easily" %}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Important Notes:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Never add <span class=\"code-highlight\">-er</span> or <span class=\"code-highlight\">-est</span> to -ly adverbs" %}</li>
+                <li>{% translate "Some -ly adverbs have irregular forms (see exceptions below)" %}</li>
+                <li>{% translate "In informal speech, some speakers use adjective forms (e.g., 'quicker' instead of 'more quickly')" %}</li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "3. Two-Syllable Adverbs" %}</h3>
+            <p>
+                {% translate "These can be tricky - some take <span class=\"code-highlight\">-er/-est</span>, others require <span class=\"code-highlight\">more/most</span>." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Positive" %}</th>
+                            <th>{% translate "Comparative" %}</th>
+                            <th>{% translate "Superlative" %}</th>
+                            <th>{% translate "Pattern" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "early" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "earlier" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "earliest" %}</span></td>
+                            <td>{% translate "-er/-est" %}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "often" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more often" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most often" %}</span></td>
+                            <td>{% translate "more/most" %}</td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "slowly" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more slowly" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most slowly" %}</span></td>
+                            <td>{% translate "more/most" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Usage Tips:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Adverbs identical to adjectives often take <span class=\"code-highlight\">-er/-est</span> (early, late)" %}</li>
+                <li>{% translate "Most others use <span class=\"code-highlight\">more/most</span>" %}</li>
+                <li>{% translate "When in doubt, use <span class=\"code-highlight\">more/most</span> - it's never wrong" %}</li>
+            </ul>
+        </div>
+
+        <div class="exception-card">
+            <h3>{% translate "Irregular Adverbs" %}</h3>
+            <p>
+                {% translate "Some common adverbs have completely irregular comparative and superlative forms." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Positive" %}</th>
+                            <th>{% translate "Comparative" %}</th>
+                            <th>{% translate "Superlative" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "well" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "better" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "best" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "badly" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "worse" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "worst" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "little" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "less" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "least" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "much" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "more" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "most" %}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="positive-highlight">{% translate "far" %}</span></td>
+                            <td><span class="comparative-highlight">{% translate "farther/further" %}</span></td>
+                            <td><span class="superlative-highlight">{% translate "farthest/furthest" %}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Cases:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Farther/farthest</span> for physical distance" %}
+                    <p class="code-highlight">{% translate "She ran <span class=\"comparative-highlight\">farther</span> than anyone else." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Further/furthest</span> for metaphorical distance" %}
+                    <p class="code-highlight">{% translate "Let me explain this <span class=\"comparative-highlight\">further</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Less/least</span> can modify all adverbs (even comparatives)" %}
+                    <p class="code-highlight">{% translate "She visits <span class=\"comparative-highlight\">less frequently</span> now." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Sentence Position of Comparative Adverbs" %}</h3>
+        <p>{% translate "The placement of comparative adverbs affects meaning and emphasis:" %}</p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Position" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "Effect" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "After verb" %}</td>
+                        <td><span class="code-highlight">{% translate "She works <span class=\"comparative-highlight\">harder</span> than you." %}</span></td>
+                        <td>{% translate "Standard comparison" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Beginning" %}</td>
+                        <td><span class="code-highlight">{% translate "<span class=\"comparative-highlight\">More quickly</span> than expected, he finished." %}</span></td>
+                        <td>{% translate "Emphasizes speed/surprise" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "With 'than'" %}</td>
+                        <td><span class="code-highlight">{% translate "He runs fast, but she runs <span class=\"comparative-highlight\">faster</span> than him." %}</span></td>
+                        <td>{% translate "Direct comparison between two" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "With 'the'" %}</td>
+                        <td><span class="code-highlight">{% translate "Who works <span class=\"superlative-highlight\">the hardest</span>?" %}</span></td>
+                        <td>{% translate "Superlative comparison among many" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <div class="exception-card">
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Double comparatives:</span> Never use both -er and more" %}
+                    <p class="code-highlight incorrect">{% translate "She runs <span class=\"comparative-highlight\">more faster</span> than me." %}</p>
+                    <p class="code-highlight correct">{% translate "She runs <span class=\"comparative-highlight\">faster</span> than me." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Adjective forms:</span> Don't use adjective comparatives for -ly adverbs" %}
+                    <p class="code-highlight incorrect">{% translate "Drive <span class=\"comparative-highlight\">carefullier</span>!" %}</p>
+                    <p class="code-highlight correct">{% translate "Drive <span class=\"comparative-highlight\">more carefully</span>!" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Superlative without 'the':</span> Usually needs definite article" %}
+                    <p class="code-highlight incorrect">{% translate "He works <span class=\"superlative-highlight\">hardest</span>." %}</p>
+                    <p class="code-highlight correct">{% translate "He works <span class=\"superlative-highlight\">the hardest</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Illogical comparisons:</span> Compare similar things" %}
+                    <p class="code-highlight incorrect">{% translate "She speaks <span class=\"comparative-highlight\">more clearly</span> than her sister's pronunciation." %}</p>
+                    <p class="code-highlight correct">{% translate "She speaks <span class=\"comparative-highlight\">more clearly</span> than her sister does." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'adverb_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adverbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

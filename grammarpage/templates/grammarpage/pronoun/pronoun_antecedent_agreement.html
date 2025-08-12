@@ -1,0 +1,190 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Pronoun-Antecedent Agreement" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Proper Usage of Pronouns" %}</span> &raquo;
+            <span>{% translate "Pronoun-Antecedent Agreement" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronoun-Antecedent Agreement" %}</h1>
+        <p>
+            {% translate "Pronoun-antecedent agreement is a fundamental rule in English grammar. It means that a pronoun must agree with the noun or noun phrase it refers to (its <span class=\"term-highlight\">antecedent</span>) in terms of number (singular or plural), gender (masculine, feminine, or neuter), and person (first, second, or third)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Agreement in Number" %}</h3>
+        <p>
+            {% translate "This is the most common agreement issue. A singular antecedent requires a singular pronoun, and a plural antecedent requires a plural pronoun." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "The <span class=\"term-highlight\">student</span> finished <span class=\"capital-highlight\">their</span> homework." %} (Correct, as 'their' is widely accepted as a singular gender-neutral pronoun)</li>
+            <li>{% translate "The <span class=\"term-highlight\">students</span> finished <span class=\"capital-highlight\">their</span> homework." %} (Correct)</li>
+            <li><strike>{% translate "The student finished their homeworks." %}</strike> (Incorrect: plural pronoun 'theirs' is wrong with singular noun 'homework')</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Agreement with Indefinite Pronouns" %}</h3>
+        <p>
+            {% translate "This is a common source of confusion. Many indefinite pronouns (e.g., <span class=\"code-highlight\">everyone, somebody, each</span>) are grammatically singular, even though they may seem to imply a group of people. Therefore, they require a singular pronoun." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "Each of the employees must submit <span class=\"term-highlight\">their</span> report by Friday." %} (Correct, again, 'their' is now the standard for this)</li>
+            <li><strike>{% translate "Each of the employees must submit their reports by Friday." %}</strike> (Incorrect, plural 'reports' is wrong with 'each')</li>
+            <li>{% translate "Somebody left <span class=\"term-highlight\">their</span> keys on the desk." %}</li>
+        </ul>
+        <p>
+            {% translate "Using <span class=\"code-highlight\">their</span> as a singular, gender-neutral pronoun is now standard practice to avoid the awkward <span class=\"code-highlight\">he or she</span>." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Agreement with Collective Nouns" %}</h3>
+        <p>
+            {% translate "Collective nouns (e.g., <span class=\"code-highlight\">team, family, committee</span>) can be either singular or plural, depending on the context. If the group is acting as a single unit, use a singular pronoun (<span class=\"code-highlight\">it</span>). If the individuals within the group are acting separately, use a plural pronoun (<span class=\"code-highlight\">they</span>)." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "The <span class=\"term-highlight\">team</span> celebrated <span class=\"capital-highlight\">its</span> victory." %} (The team acted as one unit.)</li>
+            <li>{% translate "The <span class=\"term-highlight\">team</span> put on <span class=\"capital-highlight\">their</span> shoes before the game." %} (Each member of the team is acting individually.)</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

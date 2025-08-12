@@ -1,0 +1,554 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Phrasal Verbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Phrasal Verbs" %}</span>
+        </nav>
+        
+        <h1>{% translate "Phrasal Verbs" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Phrasal verbs</span> are combinations of a main verb and one or two particles (prepositions or adverbs) that form a new meaning, often quite different from the individual words. They are an essential part of everyday spoken and informal English." %}
+        </p>
+        <p>
+            {% translate "Understanding phrasal verbs is crucial for fluent communication, as they are used constantly by native speakers. Their meanings can sometimes be deduced from context, but often they need to be learned as distinct vocabulary items." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Common Phrasal Verbs" %}</h4>
+        <p>
+            {% translate "Here's a table with some common phrasal verbs, their meanings, and example sentences." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Phrasal Verb" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "break down" %}</span></td>
+                        <td>1. {% translate "To stop working (for a machine)" %}<br>2. {% translate "To lose control of one's feelings" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "My car" %} <span class="auxiliary-highlight">{% translate "broke down" %}</span> {% translate "on the way to work." %}</span><br>2. <span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "broke down" %}</span> {% translate "and cried when she heard the news." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "bring up" %}</span></td>
+                        <td>1. {% translate "To raise (a child)" %}<br>2. {% translate "To mention (a topic)" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "She was" %} <span class="auxiliary-highlight">{% translate "brought up" %}</span> {% translate "by her grandparents." %}</span><br>2. <span class="code-highlight">{% translate "Don't" %} <span class="auxiliary-highlight">{% translate "bring up" %}</span> {% translate "that topic again." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "call off" %}</span></td>
+                        <td>{% translate "To cancel something" %}</td>
+                        <td><span class="code-highlight">{% translate "They decided to" %} <span class="auxiliary-highlight">{% translate "call off" %}</span> {% translate "the meeting." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "come across" %}</span></td>
+                        <td>{% translate "To find or meet by chance" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "came across" %}</span> {% translate "some old photos while cleaning." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "get along (with)" %}</span></td>
+                        <td>{% translate "To have a friendly relationship with someone" %}</td>
+                        <td><span class="code-highlight">{% translate "Do you" %} <span class="auxiliary-highlight">{% translate "get along" %}</span> {% translate "with your siblings?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "get over" %}</span></td>
+                        <td>{% translate "To recover from an illness, shock, or disappointment" %}</td>
+                        <td><span class="code-highlight">{% translate "It took her a long time to" %} <span class="auxiliary-highlight">{% translate "get over" %}</span> {% translate "the flu." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "give up" %}</span></td>
+                        <td>1. {% translate "To stop trying/quit" %}<br>2. {% translate "To stop doing something (a habit)" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Don't" %} <span class="auxiliary-highlight">{% translate "give up" %}</span>, {% translate "you're almost there!" %}</span><br>2. <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "gave up" %}</span> {% translate "smoking last year." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "look after" %}</span></td>
+                        <td>{% translate "To take care of someone or something" %}</td>
+                        <td><span class="code-highlight">{% translate "Could you" %} <span class="auxiliary-highlight">{% translate "look after" %}</span> {% translate "my cat while I'm away?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "look for" %}</span></td>
+                        <td>{% translate "To search for something" %}</td>
+                        <td><span class="code-highlight">{% translate "I'm" %} <span class="auxiliary-highlight">{% translate "looking for" %}</span> {% translate "my keys, have you seen them?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "look up" %}</span></td>
+                        <td>{% translate "To search for information (in a dictionary, on the internet, etc.)" %}</td>
+                        <td><span class="code-highlight">{% translate "If you don't know the word," %} <span class="auxiliary-highlight">{% translate "look it up" %}</span> {% translate "in the dictionary." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "make up" %}</span></td>
+                        <td>1. {% translate "To invent (a story, an excuse)" %}<br>2. {% translate "To reconcile after an argument" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "made up" %}</span> {% translate "an excuse for being late." %}</span><br>2. <span class="code-highlight">{% translate "Let's" %} <span class="auxiliary-highlight">{% translate "make up" %}</span> {% translate "and be friends again." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "put off" %}</span></td>
+                        <td>{% translate "To postpone" %}</td>
+                        <td><span class="code-highlight">{% translate "They had to" %} <span class="auxiliary-highlight">{% translate "put off" %}</span> {% translate "the wedding until next year." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "run out of" %}</span></td>
+                        <td>{% translate "To use up all of something and have no more left" %}</td>
+                        <td><span class="code-highlight">{% translate "We've" %} <span class="auxiliary-highlight">{% translate "run out of" %}</span> {% translate "milk, I need to buy some." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "take off" %}</span></td>
+                        <td>1. {% translate "To remove clothing" %}<br>2. {% translate "(For an aircraft) to leave the ground" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "take off" %}</span> {% translate "your shoes at the door." %}</span><br>2. <span class="code-highlight">{% translate "The plane" %} <span class="auxiliary-highlight">{% translate "took off" %}</span> {% translate "on time." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "turn down" %}</span></td>
+                        <td>1. {% translate "To reduce the volume or intensity" %}<br>2. {% translate "To reject an offer or request" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "turn down" %}</span> {% translate "the music." %}</span><br>2. <span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "turned down" %}</span> {% translate "the job offer." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "turn up" %}</span></td>
+                        <td>1. {% translate "To increase the volume or intensity" %}<br>2. {% translate "To arrive or appear unexpectedly" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Can you" %} <span class="auxiliary-highlight">{% translate "turn up" %}</span> {% translate "the heating?" %}</span><br>2. <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "turned up" %}</span> {% translate "late for the meeting." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Types of Phrasal Verbs" %}</h4>
+        <p>
+            {% translate "Phrasal verbs can be categorized based on their grammatical structure and whether they can take an object, and if so, whether the object can be separated from the verb and particle(s)." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Transitive vs. Intransitive:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Transitive:" %}</span> {% translate "Take a direct object (e.g.," %} <span class="code-highlight">{% translate "pick up the book" %}</span>).</li>
+                    <li><span class="example-highlight">{% translate "Intransitive:" %}</span> {% translate "Do not take a direct object (e.g.," %} <span class="code-highlight">{% translate "break down" %}</span> - {% translate "\"The car broke down.\"" %}).</li>
+                </ul>
+            </li>
+            <li><span class="example-highlight">{% translate "Separable vs. Inseparable:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Separable:" %}</span> {% translate "The object can come between the verb and the particle, especially if the object is a pronoun (e.g.," %} <span class="code-highlight">{% translate "turn off the light / turn the light off / turn it off" %}</span>).</li>
+                    <li><span class="example-highlight">{% translate "Inseparable:" %}</span> {% translate "The object must come after the particle (e.g.," %} <span class="code-highlight">{% translate "look after the baby / look after her" %}</span> - *{% translate "not" %}* {% translate "\"look the baby after\"" %}).</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "Learning phrasal verbs often involves memorizing not just their meaning but also their grammatical behavior (whether they are transitive/intransitive and separable/inseparable)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Table of Phrasal Verbs" %}</h4>
+        <p>
+            {% translate "Here's a more extensive list of phrasal verbs to help you expand your vocabulary. Remember that many phrasal verbs have multiple meanings depending on the context." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Phrasal Verb" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "act on" %}</span></td>
+                        <td>{% translate "To take action according to advice or information" %}</td>
+                        <td><span class="code-highlight">{% translate "You should" %} <span class="auxiliary-highlight">{% translate "act on" %}</span> {% translate "his advice immediately." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "add up" %}</span></td>
+                        <td>{% translate "To make sense; to seem reasonable" %}</td>
+                        <td><span class="code-highlight">{% translate "His story doesn't" %} <span class="auxiliary-highlight">{% translate "add up" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "ask around" %}</span></td>
+                        <td>{% translate "To ask many different people in order to get information or help" %}</td>
+                        <td><span class="code-highlight">{% translate "I don't know the answer, but I can" %} <span class="auxiliary-highlight">{% translate "ask around" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "back up" %}</span></td>
+                        <td>1. {% translate "To support (someone)" %}<br>2. {% translate "To make a copy of computer data" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "back me up" %}</span> {% translate "in the meeting." %}</span><br>2. <span class="code-highlight">{% translate "You should always" %} <span class="auxiliary-highlight">{% translate "back up" %}</span> {% translate "your files." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "blow up" %}</span></td>
+                        <td>1. {% translate "To explode" %}<br>2. {% translate "To inflate something (e.g., a balloon)" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "The bomb" %} <span class="auxiliary-highlight">{% translate "blew up" %}</span>.</span><br>2. <span class="code-highlight">{% translate "Can you help me" %} <span class="auxiliary-highlight">{% translate "blow up" %}</span> {% translate "these balloons?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "break into" %}</span></td>
+                        <td>{% translate "To enter a building illegally, usually by force" %}</td>
+                        <td><span class="code-highlight">{% translate "Someone" %} <span class="auxiliary-highlight">{% translate "broke into" %}</span> {% translate "my house last night." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "break out" %}</span></td>
+                        <td>1. {% translate "To escape (from prison)" %}<br>2. {% translate "To start suddenly (e.g., a war, a fire)" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Two prisoners" %} <span class="auxiliary-highlight">{% translate "broke out" %}</span> {% translate "of jail." %}</span><br>2. <span class="code-highlight">{% translate "A fire" %} <span class="auxiliary-highlight">{% translate "broke out" %}</span> {% translate "in the building." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "catch on" %}</span></td>
+                        <td>1. {% translate "To understand (informal)" %}<br>2. {% translate "To become popular" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "He's quick, he" %} <span class="auxiliary-highlight">{% translate "catches on" %}</span> {% translate "fast." %}</span><br>2. <span class="code-highlight">{% translate "I hope this new trend will" %} <span class="auxiliary-highlight">{% translate "catch on" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "check out" %}</span></td>
+                        <td>1. {% translate "To investigate; to examine" %}<br>2. {% translate "To leave a hotel" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "You should" %} <span class="auxiliary-highlight">{% translate "check out" %}</span> {% translate "that new restaurant." %}</span><br>2. <span class="code-highlight">{% translate "We need to" %} <span class="auxiliary-highlight">{% translate "check out" %}</span> {% translate "of the hotel by noon." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "clean up" %}</span></td>
+                        <td>{% translate "To make something tidy or clean" %}</td>
+                        <td><span class="code-highlight">{% translate "Let's" %} <span class="auxiliary-highlight">{% translate "clean up" %}</span> {% translate "this mess before mom gets home." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "come up with" %}</span></td>
+                        <td>{% translate "To think of an idea or a plan" %}</td>
+                        <td><span class="code-highlight">{% translate "Can you" %} <span class="auxiliary-highlight">{% translate "come up with" %}</span> {% translate "a solution to this problem?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "cut off" %}</span></td>
+                        <td>1. {% translate "To disconnect (a phone call, electricity)" %}<br>2. {% translate "To separate or isolate" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "The phone call was suddenly" %} <span class="auxiliary-highlight">{% translate "cut off" %}</span>.</span><br>2. <span class="code-highlight">{% translate "The town was" %} <span class="auxiliary-highlight">{% translate "cut off" %}</span> {% translate "by the floods." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "deal with" %}</span></td>
+                        <td>{% translate "To handle; to manage" %}</td>
+                        <td><span class="code-highlight">{% translate "I'll" %} <span class="auxiliary-highlight">{% translate "deal with" %}</span> {% translate "this problem tomorrow." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "do without" %}</span></td>
+                        <td>{% translate "To manage or survive without something" %}</td>
+                        <td><span class="code-highlight">{% translate "We can't" %} <span class="auxiliary-highlight">{% translate "do without" %}</span> {% translate "electricity for long." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "drop off" %}</span></td>
+                        <td>{% translate "To take someone/something to a place and leave them there" %}</td>
+                        <td><span class="code-highlight">{% translate "I'll" %} <span class="auxiliary-highlight">{% translate "drop you off" %}</span> {% translate "at the station." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "eat out" %}</span></td>
+                        <td>{% translate "To eat in a restaurant, not at home" %}</td>
+                        <td><span class="code-highlight">{% translate "We often" %} <span class="auxiliary-highlight">{% translate "eat out" %}</span> {% translate "on weekends." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "fall apart" %}</span></td>
+                        <td>{% translate "To break into pieces; to fail completely" %}</td>
+                        <td><span class="code-highlight">{% translate "My old shoes are" %} <span class="auxiliary-highlight">{% translate "falling apart" %}</span>.</span><br><span class="code-highlight">{% translate "Their plans" %} <span class="auxiliary-highlight">{% translate "fell apart" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "figure out" %}</span></td>
+                        <td>{% translate "To understand or solve something" %}</td>
+                        <td><span class="code-highlight">{% translate "I can't" %} <span class="auxiliary-highlight">{% translate "figure out" %}</span> {% translate "how to use this new software." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "fill in" %}</span></td>
+                        <td>{% translate "To complete a form or document" %}</td>
+                        <td><span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "fill in" %}</span> {% translate "your name and address." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "find out" %}</span></td>
+                        <td>{% translate "To discover information" %}</td>
+                        <td><span class="code-highlight">{% translate "I need to" %} <span class="auxiliary-highlight">{% translate "find out" %}</span> {% translate "what time the train leaves." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "get away (with)" %}</span></td>
+                        <td>{% translate "To escape or avoid punishment for something wrong" %}</td>
+                        <td><span class="code-highlight">{% translate "He stole the money and" %} <span class="auxiliary-highlight">{% translate "got away with" %}</span> {% translate "it." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "get by" %}</span></td>
+                        <td>{% translate "To manage to live or do things with difficulty" %}</td>
+                        <td><span class="code-highlight">{% translate "I can" %} <span class="auxiliary-highlight">{% translate "get by" %}</span> {% translate "on my salary, but it's tough." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "give away" %}</span></td>
+                        <td>{% translate "To give something to someone for free" %}</td>
+                        <td><span class="code-highlight">{% translate "They're" %} <span class="auxiliary-highlight">{% translate "giving away" %}</span> {% translate "free samples at the supermarket." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "go on" %}</span></td>
+                        <td>1. {% translate "To continue" %}<br>2. {% translate "To happen" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "go on" %}</span> {% translate "with your work." %}</span><br>2. <span class="code-highlight">{% translate "What's" %} <span class="auxiliary-highlight">{% translate "going on" %}</span> {% translate "here?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "grow up" %}</span></td>
+                        <td>{% translate "To become an adult" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "grew up" %}</span> {% translate "in a small town." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "hang out" %}</span></td>
+                        <td>{% translate "To spend time with friends informally (informal)" %}</td>
+                        <td><span class="code-highlight">{% translate "We often" %} <span class="auxiliary-highlight">{% translate "hang out" %}</span> {% translate "at the coffee shop." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "hold on" %}</span></td>
+                        <td>{% translate "To wait (especially on the phone)" %}</td>
+                        <td><span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "hold on" %}</span> {% translate "a moment, I'll connect you." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "keep on" %}</span></td>
+                        <td>{% translate "To continue doing something" %}</td>
+                        <td><span class="code-highlight">{% translate "Don't stop," %} <span class="auxiliary-highlight">{% translate "keep on" %}</span> {% translate "working!" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "let down" %}</span></td>
+                        <td>{% translate "To disappoint someone" %}</td>
+                        <td><span class="code-highlight">{% translate "I'm counting on you, don't" %} <span class="auxiliary-highlight">{% translate "let me down" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "look into" %}</span></td>
+                        <td>{% translate "To investigate or examine thoroughly" %}</td>
+                        <td><span class="code-highlight">{% translate "The police are" %} <span class="auxiliary-highlight">{% translate "looking into" %}</span> {% translate "the matter." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "pass out" %}</span></td>
+                        <td>{% translate "To faint or lose consciousness" %}</td>
+                        <td><span class="code-highlight">{% translate "It was so hot, he almost" %} <span class="auxiliary-highlight">{% translate "passed out" %}</span>.</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "pay back" %}</span></td>
+                        <td>{% translate "To return money owed to someone" %}</td>
+                        <td><span class="code-highlight">{% translate "I'll" %} <span class="auxiliary-highlight">{% translate "pay you back" %}</span> {% translate "tomorrow." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "pick up" %}</span></td>
+                        <td>1. {% translate "To lift something" %}<br>2. {% translate "To collect someone (in a car)" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Can you" %} <span class="auxiliary-highlight">{% translate "pick up" %}</span> {% translate "that pen?" %}</span><br>2. <span class="code-highlight">{% translate "I'll" %} <span class="auxiliary-highlight">{% translate "pick you up" %}</span> {% translate "at 7 PM." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "point out" %}</span></td>
+                        <td>{% translate "To draw attention to something" %}</td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "pointed out" %}</span> {% translate "the mistakes in my essay." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "put away" %}</span></td>
+                        <td>{% translate "To put something in its proper place" %}</td>
+                        <td><span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "put away" %}</span> {% translate "your toys." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "put on" %}</span></td>
+                        <td>{% translate "To dress oneself in clothes" %}</td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Put on" %}</span> {% translate "your coat, it's cold outside." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "set up" %}</span></td>
+                        <td>{% translate "To establish or arrange something" %}</td>
+                        <td><span class="code-highlight">{% translate "They plan to" %} <span class="auxiliary-highlight">{% translate "set up" %}</span> {% translate "a new business." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "show up" %}</span></td>
+                        <td>{% translate "To arrive, appear (informal)" %}</td>
+                        <td><span class="code-highlight">{% translate "I hope he" %} <span class="auxiliary-highlight">{% translate "shows up" %}</span> {% translate "on time." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "take off" %}</span></td>
+                        <td>1. {% translate "To remove clothing" %}<br>2. {% translate "(For an aircraft) to leave the ground" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "take off" %}</span> {% translate "your shoes at the door." %}</span><br>2. <span class="code-highlight">{% translate "The plane" %} <span class="auxiliary-highlight">{% translate "took off" %}</span> {% translate "on time." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "throw away" %}</span></td>
+                        <td>{% translate "To dispose of something; to discard" %}</td>
+                        <td><span class="code-highlight">{% translate "Don't" %} <span class="auxiliary-highlight">{% translate "throw away" %}</span> {% translate "that old magazine." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "try on" %}</span></td>
+                        <td>{% translate "To put on clothes to see if they fit or look good" %}</td>
+                        <td><span class="code-highlight">{% translate "Can I" %} <span class="auxiliary-highlight">{% translate "try on" %}</span> {% translate "these shoes?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "turn off" %}</span></td>
+                        <td>{% translate "To switch off a machine or light" %}</td>
+                        <td><span class="code-highlight">{% translate "Please" %} <span class="auxiliary-highlight">{% translate "turn off" %}</span> {% translate "the lights when you leave." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "work out" %}</span></td>
+                        <td>1. {% translate "To exercise" %}<br>2. {% translate "To solve a problem; to be successful" %}</td>
+                        <td>1. <span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "work out" %}</span> {% translate "at the gym three times a week." %}</span><br>2. <span class="code-highlight">{% translate "I hope everything" %} <span class="auxiliary-highlight">{% translate "works out" %}</span> {% translate "for you." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

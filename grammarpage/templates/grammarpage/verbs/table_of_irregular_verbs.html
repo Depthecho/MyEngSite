@@ -1,0 +1,237 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Table of Irregular Verbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .main-container {
+            padding-top: 40px;
+        }
+
+        h3 {
+            color: #ff9e7d;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .grammar-table thead th {
+            background: rgba(0, 0, 0, 0.4);
+            font-weight: bold;
+            text-align: center;
+            color: #4cc9f0;
+            padding: 12px;
+            border: 1px solid #444;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table tbody td {
+            color: #e0e0e0;
+            vertical-align: middle;
+        }
+
+        .verb-form {
+            color: #4cc9f0;
+            font-weight: 500;
+            padding: 2px 4px;
+            border-radius: 4px;
+            background: rgba(76, 201, 240, 0.1);
+        }
+
+        .grammar-table tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .grammar-table tr:hover {
+            background-color: rgba(76, 201, 240, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+            .grammar-table {
+                font-size: 14px;
+            }
+            .grammar-table th, .grammar-table td {
+                padding: 8px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Table of Irregular Verbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Table of Irregular Verbs" %}</h1>
+        <p>
+            {% translate "Irregular verbs are a fundamental part of English grammar, as they do not follow the standard <span class=\"term-highlight\">-ed</span> rule for forming their past simple and past participle forms. Memorizing these forms is crucial for fluency." %}
+        </p>
+        <p>
+            {% translate "Below is a comprehensive table of common irregular verbs, showing their base form (V1), past simple (V2), and past participle (V3)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Base Form (V1)" %}</th>
+                        <th>{% translate "Past Simple (V2)" %}</th>
+                        <th>{% translate "Past Participle (V3)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="verb-highlight">be</span></td><td><span class="verb-form">was/were</span></td><td><span class="verb-form">been</span></td></tr>
+                    <tr><td><span class="verb-highlight">become</span></td><td><span class="verb-form">became</span></td><td><span class="verb-form">become</span></td></tr>
+                    <tr><td><span class="verb-highlight">begin</span></td><td><span class="verb-form">began</span></td><td><span class="verb-form">begun</span></td></tr>
+                    <tr><td><span class="verb-highlight">break</span></td><td><span class="verb-form">broke</span></td><td><span class="verb-form">broken</span></td></tr>
+                    <tr><td><span class="verb-highlight">bring</span></td><td><span class="verb-form">brought</span></td><td><span class="verb-form">brought</span></td></tr>
+                    <tr><td><span class="verb-highlight">build</span></td><td><span class="verb-form">built</span></td><td><span class="verb-form">built</span></td></tr>
+                    <tr><td><span class="verb-highlight">buy</span></td><td><span class="verb-form">bought</span></td><td><span class="verb-form">bought</span></td></tr>
+                    <tr><td><span class="verb-highlight">catch</span></td><td><span class="verb-form">caught</span></td><td><span class="verb-form">caught</span></td></tr>
+                    <tr><td><span class="verb-highlight">choose</span></td><td><span class="verb-form">chose</span></td><td><span class="verb-form">chosen</span></td></tr>
+                    <tr><td><span class="verb-highlight">come</span></td><td><span class="verb-form">came</span></td><td><span class="verb-form">come</span></td></tr>
+                    <tr><td><span class="verb-highlight">cost</span></td><td><span class="verb-form">cost</span></td><td><span class="verb-form">cost</span></td></tr>
+                    <tr><td><span class="verb-highlight">cut</span></td><td><span class="verb-form">cut</span></td><td><span class="verb-form">cut</span></td></tr>
+                    <tr><td><span class="verb-highlight">do</span></td><td><span class="verb-form">did</span></td><td><span class="verb-form">done</span></td></tr>
+                    <tr><td><span class="verb-highlight">draw</span></td><td><span class="verb-form">drew</span></td><td><span class="verb-form">drawn</span></td></tr>
+                    <tr><td><span class="verb-highlight">drink</span></td><td><span class="verb-form">drank</span></td><td><span class="verb-form">drunk</span></td></tr>
+                    <tr><td><span class="verb-highlight">drive</span></td><td><span class="verb-form">drove</span></td><td><span class="verb-form">driven</span></td></tr>
+                    <tr><td><span class="verb-highlight">eat</span></td><td><span class="verb-form">ate</span></td><td><span class="verb-form">eaten</span></td></tr>
+                    <tr><td><span class="verb-highlight">fall</span></td><td><span class="verb-form">fell</span></td><td><span class="verb-form">fallen</span></td></tr>
+                    <tr><td><span class="verb-highlight">feel</span></td><td><span class="verb-form">felt</span></td><td><span class="verb-form">felt</span></td></tr>
+                    <tr><td><span class="verb-highlight">find</span></td><td><span class="verb-form">found</span></td><td><span class="verb-form">found</span></td></tr>
+                    <tr><td><span class="verb-highlight">fly</span></td><td><span class="verb-form">flew</span></td><td><span class="verb-form">flown</span></td></tr>
+                    <tr><td><span class="verb-highlight">forget</span></td><td><span class="verb-form">forgot</span></td><td><span class="verb-form">forgotten</span></td></tr>
+                    <tr><td><span class="verb-highlight">get</span></td><td><span class="verb-form">got</span></td><td><span class="verb-form">got/gotten</span></td></tr>
+                    <tr><td><span class="verb-highlight">give</span></td><td><span class="verb-form">gave</span></td><td><span class="verb-form">given</span></td></tr>
+                    <tr><td><span class="verb-highlight">go</span></td><td><span class="verb-form">went</span></td><td><span class="verb-form">gone</span></td></tr>
+                    <tr><td><span class="verb-highlight">grow</span></td><td><span class="verb-form">grew</span></td><td><span class="verb-form">grown</span></td></tr>
+                    <tr><td><span class="verb-highlight">have</span></td><td><span class="verb-form">had</span></td><td><span class="verb-form">had</span></td></tr>
+                    <tr><td><span class="verb-highlight">hear</span></td><td><span class="verb-form">heard</span></td><td><span class="verb-form">heard</span></td></tr>
+                    <tr><td><span class="verb-highlight">hide</span></td><td><span class="verb-form">hid</span></td><td><span class="verb-form">hidden</span></td></tr>
+                    <tr><td><span class="verb-highlight">hit</span></td><td><span class="verb-form">hit</span></td><td><span class="verb-form">hit</span></td></tr>
+                    <tr><td><span class="verb-highlight">hold</span></td><td><span class="verb-form">held</span></td><td><span class="verb-form">held</span></td></tr>
+                    <tr><td><span class="verb-highlight">keep</span></td><td><span class="verb-form">kept</span></td><td><span class="verb-form">kept</span></td></tr>
+                    <tr><td><span class="verb-highlight">know</span></td><td><span class="verb-form">knew</span></td><td><span class="verb-form">known</span></td></tr>
+                    <tr><td><span class="verb-highlight">lead</span></td><td><span class="verb-form">led</span></td><td><span class="verb-form">led</span></td></tr>
+                    <tr><td><span class="verb-highlight">leave</span></td><td><span class="verb-form">left</span></td><td><span class="verb-form">left</span></td></tr>
+                    <tr><td><span class="verb-highlight">lose</span></td><td><span class="verb-form">lost</span></td><td><span class="verb-form">lost</span></td></tr>
+                    <tr><td><span class="verb-highlight">make</span></td><td><span class="verb-form">made</span></td><td><span class="verb-form">made</span></td></tr>
+                    <tr><td><span class="verb-highlight">meet</span></td><td><span class="verb-form">met</span></td><td><span class="verb-form">met</span></td></tr>
+                    <tr><td><span class="verb-highlight">pay</span></td><td><span class="verb-form">paid</span></td><td><span class="verb-form">paid</span></td></tr>
+                    <tr><td><span class="verb-highlight">put</span></td><td><span class="verb-form">put</span></td><td><span class="verb-form">put</span></td></tr>
+                    <tr><td><span class="verb-highlight">read</span></td><td><span class="verb-form">read</span></td><td><span class="verb-form">read</span></td></tr>
+                    <tr><td><span class="verb-highlight">ride</span></td><td><span class="verb-form">rode</span></td><td><span class="verb-form">ridden</span></td></tr>
+                    <tr><td><span class="verb-highlight">run</span></td><td><span class="verb-form">ran</span></td><td><span class="verb-form">run</span></td></tr>
+                    <tr><td><span class="verb-highlight">say</span></td><td><span class="verb-form">said</span></td><td><span class="verb-form">said</span></td></tr>
+                    <tr><td><span class="verb-highlight">see</span></td><td><span class="verb-form">saw</span></td><td><span class="verb-form">seen</span></td></tr>
+                    <tr><td><span class="verb-highlight">sell</span></td><td><span class="verb-form">sold</span></td><td><span class="verb-form">sold</span></td></tr>
+                    <tr><td><span class="verb-highlight">send</span></td><td><span class="verb-form">sent</span></td><td><span class="verb-form">sent</span></td></tr>
+                    <tr><td><span class="verb-highlight">set</span></td><td><span class="verb-form">set</span></td><td><span class="verb-form">set</span></td></tr>
+                    <tr><td><span class="verb-highlight">shake</span></td><td><span class="verb-form">shook</span></td><td><span class="verb-form">shaken</span></td></tr>
+                    <tr><td><span class="verb-highlight">sing</span></td><td><span class="verb-form">sang</span></td><td><span class="verb-form">sung</span></td></tr>
+                    <tr><td><span class="verb-highlight">sit</span></td><td><span class="verb-form">sat</span></td><td><span class="verb-form">sat</span></td></tr>
+                    <tr><td><span class="verb-highlight">sleep</span></td><td><span class="verb-form">slept</span></td><td><span class="verb-form">slept</span></td></tr>
+                    <tr><td><span class="verb-highlight">speak</span></td><td><span class="verb-form">spoke</span></td><td><span class="verb-form">spoken</span></td></tr>
+                    <tr><td><span class="verb-highlight">spend</span></td><td><span class="verb-form">spent</span></td><td><span class="verb-form">spent</span></td></tr>
+                    <tr><td><span class="verb-highlight">stand</span></td><td><span class="verb-form">stood</span></td><td><span class="verb-form">stood</span></td></tr>
+                    <tr><td><span class="verb-highlight">steal</span></td><td><span class="verb-form">stole</span></td><td><span class="verb-form">stolen</span></td></tr>
+                    <tr><td><span class="verb-highlight">swim</span></td><td><span class="verb-form">swam</span></td><td><span class="verb-form">swum</span></td></tr>
+                    <tr><td><span class="verb-highlight">take</span></td><td><span class="verb-form">took</span></td><td><span class="verb-form">taken</span></td></tr>
+                    <tr><td><span class="verb-highlight">teach</span></td><td><span class="verb-form">taught</span></td><td><span class="verb-form">taught</span></td></tr>
+                    <tr><td><span class="verb-highlight">tell</span></td><td><span class="verb-form">told</span></td><td><span class="verb-form">told</span></td></tr>
+                    <tr><td><span class="verb-highlight">think</span></td><td><span class="verb-form">thought</span></td><td><span class="verb-form">thought</span></td></tr>
+                    <tr><td><span class="verb-highlight">throw</span></td><td><span class="verb-form">threw</span></td><td><span class="verb-form">thrown</span></td></tr>
+                    <tr><td><span class="verb-highlight">understand</span></td><td><span class="verb-form">understood</span></td><td><span class="verb-form">understood</span></td></tr>
+                    <tr><td><span class="verb-highlight">wake</span></td><td><span class="verb-form">woke</span></td><td><span class="verb-form">woken</span></td></tr>
+                    <tr><td><span class="verb-highlight">wear</span></td><td><span class="verb-form">wore</span></td><td><span class="verb-form">worn</span></td></tr>
+                    <tr><td><span class="verb-highlight">win</span></td><td><span class="verb-form">won</span></td><td><span class="verb-form">won</span></td></tr>
+                    <tr><td><span class="verb-highlight">write</span></td><td><span class="verb-form">wrote</span></td><td><span class="verb-form">written</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

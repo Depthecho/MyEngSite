@@ -1,0 +1,384 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Verb Tense Changes (Backshift)" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .present-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .past-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .future-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .exception-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Verb Tense Changes" %}</span>
+        </nav>
+
+        <h1>{% translate "Verb Tense Changes in Reported Speech" %}</h1>
+        <p>
+            {% translate "When converting direct speech to indirect speech, verb tenses typically shift backward in time. This phenomenon, known as <span class=\"term-highlight\">backshift</span>, is fundamental to accurate reporting of speech and thoughts in English." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Standard Tense Backshifting" %}</h3>
+            <p>
+                {% translate "The following table shows the most common tense transformations in reported speech:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="present-highlight">{% translate "Present Simple" %}</span></td>
+                            <td><span class="past-highlight">{% translate "Past Simple" %}</span></td>
+                            <td><span class="example-highlight">"I <strong>like</strong> coffee" → She said she <strong>liked</strong> coffee</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">{% translate "Present Continuous" %}</span></td>
+                            <td><span class="past-highlight">{% translate "Past Continuous" %}</span></td>
+                            <td><span class="example-highlight">"I <strong>am reading</strong>" → He said he <strong>was reading</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">{% translate "Present Perfect" %}</span></td>
+                            <td><span class="past-highlight">{% translate "Past Perfect" %}</span></td>
+                            <td><span class="example-highlight">"I <strong>have finished</strong>" → She said she <strong>had finished</strong></span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="past-highlight">{% translate "Past Simple" %}</span></td>
+                            <td><span class="past-highlight">{% translate "Past Perfect" %}</span></td>
+                            <td><span class="example-highlight">"I <strong>saw</strong> him" → He said he <strong>had seen</strong> him</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="future-highlight">{% translate "Future Simple" %}</span></td>
+                            <td><span class="past-highlight">{% translate "Conditional" %}</span></td>
+                            <td><span class="example-highlight">"I <strong>will help</strong>" → She said she <strong>would help</strong></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-card">
+                <h4>{% translate "Important Notes on Backshifting" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Backshift occurs when the reporting verb (said, told, etc.) is in the past tense" %}</li>
+                    <li>{% translate "Pronouns and time expressions often change along with the verb tense" %}</li>
+                    <li>{% translate "The conjunction <span class=\"code-highlight\">that</span> is often used but can be omitted" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Modal Verb Transformations" %}</h3>
+            <p>
+                {% translate "Modal verbs in reported speech follow specific backshifting patterns:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="present-highlight">can</span></td>
+                            <td><span class="past-highlight">could</span></td>
+                            <td><span class="example-highlight">"I <strong>can</strong> swim" → She said she <strong>could</strong> swim</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">may</span></td>
+                            <td><span class="past-highlight">might</span></td>
+                            <td><span class="example-highlight">"It <strong>may</strong> rain" → He said it <strong>might</strong> rain</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">must</span></td>
+                            <td><span class="past-highlight">had to</span></td>
+                            <td><span class="example-highlight">"I <strong>must</strong> go" → She said she <strong>had to</strong> go</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">shall</span></td>
+                            <td><span class="past-highlight">should</span></td>
+                            <td><span class="example-highlight">"I <strong>shall</strong> return" → He said he <strong>should</strong> return</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="present-highlight">will</span></td>
+                            <td><span class="past-highlight">would</span></td>
+                            <td><span class="example-highlight">"I <strong>will</strong> call" → She said she <strong>would</strong> call</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="exception-card">
+            <h3>{% translate "3. Exceptions to Backshifting" %}</h3>
+            <p>
+                {% translate "There are important cases where backshifting is not required:" %}
+            </p>
+
+            <h4>{% translate "When the Statement Is Still True" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"The Earth <strong>revolves</strong> around the Sun" → He said the Earth <strong>revolves</strong> around the Sun</span></li>
+                <li><span class="example-highlight">"Water <strong>boils</strong> at 100°C" → She said water <strong>boils</strong> at 100°C</span></li>
+            </ul>
+
+            <h4>{% translate "When Reporting Immediately" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"I <strong>feel</strong> sick" (said just now) → She says she <strong>feels</strong> sick</span></li>
+            </ul>
+
+            <h4>{% translate "With Certain Modal Verbs" %}</h4>
+            <ul class="styled-list">
+                <li><span class="example-highlight">"You <strong>should</strong> rest" → He said I <strong>should</strong> rest</span> (should doesn't change)</li>
+                <li><span class="example-highlight">"It <strong>might</strong> rain" → She said it <strong>might</strong> rain</span> (might doesn't change)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "4. Time and Place References" %}</h3>
+            <p>
+                {% translate "Time and place expressions often change in reported speech to maintain logical relationships:" %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Direct Speech" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code-highlight">now</span></td>
+                            <td><span class="code-highlight">then</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">today</span></td>
+                            <td><span class="code-highlight">that day</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">yesterday</span></td>
+                            <td><span class="code-highlight">the day before</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">tomorrow</span></td>
+                            <td><span class="code-highlight">the next/following day</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">here</span></td>
+                            <td><span class="code-highlight">there</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">this</span></td>
+                            <td><span class="code-highlight">that</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">these</span></td>
+                            <td><span class="code-highlight">those</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Special Cases in Reported Speech" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Questions:</span> Word order changes to affirmative structure" %}
+                    <ul class="styled-list">
+                        <li><span class="example-highlight">"Are you ready?" → He asked if I was ready</span></li>
+                    </ul>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Commands and requests:</span> Use infinitive structure" %}
+                    <ul class="styled-list">
+                        <li><span class="example-highlight">"Close the door" → She told me to close the door</span></li>
+                    </ul>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Suggestions:</span> Often use <span class=\"code-highlight\">suggest + gerund</span>" %}
+                    <ul class="styled-list">
+                        <li><span class="example-highlight">"Let's go" → He suggested going</span></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

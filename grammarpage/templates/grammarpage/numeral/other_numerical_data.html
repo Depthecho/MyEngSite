@@ -1,0 +1,346 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Other Numerical Data" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .phone-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .address-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .data-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .special-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Usage of Numerals in Specific Contexts" %}</span> &raquo;
+            <span>{% translate "Other Numerical Data" %}</span>
+        </nav>
+
+        <h1>{% translate "Numerical Data in Special Contexts" %}</h1>
+        <p>
+            {% translate "Numbers appear in various specialized formats across different contexts, each with its own reading conventions. Mastering these will help you communicate numerical information clearly and naturally." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Phone Numbers" %}</h3>
+            <p>
+                {% translate "Phone numbers follow specific pronunciation patterns that differ by country and context." %}
+            </p>
+
+            <h4>{% translate "Standard Phone Number Reading" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">555-123-4567</span>: <span class="example-highlight">five five five, one two three, four five six seven</span></li>
+                <li><span class="code-highlight">020 7946 0958</span>: <span class="example-highlight">oh two oh, seven nine four six, oh nine five eight</span> (UK format)</li>
+            </ul>
+
+            <h4>{% translate "Special Cases" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Repeated digits:</span> <span class="code-highlight">555-1122</span> → <span class="example-highlight">five five five, double one double two</span></li>
+                <li><span class="term-highlight">Emergency numbers:</span> <span class="code-highlight">911</span> → <span class="example-highlight">nine one one</span> (US), <span class="code-highlight">999</span> → <span class="example-highlight">nine nine nine</span> (UK)</li>
+                <li><span class="term-highlight">Toll-free numbers:</span> <span class="code-highlight">1-800-555-1234</span> → <span class="example-highlight">one eight hundred, five five five, one two three four</span></li>
+            </ul>
+
+            <div class="note-card">
+                <h4>{% translate "International Phone Number Tips" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Country codes are read as separate digits: <span class=\"code-highlight\">+44</span> → <span class=\"example-highlight\">plus four four</span>" %}</li>
+                    <li>{% translate "In business contexts, numbers are often read in groups of 2-3 digits" %}</li>
+                    <li>{% translate "The digit '0' is always read as 'oh' in phone numbers" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Addresses and Building Numbers" %}</h3>
+            <p>
+                {% translate "Address numbering follows different conventions depending on the number's size and format." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Type" %}</th>
+                            <th>{% translate "Written" %}</th>
+                            <th>{% translate "Spoken" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Standard address" %}</td>
+                            <td><span class="code-highlight">145 Main St</span></td>
+                            <td><span class="example-highlight">one hundred forty-five Main Street</span></td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Hundred format" %}</td>
+                            <td><span class="code-highlight">1200 Elm St</span></td>
+                            <td><span class="example-highlight">twelve hundred Elm Street</span></td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Zero-containing" %}</td>
+                            <td><span class="code-highlight">101 Oak Ave</span></td>
+                            <td><span class="example-highlight">one oh one Oak Avenue</span></td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Apartment/Unit" %}</td>
+                            <td><span class="code-highlight">Apt 3C</span></td>
+                            <td><span class="example-highlight">Apartment three C</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Address Formats" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Floor numbers:</span> <span class="code-highlight">14th floor</span> → <span class="example-highlight">fourteenth floor</span></li>
+                <li><span class="term-highlight">Room numbers:</span> <span class="code-highlight">Room 205</span> → <span class="example-highlight">Room two oh five</span></li>
+                <li><span class="term-highlight">Building complexes:</span> <span class="code-highlight">Building 7A</span> → <span class="example-highlight">Building seven A</span></li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Financial and Measurement Data" %}</h3>
+
+            <h4>{% translate "Monetary Amounts" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">$15.50</span>: <span class="example-highlight">fifteen dollars and fifty cents</span> or <span class="example-highlight">fifteen fifty</span></li>
+                <li><span class="code-highlight">€1,250.75</span>: <span class="example-highlight">one thousand two hundred fifty euros and seventy-five cents</span></li>
+                <li><span class="code-highlight">¥5000</span>: <span class="example-highlight">five thousand yen</span> (no decimal in Japanese currency)</li>
+            </ul>
+
+            <h4>{% translate "Measurements and Statistics" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight">120 mph</span>: <span class="example-highlight">one hundred twenty miles per hour</span></li>
+                <li><span class="code-highlight">1.5 m</span>: <span class="example-highlight">one point five meters</span></li>
+                <li><span class="code-highlight">-5°C</span>: <span class="example-highlight">minus five degrees Celsius</span></li>
+                <li><span class="code-highlight">25%</span>: <span class="example-highlight">twenty-five percent</span></li>
+            </ul>
+        </div>
+
+        <div class="special-card">
+            <h3>{% translate "4. Special Numerical Formats" %}</h3>
+
+            <h4>{% translate "Identification Numbers" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Credit cards:</span> <span class="code-highlight">1234 5678 9012 3456</span> → read in groups of 4 digits</li>
+                <li><span class="term-highlight">Passport numbers:</span> <span class="code-highlight">AB1234567</span> → letters then digits</li>
+                <li><span class="term-highlight">Serial numbers:</span> <span class="code-highlight">XJ7-8920-KL</span> → read each character separately</li>
+            </ul>
+
+            <h4>{% translate "Technical Codes" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">IP addresses:</span> <span class="code-highlight">192.168.1.1</span> → <span class="example-highlight">one ninety-two dot one sixty-eight dot one dot one</span></li>
+                <li><span class="term-highlight">Version numbers:</span> <span class="code-highlight">v2.5.1</span> → <span class="example-highlight">version two point five point one</span></li>
+                <li><span class="term-highlight">Model numbers:</span> <span class="code-highlight">B747-800</span> → <span class="example-highlight">B seven forty-seven dash eight hundred</span></li>
+            </ul>
+        </div>
+
+        <div class="note-card">
+            <h4>{% translate "Important General Rules" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Numbers in codes and identifiers are always read digit by digit" %}</li>
+                <li>{% translate "For decimal points, use 'point' not 'dot' in formal contexts" %}</li>
+                <li>{% translate "In measurements, units can be singular or plural based on the number" %}</li>
+                <li>{% translate "For currency, the symbol comes before the number but is read after" %}</li>
+                <li>{% translate "In technical contexts, confirm the preferred reading format" %}</li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Numerical Data Reading Guide" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Context" %}</th>
+                        <th>{% translate "Written Form" %}</th>
+                        <th>{% translate "Spoken Form" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "International phone" %}</td>
+                        <td><span class="code-highlight">+44 20 7123 4567</span></td>
+                        <td><span class="example-highlight">plus four four, two oh, seven one two three, four five six seven</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Bank account" %}</td>
+                        <td><span class="code-highlight">GB29 NWBK 6016 1331 9268 19</span></td>
+                        <td><span class="example-highlight">G B two nine, N W B K, six oh one six, one three three one, nine two six eight, one nine</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Temperature" %}</td>
+                        <td><span class="code-highlight">-10°F</span></td>
+                        <td><span class="example-highlight">minus ten degrees Fahrenheit</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

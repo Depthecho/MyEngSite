@@ -1,0 +1,267 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Brackets - Editorial Clarification" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Brackets: Editorial Clarification" %}</span>
+        </nav>
+
+        <h1>{% translate "Brackets: Usage and Rules" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Brackets</span> [ ] are punctuation marks used primarily for editorial clarification within quoted material or to insert explanatory information within parentheses." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "1. Primary Uses of Brackets" %}</h3>
+            <h4>{% translate "A. Clarifying Quotations" %}</h4>
+            <p>{% translate "Brackets are used to add explanatory words or phrases to quoted material when the original meaning might be unclear." %}</p>
+
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "Original: \"He arrived yesterday.\"" %}</span><br>
+                    <span class="code-highlight">{% translate "With clarification: \"He" %} <span class="term-highlight">[the defendant]</span> {% translate "arrived yesterday.\"" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "\"The results" %} <span class="term-highlight">[of the experiment]</span> {% translate "were inconclusive.\"" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Indicating Errors with [sic]" %}</h4>
+            <p>{% translate "The Latin term 'sic' (meaning 'thus') is used in brackets to show that an error in a quotation appears in the original source." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "\"The committee has it's" %} <span class="term-highlight">[sic]</span> {% translate "regular meeting on Tuesday.\"" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "\"She was know" %} <span class="term-highlight">[sic]</span> {% translate "for her generosity.\"" %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "2. Specialized Uses" %}</h3>
+            <h4>{% translate "A. Translations in Quotations" %}</h4>
+            <p>{% translate "Brackets can provide translations of foreign words or phrases within quotes." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "\"He exclaimed 'Vive la France'" %} <span class="term-highlight">[Long live France]</span> {% translate "as he left.\"" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Editorial Comments" %}</h4>
+            <p>{% translate "Editors may use brackets to insert comments or notes within quoted text." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "\"The event" %} <span class="term-highlight">[emphasis added]</span> {% translate "changed everything.\"" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "C. Nested Parentheses" %}</h4>
+            <p>{% translate "When additional information is needed within parentheses, brackets are used to avoid confusion." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "The author made this claim (based on earlier research" %} <span class="term-highlight">[see Smith, 1999]</span>{% translate ")." %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Punctuation with Brackets" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Case" %}</th>
+                    <th>{% translate "Rule" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Brackets within a sentence" %}</td>
+                    <td>{% translate "No additional punctuation needed inside brackets" %}</td>
+                    <td><span class="code-highlight">{% translate "\"The document" %} <span class="term-highlight">[dated 1945]</span> {% translate "was recently discovered.\"" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Complete sentence in brackets" %}</td>
+                    <td>{% translate "Capitalize first word and end with period inside" %}</td>
+                    <td><span class="code-highlight">{% translate "\"The results were unexpected." %} <span class="term-highlight">[See Appendix B for details.]</span>\"" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Brackets at end of quoted sentence" %}</td>
+                    <td>{% translate "Period goes outside the closing bracket" %}</td>
+                    <td><span class="code-highlight">{% translate "\"The meeting is scheduled for noon" %} <span class="term-highlight">[EST]</span>.\"" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Brackets with other punctuation" %}</td>
+                    <td>{% translate "Other punctuation remains outside unless part of bracketed material" %}</td>
+                    <td><span class="code-highlight">{% translate "\"Did he really say 'I won't go'" %} <span class="term-highlight">[sic]</span>?\"" %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "3. Brackets vs. Parentheses" %}</h3>
+            <h4>{% translate "Key Differences" %}</h4>
+
+            <ul class="styled-list">
+                <li><span class="term-highlight">{% translate "Brackets [ ]:" %}</span>
+                    {% translate "Used primarily within quotations to add editorial comments or clarifications" %}
+                    <p class="code-highlight">{% translate "\"The witness stated: 'He" %} <span class="term-highlight">[the defendant]</span> {% translate "was present that night.'\"" %}</p>
+                </li>
+                <li><span class="term-highlight">{% translate "Parentheses ( ):" %}</span>
+                    {% translate "Used to add supplementary information to your own writing" %}
+                    <p class="code-highlight">{% translate "The results (shown in Table 3) support our hypothesis." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Overuse:</span> Excessive brackets can make text difficult to read" %}
+                <p class="code-highlight">{% translate "Poor: \"The study" %} <span class="term-highlight">[conducted in 2020]</span> {% translate "showed" %} <span class="term-highlight">[contrary to expectations]</span><span class="term-highlight"></span>"</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Misuse of [sic]:</span> Only use for actual errors in the original" %}
+                <p class="code-highlight">{% translate "Incorrect: \"The color" %} <span class="term-highlight">[sic]</span> {% translate "was beautiful.\"" %}</p>
+                <p class="code-highlight">{% translate "(Unless 'color' was actually an error in the original)" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Formatting errors:</span> Remember proper spacing and punctuation" %}
+                <p class="code-highlight">{% translate "Incorrect: \"The event was[important].\"" %}</p>
+                <p class="code-highlight">{% translate "Correct: \"The event was" %} <span class="term-highlight">[important]</span>.\"" %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

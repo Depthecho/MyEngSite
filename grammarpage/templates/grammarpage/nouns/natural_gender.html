@@ -1,0 +1,236 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Natural Gender" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Natural Gender" %}</span>
+        </nav>
+
+        <h1>{% translate "Natural Gender" %}</h1>
+        <p>
+            {% translate "Unlike many other languages, English nouns do not have grammatical gender. Instead, nouns have a <span class=\"term-highlight\">natural gender</span>, which refers to the actual sex of the person or animal they represent. Nouns can be masculine, feminine, or neuter." %}
+        </p>
+        
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Masculine Nouns" %}</h3>
+        <p>
+            {% translate "These nouns refer to male persons or animals. They are typically replaced by the pronoun <span class=\"code-highlight\">he</span> or <span class=\"code-highlight\">him</span>." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Pronoun" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "man" %}</td><td>{% translate "he" %}</td><td>{% translate "The man smiled; <span class=\"code-highlight\">he</span> was happy." %}</td></tr>
+                    <tr><td>{% translate "boy" %}</td><td>{% translate "he" %}</td><td>{% translate "The boy finished his homework; <span class=\"code-highlight\">he</span> went to play." %}</td></tr>
+                    <tr><td>{% translate "father" %}</td><td>{% translate "he" %}</td><td>{% translate "My father is tall; <span class=\"code-highlight\">he</span> plays basketball." %}</td></tr>
+                    <tr><td>{% translate "king" %}</td><td>{% translate "he" %}</td><td>{% translate "The king ruled the country; <span class=\"code-highlight\">he</span> was fair." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Feminine Nouns" %}</h3>
+        <p>
+            {% translate "These nouns refer to female persons or animals. They are replaced by the pronoun <span class=\"code-highlight\">she</span> or <span class=\"code-highlight\">her</span>." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Pronoun" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "woman" %}</td><td>{% translate "she" %}</td><td>{% translate "The woman sang; <span class=\"code-highlight\">she</span> has a beautiful voice." %}</td></tr>
+                    <tr><td>{% translate "girl" %}</td><td>{% translate "she" %}</td><td>{% translate "The girl laughed; <span class=\"code-highlight\">she</span> was excited." %}</td></tr>
+                    <tr><td>{% translate "mother" %}</td><td>{% translate "she" %}</td><td>{% translate "My mother is kind; <span class=\"code-highlight\">she</span> always helps me." %}</td></tr>
+                    <tr><td>{% translate "queen" %}</td><td>{% translate "she" %}</td><td>{% translate "The queen waved to the crowd; <span class=\"code-highlight\">she</span> looked elegant." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Gender" %}</h3>
+        <p>
+            {% translate "Many nouns in English are of a <span class=\"term-highlight\">common gender</span>. They can refer to both male and female persons, and their gender is not specified by the noun itself." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Description" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "student" %}</td><td>{% translate "can be a boy or a girl" %}</td><td>{% translate "The <span class=\"code-highlight\">student</span> handed in their paper." %}</td></tr>
+                    <tr><td>{% translate "teacher" %}</td><td>{% translate "can be a man or a woman" %}</td><td>{% translate "My <span class=\"code-highlight\">teacher</span> is great; I enjoy their classes." %}</td></tr>
+                    <tr><td>{% translate "doctor" %}</td><td>{% translate "can be a man or a woman" %}</td><td>{% translate "The <span class=\"code-highlight\">doctor</span> told me to rest." %}</td></tr>
+                    <tr><td>{% translate "friend" %}</td><td>{% translate "can be a man or a woman" %}</td><td>{% translate "I met a new <span class=\"code-highlight\">friend</span> today." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <h4>{% translate "Using Pronouns with Common Nouns" %}</h4>
+        <p>
+            {% translate "When the gender of a common noun is unknown, modern English often uses singular <span class=\"code-highlight\">they/them/their</span> to avoid gender-specific language. In more formal contexts, phrases like <span class=\"code-highlight\">he or she</span> might be used." %}
+        </p>
+
+        <ul class="styled-list">
+            <li>{% translate "An artist should be proud of <span class=\"code-highlight\">their</span> work." %}</li>
+            <li>{% translate "A doctor must follow <span class=\"code-highlight\">his or her</span> oath." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

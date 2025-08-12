@@ -1,0 +1,199 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Other Specific Uses" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "The Definite Article 'The'" %}</span> &raquo;
+            <span>{% translate "Other Specific Uses" %}</span>
+        </nav>
+
+        <h1>{% translate "Other Specific Uses of 'The'" %}</h1>
+        <p>
+            {% translate "In addition to its primary function of indicating specificity, the definite article <span class=\"code-highlight\">the</span> is used in several other common contexts. These uses often follow specific patterns and are important for fluent communication." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. With Superlative Adjectives" %}</h3>
+        <p>
+            {% translate "When using a superlative adjective (e.g., <span class=\"code-highlight\">the best, the tallest, the most interesting</span>), you almost always use <span class=\"code-highlight\">the</span>. This is because a superlative refers to a single, unique item from a group." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "She is <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">best</span> singer in the world." %}</li>
+            <li>{% translate "This is <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">most</span> difficult problem I've ever solved." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. With Ordinal Numbers" %}</h3>
+        <p>
+            {% translate "Ordinal numbers (e.g., <span class=\"code-highlight\">first, second, third</span>) also refer to a specific position in a sequence, so they require the definite article." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "This is <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">first</span> time I've been here." %}</li>
+            <li>{% translate "He finished in <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">second</span> place." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. With Musical Instruments and Inventions" %}</h3>
+        <p>
+            {% translate "When referring to musical instruments or historical inventions in a general sense (representing the category), you use <span class=\"code-highlight\">the</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "She can play <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">piano</span> very well." %}</li>
+            <li>{% translate "Alexander Graham Bell invented <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">telephone</span>." %}</li>
+        </ul>
+        <p>
+            {% translate "Note: If you are talking about a specific item, the rule is the same as for other nouns. For example: <span class=\"code-highlight\">'I bought <span class=\"term-highlight\">a piano</span> last week. <span class=\"code-highlight\">The piano</span> is beautiful.'</span>" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. With Names of Newspapers and Hotels" %}</h3>
+        <p>
+            {% translate "Names of newspapers and hotels almost always use <span class=\"code-highlight\">the</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "I read <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">New York Times</span> every morning." %}</li>
+            <li>{% translate "They stayed at <span class=\"code-highlight\">the</span> <span class=\"term-highlight\">Ritz-Carlton</span>." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

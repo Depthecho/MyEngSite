@@ -1,0 +1,341 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Comma - Separating Introductory Elements" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .intro-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .comma-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .transition-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .special-card {
+            background: rgba(243, 114, 44, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #f3722c;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Comma: Introductory Elements" %}</span>
+        </nav>
+
+        <h1>{% translate "Commas with Introductory Elements" %}</h1>
+        <p>
+            {% translate "Commas after introductory elements create natural pauses and help readers distinguish between the introduction and the main clause of a sentence. These elements can be words, phrases, or clauses that come before the main subject and verb." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Types of Introductory Elements" %}</h3>
+            <p>{% translate "Different categories of introductory elements require comma separation:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Introductory Words and Phrases" %}</h4>
+                <p>{% translate "Single words or short phrases that introduce the main clause:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Type" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Interjections</td>
+                            <td><span class="intro-highlight">Well</span><span class="comma-highlight">,</span> I never expected that.</td>
+                        </tr>
+                        <tr>
+                            <td>Transition words</td>
+                            <td><span class="intro-highlight">However</span><span class="comma-highlight">,</span> the results were inconclusive.</td>
+                        </tr>
+                        <tr>
+                            <td>Adverbs</td>
+                            <td><span class="intro-highlight">Suddenly</span><span class="comma-highlight">,</span> the lights went out.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Introductory Phrases" %}</h4>
+                <p>{% translate "Multi-word phrases that set up the main clause:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">In the morning</span><span class="comma-highlight">,</span> we'll discuss the project details.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">After careful consideration</span><span class="comma-highlight">,</span> I've decided to accept the offer.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">To improve your writing</span><span class="comma-highlight">,</span> practice daily.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Introductory Clauses" %}</h4>
+                <p>{% translate "Dependent clauses that precede the main clause:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">When the bell rings</span><span class="comma-highlight">,</span> class will begin.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">Because it was raining</span><span class="comma-highlight">,</span> we stayed indoors.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">If you need help</span><span class="comma-highlight">,</span> just ask.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "When Commas Are Optional" %}</h3>
+            <p>{% translate "Some introductory elements may omit the comma in certain cases:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Short Prepositional Phrases" %}</h4>
+                <p>{% translate "Very short phrases (3-4 words) may omit the comma if no ambiguity results:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "With Comma" %}</th>
+                            <th>{% translate "Without Comma" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="intro-highlight">On Tuesday</span><span class="comma-highlight">,</span> we'll meet.</td>
+                            <td><span class="intro-highlight">On Tuesday</span> we'll meet.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="intro-highlight">In 2020</span><span class="comma-highlight">,</span> everything changed.</td>
+                            <td><span class="intro-highlight">In 2020</span> everything changed.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em>{% translate "Note: Including the comma is never wrong, even with short phrases." %}</em></p>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Absolute Phrases" %}</h4>
+                <p>{% translate "These phrases modify the entire sentence and sometimes omit commas:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">Weather permitting</span><span class="comma-highlight">,</span> we'll have a picnic.</span> (with comma)</li>
+                    <li><span class="code-highlight"><span class="intro-highlight">Weather permitting</span> we'll have a picnic.</span> (also acceptable)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Special Cases and Common Errors" %}</h3>
+            <p>{% translate "These situations require special attention with introductory commas:" %}</p>
+
+            <div class="special-card">
+                <h4>{% translate "1. Essential vs. Nonessential Elements" %}</h4>
+                <p>{% translate "Don't use a comma if the introductory element is essential to the meaning:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Essential (No Comma)" %}</th>
+                            <th>{% translate "Nonessential (With Comma)" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>After dinner we usually take a walk.</td>
+                            <td>After a long day at work<span class="comma-highlight">,</span> we usually take a walk.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "2. Multiple Introductory Elements" %}</h4>
+                <p>{% translate "When several introductory elements appear together:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">On the other hand</span><span class="comma-highlight">,</span> <span class="intro-highlight">in similar cases</span><span class="comma-highlight">,</span> the results were different.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">When I was young</span><span class="comma-highlight">,</span> <span class="intro-highlight">before the war</span><span class="comma-highlight">,</span> life was simpler.</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "3. Common Errors to Avoid" %}</h4>
+                <p>{% translate "Frequent mistakes with introductory commas:" %}</p>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Error" %}</th>
+                            <th>{% translate "Correction" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>However we decided to proceed.</td>
+                            <td>However<span class="comma-highlight">,</span> we decided to proceed.</td>
+                        </tr>
+                        <tr>
+                            <td>After finishing his degree John found a job.</td>
+                            <td>After finishing his degree<span class="comma-highlight">,</span> John found a job.</td>
+                        </tr>
+                        <tr>
+                            <td>In the beginning of the story, introduces the main character.</td>
+                            <td>In the beginning of the story<span class="comma-highlight">,</span> the author introduces the main character.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Advanced Usage" %}</h3>
+            <p>{% translate "Sophisticated applications of introductory commas:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Participial Phrases" %}</h4>
+                <p>{% translate "Verbal phrases that function as adjectives:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">Running late for the meeting</span><span class="comma-highlight">,</span> she forgot her notes.</span></li>
+                    <li><span class="code-highlight"><span class="intro-highlight">Exhausted from the journey</span><span class="comma-highlight">,</span> they collapsed on the sofa.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Inverted Sentence Structure" %}</h4>
+                <p>{% translate "When the usual word order is reversed for emphasis:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">Never before</span><span class="comma-highlight">,</span> in all my years of teaching<span class="comma-highlight">,</span> have I seen such dedication.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Absolute Constructions" %}</h4>
+                <p>{% translate "Noun phrases with participles that modify the entire sentence:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="intro-highlight">The ceremony having ended</span><span class="comma-highlight">,</span> the guests began to leave.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

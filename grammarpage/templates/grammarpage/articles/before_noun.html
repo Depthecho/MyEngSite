@@ -1,0 +1,220 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Placement of Articles: Before Noun" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Articles" %}</a></span> &raquo;
+            <span>{% translate "Placement of Articles" %}</span> &raquo;
+            <span>{% translate "Before Noun" %}</span>
+        </nav>
+
+        <h1>{% translate "Placement of Articles: Before Noun" %}</h1>
+        <p>
+            {% translate "The most fundamental rule for article placement is that the article comes directly before the noun it modifies. This structure is used when there are no other words (like adjectives) between the article and the noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. With Singular Countable Nouns" %}</h3>
+        <p>
+            {% translate "When you use an article with a singular countable noun, the article is placed right before it." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Article" %}</th>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "A" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "book" %}</span></td>
+                        <td>{% translate "I need to read <span class=\"code-highlight\">a book</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "The" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "door" %}</span></td>
+                        <td>{% translate "Please close <span class=\"code-highlight\">the door</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. With Uncountable Nouns" %}</h3>
+        <p>
+            {% translate "When using the definite article with an uncountable noun, it also comes directly before the noun." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Article" %}</th>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Example Sentence" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "The" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "water" %}</span></td>
+                        <td>{% translate "Can you pass me <span class=\"code-highlight\">the water</span>?" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "The" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "information" %}</span></td>
+                        <td>{% translate "I need <span class=\"code-highlight\">the information</span> about the project." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+        
+        <h3>{% translate "Why is this important?" %}</h3>
+        <p>
+            {% translate "Understanding this basic placement rule is the first step before learning how other words, like adjectives, can be inserted between the article and the noun. It's the simplest and most common structure for article usage." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'articles_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Articles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

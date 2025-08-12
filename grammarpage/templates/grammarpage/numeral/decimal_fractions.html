@@ -1,0 +1,369 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Decimal Fractions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .decimal-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .reading-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Fractional and Decimal Numerals" %}</span> &raquo;
+            <span>{% translate "Decimal Fractions" %}</span>
+        </nav>
+
+        <h1>{% translate "Decimal Fractions" %}</h1>
+        <p>
+            {% translate "Decimal fractions represent parts of whole numbers using a decimal point system. They are essential for precise measurements, financial transactions, and scientific calculations in English." %}
+        </p>
+
+        <div class="reading-card">
+            <h3>{% translate "1. Reading Decimal Numbers" %}</h3>
+            <h4>{% translate "Standard Methods" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Decimal" %}</th>
+                            <th>{% translate "Point Method" %}</th>
+                            <th>{% translate "Place Value Method" %}</th>
+                            <th>{% translate "Context" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0.5</td>
+                            <td>zero point five</td>
+                            <td>five tenths</td>
+                            <td>General/Math</td>
+                        </tr>
+                        <tr>
+                            <td>3.14</td>
+                            <td>three point one four</td>
+                            <td>three and fourteen hundredths</td>
+                            <td>Pi (π)</td>
+                        </tr>
+                        <tr>
+                            <td>25.75</td>
+                            <td>twenty-five point seven five</td>
+                            <td>twenty-five and seventy-five hundredths</td>
+                            <td>Money/Measurements</td>
+                        </tr>
+                        <tr>
+                            <td>100.001</td>
+                            <td>one hundred point zero zero one</td>
+                            <td>one hundred and one thousandth</td>
+                            <td>Precise measurements</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Special Cases" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Money amounts often drop 'point':" %}
+                    <p class="code-highlight">$4.99 → four ninety-nine (not four point nine nine)</p>
+                </li>
+                <li>{% translate "Temperatures often use 'point':" %}
+                    <p class="code-highlight">98.6°F → ninety-eight point six</p>
+                </li>
+                <li>{% translate "Sports scores use individual digits:" %}
+                    <p class="code-highlight">7.5 → seven five (gymnastics scoring)</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "2. Practical Usage" %}</h3>
+            <h4>{% translate "Money and Financial Contexts" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Amount" %}</th>
+                            <th>{% translate "Formal Reading" %}</th>
+                            <th>{% translate "Informal Reading" %}</th>
+                            <th>{% translate "Notes" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$1.50</td>
+                            <td>one dollar and fifty cents</td>
+                            <td>one fifty</td>
+                            <td>Common in prices</td>
+                        </tr>
+                        <tr>
+                            <td>€2.75</td>
+                            <td>two euros and seventy-five cents</td>
+                            <td>two seventy-five</td>
+                            <td>European format</td>
+                        </tr>
+                        <tr>
+                            <td>£3.99</td>
+                            <td>three pounds and ninety-nine pence</td>
+                            <td>three ninety-nine</td>
+                            <td>UK currency</td>
+                        </tr>
+                        <tr>
+                            <td>$0.99</td>
+                            <td>ninety-nine cents</td>
+                            <td>ninety-nine</td>
+                            <td>Common pricing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Measurements and Quantities" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Metric measurements:" %}
+                    <p class="code-highlight">1.5 liters → one point five liters or one and a half liters</p>
+                </li>
+                <li>{% translate "Time measurements:" %}
+                    <p class="code-highlight">2.5 hours → two point five hours or two and a half hours</p>
+                </li>
+                <li>{% translate "Weight measurements:" %}
+                    <p class="code-highlight">0.5 kg → zero point five kilograms or half a kilogram</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="special-note">
+            <h3>{% translate "3. International Variations" %}</h3>
+            <h4>{% translate "Decimal Separators" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Country/Region" %}</th>
+                            <th>{% translate "Decimal Separator" %}</th>
+                            <th>{% translate "Thousand Separator" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>USA, UK, Australia</td>
+                            <td>Point (.)</td>
+                            <td>Comma (,)</td>
+                            <td>1,234.56</td>
+                        </tr>
+                        <tr>
+                            <td>Most European countries</td>
+                            <td>Comma (,)</td>
+                            <td>Point (.) or space</td>
+                            <td>1.234,56 or 1 234,56</td>
+                        </tr>
+                        <tr>
+                            <td>Switzerland</td>
+                            <td>Point (.)</td>
+                            <td>Apostrophe (')</td>
+                            <td>1'234.56</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Important Notes" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "In English writing, always use point as decimal separator" %}</li>
+                <li>{% translate "Financial documents may use comma as thousand separator" %}
+                    <p class="code-highlight">$1,234.56 (correct English format)</p>
+                </li>
+                <li>{% translate "Some style guides recommend spaces for thousands in scientific writing" %}
+                    <p class="code-highlight">1 234.56 (alternative format)</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Mixing separators</span>:" %}
+                <p class="code-highlight">Incorrect: 1.234,56 (English)<br>
+                Correct: 1,234.56</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Omitting 'and' in place value method</span>:" %}
+                <p class="code-highlight">Incorrect: three fourteen hundredths<br>
+                Correct: three and fourteen hundredths</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Incorrect money readings</span>:" %}
+                <p class="code-highlight">Incorrect: one point fifty dollars<br>
+                Correct: one dollar and fifty cents</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

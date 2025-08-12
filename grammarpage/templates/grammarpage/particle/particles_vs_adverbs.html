@@ -1,0 +1,299 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Particles vs. Adverbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .particle-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .adverb-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .comparison-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .test-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'particle_page' %}">{% translate "Particle" %}</a></span> &raquo;
+            <span>{% translate "Particles vs. Adverbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Particles vs. Adverbs" %}</h1>
+        <p>
+            {% translate "While particles and adverbs often share the same form (words like 'up', 'down', 'off'), they serve fundamentally different grammatical functions that affect sentence structure and meaning." %}
+        </p>
+
+        <div class="comparison-card">
+            <h2>{% translate "Key Differences" %}</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Feature" %}</th>
+                        <th>{% translate "Particle" %}</th>
+                        <th>{% translate "Adverb" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Function" %}</td>
+                        <td>{% translate "Changes verb meaning" %}</td>
+                        <td>{% translate "Modifies verb/adjective/adverb" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Position" %}</td>
+                        <td>{% translate "Attached to verb" %}</td>
+                        <td>{% translate "Often movable" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Separability" %}</td>
+                        <td>{% translate "Sometimes separable" %}</td>
+                        <td>{% translate "Always independent" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Meaning" %}</td>
+                        <td>{% translate "Creates new verb meaning" %}</td>
+                        <td>{% translate "Adds descriptive information" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="comparison-card">
+            <h2>{% translate "Particle Characteristics" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "Essential part of phrasal verbs" %}
+                    <p class="code-highlight"><span class="particle-highlight">turn off</span> (completely different from just "turn")</p>
+                </li>
+                <li>{% translate "Cannot stand alone meaningfully" %}
+                    <p class="code-highlight">"I need to <span class="particle-highlight">put</span> it <span class="particle-highlight">off</span>" (not "I need to put off")</p>
+                </li>
+                <li>{% translate "Position may change with objects" %}
+                    <p class="code-highlight">"Turn <span class="particle-highlight">off</span> the light" or "Turn the light <span class="particle-highlight">off</span>"</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="particle-highlight">give up</span> (surrender)</span></li>
+                <li><span class="code-highlight"><span class="particle-highlight">look after</span> (take care of)</span></li>
+                <li><span class="code-highlight"><span class="particle-highlight">put off</span> (postpone)</span></li>
+            </ul>
+        </div>
+
+        <div class="comparison-card">
+            <h2>{% translate "Adverb Characteristics" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "Modifies rather than transforms" %}
+                    <p class="code-highlight">"He ran <span class="adverb-highlight">quickly</span>" (describes how he ran)</p>
+                </li>
+                <li>{% translate "Often movable in sentence" %}
+                    <p class="code-highlight">"<span class="adverb-highlight">Quickly</span>, he ran" or "He <span class="adverb-highlight">quickly</span> ran"</p>
+                </li>
+                <li>{% translate "Can modify different elements" %}
+                    <p class="code-highlight">"<span class="adverb-highlight">very</span> tall" (adjective), "<span class="adverb-highlight">too</span> quickly" (adverb)</p>
+                </li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">The light is <span class="adverb-highlight">off</span> (state)</span></li>
+                <li><span class="code-highlight">Look <span class="adverb-highlight">up</span> (direction)</span></li>
+                <li><span class="code-highlight">She spoke <span class="adverb-highlight">quietly</span> (manner)</span></li>
+            </ul>
+        </div>
+
+        <div class="test-card">
+            <h2>{% translate "Identification Tests" %}</h2>
+            <h3>{% translate "1. Movement Test" %}</h3>
+            <p>{% translate "Adverbs can often move; particles cannot:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">Adverb: "He ran <span class="adverb-highlight">away</span>" → "<span class="adverb-highlight">Away</span> he ran"</span></li>
+                <li><span class="code-highlight">Particle: "He <span class="particle-highlight">gave up</span>" → Not "<span class="particle-highlight">Up</span> he gave"</span></li>
+            </ul>
+
+            <h3>{% translate "2. Meaning Test" %}</h3>
+            <p>{% translate "Does it create a new verb meaning?" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">Particle: "<span class="particle-highlight">look up</span> information" (research)</span></li>
+                <li><span class="code-highlight">Adverb: "look <span class="adverb-highlight">up</span>" (direction)</span></li>
+            </ul>
+
+            <h3>{% translate "3. Separation Test" %}</h3>
+            <p>{% translate "Can it separate from the verb with an object?" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">Particle: "turn <span class="particle-highlight">off</span> the light" or "turn the light <span class="particle-highlight">off</span>"</span></li>
+                <li><span class="code-highlight">Adverb: "walk <span class="adverb-highlight">down</span> the street" but not "walk the street <span class="adverb-highlight">down</span>"</span></li>
+            </ul>
+        </div>
+
+        <div class="comparison-card">
+            <h2>{% translate "Common Mistakes" %}</h2>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Confusing separable particles with adverbs:</span>" %}
+                    <p class="code-highlight">Incorrect: "He called early up" (should be "called up early")</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Misplacing adverbs in phrasal verbs:</span>" %}
+                    <p class="code-highlight">Incorrect: "She quickly turned off" (should be "turned off quickly")</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Overlooking idiomatic meanings:</span>" %}
+                    <p class="code-highlight">Mistaking "give in" (surrender) for literal giving</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'particle_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Particles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

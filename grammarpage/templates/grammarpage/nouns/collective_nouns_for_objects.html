@@ -1,0 +1,187 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Collective Nouns for Objects" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Collective Nouns for Objects" %}</span>
+        </nav>
+
+        <h1>{% translate "Collective Nouns for Objects" %}</h1>
+        <p>
+            {% translate "A <span class=\"term-highlight\">collective noun</span> can also be used to refer to a group of inanimate objects. These nouns help us describe specific arrangements or collections of things in a single, convenient word." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Collective Nouns for Objects" %}</h3>
+        <p>
+            {% translate "Here is a list of frequently used collective nouns for various items." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Collective Noun" %}</th>
+                        <th>{% translate "Objects" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class=\"code-highlight\">{% translate "bunch" %}</span></td><td>{% translate "keys, grapes, flowers" %}</td><td>{% translate "I need a <span class=\"code-highlight\">bunch</span> of keys to open the door." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "deck" %}</span></td><td>{% translate "cards" %}</td><td>{% translate "He shuffled the <span class=\"code-highlight\">deck</span> of cards before dealing." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "pair" %}</span></td><td>{% translate "scissors, shoes, glasses" %}</td><td>{% translate "Where is my other <span class=\"code-highlight\">pair</span> of shoes?" %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "stack" %}</span></td><td>{% translate "books, plates, firewood" %}</td><td>{% translate "There is a <span class=\"code-highlight\">stack</span> of books on the table." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "set" %}</span></td><td>{% translate "dishes, tools, rules" %}</td><td>{% translate "We bought a new <span class=\"code-highlight\">set</span> of dishes." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "suite" %}</span></td><td>{% translate "furniture, rooms" %}</td><td>{% translate "The hotel offers a beautiful <span class=\"code-highlight\">suite</span> of rooms." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "fleet" %}</span></td><td>{% translate "ships, cars" %}</td><td>{% translate "The entire <span class=\"code-highlight\">fleet</span> of fishing boats left the harbor." %}</td></tr>
+                    <tr><td><span class=\"code-highlight\">{% translate "cluster" %}</span></td><td>{% translate "stars, grapes" %}</td><td>{% translate "We saw a <span class=\"code-highlight\">cluster</span> of stars in the night sky." %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Usage Note" %}</h3>
+        <p>
+            {% translate "While many of these nouns are specific, some can be used more generally to describe any collection. For example, a <span class=\"code-highlight\">bunch</span> of flowers is very common, but a <span class=\"code-highlight\">bunch</span> of old letters would also be understood, although <span class=\"code-highlight\">stack</span> might be more precise." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

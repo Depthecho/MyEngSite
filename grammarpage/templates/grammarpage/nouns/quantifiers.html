@@ -1,0 +1,214 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Quantifiers" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Quantifiers" %}</span>
+        </nav>
+
+        <h1>{% translate "Quantifiers" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Quantifiers</span> are words that are used before a noun to express a quantity or amount of something. They answer the question 'how much?' or 'how many?'" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Quantifiers for Countable and Uncountable Nouns" %}</h3>
+        <p>
+            {% translate "Quantifiers are often categorized based on whether they are used with countable nouns (things you can count, e.g., 'books') or uncountable nouns (things you cannot count, e.g., 'water')." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Countable Nouns" %}</th>
+                        <th>{% translate "Uncountable Nouns" %}</th>
+                        <th>{% translate "Both" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "many" %}</span></td>
+                        <td><span class="code-highlight">{% translate "much" %}</span></td>
+                        <td><span class="code-highlight">{% translate "all" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "a few" %}</span></td>
+                        <td><span class="code-highlight">{% translate "a little" %}</span></td>
+                        <td><span class="code-highlight">{% translate "most" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "few" %}</span></td>
+                        <td><span class="code-highlight">{% translate "little" %}</span></td>
+                        <td><span class="code-highlight">{% translate "some" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">{% translate "several" %}</span></td>
+                        <td><span class="code-highlight">{% translate "a lot of" %}</span></td>
+                        <td><span class="code-highlight">{% translate "any" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Quantifiers in Detail" %}</h3>
+        
+        <h4>{% translate "Much vs. Many" %}</h4>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"example-highlight\">Much</span> is used with uncountable nouns." %}<br>{% translate "I don't have <span class=\"code-highlight\">much</span> money." %}</li>
+            <li>{% translate "<span class=\"example-highlight\">Many</span> is used with countable nouns." %}<br>{% translate "There are <span class=\"code-highlight\">many</span> cars on the road." %}</li>
+        </ul>
+
+        <h4>{% translate "A few vs. A little" %}</h4>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"example-highlight\">A few</span> is used with countable nouns, indicating a small number." %}<br>{% translate "I have <span class=\"code-highlight\">a few</span> friends in the city." %}</li>
+            <li>{% translate "<span class=\"example-highlight\">A little</span> is used with uncountable nouns, indicating a small amount." %}<br>{% translate "He added <span class=\"code-highlight\">a little</span> sugar to his coffee." %}</li>
+        </ul>
+
+        <h4>{% translate "Some vs. Any" %}</h4>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"example-highlight\">Some</span> is used in affirmative sentences for both countable and uncountable nouns." %}<br>{% translate "I have <span class=\"code-highlight\">some</span> apples. We need <span class=\"code-highlight\">some</span> water." %}</li>
+            <li>{% translate "<span class=\"example-highlight\">Any</span> is typically used in negative sentences and questions." %}<br>{% translate "Do you have <span class=\"code-highlight\">any</span> questions? I don't have <span class=\"code-highlight\">any</span> money." %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

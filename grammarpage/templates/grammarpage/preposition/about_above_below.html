@@ -1,0 +1,330 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: About, Above, and Below" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .about-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .above-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .below-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .prep-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .about-card {
+            border-left-color: #83e8de;
+        }
+
+        .above-card {
+            border-left-color: #b388ff;
+        }
+
+        .below-card {
+            border-left-color: #4cc9f0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .usage-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "About, Above, and Below" %}</span>
+        </nav>
+
+        <h1>{% translate "Mastering About, Above, and Below" %}</h1>
+        <p>
+            {% translate "These essential prepositions serve distinct functions in English, from discussing topics to describing spatial relationships. Understanding their nuances will significantly improve your precision in communication." %}
+        </p>
+
+        <div class="prep-card about-card">
+            <h2><span class="about-highlight">{% translate "1. About: Topic and Approximation" %}</span></h2>
+            <div class="usage-diagram">
+                {% translate "Subject + Verb + <span class=\"about-highlight\">about</span> + Topic/Quantity" %}
+            </div>
+
+            <h3>{% translate "Discussing Topics" %}</h3>
+            <p>{% translate "When introducing the subject of discussion, thought, or content:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "We had a conversation <span class=\"about-highlight\">about</span> climate change." %}</li>
+                <li>{% translate "The documentary is <span class=\"about-highlight\">about</span> marine life." %}</li>
+                <li>{% translate "What are you thinking <span class=\"about-highlight\">about</span>?" %}</li>
+            </ul>
+
+            <h3>{% translate "Approximate Quantities" %}</h3>
+            <p>{% translate "When indicating rough estimates or approximations:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "There were <span class=\"about-highlight\">about</span> fifty people at the event." %}</li>
+                <li>{% translate "It's <span class=\"about-highlight\">about</span> three miles to the nearest gas station." %}</li>
+                <li>{% translate "The project will take <span class=\"about-highlight\">about</span> two weeks to complete." %}</li>
+            </ul>
+
+            <h3>{% translate "Special Cases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Be about to (imminent action):" %}
+                    <p class="code-highlight">{% translate "I was <span class=\"about-highlight\">about</span> to leave when the phone rang." %}</p>
+                </li>
+                <li>{% translate "How about (suggestions):" %}
+                    <p class="code-highlight">{% translate "<span class=\"about-highlight\">How about</span> we go for a walk?" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="prep-card above-card">
+            <h2><span class="above-highlight">{% translate "2. Above: Superior Position and Beyond" %}</span></h2>
+            <div class="usage-diagram">
+                {% translate "Subject + BE/Verb + <span class=\"above-highlight\">above</span> + Reference Point" %}
+            </div>
+
+            <h3>{% translate "Physical Position" %}</h3>
+            <p>{% translate "When something is at a higher level than something else, often without direct contact:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "The painting hangs <span class=\"above-highlight\">above</span> the fireplace." %}</li>
+                <li>{% translate "The helicopter hovered <span class=\"above-highlight\">above</span> the building." %}</li>
+                <li>{% translate "Temperatures remained <span class=\"above-highlight\">above</span> freezing all week." %}</li>
+            </ul>
+
+            <h3>{% translate "Abstract Concepts" %}</h3>
+            <p>{% translate "When referring to higher status, rank, or quality:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Her work is <span class=\"above-highlight\">above</span> average." %}</li>
+                <li>{% translate "The general is <span class=\"above-highlight\">above</span> the colonel in rank." %}</li>
+                <li>{% translate "I consider that behavior <span class=\"above-highlight\">above</span> reproach." %}</li>
+            </ul>
+
+            <h3>{% translate "Common Expressions" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Expression" %}</th>
+                        <th>{% translate "Meaning" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="code-highlight">above all</span></td>
+                        <td>{% translate "Most importantly" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">above board</span></td>
+                        <td>{% translate "Honest and legal" %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class="code-highlight">above suspicion</span></td>
+                        <td>{% translate "Too good to be suspected" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="prep-card below-card">
+            <h2><span class="below-highlight">{% translate "3. Below: Inferior Position and Under" %}</span></h2>
+            <div class="usage-diagram">
+                {% translate "Subject + BE/Verb + <span class=\"below-highlight\">below</span> + Reference Point" %}
+            </div>
+
+            <h3>{% translate "Physical Position" %}</h3>
+            <p>{% translate "When something is at a lower level than something else, often without direct contact:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "The submarine descended <span class=\"below-highlight\">below</span> the surface." %}</li>
+                <li>{% translate "Please sign your name <span class=\"below-highlight\">below</span> the line." %}</li>
+                <li>{% translate "Temperatures dropped <span class=\"below-highlight\">below</span> zero overnight." %}</li>
+            </ul>
+
+            <h3>{% translate "Abstract Concepts" %}</h3>
+            <p>{% translate "When referring to lower status, rank, or quality:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "His test scores were <span class=\"below-highlight\">below</span> the class average." %}</li>
+                <li>{% translate "A lieutenant is <span class=\"below-highlight\">below</span> a captain in rank." %}</li>
+                <li>{% translate "Such behavior is <span class=\"below-highlight\">below</span> my dignity." %}</li>
+            </ul>
+
+            <h3>{% translate "Comparison with Under" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th><span class="below-highlight">Below</span></th>
+                        <th>{% translate "Under" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Relative position (lower than)" %}</td>
+                        <td>{% translate "Directly beneath, covered by" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "The valley lies <span class=\"below-highlight\">below</span> the mountain." %}</td>
+                        <td>{% translate "The cat is <span class=\"term-highlight\">under</span> the table." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Temperatures <span class=\"below-highlight\">below</span> freezing" %}</td>
+                        <td>{% translate "<span class=\"term-highlight\">Under</span> new management" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

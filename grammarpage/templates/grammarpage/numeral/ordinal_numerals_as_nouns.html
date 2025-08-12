@@ -1,0 +1,374 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Numerals: Ordinal Numerals as Nouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .position-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .plural-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .phrase-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .note-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .special-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'numeral_page' %}">{% translate "Numerals" %}</a></span> &raquo;
+            <span>{% translate "Numerals Used as Nouns" %}</span> &raquo;
+            <span>{% translate "Ordinal Numerals as Nouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Ordinal Numerals Functioning as Nouns" %}</h1>
+        <p>
+            {% translate "Ordinal numerals frequently serve as nouns when they represent positions or ranks independently, without modifying another noun. This usage is particularly common in competitive, historical, and temporal contexts." %}
+        </p>
+
+        <div class="structure-card">
+            <h3>{% translate "1. Positional References" %}</h3>
+            <p>
+                {% translate "Ordinals as nouns typically refer to people or items in a ranked sequence when the category is understood from context." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Context" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Implied Noun" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Competitions" %}</td>
+                            <td><span class="example-highlight">She finished third</span></td>
+                            <td>{% translate "(place/position)" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Family" %}</td>
+                            <td><span class="example-highlight">I'm the eldest of four</span></td>
+                            <td>{% translate "(child/sibling)" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Dates" %}</td>
+                            <td><span class="example-highlight">See you on the first</span></td>
+                            <td>{% translate "(day of month)" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Historical events" %}</td>
+                            <td><span class="example-highlight">The twenty-third of the dynasty</span></td>
+                            <td>{% translate "(ruler/monarch)" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="note-card">
+                <h4>{% translate "Important Rules" %}</h4>
+                <ul class="styled-list">
+                    <li>{% translate "Always use the definite article <span class=\"code-highlight\">the</span> with ordinal nouns: <span class=\"example-highlight\">the first</span>, not <strike>first</strike>" %}</li>
+                    <li>{% translate "When the noun is expressed, ordinals function as adjectives: <span class=\"example-highlight\">the first chapter</span>" %}</li>
+                    <li>{% translate "For dates, <span class=\"code-highlight\">the</span> is required: <span class=\"example-highlight\">the fifteenth of June</span>" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "2. Plural Ordinal Nouns" %}</h3>
+            <p>
+                {% translate "Pluralized ordinal nouns have specialized uses referring to multiple items sharing a rank or representing decades." %}
+            </p>
+
+            <h4>{% translate "Shared Rankings" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Competitions:</span> <span class="example-highlight">There were three firsts this year</span> (three first-place winners)</li>
+                <li><span class="term-highlight">Sports:</span> <span class="example-highlight">The team had five seconds last season</span> (five second-place finishes)</li>
+            </ul>
+
+            <h4>{% translate "Decades and Centuries" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Years:</span> <span class="example-highlight">The roaring twenties</span> (1920s)</li>
+                <li><span class="term-highlight">Centuries:</span> <span class="example-highlight">The sixteen hundreds</span> (1600s)</li>
+                <li><span class="term-highlight">Temperature:</span> <span class="example-highlight">The low thirties</span> (30-34°F)</li>
+            </ul>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <caption>{% translate "Singular vs. Plural Ordinal Nouns" %}</caption>
+                    <thead>
+                        <tr>
+                            <th>{% translate "Form" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Meaning" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Singular" %}</td>
+                            <td><span class="example-highlight">the tenth</span></td>
+                            <td>{% translate "One item in 10th position" %}</td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "Plural" %}</td>
+                            <td><span class="example-highlight">the tenths</span></td>
+                            <td>{% translate "Multiple items in 10th position" %}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "3. Fixed Expressions and Idioms" %}</h3>
+            <p>
+                {% translate "Many common phrases use ordinal numerals as nouns with specialized meanings." %}
+            </p>
+
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Expression" %}</th>
+                            <th>{% translate "Meaning" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code-highlight">first things first</span></td>
+                            <td>{% translate "Address most important matters initially" %}</td>
+                            <td><span class="example-highlight">First things first - let's review safety</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">in the first place</span></td>
+                            <td>{% translate "Originally; to begin with" %}</td>
+                            <td><span class="example-highlight">Why did you invite him in the first place?</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">the second to last</span></td>
+                            <td>{% translate "Penultimate" %}</td>
+                            <td><span class="example-highlight">The second to last chapter is crucial</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">third time's the charm</span></td>
+                            <td>{% translate "Third attempt will succeed" %}</td>
+                            <td><span class="example-highlight">I failed twice but third time's the charm!</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="special-card">
+            <h3>{% translate "4. Special Usage Cases" %}</h3>
+
+            <h4>{% translate "Fractions as Nouns" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Mathematical:</span> <span class="example-highlight">Two thirds of the pie</span></li>
+                <li><span class="term-highlight">Measurements:</span> <span class="example-highlight">Add three quarters of a cup</span></li>
+            </ul>
+
+            <h4>{% translate "Historical and Legal Terms" %}</h4>
+            <ul class="styled-list">
+                <li><span class="term-highlight">Amendments:</span> <span class="example-highlight">The Fifth protects against self-incrimination</span></li>
+                <li><span class="term-highlight">Monarchs:</span> <span class="example-highlight">The Eighth was known for his marriages</span></li>
+                <li><span class="term-highlight">Centuries:</span> <span class="example-highlight">The nineteenth saw industrial growth</span></li>
+            </ul>
+        </div>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <caption>{% translate "Ordinal vs. Cardinal Noun Usage" %}</caption>
+                <thead>
+                    <tr>
+                        <th>{% translate "Type" %}</th>
+                        <th>{% translate "Ordinal Example" %}</th>
+                        <th>{% translate "Cardinal Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Position" %}</td>
+                        <td><span class="example-highlight">She came in second</span></td>
+                        <td><span class="example-highlight">She won two medals</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Date" %}</td>
+                        <td><span class="example-highlight">On the fifteenth</span></td>
+                        <td><span class="example-highlight">Fifteen days later</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Sequence" %}</td>
+                        <td><span class="example-highlight">The third in line</span></td>
+                        <td><span class="example-highlight">Three people waiting</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'numeral_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Numerals" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

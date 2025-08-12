@@ -1,0 +1,223 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Articles: Summary Table" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Article" %}</a></span> &raquo;
+            <span>{% translate "Articles: Summary Table" %}</span>
+        </nav>
+
+        <h1>{% translate "Articles: Summary Table" %}</h1>
+        <p>
+            {% translate "This table provides a quick reference guide to the usage of English articles (<span class=\"code-highlight\">a, an, the</span>) and when to use no article at all." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Article" %}</th>
+                        <th>{% translate "Usage" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "a / an" %}</span></td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "For singular, countable nouns." %}</li>
+                                <li>{% translate "When the noun is general or non-specific." %}</li>
+                                <li>{% translate "When the noun is mentioned for the first time." %}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "I need <span class=\"code-highlight\">a</span> new phone." %}</li>
+                                <li>{% translate "He is <span class=\"code-highlight\">an</span> excellent student." %}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "the" %}</span></td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "For specific nouns (singular or plural, countable or uncountable)." %}</li>
+                                <li>{% translate "When the noun has been mentioned before." %}</li>
+                                <li>{% translate "When there is only one of that item (e.g., <span class=\"code-highlight\">the sun</span>)." %}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "Please close <span class=\"code-highlight\">the</span> door." %}</li>
+                                <li>{% translate "I saw a movie yesterday. <span class=\"code-highlight\">The</span> movie was great." %}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Zero Article" %}</span></td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "For plural countable nouns in a general sense." %}</li>
+                                <li>{% translate "For uncountable nouns in a general sense." %}</li>
+                                <li>{% translate "For most proper nouns (countries, cities, names)." %}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <ul class="styled-list">
+                                <li>{% translate "<span class=\"code-highlight\">Cats</span> are independent pets." %}</li>
+                                <li>{% translate "I drink <span class=\"code-highlight\">coffee</span> every morning." %}</li>
+                                <li>{% translate "I live in <span class=\"code-highlight\">Japan</span>." %}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Quick Tip" %}</h3>
+        <p>
+            {% translate "Think of articles as signposts. <span class=\"code-highlight\">A/an</span> points to 'one of many,' while <span class=\"code-highlight\">the</span> points to 'the one we both know.' The zero article is used when the noun's identity is not important or it's a general concept." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

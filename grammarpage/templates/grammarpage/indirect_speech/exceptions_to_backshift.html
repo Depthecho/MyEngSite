@@ -1,0 +1,288 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Exceptions to Tense Backshift" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .present-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .past-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .unchanged-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .modal-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .exception-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'indirect_speech_page' %}">{% translate "Indirect Speech" %}</a></span> &raquo;
+            <span>{% translate "Exceptions to Backshift" %}</span>
+        </nav>
+
+        <h1>{% translate "Exceptions to Tense Backshift Rules" %}</h1>
+        <p>
+            {% translate "While tense backshift is the general rule in indirect speech, there are several important exceptions where the original tense is maintained. Understanding these exceptions is crucial for accurate reporting." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Primary Exceptions to Tense Backshift" %}</h3>
+            <p>{% translate "These are the most common situations where tense backshift is not applied:" %}</p>
+
+            <div class="exception-card">
+                <h4>{% translate "1. Universal Truths and Scientific Facts" %}</h4>
+                <p>{% translate "When reporting statements that express general truths or scientific facts that remain true regardless of time:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"Water <span class="present-highlight">boils</span> at 100°C," the scientist said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">The scientist said that water <span class="present-highlight">boils</span> at 100°C.</span></p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"The Earth <span class="present-highlight">revolves</span> around the Sun," he explained.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He explained that the Earth <span class="present-highlight">revolves</span> around the Sun.</span></p>
+
+                <p><em>{% translate "Note: These facts are permanently true, so the present tense is maintained." %}</em></p>
+            </div>
+
+            <div class="exception-card">
+                <h4>{% translate "2. Present Tense Reporting Verbs" %}</h4>
+                <p>{% translate "When the reporting verb is in the present, present perfect, or future tense:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">am</span> busy," she <span class="present-highlight">says</span>.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She <span class="present-highlight">says</span> she <span class="present-highlight">is</span> busy.</span></p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"We <span class="present-highlight">have finished</span> the project," they <span class="present-highlight">have announced</span>.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">They <span class="present-highlight">have announced</span> that they <span class="present-highlight">have finished</span> the project.</span></p>
+            </div>
+
+            <div class="exception-card">
+                <h4>{% translate "3. Unchanged Modal Verbs" %}</h4>
+                <p>{% translate "Certain modal verbs don't change in reported speech:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Modal Verb" %}</th>
+                            <th>{% translate "Example" %}</th>
+                            <th>{% translate "Reported Speech" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="modal-highlight">would</span></td>
+                            <td>"I <span class="modal-highlight">would</span> help"</td>
+                            <td>He said he <span class="modal-highlight">would</span> help</td>
+                        </tr>
+                        <tr>
+                            <td><span class="modal-highlight">could</span></td>
+                            <td>"I <span class="modal-highlight">could</span> come"</td>
+                            <td>She said she <span class="modal-highlight">could</span> come</td>
+                        </tr>
+                        <tr>
+                            <td><span class="modal-highlight">might</span></td>
+                            <td>"I <span class="modal-highlight">might</span> agree"</td>
+                            <td>They said they <span class="modal-highlight">might</span> agree</td>
+                        </tr>
+                        <tr>
+                            <td><span class="modal-highlight">should</span></td>
+                            <td>"You <span class="modal-highlight">should</span> try"</td>
+                            <td>He said I <span class="modal-highlight">should</span> try</td>
+                        </tr>
+                        <tr>
+                            <td><span class="modal-highlight">ought to</span></td>
+                            <td>"You <span class="modal-highlight">ought to</span> rest"</td>
+                            <td>She said I <span class="modal-highlight">ought to</span> rest</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Additional Special Cases" %}</h3>
+            <p>{% translate "Other situations where tense backshift may not apply:" %}</p>
+
+            <div class="exception-card">
+                <h4>{% translate "1. Past Perfect Remains Unchanged" %}</h4>
+                <p>{% translate "The past perfect tense doesn't change because there's no 'more past' form:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="past-highlight">had already left</span> when he called," she said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She said she <span class="past-highlight">had already left</span> when he called.</span></p>
+            </div>
+
+            <div class="exception-card">
+                <h4>{% translate "2. Situations Still True at Time of Reporting" %}</h4>
+                <p>{% translate "When the original statement remains true when reported:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">live</span> in Rome," he said. (and still does)</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He said he <span class="present-highlight">lives</span> in Rome.</span></p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"My sister <span class="present-highlight">works</span> at a bank," she said. (still true)</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She said her sister <span class="present-highlight">works</span> at a bank.</span></p>
+
+                <p><em>{% translate "Note: If the situation has changed, backshift is required." %}</em></p>
+            </div>
+
+            <div class="exception-card">
+                <h4>{% translate "3. Second and Third Conditional Sentences" %}</h4>
+                <p>{% translate "Conditional sentences types 2 and 3 remain unchanged:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"If I <span class="past-highlight">were</span> you, I <span class="modal-highlight">would</span> accept," he said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">He said that if he <span class="past-highlight">were</span> me, he <span class="modal-highlight">would</span> accept.</span></p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"If I <span class="past-highlight">had known</span>, I <span class="modal-highlight">would have come</span> earlier," she said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect:" %}</span> <span class="code-highlight">She said that if she <span class="past-highlight">had known</span>, she <span class="modal-highlight">would have come</span> earlier.</span></p>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "When Backshift is Optional" %}</h3>
+            <p>{% translate "In some cases, backshift may be either applied or omitted:" %}</p>
+
+            <div class="exception-card">
+                <h4>{% translate "1. Habits and Repeated Actions" %}</h4>
+                <p>{% translate "For habitual actions that are still true, both forms are acceptable:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"I <span class="present-highlight">go</span> to the gym every day," he said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect (no backshift):" %}</span> <span class="code-highlight">He said he <span class="present-highlight">goes</span> to the gym every day.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect (with backshift):" %}</span> <span class="code-highlight">He said he <span class="past-highlight">went</span> to the gym every day.</span></p>
+            </div>
+
+            <div class="exception-card">
+                <h4>{% translate "2. Future Events Still to Happen" %}</h4>
+                <p>{% translate "For future events that haven't occurred yet at the time of reporting:" %}</p>
+
+                <p><span class="example-highlight">{% translate "Direct:" %}</span> <span class="code-highlight">"The meeting <span class="present-highlight">will start</span> at 3pm," she said.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect (no backshift):" %}</span> <span class="code-highlight">She said the meeting <span class="present-highlight">will start</span> at 3pm.</span></p>
+                <p><span class="example-highlight">{% translate "Indirect (with backshift):" %}</span> <span class="code-highlight">She said the meeting <span class="past-highlight">would start</span> at 3pm.</span></p>
+
+                <p><em>{% translate "Note: The version without backshift emphasizes that the event is still in the future." %}</em></p>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'indirect_speech_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Indirect Speech" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

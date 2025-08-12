@@ -1,0 +1,303 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Object of a Preposition" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #b388ff;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .preposition-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'minor_sentence_part_page' %}">{% translate "Minor Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "Object of a Preposition" %}</span>
+        </nav>
+
+        <h1>{% translate "Object of a Preposition" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">object of a preposition</span> is the noun, pronoun, or noun phrase that follows a preposition to complete its meaning and form a <span class=\"term-highlight\">prepositional phrase</span>." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "Core Structure" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="preposition-highlight">[Preposition]</span> + <span class="object-highlight">[Object]</span> = Prepositional Phrase
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always follows a preposition (in, on, at, with, to, etc.)" %}</li>
+                <li>{% translate "Can be a noun, pronoun, gerund, or noun clause" %}</li>
+                <li>{% translate "Never a verb in its base form" %}</li>
+                <li>{% translate "Answers <span class=\"code-highlight\">what?</span> or <span class=\"code-highlight\">whom?</span> after the preposition" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She sat <span class=\"preposition-highlight\">on</span> <span class=\"object-highlight\">the bench</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "We talked <span class=\"preposition-highlight\">about</span> <span class=\"object-highlight\">her promotion</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "He's interested <span class=\"preposition-highlight\">in</span> <span class=\"object-highlight\">learning French</span>." %}</span> (gerund as object)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "Types of Prepositional Objects" %}</h2>
+
+            <h3>{% translate "1. Noun Objects" %}</h3>
+            <p>{% translate "The most common type of prepositional object:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The keys are <span class=\"preposition-highlight\">in</span> <span class=\"object-highlight\">the drawer</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "They arrived <span class=\"preposition-highlight\">after</span> <span class=\"object-highlight\">midnight</span>." %}</span></li>
+            </ul>
+
+            <h3>{% translate "2. Pronoun Objects" %}</h3>
+            <p>{% translate "Must be in the objective case:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "This gift is <span class=\"preposition-highlight\">for</span> <span class=\"object-highlight\">you</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "She stood <span class=\"preposition-highlight\">near</span> <span class=\"object-highlight\">them</span>." %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Gerund Objects" %}</h3>
+            <p>{% translate "Verbs in -ing form functioning as nouns:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "He's good <span class=\"preposition-highlight\">at</span> <span class=\"object-highlight\">swimming</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "Before <span class=\"preposition-highlight\">leaving</span>, she turned off the lights." %}</span></li>
+            </ul>
+
+            <h3>{% translate "4. Noun Clause Objects" %}</h3>
+            <p>{% translate "Whole clauses functioning as objects:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "We disagreed <span class=\"preposition-highlight\">about</span> <span class=\"object-highlight\">what needed to be done</span>." %}</span></li>
+                <li><span class="code-highlight">{% translate "It depends <span class=\"preposition-highlight\">on</span> <span class=\"object-highlight\">whether they'll agree</span>." %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Grammatical Functions" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Function" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Explanation" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Adverbial" %}</td>
+                    <td><span class="code-highlight">{% translate "She slept <span class=\"preposition-highlight\">during</span> <span class=\"object-highlight\">the meeting</span>." %}</span></td>
+                    <td>{% translate "Modifies the verb (when she slept)" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Adjectival" %}</td>
+                    <td><span class="code-highlight">{% translate "The man <span class=\"preposition-highlight\">with</span> <span class=\"object-highlight\">the hat</span> waved." %}</span></td>
+                    <td>{% translate "Modifies the noun (which man)" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Nominal" %}</td>
+                    <td><span class="code-highlight">{% translate "<span class=\"preposition-highlight\">After</span> <span class=\"object-highlight\">lunch</span> is my free time." %}</span></td>
+                    <td>{% translate "Functions as a noun (subject of sentence)" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Special Cases and Challenges" %}</h2>
+        <div class="structure-card">
+            <h3>{% translate "1. Multiple Prepositional Phrases" %}</h3>
+            <p>{% translate "Sentences can contain chains of prepositional phrases:" %}</p>
+            <p class="code-highlight">{% translate "The book <span class=\"preposition-highlight\">on</span> <span class=\"object-highlight\">the shelf</span> <span class=\"preposition-highlight\">in</span> <span class=\"object-highlight\">the corner</span> <span class=\"preposition-highlight\">of</span> <span class=\"object-highlight\">the room</span> is mine." %}</p>
+
+            <h3>{% translate "2. Preposition Stranding" %}</h3>
+            <p>{% translate "When the object moves but leaves the preposition behind:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Standard: This is the book <span class=\"preposition-highlight\">about</span> <span class=\"object-highlight\">which</span> I told you." %}</span></li>
+                <li><span class="code-highlight">{% translate "Stranded: This is the book <span class=\"object-highlight\">which</span> I told you <span class=\"preposition-highlight\">about</span>." %}</span></li>
+            </ul>
+
+            <h3>{% translate "3. Common Errors" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Incorrect pronoun case:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: Between you and <span style=\"color:red\">I</span><br>Right: Between you and <span class=\"object-highlight\">me</span>" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Missing objects:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: She's looking forward to.<br>Right: She's looking forward to <span class=\"object-highlight\">your visit</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Wrong prepositions:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: We're waiting <span style=\"color:red\">on</span> the bus.<br>Right: We're waiting <span class=\"preposition-highlight\">for</span> the bus." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'minor_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Minor Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

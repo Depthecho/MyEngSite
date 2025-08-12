@@ -1,0 +1,410 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adverbs: General Positions" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .front-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .mid-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .end-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .position-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .special-case-card {
+            background: rgba(255, 158, 125, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9e7d;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .position-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        .incorrect {
+            color: #ff6b6b;
+            text-decoration: line-through;
+        }
+
+        .correct {
+            color: #83e8de;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adverb_page' %}">{% translate "Adverbs" %}</a></span> &raquo;
+            <span>{% translate "General Positions" %}</span>
+        </nav>
+
+        <h1>{% translate "Adverb Positions in Sentences" %}</h1>
+        <p>
+            {% translate "Adverbs can appear in three main positions within a sentence: front (beginning), mid (middle), and end (final). Each position serves different communicative purposes and follows specific grammatical rules." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="position-card">
+            <h3>{% translate "1. Front Position (Sentence-Initial)" %}</h3>
+            <p>
+                {% translate "Placing an adverb at the beginning of a sentence creates emphasis or provides a transition between ideas. This position is common for:" %}
+            </p>
+
+            <div class="position-diagram">
+                <span class="front-highlight">[Adverb]</span> + <span class="subject-highlight">[Subject]</span> + <span class="predicate-highlight">[Verb]</span> + [Rest of sentence]
+            </div>
+
+            <h4>{% translate "Common Adverb Types in Front Position:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Connecting adverbs:</span> However, Therefore, Moreover" %}
+                    <p class="code-highlight">{% translate "<span class=\"front-highlight\">However</span>, we decided to proceed with the plan." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Time adverbs:</span> Yesterday, Today, Soon" %}
+                    <p class="code-highlight">{% translate "<span class=\"front-highlight\">Yesterday</span>, I visited the museum." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Comment adverbs:</span> Fortunately, Surprisingly, Honestly" %}
+                    <p class="code-highlight">{% translate "<span class=\"front-highlight\">Fortunately</span>, no one was injured." %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "Special Rules:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "When front-position adverbs modify the entire sentence, they're usually followed by a comma" %}</li>
+                <li>{% translate "Negative adverbs in front position often require subject-verb inversion" %}
+                    <p class="code-highlight">{% translate "<span class=\"front-highlight\">Never</span> have I seen such beauty." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="position-card">
+            <h3>{% translate "2. Mid Position (Verb-Related)" %}</h3>
+            <p>
+                {% translate "The middle position provides information about the verb without drawing special attention. Key placement rules:" %}
+            </p>
+
+            <div class="position-diagram">
+                <span class="subject-highlight">[Subject]</span> + (<span class="mid-highlight">[Adverb]</span>) + <span class="predicate-highlight">[Verb]</span> + [Rest of sentence]
+            </div>
+
+            <h4>{% translate "Detailed Placement Rules:" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Verb Type" %}</th>
+                            <th>{% translate "Adverb Position" %}</th>
+                            <th>{% translate "Example" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{% translate "Simple present/past" %}</td>
+                            <td>{% translate "After the verb" %}</td>
+                            <td><span class="code-highlight">{% translate "She <span class=\"mid-highlight\">often</span> visits her grandparents." %}</span></td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "With auxiliary verbs" %}</td>
+                            <td>{% translate "After first auxiliary" %}</td>
+                            <td><span class="code-highlight">{% translate "I have <span class=\"mid-highlight\">never</span> been to China." %}</span></td>
+                        </tr>
+                        <tr>
+                            <td>{% translate "With 'to be'" %}</td>
+                            <td>{% translate "After the verb" %}</td>
+                            <td><span class="code-highlight">{% translate "He is <span class=\"mid-highlight\">always</span> punctual." %}</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "Common Mid-Position Adverbs:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Frequency adverbs: always, usually, often, sometimes, rarely, never" %}</li>
+                <li>{% translate "Degree adverbs: almost, hardly, just, nearly" %}</li>
+                <li>{% translate "Certainty adverbs: certainly, definitely, probably" %}</li>
+            </ul>
+        </div>
+
+        <div class="position-card">
+            <h3>{% translate "3. End Position (Sentence-Final)" %}</h3>
+            <p>
+                {% translate "The most neutral and common position for adverbs, especially those providing details about manner, place, and definite time." %}
+            </p>
+
+            <div class="position-diagram">
+                <span class="subject-highlight">[Subject]</span> + <span class="predicate-highlight">[Verb]</span> + [Object] + <span class="end-highlight">[Adverb]</span>
+            </div>
+
+            <h4>{% translate "Standard Order for Multiple End-Position Adverbs:" %}</h4>
+            <ol class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Manner</span> (how something is done)" %}
+                    <p class="code-highlight">{% translate "She sang <span class=\"end-highlight\">beautifully</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Place</span> (where something happens)" %}
+                    <p class="code-highlight">{% translate "We ate <span class=\"end-highlight\">outside</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Time</span> (when something happens)" %}
+                    <p class="code-highlight">{% translate "They arrived <span class=\"end-highlight\">yesterday</span>." %}</p>
+                </li>
+            </ol>
+
+            <h4>{% translate "Example with Multiple Adverbs:" %}</h4>
+            <p class="code-highlight">{% translate "He worked <span class=\"end-highlight\">diligently</span> <span class=\"end-highlight\">in the office</span> <span class=\"end-highlight\">all day</span>." %}</p>
+        </div>
+
+        <div class="special-case-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+
+            <h4>{% translate "1. Adverbs That Change Meaning by Position" %}</h4>
+            <div class="grammar-table-container">
+                <table class="grammar-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Adverb" %}</th>
+                            <th>{% translate "Front/Mid Position Meaning" %}</th>
+                            <th>{% translate "End Position Meaning" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code-highlight">only</span></td>
+                            <td>{% translate "Emphasizes exclusivity" %}
+                                <p>{% translate "I <span class=\"mid-highlight\">only</span> ate bread." %}</p>
+                            </td>
+                            <td>{% translate "Modifies the nearest word" %}
+                                <p>{% translate "I ate <span class=\"end-highlight\">only</span> bread." %}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="code-highlight">just</span></td>
+                            <td>{% translate "Recently or barely" %}
+                                <p>{% translate "I <span class=\"mid-highlight\">just</span> finished." %}</p>
+                            </td>
+                            <td>{% translate "Exactly or merely" %}
+                                <p>{% translate "I finished <span class=\"end-highlight\">just</span> now." %}</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>{% translate "2. Adverbs That Can't Appear in Mid Position" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Adverbs of place: here, there, everywhere" %}
+                    <p class="incorrect">{% translate "I <span class=\"mid-highlight\">there</span> went." %}</p>
+                    <p class="correct">{% translate "I went <span class=\"end-highlight\">there</span>." %}</p>
+                </li>
+                <li>{% translate "Adverbs of definite time: yesterday, tomorrow, at 5pm" %}
+                    <p class="incorrect">{% translate "She <span class=\"mid-highlight\">yesterday</span> arrived." %}</p>
+                    <p class="correct">{% translate "She arrived <span class=\"end-highlight\">yesterday</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Adverb Order When Multiple Adverbs Appear" %}</h3>
+        <p>{% translate "When using multiple adverbs in end position, they typically follow this sequence:" %}</p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Order" %}</th>
+                        <th>{% translate "Adverb Type" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>{% translate "Manner" %}</td>
+                        <td><span class="code-highlight">{% translate "quickly, carefully, well" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>{% translate "Place" %}</td>
+                        <td><span class="code-highlight">{% translate "here, there, at home" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>{% translate "Frequency" %}</td>
+                        <td><span class="code-highlight">{% translate "often, sometimes, daily" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>{% translate "Time" %}</td>
+                        <td><span class="code-highlight">{% translate "yesterday, today, at 5pm" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>{% translate "Purpose" %}</td>
+                        <td><span class="code-highlight">{% translate "to improve, for fun" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="code-highlight">{% translate "She worked <span class=\"end-highlight\">diligently</span> <span class=\"end-highlight\">in the lab</span> <span class=\"end-highlight\">every day</span> <span class=\"end-highlight\">last month</span> <span class=\"end-highlight\">to complete her research</span>." %}</p>
+
+        <div class="navigation-links">
+            <a href="{% url 'adverb_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adverbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

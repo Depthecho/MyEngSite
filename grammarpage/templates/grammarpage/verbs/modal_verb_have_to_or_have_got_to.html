@@ -1,0 +1,350 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Have to / Have got to" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Have to / Have got to" %}</span>
+        </nav>
+        
+        <h1>{% translate "Have to / Have got to" %}</h1>
+        <p>
+            {% translate "Both <span class=\"term-highlight\">Have to</span> and <span class=\"term-highlight\">Have got to</span> are used to express obligation, necessity, or certainty. While they often convey similar meanings, there are subtle differences in their usage, especially in terms of formality and commonness in different English varieties." %}
+        </p>
+        <p>
+            {% translate "They are sometimes called \"semi-modals\" or \"quasi-modals\" because, unlike true modal verbs (like \"must\" or \"can\"), \"have to\" conjugates for tense and subject (e.g., \"he has to,\" \"they had to\"), and forms questions and negatives with \"do/does/did.\" \"Have got to\" is a fixed phrase and doesn't change for tense (only for subject in the present)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of Have to / Have got to" %}</h4>
+
+        <h5>{% translate "1. Have to (All Tenses for Obligation / Necessity)" %}</h5>
+        <p>
+            {% translate "\"Have to\" behaves like a regular verb in terms of conjugation and forming questions/negatives." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Tense" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example (Affirmative)" %}</th>
+                        <th>{% translate "Example (Negative)" %}</th>
+                        <th>{% translate "Example (Interrogative)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Present Simple" %}</span></td>
+                        <td>{% translate "Subject + have/has to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "have to work" %}</span>.</span><br><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "has to study" %}</span>.</span></td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "don't have to work" %}</span>.</span><br><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "doesn't have to study" %}</span>.</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Do you have to work" %}</span>?</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Does she have to study" %}</span>?</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Past Simple" %}</span></td>
+                        <td>{% translate "Subject + had to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "had to leave" %}</span>.</span></td>
+                        <td><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "didn't have to leave" %}</span>.</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Did you have to leave" %}</span>?</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Future Simple" %}</span></td>
+                        <td>{% translate "Subject + will have to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "will have to wait" %}</span>.</span></td>
+                        <td><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "won't have to wait" %}</span>.</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Will they have to wait" %}</span>?</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Present Perfect" %}</span></td>
+                        <td>{% translate "Subject + have/has had to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "has had to borrow" %}</span> {% translate "money." %}</span></td>
+                        <td><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "hasn't had to borrow" %}</span> {% translate "money." %}</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Has he had to borrow" %}</span> {% translate "money?" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>{% translate "2. Have got to (Present / Future Obligation / Deduction)" %}</h5>
+        <p>
+            {% translate "\"Have got to\" is less flexible than \"have to\" in terms of tenses. It is primarily used in the present and often refers to a specific, immediate obligation or a logical deduction. It's more common in informal British English but also widely used in American English." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example (Affirmative)" %}</th>
+                        <th>{% translate "Example (Negative)" %}</th>
+                        <th>{% translate "Example (Interrogative)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + 've got to / 's got to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "I" %}<span class="verb-highlight">{% translate "'ve got to go" %}</span> {% translate "now." %}</span><br><span class="code-highlight">{% translate "She" %}<span class="verb-highlight">{% translate "'s got to finish" %}</span> {% translate "this." %}</span></td>
+                        <td><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "haven't got to go" %}</span>.</span><br><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "hasn't got to finish" %}</span> {% translate "this." %}</span></td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Have you got to go" %}</span>?</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Has she got to finish" %}</span> {% translate "this?" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Past" %}</span></td>
+                        <td><span class="code-highlight">({% translate "Not typically used; use \"had to\"" %})</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="verb-highlight">{% translate "had to" %}</span>)</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="verb-highlight">{% translate "didn't have to" %}</span>)</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="auxiliary-highlight">{% translate "did ... have to" %}</span>)</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Future" %}</span></td>
+                        <td><span class="code-highlight">({% translate "Less common; \"will have to\" preferred" %})</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="verb-highlight">{% translate "will have to" %}</span>)</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="verb-highlight">{% translate "won't have to" %}</span>)</span></td>
+                        <td><span class="code-highlight">({% translate "Use" %} <span class="auxiliary-highlight">{% translate "will ... have to" %}</span>)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Use of Have to / Have got to" %}</h4>
+        <p>
+            {% translate "Both phrases express obligation, but their usage differs slightly in context and formality." %}
+        </p>
+
+        <h5>{% translate "1. Expressing Obligation or Necessity" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Have to (General/External Obligation):" %}</span>
+                {% translate "Used for general, recurring, or external obligations (rules, laws, duties). It's generally more formal and can be used in all tenses." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "have to wear" %}</span> {% translate "a uniform at work." %}</span> ({% translate "External rule" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="verb-highlight">{% translate "have to pay" %}</span> {% translate "taxes." %}</span> ({% translate "Legal obligation" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "had to cancel" %}</span> {% translate "the meeting due to unforeseen circumstances." %}</span> ({% translate "Past necessity" %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Have got to (Specific/Immediate/Internal Obligation):" %}</span>
+                {% translate "Often refers to a specific, immediate, or more urgent obligation, or a personal, internal feeling of necessity. More common in spoken and informal English, particularly in British English." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "I" %}<span class="verb-highlight">{% translate "'ve got to go" %}</span> {% translate "now, I'm late." %}</span> ({% translate "Immediate, urgent need" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %}<span class="verb-highlight">{% translate "'ve got to see" %}</span> {% translate "this film, it's amazing!" %}</span> ({% translate "Strong recommendation/internal conviction" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "She" %}<span class="verb-highlight">{% translate "'s got to finish" %}</span> {% translate "her report by lunch." %}</span> ({% translate "Specific, current necessity" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. Expressing Logical Deduction / Certainty" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Have to (Logical Conclusion - strong certainty):" %}</span>
+                {% translate "Used to express a logical conclusion or strong certainty based on evidence. Similar to \"must\" in this usage." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "It's getting dark; it" %} <span class="verb-highlight">{% translate "has to be" %}</span> {% translate "late." %}</span></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "He's so pale; he" %} <span class="verb-highlight">{% translate "has to be" %}</span> {% translate "ill." %}</span></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Have got to (Logical Conclusion - strong certainty, informal):" %}</span>
+                {% translate "Used similarly to \"have to\" for strong deductions, especially in informal contexts." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "She" %}<span class="verb-highlight">{% translate "'s got to be" %}</span> {% translate "exhausted after that long flight." %}</span></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "That" %} <span class="verb-highlight">{% translate "has got to be" %}</span> {% translate "the funniest joke I've ever heard." %}</span></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. Negative Forms: Absence of Obligation" %}</h5>
+        <p>
+            {% translate "Both \"don't have to\" and \"haven't got to\" express a lack of obligation, meaning something is not necessary." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Don't have to:" %}</span> {% translate "More common and usable in all tenses." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="verb-highlight">{% translate "don't have to pay" %}</span> {% translate "for it if you don't want to." %}</span></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "didn't have to attend" %}</span> {% translate "the extra session." %}</span></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Haven't got to:" %}</span> {% translate "Less common, mainly in present, and typically used in British English." %}
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "haven't got to finish" %}</span> {% translate "this until tomorrow." %}</span></li>
+                </ul>
+            </li>
+        </ul>
+        <p><span class="example-highlight">{% translate "Note:" %}</span> {% translate "Neither \"don't have to\" nor \"haven't got to\" mean prohibition, unlike \"must not.\" They simply indicate a lack of necessity." %}</p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

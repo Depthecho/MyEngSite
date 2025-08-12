@@ -1,0 +1,196 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjectives: Attributive Function" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Functions of Adjectives" %}</span> &raquo;
+            <span>{% translate "Attributive Function" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjectives: Attributive Function" %}</h1>
+        <p>
+            {% translate "The attributive function is the most common use of an adjective. When an adjective is used attributively, it is placed directly before the noun it modifies. The adjective is considered a part of the noun phrase, providing a direct description or quality of the noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Basic Structure" %}</h3>
+        <p>
+            {% translate "The standard structure is a simple noun phrase: <strong>Article + Adjective + Noun</strong>." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "a <span class=\"term-highlight\">red</span> car" %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "the <span class=\"term-highlight\">tall</span> man" %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "many <span class=\"term-highlight\">difficult</span> questions" %}</span></li>
+        </ul>
+        <p>
+            {% translate "In these examples, the adjectives <span class=\"code-highlight\">red</span>, <span class=\"code-highlight\">tall</span>, and <span class=\"code-highlight\">difficult</span> are placed before the nouns they describe, acting as direct attributes of those nouns." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Multiple Attributive Adjectives" %}</h3>
+        <p>
+            {% translate "When multiple adjectives are used to describe a single noun, they are all placed before the noun and follow a specific order (e.g., Opinion, Size, Age, Color, etc.)." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "a <span class=\"term-highlight\">beautiful</span> <span class=\"capital-highlight\">old</span> <span class=\"example-highlight\">black</span> car" %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "the <span class=\"term-highlight\">huge</span> <span class=\"capital-highlight\">round</span> <span class=\"example-highlight\">wooden</span> table" %}</span></li>
+        </ul>
+        <p>
+            {% translate "This structure remains attributive, as all adjectives are part of the noun phrase that comes before the noun itself." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Adjectives That Are ONLY Attributive" %}</h3>
+        <p>
+            {% translate "Some adjectives can only be used in an attributive position and cannot be used predicatively (after a verb). Common examples include:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "main" %}</span>: {% translate "<span class=\"example-highlight\">the main reason</span>" %}, not <strike>the reason is main</strike></li>
+            <li><span class=\"code-highlight\">{% translate "chief" %}</span>: {% translate "<span class=\"example-highlight\">the chief complaint</span>" %}, not <strike>the complaint is chief</strike></li>
+            <li><span class=\"code-highlight\">{% translate "former" %}</span>: {% translate "<span class=\"example-highlight\">the former president</span>" %}, not <strike>the president is former</strike></li>
+        </ul>
+        <p>
+            {% translate "This is an important distinction to avoid grammatical errors when using these specific words." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

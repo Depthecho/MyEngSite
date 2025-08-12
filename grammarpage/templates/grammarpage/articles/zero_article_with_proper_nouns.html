@@ -1,0 +1,224 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Zero Article: With Proper Nouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'articles_page' %}">{% translate "Articles" %}</a></span> &raquo;
+            <span>{% translate "The Zero Article" %}</span> &raquo;
+            <span>{% translate "With Proper Nouns" %}</span>
+        </nav>
+
+        <h1>{% translate "The Zero Article: With Proper Nouns" %}</h1>
+        <p>
+            {% translate "Proper nouns, which are unique names of people, places, and organizations, generally do not take an article. This is because they are already specific by their very nature." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Names of People and Titles" %}</h3>
+        <p>
+            {% translate "Do not use an article with personal names or titles, unless a specific rule applies (e.g., family names)." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Correct" %}</th>
+                        <th>{% translate "Incorrect" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">Mary</span> is my best friend." %}</td>
+                        <td>{% translate "<strike>The Mary</strike> is my best friend." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">President Biden</span> gave a speech." %}</td>
+                        <td>{% translate "<strike>The President Biden</strike> gave a speech." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "<strong>Exception:</strong> Use <span class=\"code-highlight\">the</span> with a plural family name to refer to the whole family: <span class=\"code-highlight\">'The Smiths are coming for dinner.'</span>" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Most Countries, Cities, and Continents" %}</h3>
+        <p>
+            {% translate "As a general rule, we do not use an article with the names of most countries, cities, or continents." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"example-highlight\">{% translate "Countries:" %}</span> <span class=\"code-highlight\">{% translate "Germany, Japan, Egypt." %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "Cities:" %}</span> <span class=\"code-highlight\">{% translate "Paris, Rome, Sydney." %}</span></li>
+            <li><span class=\"example-highlight\">{% translate "Continents:" %}</span> <span class=\"code-highlight\">{% translate "Africa, Europe, Asia." %}</span></li>
+        </ul>
+        <p>
+            {% translate "<strong>Exceptions:</strong> Remember to use <span class=\"code-highlight\">the</span> with countries that have a plural name or include a descriptive word like 'republic' or 'states': <span class=\"code-highlight\">the United States, the Netherlands.</span>" %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Single Mountains, Islands, and Lakes" %}</h3>
+        <p>
+            {% translate "Unlike mountain ranges or groups of islands, individual geographic features typically do not take an article." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Zero Article (Single)" %}</th>
+                        <th>{% translate "With 'The' (Group/Range)" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "<span class=\"code-highlight\">Mount Everest</span> is the highest peak." %}</td>
+                        <td>{% translate "<span class=\"code-highlight\">The Himalayas</span> are a major mountain range." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "We visited <span class=\"code-highlight\">Lake Geneva</span>." %}</td>
+                        <td>{% translate "We visited <span class=\"code-highlight\">the Great Lakes</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'articles_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Articles" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

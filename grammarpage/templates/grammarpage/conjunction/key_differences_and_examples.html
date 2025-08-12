@@ -1,0 +1,337 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Conjunctions vs. Prepositions vs. Adverbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .conjunction-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .preposition-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .adverb-highlight {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .grammar-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-note {
+            background: rgba(255, 158, 125, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 3px solid #ff9e7d;
+            margin: 15px 0;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .sentence-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'conjunction_page' %}">{% translate "Conjunctions" %}</a></span> &raquo;
+            <span>{% translate "Key Differences" %}</span>
+        </nav>
+
+        <h1>{% translate "Conjunctions vs. Prepositions vs. Adverbs" %}</h1>
+        <p>
+            {% translate "Understanding the differences between these word types is crucial for proper sentence construction. Many words can function as different parts of speech depending on context." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="grammar-card">
+            <h2 class="conjunction-highlight">{% translate "Conjunctions" %}</h2>
+
+            <div class="sentence-diagram">
+                [Clause/Phrase] + <span class="conjunction-highlight">[Conjunction]</span> + [Clause/Phrase]
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Join words, phrases, or clauses of equal importance" %}</li>
+                <li>{% translate "Coordinating conjunctions (FANBOYS) connect independent clauses" %}</li>
+                <li>{% translate "Subordinating conjunctions introduce dependent clauses" %}</li>
+                <li>{% translate "Correlative conjunctions work in pairs (both...and, either...or)" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "I like tea <span class=\"conjunction-highlight\">and</span> coffee." %}</span> (coordinating)</li>
+                <li><span class="code-highlight">{% translate "We'll go <span class=\"conjunction-highlight\">if</span> it stops raining." %}</span> (subordinating)</li>
+                <li><span class="code-highlight">{% translate "<span class=\"conjunction-highlight\">Both</span> my parents <span class=\"conjunction-highlight\">and</span> my siblings came." %}</span> (correlative)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-card">
+            <h2 class="preposition-highlight">{% translate "Prepositions" %}</h2>
+
+            <div class="sentence-diagram">
+                [Noun/Pronoun] + <span class="preposition-highlight">[Preposition]</span> + [Noun Phrase]
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Show relationship between a noun/pronoun and other words" %}</li>
+                <li>{% translate "Always followed by a noun or pronoun (the object of the preposition)" %}</li>
+                <li>{% translate "Form prepositional phrases that function as adjectives or adverbs" %}</li>
+                <li>{% translate "Cannot connect clauses or sentences" %}</li>
+            </ul>
+
+            <h3>{% translate "Common Prepositions:" %}</h3>
+            <p><span class="code-highlight">{% translate "about, above, across, after, against, along, among, around, at, before, behind, below, beneath, beside, between, beyond, by, down, during, except, for, from, in, inside, into, like, near, of, off, on, onto, out, outside, over, past, since, through, throughout, to, toward, under, underneath, until, up, upon, with, within, without" %}</span></p>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "The book is <span class=\"preposition-highlight\">on</span> the table." %}</span></li>
+                <li><span class="code-highlight">{% translate "We walked <span class=\"preposition-highlight\">through</span> the park." %}</span></li>
+                <li><span class="code-highlight">{% translate "She arrived <span class=\"preposition-highlight\">after</span> dinner." %}</span></li>
+            </ul>
+        </div>
+
+        <div class="grammar-card">
+            <h2 class="adverb-highlight">{% translate "Adverbs" %}</h2>
+
+            <div class="sentence-diagram">
+                [Verb/Adjective/Adverb] + <span class="adverb-highlight">[Adverb]</span>
+            </div>
+
+            <h3>{% translate "Key Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Modify verbs, adjectives, or other adverbs" %}</li>
+                <li>{% translate "Answer questions like how, when, where, why, or to what extent" %}</li>
+                <li>{% translate "Often end in -ly (but not always)" %}</li>
+                <li>{% translate "Can appear in various positions in a sentence" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She ran <span class=\"adverb-highlight\">quickly</span>." %}</span> (modifies verb)</li>
+                <li><span class="code-highlight">{% translate "That was <span class=\"adverb-highlight\">extremely</span> difficult." %}</span> (modifies adjective)</li>
+                <li><span class="code-highlight">{% translate "He spoke <span class=\"adverb-highlight\">very</span> softly." %}</span> (modifies adverb)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-card">
+            <h2>{% translate "Words That Can Be Both" %}</h2>
+
+            <h3>{% translate "1. After" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "We left <span class=\"preposition-highlight\">after</span> the movie." %}</span> (preposition)</li>
+                <li><span class="code-highlight">{% translate "We left <span class=\"conjunction-highlight\">after</span> the movie ended." %}</span> (conjunction)</li>
+            </ul>
+
+            <h3>{% translate "2. Before" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "Call me <span class=\"preposition-highlight\">before</span> dinner." %}</span> (preposition)</li>
+                <li><span class="code-highlight">{% translate "Call me <span class=\"conjunction-highlight\">before</span> you leave." %}</span> (conjunction)</li>
+            </ul>
+
+            <h3>{% translate "3. Since" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "I've been here <span class=\"preposition-highlight\">since</span> Tuesday." %}</span> (preposition)</li>
+                <li><span class="code-highlight">{% translate "I've been here <span class=\"conjunction-highlight\">since</span> you left." %}</span> (conjunction)</li>
+                <li><span class="code-highlight">{% translate "I haven't seen him <span class=\"adverb-highlight\">since</span>." %}</span> (adverb)</li>
+            </ul>
+        </div>
+
+        <div class="grammar-card">
+            <h2>{% translate "Comparison Table" %}</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Feature" %}</th>
+                        <th>{% translate "Conjunctions" %}</th>
+                        <th>{% translate "Prepositions" %}</th>
+                        <th>{% translate "Adverbs" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Function" %}</td>
+                        <td>Connect clauses/phrases</td>
+                        <td>Show noun relationships</td>
+                        <td>Modify verbs/adjectives</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "What follows" %}</td>
+                        <td>Clause or phrase</td>
+                        <td>Noun/pronoun</td>
+                        <td>Nothing required</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Position" %}</td>
+                        <td>Between elements</td>
+                        <td>Before noun phrase</td>
+                        <td>Flexible</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Examples" %}</td>
+                        <td>and, but, because</td>
+                        <td>in, on, at, with</td>
+                        <td>quickly, very, well</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'conjunction_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Conjunctions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

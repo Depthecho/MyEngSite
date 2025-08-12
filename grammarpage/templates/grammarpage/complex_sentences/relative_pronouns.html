@@ -1,0 +1,295 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Using Relative Pronouns" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .pronoun-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .pronoun-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .pronoun-table th, .pronoun-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .pronoun-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
+            <span>{% translate "Using Relative Pronouns" %}</span>
+        </nav>
+
+        <h1>{% translate "Relative Pronouns: Connecting Clauses" %}</h1>
+        <p>
+            {% translate "Relative pronouns introduce <span class=\"term-highlight\">relative clauses</span> that describe nouns in the main clause, adding essential or extra information about people, things, or places." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Relative Pronouns" %}</h3>
+
+        <table class="pronoun-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Pronoun" %}</th>
+                    <th>{% translate "Usage" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="pronoun-highlight">who</span></td>
+                    <td>{% translate "Subject for people" %}</td>
+                    <td><span class="code-highlight">{% translate "The woman <span class=\"pronoun-highlight\">who</span> called is my boss." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">whom</span></td>
+                    <td>{% translate "Object for people (formal)" %}</td>
+                    <td><span class="code-highlight">{% translate "The man <span class=\"pronoun-highlight\">whom</span> we met was friendly." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">whose</span></td>
+                    <td>{% translate "Possession for people/things" %}</td>
+                    <td><span class="code-highlight">{% translate "The student <span class=\"pronoun-highlight\">whose</span> book was lost." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">which</span></td>
+                    <td>{% translate "Subject/object for things" %}</td>
+                    <td><span class="code-highlight">{% translate "The car, <span class=\"pronoun-highlight\">which</span> is red, belongs to John." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">that</span></td>
+                    <td>{% translate "Subject/object for people/things" %}</td>
+                    <td><span class="code-highlight">{% translate "The book <span class=\"pronoun-highlight\">that</span> I read was fascinating." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">where</span></td>
+                    <td>{% translate "Places" %}</td>
+                    <td><span class="code-highlight">{% translate "The house <span class=\"pronoun-highlight\">where</span> I grew up." %}</span></td>
+                </tr>
+                <tr>
+                    <td><span class="pronoun-highlight">when</span></td>
+                    <td>{% translate "Times" %}</td>
+                    <td><span class="code-highlight">{% translate "The day <span class=\"pronoun-highlight\">when</span> we met." %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Types of Relative Clauses" %}</h3>
+
+        <div class="usage-card">
+            <h4><span class="term-highlight">{% translate "Defining (Restrictive) Clauses" %}</span></h4>
+            <p>{% translate "Essential information that defines which person/thing we mean. No commas used." %}</p>
+            <p class="code-highlight">{% translate "The book <span class=\"pronoun-highlight\">that</span> you lent me was excellent." %}</p>
+            <p class="code-highlight">{% translate "People <span class=\"pronoun-highlight\">who</span> work hard succeed." %}</p>
+        </div>
+
+        <div class="usage-card">
+            <h4><span class="term-highlight">{% translate "Non-defining (Non-restrictive) Clauses" %}</span></h4>
+            <p>{% translate "Extra information about a specific person/thing. Use commas." %}</p>
+            <p class="code-highlight">{% translate "My brother, <span class=\"pronoun-highlight\">who</span> lives in Paris, is visiting us." %}</p>
+            <p class="code-highlight">{% translate "The Eiffel Tower, <span class=\"pronoun-highlight\">which</span> was built in 1889, is iconic." %}</p>
+            <p>{% translate "Note: Cannot use 'that' in non-defining clauses." %}</p>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Omitting relative pronouns:</span> Can omit when it's the object of the clause" %}
+                <p class="code-highlight">{% translate "The movie (that) we saw was great." %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Prepositions with relative pronouns:</span> Formal vs. informal usage" %}
+                <p class="code-highlight">{% translate "Formal: The man <span class=\"pronoun-highlight\">to whom</span> I spoke" %}</p>
+                <p class="code-highlight">{% translate "Informal: The man (who) I spoke <span class=\"term-highlight\">to</span>" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">'What' as relative pronoun:</span> Means 'the thing(s) that'" %}
+                <p class="code-highlight">{% translate "I'll show you <span class=\"pronoun-highlight\">what</span> I found." %}</p>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Using 'which' instead of 'that' in defining clauses</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Less natural:" %}</span> {% translate "The book which I read was interesting." %}</li>
+                    <li><span class="code-highlight">{% translate "Better:" %}</span> {% translate "The book <span class=\"pronoun-highlight\">that</span> I read was interesting." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Omitting pronouns when they're subjects</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "The man lives next door is a doctor." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "The man <span class=\"pronoun-highlight\">who</span> lives next door is a doctor." %}</li>
+                </ul>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Misusing commas in defining clauses</span>" %}
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "The car, that was parked outside, was stolen." %}</li>
+                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "The car that was parked outside was stolen." %}</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Tips" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "Identify all relative pronouns in texts you read" %}</li>
+            <li>{% translate "Practice converting two simple sentences into one complex sentence" %}</li>
+            <li>{% translate "Record yourself describing people/things using relative clauses" %}</li>
+            <li>{% translate "Pay attention to when native speakers omit relative pronouns" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,295 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Comma - Joining Independent Clauses" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .comma-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+        .conjunction-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .clause-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .special-card {
+            background: rgba(243, 114, 44, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #f3722c;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Comma: Joining Independent Clauses" %}</span>
+        </nav>
+
+        <h1>{% translate "Using Commas with Independent Clauses" %}</h1>
+        <p>
+            {% translate "Commas play a crucial role in connecting independent clauses with coordinating conjunctions (FANBOYS: for, and, nor, but, or, yet, so), creating compound sentences that maintain clarity and proper grammatical structure." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h3>{% translate "Fundamental Rules" %}</h3>
+            <p>{% translate "These core principles govern comma usage between independent clauses:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. The Comma + Conjunction Rule" %}</h4>
+                <p>{% translate "When joining two independent clauses with a coordinating conjunction, always use a comma before the conjunction:" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Correct" %}</th>
+                            <th>{% translate "Incorrect" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>I wanted to go for a walk<span class="comma-highlight">,</span> <span class="conjunction-highlight">but</span> it started raining.</td>
+                            <td>I wanted to go for a walk but it started raining.</td>
+                        </tr>
+                        <tr>
+                            <td>She finished her work early<span class="comma-highlight">,</span> <span class="conjunction-highlight">so</span> she decided to leave.</td>
+                            <td>She finished her work early so she decided to leave.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Identifying Independent Clauses" %}</h4>
+                <p>{% translate "Both clauses must contain a subject and verb and express complete thoughts:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight"><span class="clause-highlight">The sun was shining</span><span class="comma-highlight">,</span> <span class="conjunction-highlight">and</span> <span class="clause-highlight">the birds were singing</span>.</span></li>
+                    <li><span class="code-highlight"><span class="clause-highlight">You can study now</span><span class="comma-highlight">,</span> <span class="conjunction-highlight">or</span> <span class="clause-highlight">you can regret it later</span>.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "When the Comma is Optional" %}</h3>
+            <p>{% translate "In some cases, the comma may be omitted without creating confusion:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Short Parallel Clauses" %}</h4>
+                <p>{% translate "With very short, closely related clauses where the meaning remains clear:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">I cooked <span class="conjunction-highlight">and</span> she cleaned.</span> (acceptable)</li>
+                    <li><span class="code-highlight">He ran <span class="conjunction-highlight">and</span> I walked.</span> (acceptable)</li>
+                </ul>
+                <p><em>{% translate "Note: Including the comma is never wrong in these cases." %}</em></p>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Journalistic Writing" %}</h4>
+                <p>{% translate "Some style guides (like AP) permit omitting the comma for brevity in news writing:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The stock market rose <span class="conjunction-highlight">and</span> investors celebrated.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Common Errors and How to Fix Them" %}</h3>
+            <p>{% translate "These mistakes frequently occur with comma-conjunction usage:" %}</p>
+
+            <div class="special-card">
+                <h4>{% translate "1. The Comma Splice" %}</h4>
+                <p>{% translate "Joining independent clauses with only a comma (no conjunction):" %}</p>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>{% translate "Error" %}</th>
+                            <th>{% translate "Correction" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>It's raining, I forgot my umbrella.</td>
+                            <td>It's raining<span class="comma-highlight">,</span> <span class="conjunction-highlight">and</span> I forgot my umbrella.</td>
+                        </tr>
+                        <tr>
+                            <td>She was tired, she went to bed early.</td>
+                            <td>She was tired<span class="comma-highlight">,</span> <span class="conjunction-highlight">so</span> she went to bed early.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "2. Missing Comma with Long Clauses" %}</h4>
+                <p>{% translate "Even with a conjunction, long clauses need a comma for readability:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The research team analyzed the data collected over three months of field observations<span class="comma-highlight">,</span> <span class="conjunction-highlight">and</span> they prepared a comprehensive report for the scientific community.</span></li>
+                </ul>
+            </div>
+
+            <div class="special-card">
+                <h4>{% translate "3. Comma with Dependent Clauses" %}</h4>
+                <p>{% translate "Don't use a comma before a conjunction when the second clause can't stand alone:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">She went to the store <span class="conjunction-highlight">and</span> bought some milk.</span> (correct - no comma)</li>
+                    <li><span class="code-highlight">He wanted to succeed <span class="conjunction-highlight">but</span> lacked motivation.</span> (correct - no comma)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Advanced Usage" %}</h3>
+            <p>{% translate "These sophisticated applications demonstrate the comma's versatility:" %}</p>
+
+            <div class="usage-card">
+                <h4>{% translate "1. Multiple Independent Clauses" %}</h4>
+                <p>{% translate "For three or more independent clauses, use commas between them:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The sun set behind the mountains<span class="comma-highlight">,</span> the temperature dropped quickly<span class="comma-highlight">,</span> <span class="conjunction-highlight">and</span> we decided to build a fire.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "2. Contrasting Clauses with 'But'" %}</h4>
+                <p>{% translate "Particularly important when the second clause contradicts or contrasts the first:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The solution seemed simple<span class="comma-highlight">,</span> <span class="conjunction-highlight">but</span> implementing it proved surprisingly difficult.</span></li>
+                </ul>
+            </div>
+
+            <div class="usage-card">
+                <h4>{% translate "3. Semicolon as Alternative" %}</h4>
+                <p>{% translate "For closely related clauses where a conjunction seems unnecessary:" %}</p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">The experiment failed<span class="term-highlight">;</span> the results were inconclusive.</span></li>
+                    <li><span class="code-highlight">She didn't attend the meeting<span class="term-highlight">;</span> however<span class="term-highlight">,</span> she submitted her report.</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

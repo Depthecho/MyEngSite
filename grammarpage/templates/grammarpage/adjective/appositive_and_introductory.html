@@ -1,0 +1,250 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjectives: Appositive and Introductory Function" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Functions of Adjectives" %}</span> &raquo;
+            <span>{% translate "Appositive and Introductory" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjectives: Appositive and Introductory Function" %}</h1>
+        <p>
+            {% translate "Adjectives can also be used in more advanced sentence structures to add detail and variety to writing. Two such functions are the appositive and the introductory use, both of which are set off by commas and add extra information about a noun." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Appositive Adjectives" %}</h3>
+        <p>
+            {% translate "When adjectives are used as an appositive, they are placed immediately after the noun they describe. This use is often for emphasis or to provide a more elegant flow to the sentence, and the adjectives are typically separated by commas." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Noun, Adjective, Adjective,..." %}</span></td>
+                        <td>{% translate "The athlete, <span class=\"term-highlight\">exhausted and sore</span>, crossed the finish line." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Noun, Adjective,..." %}</span></td>
+                        <td>{% translate "The car, <span class=\"term-highlight\">old and rusted</span>, sat in the garage." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "This is a stylistic choice. The information could also be presented in other ways, but the appositive form gives a different rhythm and emphasis to the sentence." %}
+        </p>
+        <ul class="styled-list">
+            <li><strong>{% translate "Compare:" %}</strong> {% translate "The <span class=\"term-highlight\">exhausted and sore</span> athlete crossed the finish line." %} (attributive)</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Introductory Adjectives" %}</h3>
+        <p>
+            {% translate "Adjectives can also be placed at the beginning of a sentence to introduce the subject that follows. This is a powerful stylistic tool for creating suspense or for highlighting the quality of the subject right from the start. The adjectives are followed by a comma." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Adjective, Subject + Verb..." %}</span></td>
+                        <td>{% translate "<span class=\"term-highlight\">Tired and hungry</span>, the hikers finally reached the camp." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Adjective, Adjective, Subject + Verb..." %}</span></td>
+                        <td>{% translate "<span class=\"term-highlight\">Bright and colorful</span>, the flowers bloomed in the garden." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "This structure draws immediate attention to the state or quality of the subject before the action of the verb is introduced." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Summary of Functions" %}</h3>
+        <p>
+            {% translate "Here's a quick comparison of the three functions for adjectives:" %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Position" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Attributive" %}</span></td>
+                        <td>{% translate "Before the noun." %}</td>
+                        <td>{% translate "The <span class=\"term-highlight\">tired</span> hikers." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Predicative" %}</span></td>
+                        <td>{% translate "After a linking verb." %}</td>
+                        <td>{% translate "The hikers were <span class=\"term-highlight\">tired</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Appositive" %}</span></td>
+                        <td>{% translate "After the noun, with commas." %}</td>
+                        <td>{% translate "The hikers, <span class=\"term-highlight\">tired</span>, arrived." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

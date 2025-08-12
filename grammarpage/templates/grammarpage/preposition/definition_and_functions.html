@@ -1,0 +1,370 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: Definition, Types, and Usage" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .prep-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "Definition and Functions" %}</span>
+        </nav>
+
+        <h1>{% translate "Prepositions: The Connectors of Language" %}</h1>
+        <p>
+            {% translate "Prepositions are small but mighty words that create essential relationships between different elements in a sentence. They act as bridges, showing how nouns or pronouns relate to other words in terms of space, time, direction, and more." %}
+        </p>
+
+        <div class="structure-card">
+            <h2>{% translate "Core Definition" %}</h2>
+            <div class="structure-diagram">
+                <span class="prep-highlight">[Preposition]</span> + <span class="object-highlight">[Object]</span> = <span class="term-highlight">Prepositional Phrase</span>
+            </div>
+
+            <p>{% translate "A preposition always has an object (a noun or pronoun) that it relates to another part of the sentence." %}</p>
+
+            <h3>{% translate "Examples of Basic Prepositional Phrases" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"prep-highlight\">in</span> <span class=\"object-highlight\">the house</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"prep-highlight\">before</span> <span class=\"object-highlight\">sunrise</span>" %}</span></li>
+                <li><span class="code-highlight">{% translate "<span class=\"prep-highlight\">with</span> <span class=\"object-highlight\">my friends</span>" %}</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Types of Prepositions" %}</h2>
+
+        <div class="usage-card">
+            <h3>1. {% translate "Simple Prepositions" %}</h3>
+            <p>{% translate "Single-word prepositions that show basic relationships:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">at, by, for, in, of, on, to, with</span></li>
+                <li><span class="code-highlight">about, above, across, after, against, along</span></li>
+                <li><span class="code-highlight">before, behind, below, beneath, beside, between</span></li>
+            </ul>
+
+            <h4>{% translate "Examples in Context" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The cat is <span class=\"prep-highlight\">under</span> <span class=\"object-highlight\">the table</span>." %}</li>
+                <li>{% translate "We'll meet <span class=\"prep-highlight\">after</span> <span class=\"object-highlight\">lunch</span>." %}</li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>2. {% translate "Compound Prepositions" %}</h3>
+            <p>{% translate "Formed by prefixing a preposition to another word:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">across, alongside, inside, outside, throughout, upon, within, without</span></li>
+            </ul>
+
+            <h4>{% translate "Usage Notes" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Often indicate more specific spatial relationships" %}</li>
+                <li>{% translate "Can sometimes be replaced by simple prepositions with slight meaning changes" %}</li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>3. {% translate "Phrasal Prepositions" %}</h3>
+            <p>{% translate "Multi-word phrases that function as single prepositions:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">according to, because of, by means of, in addition to, in front of, in spite of, instead of, on account of</span></li>
+            </ul>
+
+            <h4>{% translate "Key Characteristics" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "Fixed expressions that can't be altered" %}</li>
+                <li>{% translate "Often used to express more complex relationships" %}</li>
+                <li>{% translate "Function as a single grammatical unit" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Prepositional Relationships" %}</h2>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Relationship" %}</th>
+                    <th>{% translate "Common Prepositions" %}</th>
+                    <th>{% translate "Examples" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Time" %}</td>
+                    <td>at, on, in, before, after, during, since</td>
+                    <td><span class="code-highlight">{% translate "at 5pm, on Monday, in summer" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Place" %}</td>
+                    <td>in, on, at, under, over, between, among</td>
+                    <td><span class="code-highlight">{% translate "in the room, on the wall, at home" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Direction" %}</td>
+                    <td>to, from, into, onto, toward, through</td>
+                    <td><span class="code-highlight">{% translate "to school, from work, into the car" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Agent/Instrument" %}</td>
+                    <td>by, with, without</td>
+                    <td><span class="code-highlight">{% translate "by Shakespeare, with a pen" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Purpose" %}</td>
+                    <td>for, to, in order to</td>
+                    <td><span class="code-highlight">{% translate "for fun, to improve" %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Special Usage Cases" %}</h2>
+
+        <div class="structure-card">
+            <h3>{% translate "Prepositions with Verbs" %}</h3>
+            <p>{% translate "Many English verbs require specific prepositions to complete their meaning:" %}</p>
+
+            <ul class="styled-list">
+                <li><span class="code-highlight">agree <span class="prep-highlight">with</span> someone</span></li>
+                <li><span class="code-highlight">apologize <span class="prep-highlight">for</span> something</span></li>
+                <li><span class="code-highlight">believe <span class="prep-highlight">in</span> something</span></li>
+                <li><span class="code-highlight">depend <span class="prep-highlight">on</span> someone</span></li>
+            </ul>
+
+            <h4>{% translate "Important Notes" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "These combinations must be memorized" %}</li>
+                <li>{% translate "Changing the preposition often changes the meaning" %}</li>
+                <li>{% translate "Some verbs can take different prepositions with meaning changes" %}</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h3>{% translate "Ending Sentences with Prepositions" %}</h3>
+            <p>{% translate "While traditionally discouraged, ending sentences with prepositions is common and often necessary in natural English:" %}</p>
+
+            <ul class="styled-list">
+                <li>{% translate "Formal: <span class=\"code-highlight\">About what are you thinking?</span>" %}</li>
+                <li>{% translate "Natural: <span class=\"code-highlight\">What are you thinking about?</span>" %}</li>
+                <li>{% translate "Formal: <span class=\"code-highlight\">With whom did you go?</span>" %}</li>
+                <li>{% translate "Natural: <span class=\"code-highlight\">Who did you go with?</span>" %}</li>
+            </ul>
+
+            <h4>{% translate "When to Avoid Stranded Prepositions" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "In very formal writing" %}</li>
+                <li>{% translate "When it creates ambiguity" %}</li>
+                <li>{% translate "When the sentence sounds awkward" %}</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Common Preposition Mistakes" %}</h2>
+
+        <div class="usage-card">
+            <h3>{% translate "Confusing Similar Prepositions" %}</h3>
+
+            <h4>In vs. At for Locations</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">In</span> suggests being inside boundaries" %}
+                    <p class="code-highlight">{% translate "She's in the park." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">At</span> suggests a specific point" %}
+                    <p class="code-highlight">{% translate "She's at the park entrance." %}</p>
+                </li>
+            </ul>
+
+            <h4>On vs. At for Time</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">On</span> for specific days/dates" %}
+                    <p class="code-highlight">{% translate "On Monday, on July 4th" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">At</span> for clock times" %}
+                    <p class="code-highlight">{% translate "At 3pm, at noon" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

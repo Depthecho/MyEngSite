@@ -1,0 +1,224 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Appositive" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Appositive" %}</span>
+        </nav>
+
+        <h1>{% translate "Appositive" %}</h1>
+        <p>
+            {% translate "An <span class=\"term-highlight\">appositive</span> is a noun or noun phrase that renames or clarifies another noun right next to it. It adds extra information to a sentence without changing its core meaning. Appositives can be essential to a sentence or simply provide additional, non-essential details." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Types of Appositives" %}</h3>
+
+        <h4>{% translate "Non-Restrictive Appositive" %}</h4>
+        <p>
+            {% translate "A non-restrictive appositive provides extra, non-essential information. The sentence would still make sense without it. These are usually set off by commas." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence" %}</th>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Appositive" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "My brother, <span class=\"code-highlight\">a talented musician</span>, plays the piano." %}</td>
+                        <td>{% translate "My brother" %}</td>
+                        <td>{% translate "a talented musician" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "London, <span class=\"code-highlight\">the capital of England</span>, is a famous city." %}</td>
+                        <td>{% translate "London" %}</td>
+                        <td>{% translate "the capital of England" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Restrictive Appositive" %}</h4>
+        <p>
+            {% translate "A restrictive appositive is essential to the meaning of the sentence. It specifies or identifies the noun and cannot be removed without changing the sentence's meaning or creating confusion. Restrictive appositives are not set off by commas." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence" %}</th>
+                        <th>{% translate "Noun" %}</th>
+                        <th>{% translate "Appositive" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "My friend <span class=\"code-highlight\">Mary</span> is coming over." %}</td>
+                        <td>{% translate "My friend" %}</td>
+                        <td>{% translate "Mary" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "The film <span class=\"code-highlight\">'Titanic'</span> is a classic." %}</td>
+                        <td>{% translate "The film" %}</td>
+                        <td>{% translate "'Titanic'" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Key Difference and Punctuation" %}</h3>
+        <p>
+            {% translate "The main difference between restrictive and non-restrictive appositives lies in the use of commas. If the appositive could be removed without making the sentence unclear, use commas. If the appositive is necessary to identify the noun, do not use commas." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "With commas (non-restrictive):" %}</span><br>{% translate "<span class=\"code-highlight\">My dog, Bob,</span> loves to play fetch." %}<br>{% translate "(I only have one dog, and his name is Bob. The name is extra information.)" %}</li>
+            <li><span class="example-highlight\">{% translate "Without commas (restrictive):" %}</span><br>{% translate "<span class=\"code-highlight\">My dog Bob</span> loves to play fetch." %}<br>{% translate "(I have multiple dogs, and I am specifying that I mean the one named Bob. The name is essential information.)" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

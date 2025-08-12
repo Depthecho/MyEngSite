@@ -1,0 +1,356 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "What Can Be an Adverbial Modifier?" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+            color: #4cc9f0;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: #b388ff;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .adverb-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #83e8de;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'minor_sentence_part_page' %}">{% translate "Minor Sentence Parts" %}</a></span> &raquo;
+            <span>{% translate "What Can Be an Adverbial Modifier?" %}</span>
+        </nav>
+
+        <h1>{% translate "Grammatical Forms Functioning as Adverbial Modifiers" %}</h1>
+        <p>
+            {% translate "Adverbial modifiers can be realized through various grammatical structures, each providing different types of information about actions, qualities, or circumstances." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="structure-card">
+            <h2>{% translate "1. Single-word Adverbs" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="verb-highlight">[Verb]</span> + <span class="adverb-highlight">[Adverb]</span>
+            </div>
+
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Typically formed by adding <span class=\"code-highlight\">-ly</span> to adjectives" %}</li>
+                <li>{% translate "Can modify verbs, adjectives, other adverbs, or entire sentences" %}</li>
+                <li>{% translate "Often flexible in sentence position" %}</li>
+                <li>{% translate "Some irregular forms don't follow the -ly pattern" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She spoke <span class=\"adverb-highlight\">clearly</span>." %}</span> (manner)</li>
+                <li><span class="code-highlight">{% translate "We'll meet <span class=\"adverb-highlight\">later</span>." %}</span> (time)</li>
+                <li><span class="code-highlight">{% translate "They looked <span class=\"adverb-highlight\">up</span>." %}</span> (direction)</li>
+                <li><span class="code-highlight">{% translate "It's <span class=\"adverb-highlight\">quite</span> interesting." %}</span> (degree)</li>
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">Fortunately</span>, we arrived on time." %}</span> (sentence modifier)</li>
+            </ul>
+
+            <h3>{% translate "Special Cases:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Flat adverbs:</span> Same form as adjectives" %}
+                    <p class="code-highlight">{% translate "Drive <span class=\"adverb-highlight\">safe</span>." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Irregular forms:</span>" %}
+                    <p class="code-highlight">{% translate "She did <span class=\"adverb-highlight\">well</span>." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "2. Prepositional Phrases" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="verb-highlight">[Verb]</span> + <span class="adverb-highlight">[Preposition + Noun]</span>
+            </div>
+
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Function as adverbials of time, place, manner, etc." %}</li>
+                <li>{% translate "Often equivalent to adverb clauses" %}</li>
+                <li>{% translate "Can be moved to different positions in the sentence" %}</li>
+                <li>{% translate "Can sometimes be replaced with single-word adverbs" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "We met <span class=\"adverb-highlight\">at noon</span>." %}</span> (time)</li>
+                <li><span class="code-highlight">{% translate "She sat <span class=\"adverb-highlight\">by the window</span>." %}</span> (place)</li>
+                <li><span class="code-highlight">{% translate "He spoke <span class=\"adverb-highlight\">with confidence</span>." %}</span> (manner)</li>
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">In my opinion</span>, it's too expensive." %}</span> (viewpoint)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "3. Subordinate (Adverbial) Clauses" %}</h2>
+
+            <div class="structure-diagram">
+                <span class="verb-highlight">[Main Clause]</span> + <span class="adverb-highlight">[Subordinator + Clause]</span>
+            </div>
+
+            <h3>{% translate "Characteristics:" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Introduced by subordinating conjunctions" %}</li>
+                <li>{% translate "Can express time, condition, purpose, etc." %}</li>
+                <li>{% translate "Often movable within the sentence" %}</li>
+                <li>{% translate "Can be reduced to participial phrases in some cases" %}</li>
+            </ul>
+
+            <h3>{% translate "Examples:" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">When the bell rings</span>, we'll leave." %}</span> (time)</li>
+                <li><span class="code-highlight">{% translate "We left early <span class=\"adverb-highlight\">so that we wouldn't be late</span>." %}</span> (purpose)</li>
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">If it rains</span>, we'll stay inside." %}</span> (condition)</li>
+                <li><span class="code-highlight">{% translate "She was happy <span class=\"adverb-highlight\">because she passed the test</span>." %}</span> (reason)</li>
+            </ul>
+        </div>
+
+        <div class="structure-card">
+            <h2>{% translate "4. Other Adverbial Structures" %}</h2>
+
+            <h3>{% translate "A. Infinitive Phrases" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "She studies hard <span class=\"adverb-highlight\">to become a doctor</span>." %}</span> (purpose)</li>
+                <li><span class="code-highlight">{% translate "I'm happy <span class=\"adverb-highlight\">to see you</span>." %}</span> (reason)</li>
+            </ul>
+
+            <h3>{% translate "B. Noun Phrases" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "They stayed <span class=\"adverb-highlight\">all day</span>." %}</span> (time duration)</li>
+                <li><span class="code-highlight">{% translate "We walked <span class=\"adverb-highlight\">five miles</span>." %}</span> (distance)</li>
+            </ul>
+
+            <h3>{% translate "C. Participial Phrases" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">Having finished his work</span>, he went home." %}</span> (time)</li>
+                <li><span class="code-highlight">{% translate "He sat quietly, <span class=\"adverb-highlight\">thinking deeply</span>." %}</span> (manner)</li>
+            </ul>
+
+            <h3>{% translate "D. Absolute Phrases" %}</h3>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">The weather being nice</span>, we had a picnic." %}</span> (cause)</li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Functional Comparison" %}</h2>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Form" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Equivalent To" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Single-word adverb" %}</td>
+                    <td><span class="code-highlight">{% translate "She spoke <span class=\"adverb-highlight\">quietly</span>." %}</span></td>
+                    <td><span class="code-highlight">{% translate "She spoke <span class=\"adverb-highlight\">in a quiet voice</span>." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Prepositional phrase" %}</td>
+                    <td><span class="code-highlight">{% translate "We left <span class=\"adverb-highlight\">after breakfast</span>." %}</span></td>
+                    <td><span class="code-highlight">{% translate "We left <span class=\"adverb-highlight\">when breakfast was over</span>." %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Infinitive phrase" %}</td>
+                    <td><span class="code-highlight">{% translate "He exercises <span class=\"adverb-highlight\">to stay healthy</span>." %}</span></td>
+                    <td><span class="code-highlight">{% translate "He exercises <span class=\"adverb-highlight\">so that he can stay healthy</span>." %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <h2>{% translate "Special Notes" %}</h2>
+        <div class="structure-card">
+            <h3>{% translate "1. Position Variations" %}</h3>
+            <p>{% translate "Different adverbial forms have different positional flexibility:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">{% translate "<span class=\"adverb-highlight\">Suddenly</span>, the lights went out." %}</span> (front position)</li>
+                <li><span class="code-highlight">{% translate "The lights <span class=\"adverb-highlight\">suddenly</span> went out." %}</span> (mid position)</li>
+                <li><span class="code-highlight">{% translate "The lights went out <span class=\"adverb-highlight\">suddenly</span>." %}</span> (end position)</li>
+            </ul>
+
+            <h3>{% translate "2. Multiple Adverbials" %}</h3>
+            <p>{% translate "When using multiple adverbials, typical order is: <span class=\"term-highlight\">Manner</span> → <span class=\"term-highlight\">Place</span> → <span class=\"term-highlight\">Time</span>:" %}</p>
+            <p class="code-highlight">{% translate "She sang <span class=\"adverb-highlight\">beautifully</span> <span class=\"adverb-highlight\">on stage</span> <span class=\"adverb-highlight\">last night</span>." %}</p>
+
+            <h3>{% translate "3. Common Errors" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Dangling modifiers:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: <span style=\"color:red\">Running down the street</span>, the dog chased me.<br>Right: <span class=\"adverb-highlight\">Running down the street</span>, I was chased by the dog." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Misplaced adverbs:</span>" %}
+                    <p class="code-highlight">{% translate "Wrong: She almost drove the kids to school every day.<br>Right: She drove the kids to school <span class=\"adverb-highlight\">almost</span> every day." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'minor_sentence_part_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Minor Sentence Parts" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Classification of English Verbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .main-container {
+            padding-top: 40px;
+        }
+
+        h3 {
+            color: #ff9e7d;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+        }
+
+        h4 {
+            color: #ff9e7d;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Classification of English Verbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Classification of English Verbs" %}</h1>
+        <p>
+            {% translate "English verbs are one of the most complex and diverse parts of speech, essential for constructing any sentence. They can be classified according to various criteria, which helps to better understand their functions and usage." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "By Meaning and Function:" %}</h4>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Notional (Main) Verbs:" %}</span> {% translate "Have independent lexical meaning and denote a specific action, state, process, or relation." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">to work</span>, <span class="code-highlight">to read</span>, <span class="code-highlight">to live</span>, <span class="code-highlight">to speak</span>.</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Auxiliary (Helping) Verbs:" %}</span> {% translate "Are used to form complex verb constructions (tenses, voices, moods) and do not have independent lexical meaning." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">to be</span>, <span class="code-highlight">to have</span>, <span class="code-highlight">to do</span>. {% translate "(e.g., in 'I <span class=\"auxiliary-highlight\">am</span> reading', 'He <span class=\"auxiliary-highlight\">has</span> finished', '<span class=\"auxiliary-highlight\">Do</span> you like?')."%}</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Link-Verbs (Copular Verbs):" %}</span> {% translate "Connect the subject with the predicative part of the predicate (noun, adjective, pronoun, etc.), indicating the subject's state or characteristic. They partially or completely lose their lexical meaning." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">to be</span>, <span class="code-highlight">to become</span>, <span class="code-highlight">to get</span>, <span class="code-highlight">to grow</span>, <span class="code-highlight">to seem</span>, <span class="code-highlight">to appear</span>.</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Modal Verbs:" %}</span> {% translate "Express the speaker's attitude towards an action (possibility, necessity, obligation, permission, etc.), but not the action itself. They do not change form for person or number." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">can</span>, <span class="code-highlight">may</span>, <span class="code-highlight">must</span>, <span class="code-highlight">should</span>, <span class="code-highlight">will</span>, <span class="code-highlight">would</span>.</i>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "By the Presence of a Direct Object:" %}</h4>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Transitive Verbs:" %}</span> {% translate "Require a direct object, which the action is directed upon." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">to give</span> (something), <span class="code-highlight">to buy</span> (something), <span class="code-highlight">to write</span> (something).</i>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Intransitive Verbs:" %}</span> {% translate "Do not require a direct object. The action is performed by the subject itself and does not pass to another object." %} <br>
+                <i><span class="example-highlight">{% translate "Examples:" %}</span> <span class="code-highlight">to sleep</span>, <span class="code-highlight">to walk</span>, <span class="code-highlight">to arrive</span>.</i>
+            </li>
+        </ul>
+        <p>{% translate "Some verbs can be both transitive and intransitive depending on the context." %}</p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

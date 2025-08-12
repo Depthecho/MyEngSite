@@ -1,0 +1,400 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositions: By, For, and From" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+
+        h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .prep-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .usage-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .usage-table th, .usage-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .usage-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .comparison-box {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+
+        .common-mistakes {
+            background: rgba(255, 138, 101, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 3px solid #ff8a65;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+
+            .usage-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "By, For, and From" %}</span>
+        </nav>
+
+        <h1>{% translate "Mastering the Prepositions: By, For, and From" %}</h1>
+        <p>
+            {% translate "These three prepositions are among the most frequently used in English, each serving distinct grammatical functions to express relationships of agency, purpose, and origin." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="prep-card">
+            <h2>{% translate "1. The Preposition 'By'" %}</h2>
+            <h3>{% translate "Core Meanings and Uses" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Agent in passive voice" %}</td>
+                        <td>{% translate "Indicates who performs the action" %}</td>
+                        <td><span class="code-highlight">{% translate "The novel was written <span class=\"example-highlight\">by</span> Hemingway." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Means/method" %}</td>
+                        <td>{% translate "Shows how something is done" %}</td>
+                        <td><span class="code-highlight">{% translate "We traveled <span class=\"example-highlight\">by</span> plane." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Time deadline" %}</td>
+                        <td>{% translate "Indicates a time before which something must happen" %}</td>
+                        <td><span class="code-highlight">{% translate "Submit your work <span class=\"example-highlight\">by</span> Friday." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Proximity" %}</td>
+                        <td>{% translate "Shows physical closeness" %}</td>
+                        <td><span class="code-highlight">{% translate "She sat <span class=\"example-highlight\">by</span> the window." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>{% translate "Special Constructions with 'By'" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">By + reflexive pronoun:</span> To mean 'alone'" %}
+                    <p class="code-highlight">{% translate "I did it <span class=\"example-highlight\">by</span> myself." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">By + time expressions:</span> For regular intervals" %}
+                    <p class="code-highlight">{% translate "He gets paid <span class=\"example-highlight\">by</span> the hour." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">By + gerund:</span> To describe methods" %}
+                    <p class="code-highlight">{% translate "You can improve <span class=\"example-highlight\">by</span> practicing daily." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="prep-card">
+            <h2>{% translate "2. The Preposition 'For'" %}</h2>
+            <h3>{% translate "Primary Functions" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Purpose" %}</td>
+                        <td>{% translate "Indicates why something is done" %}</td>
+                        <td><span class="code-highlight">{% translate "This tool is <span class=\"example-highlight\">for</span> cutting wood." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Beneficiary" %}</td>
+                        <td>{% translate "Shows who benefits from an action" %}</td>
+                        <td><span class="code-highlight">{% translate "I bought flowers <span class=\"example-highlight\">for</span> my mother." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Duration" %}</td>
+                        <td>{% translate "Expresses how long something lasts" %}</td>
+                        <td><span class="code-highlight">{% translate "We waited <span class=\"example-highlight\">for</span> three hours." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Exchange" %}</td>
+                        <td>{% translate "Indicates a trade or substitution" %}</td>
+                        <td><span class="code-highlight">{% translate "I'll trade you my sandwich <span class=\"example-highlight\">for</span> your apple." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>{% translate "Idiomatic Uses of 'For'" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">For + noun:</span> To express purpose" %}
+                    <p class="code-highlight">{% translate "This is <span class=\"example-highlight\">for</span> emergencies only." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">For + gerund:</span> After certain adjectives" %}
+                    <p class="code-highlight">{% translate "This tool is useful <span class=\"example-highlight\">for</span> opening jars." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">For + period:</span> With present perfect" %}
+                    <p class="code-highlight">{% translate "I've lived here <span class=\"example-highlight\">for</span> five years." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="prep-card">
+            <h2>{% translate "3. The Preposition 'From'" %}</h2>
+            <h3>{% translate "Key Applications" %}</h3>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                        <th>{% translate "Examples" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Origin" %}</td>
+                        <td>{% translate "Shows where someone/something comes from" %}</td>
+                        <td><span class="code-highlight">{% translate "She's <span class=\"example-highlight\">from</span> Canada." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Source" %}</td>
+                        <td>{% translate "Indicates where something originates" %}</td>
+                        <td><span class="code-highlight">{% translate "I got this information <span class=\"example-highlight\">from</span> the internet." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Time starting point" %}</td>
+                        <td>{% translate "Marks when something begins" %}</td>
+                        <td><span class="code-highlight">{% translate "The store is open <span class=\"example-highlight\">from</span> 9 a.m." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Material change" %}</td>
+                        <td>{% translate "Shows transformation" %}</td>
+                        <td><span class="code-highlight">{% translate "Wine is made <span class=\"example-highlight\">from</span> grapes." %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>{% translate "Special Patterns with 'From'" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">From...to:</span> For ranges" %}
+                    <p class="code-highlight">{% translate "We work <span class=\"example-highlight\">from</span> Monday <span class=\"example-highlight\">to</span> Friday." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Prevent/protect from:</span> For avoidance" %}
+                    <p class="code-highlight">{% translate "This cream protects <span class=\"example-highlight\">from</span> sunburn." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Different from:</span> For comparisons" %}
+                    <p class="code-highlight">{% translate "Your opinion is different <span class=\"example-highlight\">from</span> mine." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="comparison-box">
+            <h3>{% translate "Comparative Usage: By vs. For vs. From" %}</h3>
+            <p>{% translate "These prepositions sometimes overlap in usage, leading to common confusion. Here's how to distinguish them:" %}</p>
+
+            <table class="usage-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Context" %}</th>
+                        <th>{% translate "Correct Preposition" %}</th>
+                        <th>{% translate "Explanation" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Creator vs. Purpose" %}</td>
+                        <td><span class="code-highlight">by</span> / <span class="code-highlight">for</span></td>
+                        <td>{% translate "\"A painting <span class=\"example-highlight\">by</span> Van Gogh\" (creator) vs. \"A brush <span class=\"example-highlight\">for</span> painting\" (purpose)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Duration vs. Deadline" %}</td>
+                        <td><span class="code-highlight">for</span> / <span class="code-highlight">by</span></td>
+                        <td>{% translate "\"I studied <span class=\"example-highlight\">for</span> two hours\" (duration) vs. \"Finish <span class=\"example-highlight\">by</span> 5 PM\" (deadline)" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Origin vs. Purpose" %}</td>
+                        <td><span class="code-highlight">from</span> / <span class="code-highlight">for</span></td>
+                        <td>{% translate "\"A letter <span class=\"example-highlight\">from</span> my friend\" (origin) vs. \"Paper <span class=\"example-highlight\">for</span> writing letters\" (purpose)" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="common-mistakes">
+            <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Incorrect:</span> This book was written <span class=\"example-highlight\">from</span> Shakespeare." %}
+                    <p><span class="term-highlight">{% translate "Correct:" %}</span> <span class="code-highlight">{% translate "This book was written <span class=\"example-highlight\">by</span> Shakespeare." %}</span></p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Incorrect:</span> I need this report <span class=\"example-highlight\">for</span> tomorrow." %}
+                    <p><span class="term-highlight">{% translate "Correct:" %}</span> <span class="code-highlight">{% translate "I need this report <span class=\"example-highlight\">by</span> tomorrow." %}</span></p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Incorrect:</span> She borrowed money <span class=\"example-highlight\">by</span> her friend." %}
+                    <p><span class="term-highlight">{% translate "Correct:" %}</span> <span class="code-highlight">{% translate "She borrowed money <span class=\"example-highlight\">from</span> her friend." %}</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Exercises" %}</h3>
+        <p>{% translate "Fill in the blanks with <span class=\"code-highlight\">by</span>, <span class=\"code-highlight\">for</span>, or <span class=\"code-highlight\">from</span>:" %}</p>
+
+        <ol class="styled-list" style="counter-reset: list-counter;">
+            <li>{% translate "The package should arrive ___ Friday at the latest." %}</li>
+            <li>{% translate "This special shampoo is ___ dogs with sensitive skin." %}</li>
+            <li>{% translate "The train ___ London arrives at platform 3." %}</li>
+            <li>{% translate "Hamlet was written ___ William Shakespeare." %}</li>
+            <li>{% translate "We've been waiting ___ over an hour!" %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,279 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Gerund" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight, .ending-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Gerund" %}</span>
+        </nav>
+
+        <h1>{% translate "The Gerund" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">gerund</span> is a non-finite verb form in English that ends in <span class=\"ending-highlight\">-ing</span> and functions as a noun. While it looks identical to the present participle, its grammatical role in a sentence is different. It refers to an action or a state, but treats that action/state as a thing or concept." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Formation of the Gerund" %}</h4>
+        <p>
+            {% translate "The gerund is formed by adding <span class=\"ending-highlight\">-ing</span> to the base form of the verb. The spelling rules are the same as for the present participle (V-ing form)." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Work" %} &rarr; work<span class="ending-highlight">ing</span></span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Read" %} &rarr; read<span class="ending-highlight">ing</span></span></i></li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Swim" %} &rarr; swimm<span class="ending-highlight">ing</span></span></i> ({% translate "doubling consonant" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Live" %} &rarr; liv<span class="ending-highlight">ing</span></span></i> ({% translate "dropping 'e'" %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Uses of the Gerund" %}</h4>
+        <p>
+            {% translate "As a verb-noun, the gerund can take on various roles in a sentence:" %}
+        </p>
+        <ol class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "As the Subject of a Sentence:" %}</span>
+                <p>
+                    {% translate "The gerund can perform the action of the main verb." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Swimming</span> {% translate "is good for your health." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">Reading</span> {% translate "helps to expand your vocabulary." %}</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "As the Object of a Verb:" %}</span>
+                <p>
+                    {% translate "Many verbs are typically followed by a gerund. There's no simple rule; these verbs usually need to be learned." %}
+                    <br><span class="example-highlight">{% translate "Common verbs followed by gerunds:" %}</span> <i><span class="code-highlight">enjoy, finish, mind, stop, avoid, admit, consider, deny, risk, suggest, imagine, practice, postpone, involve, keep</span>, {% translate "etc." %}</i>
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He enjoys" %} <span class="verb-highlight">playing</span> {% translate "football." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Have you finished" %} <span class="verb-highlight">writing</span> {% translate "your report?" %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I don't mind" %} <span class="verb-highlight">waiting</span>.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "As the Object of a Preposition:" %}</span>
+                <p>
+                    {% translate "A gerund must be used after prepositions." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I'm good at" %} <span class="verb-highlight">drawing</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Thank you for" %} <span class="verb-highlight">helping</span> {% translate "me." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She left without" %} <span class="verb-highlight">saying</span> {% translate "goodbye." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He's interested in" %} <span class="verb-highlight">learning</span> {% translate "English." %}</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "After Certain Expressions:" %}</span>
+                <p>
+                    {% translate "Some common expressions are followed by a gerund." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "It's no use / It's no good" %}</span>: <i><span class="code-highlight">{% translate "It's no use" %} <span class="verb-highlight">crying</span> {% translate "over spilled milk." %}</span></i></li>
+                    <li><span class="code-highlight">{% translate "There's no point in" %}</span>: <i><span class="code-highlight">{% translate "There's no point in" %} <span class="verb-highlight">arguing</span> {% translate "with him." %}</span></i></li>
+                    <li><span class="code-highlight">{% translate "Can't stand / Can't help" %}</span>: <i><span class="code-highlight">{% translate "I can't stand" %} <span class="verb-highlight">waiting</span>.</span></i> / <i><span class="code-highlight">{% translate "I can't help" %} <span class="verb-highlight">laughing</span>.</span></i></li>
+                    <li><span class="code-highlight">{% translate "To be busy" %}</span>: <i><span class="code-highlight">{% translate "I'm busy" %} <span class="verb-highlight">preparing</span> {% translate "for the exam." %}</span></i></li>
+                    <li><span class="code-highlight">{% translate "To spend time" %}</span>: <i><span class="code-highlight">{% translate "We spent all day" %} <span class="verb-highlight">exploring</span> {% translate "the city." %}</span></i></li>
+                    <li><span class="code-highlight">{% translate "To look forward to" %}</span>: <i><span class="code-highlight">{% translate "I'm looking forward to" %} <span class="verb-highlight">seeing</span> {% translate "you." %}</span></i> ({% translate "Note: 'to' here is a preposition, not part of an infinitive" %})</li>
+                    <li><span class="code-highlight">{% translate "To be used to / To get used to" %}</span>: <i><span class="code-highlight">{% translate "She's used to" %} <span class="verb-highlight">waking</span> {% translate "up early." %}</span></i></li>
+                    <li><span class="code-highlight">{% translate "Worth" %}</span>: <i><span class="code-highlight">{% translate "This book is worth" %} <span class="verb-highlight">reading</span>.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "After Phrasal Verbs:" %}</span>
+                <p>
+                    {% translate "If a phrasal verb's preposition/adverb is followed by another verb, that verb takes the gerund form." %}
+                </p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Give up" %} <span class="verb-highlight">smoking</span>!</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She carried on" %} <span class="verb-highlight">talking</span>.</span></i></li>
+                </ul>
+            </li>
+        </ol>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Gerund vs. Infinitive" %}</h4>
+        <p>
+            {% translate "A common point of confusion is when to use a gerund versus an infinitive. The choice often depends on the preceding verb or expression. Some verbs can be followed by both with a change in meaning, while others allow both without a significant change." %}
+        </p>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Verbs followed by Gerund or Infinitive with different meanings:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Stop" %}</span>: <i><span class="code-highlight">{% translate "He stopped" %} <span class="verb-highlight">smoking</span>.</span></i> ({% translate "He quit the habit" %}) vs. <i><span class="code-highlight">{% translate "He stopped" %} <span class="verb-highlight">to smoke</span>.</span></i> ({% translate "He paused to have a cigarette" %})</li>
+                    <li><span class="code-highlight">{% translate "Remember" %}</span>: <i><span class="code-highlight">{% translate "I remember" %} <span class="verb-highlight">seeing</span> {% translate "him before." %}</span></i> ({% translate "Recalling a past event" %}) vs. <i><span class="code-highlight">{% translate "Remember" %} <span class="verb-highlight">to lock</span> {% translate "the door." %}</span></i> ({% translate "Don't forget to do it" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Verbs followed by Gerund or Infinitive with similar meanings:" %}</span>
+                <ul class="styled-list">
+                    <li><span class="code-highlight">{% translate "Start / Begin" %}</span>: <i><span class="code-highlight">{% translate "It started" %} <span class="verb-highlight">raining</span>.</span></i> / <i><span class="code-highlight">{% translate "It started" %} <span class="verb-highlight">to rain</span>.</span></i></li>
+                    <li><span class="code-highlight">{% translate "Like / Love / Hate / Prefer" %}</span>: <i><span class="code-highlight">{% translate "I love" %} <span class="verb-highlight">swimming</span>.</span></i> / <i><span class="code-highlight">{% translate "I love" %} <span class="verb-highlight">to swim</span>.</span></i></li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "Mastering the gerund is crucial for accurate and natural-sounding English, especially when dealing with complex sentence structures and verb patterns." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

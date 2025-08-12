@@ -1,0 +1,314 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Usage and Punctuation of Interjections" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .interjection-highlight {
+            color: #f72585;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .punctuation-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .position-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'interjection_page' %}">{% translate "Interjection" %}</a></span> &raquo;
+            <span>{% translate "Usage and Punctuation" %}</span>
+        </nav>
+
+        <h1>{% translate "Usage and Punctuation of Interjections" %}</h1>
+        <p>
+            {% translate "Interjections are unique in their flexibility and emotional impact. Their placement and punctuation significantly affect their meaning and the sentence's tone." %}
+        </p>
+
+        <div class="position-card">
+            <h3>{% translate "Position in Sentences" %}</h3>
+
+            <h4>{% translate "1. Beginning of Sentence" %}</h4>
+            <p>{% translate "Most common position, setting the emotional tone for what follows:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="interjection-highlight">Wow!</span> That's incredible!</span></li>
+                <li><span class="code-highlight"><span class="interjection-highlight">Well,</span> I'm not sure about that.</span></li>
+            </ul>
+
+            <h4>{% translate "2. Middle of Sentence" %}</h4>
+            <p>{% translate "Used for spontaneous reactions or pauses in thought:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">That was, <span class="interjection-highlight">oh</span>, about two years ago.</span></li>
+                <li><span class="code-highlight">I was going to say, <span class="interjection-highlight">um</span>, let's reconsider.</span></li>
+            </ul>
+
+            <h4>{% translate "3. End of Sentence" %}</h4>
+            <p>{% translate "Adds emotional emphasis as an afterthought:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight">You're coming too, <span class="interjection-highlight">right</span>?</span></li>
+                <li><span class="code-highlight">We won the game, <span class="interjection-highlight">yay</span>!</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Punctuation Rules" %}</h3>
+
+            <h4>{% translate "1. Exclamation Marks (!)" %}</h4>
+            <p>{% translate "For strong emotions or sudden outbursts:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="interjection-highlight">Ouch!</span> That really hurt!</span></li>
+                <li><span class="code-highlight"><span class="interjection-highlight">Congratulations!</span> You did it!</span></li>
+                <li><span class="code-highlight"><span class="interjection-highlight">Stop!</span> That's dangerous!</span></li>
+            </ul>
+
+            <h4>{% translate "2. Commas (,)" %}</h4>
+            <p>{% translate "For milder interjections or thoughtful pauses:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="interjection-highlight">Well,</span> that's interesting.</span></li>
+                <li><span class="code-highlight"><span class="interjection-highlight">Oh,</span> I didn't know that.</span></li>
+            </ul>
+
+            <h4>{% translate "3. Question Marks (?)" %}</h4>
+            <p>{% translate "For interjections expressing confusion or seeking confirmation:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="interjection-highlight">Huh?</span> What did you say?</span></li>
+                <li><span class="code-highlight"><span class="interjection-highlight">Really?</span> I find that hard to believe.</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Punctuation by Emotion Strength" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Emotion Level" %}</th>
+                    <th>{% translate "Punctuation" %}</th>
+                    <th>{% translate "Examples" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="term-highlight">{% translate "Very Strong" %}</span></td>
+                    <td><span class="punctuation-highlight">!</span> (exclamation)</td>
+                    <td><span class="code-highlight"><span class="interjection-highlight">Help!</span> <span class="interjection-highlight">Fire!</span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="term-highlight">{% translate "Strong" %}</span></td>
+                    <td><span class="punctuation-highlight">!</span> (exclamation)</td>
+                    <td><span class="code-highlight"><span class="interjection-highlight">Wow!</span> <span class="interjection-highlight">Awesome!</span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="term-highlight">{% translate "Moderate" %}</span></td>
+                    <td><span class="punctuation-highlight">,</span> (comma)</td>
+                    <td><span class="code-highlight"><span class="interjection-highlight">Well,</span> <span class="interjection-highlight">Oh,</span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="term-highlight">{% translate "Mild" %}</span></td>
+                    <td><span class="punctuation-highlight">,</span> (comma)</td>
+                    <td><span class="code-highlight"><span class="interjection-highlight">Um,</span> <span class="interjection-highlight">Er,</span></span></td>
+                </tr>
+                <tr>
+                    <td><span class="term-highlight">{% translate "Questioning" %}</span></td>
+                    <td><span class="punctuation-highlight">?</span> (question)</td>
+                    <td><span class="code-highlight"><span class="interjection-highlight">Huh?</span> <span class="interjection-highlight">What?</span></span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Special Cases" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Multiple interjections:</span> Can be combined with commas" %}
+                    <p class="code-highlight"><span class="interjection-highlight">Oh, wow!</span> That's amazing!</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Interruptions:</span> Use dashes for abrupt interjections" %}
+                    <p class="code-highlight">I was going to say—<span class="interjection-highlight">hey!</span>—that's mine!</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Dialogue writing:</span> Often appears with action descriptors" %}
+                    <p class="code-highlight">"<span class="interjection-highlight">Ouch</span>," she said, rubbing her elbow.</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Informal writing:</span> Multiple punctuation for emphasis" %}
+                    <p class="code-highlight"><span class="interjection-highlight">No way!!</span> <span class="interjection-highlight">Really?!</span></p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Over-punctuating:</span> Using multiple exclamation points in formal writing" %}
+                    <p class="code-highlight">{% translate "Avoid: <span class=\"interjection-highlight\">Wow!!!</span> That's so cool!!!" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Under-punctuating:</span> Forgetting punctuation for strong interjections" %}
+                    <p class="code-highlight">{% translate "Incorrect: <span class=\"interjection-highlight\">Ouch</span> that hurt" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Misplaced commas:</span> Putting commas after exclamations" %}
+                    <p class="code-highlight">{% translate "Incorrect: <span class=\"interjection-highlight\">Hey,</span>! over here" %}</p>
+                    <p class="code-highlight">{% translate "Correct: <span class=\"interjection-highlight\">Hey!</span> Over here." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Capitalization errors:</span> Forgetting to capitalize stand-alone interjections" %}
+                    <p class="code-highlight">{% translate "Incorrect: <span class=\"interjection-highlight\">oh</span> no!" %}</p>
+                    <p class="code-highlight">{% translate "Correct: <span class=\"interjection-highlight\">Oh</span> no!" %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'interjection_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Interjections" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

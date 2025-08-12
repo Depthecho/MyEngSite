@@ -1,0 +1,216 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjective: Irregular Forms" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Degrees of Comparison" %}</span> &raquo;
+            <span>{% translate "Irregular Forms" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjective: Irregular Forms" %}</h1>
+        <p>
+            {% translate "While most adjectives follow the standard rules for forming comparative and superlative degrees, some common adjectives have irregular forms that must be memorized. These forms do not follow the <span class=\"code-highlight\">-er/-est</span> or <span class=\"code-highlight\">more/most</span> rules." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Key Irregular Adjectives" %}</h3>
+        <p>
+            {% translate "The following table lists the most important irregular adjectives and their degrees of comparison." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Positive" %}</th>
+                        <th>{% translate "Comparative" %}</th>
+                        <th>{% translate "Superlative" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "good" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "better" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "best" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "bad" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "worse" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "worst" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "many / much" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "more" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "most" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "little" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "less" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "least" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "far" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "farther / further" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "farthest / furthest" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Examples in Sentences" %}</h3>
+        <p>
+            {% translate "Here's how these irregular forms are used in context:" %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "He is <span class=\"term-highlight\">a good student</span>." %}</li>
+            <li>{% translate "She is <span class=\"term-highlight\">a better student</span> than he is." %}</li>
+            <li>{% translate "He is <span class=\"term-highlight\">the best student</span> in the class." %}</li>
+        </ul>
+        <br>
+        <ul class="styled-list">
+            <li>{% translate "This is <span class=\"term-highlight\">bad news</span>." %}</li>
+            <li>{% translate "Yesterday was <span class=\"term-highlight\">worse</span> than today." %}</li>
+            <li>{% translate "That was <span class=\"term-highlight\">the worst</span> movie ever." %}</li>
+        </ul>
+        
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,247 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Pronouns: Grammatical Features (Case, Number, etc.)" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'pronoun_page' %}">{% translate "Pronoun" %}</a></span> &raquo;
+            <span>{% translate "Grammatical Features" %}</span>
+        </nav>
+
+        <h1>{% translate "Pronouns: Grammatical Features (Case, Number, etc.)" %}</h1>
+        <p>
+            {% translate "Pronouns in English are not static words; they change their form based on several grammatical features. The most important of these are person, number, gender, and case. Understanding these features is essential for using pronouns correctly." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. Case: Subject vs. Object" %}</h3>
+        <p>
+            {% translate "Case refers to the function of the pronoun in a sentence. There are two main cases for personal pronouns:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"term-highlight\">{% translate "Subjective Case" %}</span>: {% translate "Used when the pronoun is the subject of the sentence (the one performing the action)." %}</li>
+            <li><span class=\"term-highlight\">{% translate "Objective Case" %}</span>: {% translate "Used when the pronoun is the object of the sentence (the one receiving the action)." %}</li>
+        </ul>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Subjective" %}</th>
+                        <th>{% translate "Objective" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "I" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "me" %}</span></td>
+                        <td>{% translate "<span class=\"capital-highlight\">I</span> saw <span class=\"example-highlight\">him</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "She" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "her" %}</span></td>
+                        <td>{% translate "<span class=\"capital-highlight\">She</span> gave the book to <span class=\"example-highlight\">me</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "They" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "them" %}</span></td>
+                        <td>{% translate "<span class=\"capital-highlight\">They</span> helped <span class=\"example-highlight\">us</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Number: Singular vs. Plural" %}</h3>
+        <p>
+            {% translate "Pronouns can be either singular (referring to one) or plural (referring to more than one). It's crucial to match the pronoun's number to its antecedent." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "I" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "we" %}</span></td>
+                        <td>{% translate "<span class=\"capital-highlight\">I</span> went to the store. <span class=\"capital-highlight\">We</span> all went to the store." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "he/she/it" %}</span></td>
+                        <td><span class=\"code-highlight\">{% translate "they" %}</span></td>
+                        <td>{% translate "<span class=\"capital-highlight\">He</span> is a doctor. <span class=\"capital-highlight\">They</span> are doctors." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Person: First, Second, and Third" %}</h3>
+        <p>
+            {% translate "Person indicates who is speaking, who is being spoken to, or who is being spoken about." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"term-highlight\">{% translate "First Person" %}</span>: {% translate "The speaker (I, we)." %}</li>
+            <li><span class=\"term-highlight\">{% translate "Second Person" %}</span>: {% translate "The person or people being spoken to (you)." %}</li>
+            <li><span class=\"term-highlight\">{% translate "Third Person" %}</span>: {% translate "The person or thing being spoken about (he, she, it, they)." %}</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "4. Gender" %}</h3>
+        <p>
+            {% translate "Gender-specific pronouns are used for the third person singular." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "He/him/his" %}</span>: {% translate "Masculine gender." %}</li>
+            <li><span class=\"code-highlight\">{% translate "She/her/hers" %}</span>: {% translate "Feminine gender." %}</li>
+            <li><span class=\"code-highlight\">{% translate "It/its" %}</span>: {% translate "Neutral or inanimate objects." %}</li>
+        </ul>
+        <p>
+            {% translate "The pronoun <span class=\"code-highlight\">they/them/their</span> is now also commonly used as a singular, gender-neutral pronoun." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'pronoun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Pronouns" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

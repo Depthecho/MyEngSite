@@ -1,0 +1,233 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Irregular Plurals" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'noun_page' %}">{% translate "Noun" %}</a></span> &raquo;
+            <span>{% translate "Irregular Plurals" %}</span>
+        </nav>
+
+        <h1>{% translate "Irregular Plurals" %}</h1>
+        <p>
+            {% translate "Unlike regular nouns that simply add <span class=\"term-highlight\">-s</span> or <span class=\"term-highlight\">-es</span>, irregular nouns form their plural in a different way. These forms often come from older English or other languages and must be memorized." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Irregular Nouns" %}</h3>
+        
+        <h4>{% translate "Vowel Change" %}</h4>
+        <p>{% translate "Some nouns change their internal vowels to form the plural." %}</p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "man" %}</td><td>{% translate "men" %}</td></tr>
+                    <tr><td>{% translate "woman" %}</td><td>{% translate "women" %}</td></tr>
+                    <tr><td>{% translate "foot" %}</td><td>{% translate "feet" %}</td></tr>
+                    <tr><td>{% translate "tooth" %}</td><td>{% translate "teeth" %}</td></tr>
+                    <tr><td>{% translate "goose" %}</td><td>{% translate "geese" %}</td></tr>
+                    <tr><td>{% translate "mouse" %}</td><td>{% translate "mice" %}</td></tr>
+                    <tr><td>{% translate "louse" %}</td><td>{% translate "lice" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Adding -en or a similar ending" %}</h4>
+        <p>{% translate "A few nouns form their plural by adding an <span class=\"code-highlight\">-en</span> or a similar suffix." %}</p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "child" %}</td><td>{% translate "children" %}</td></tr>
+                    <tr><td>{% translate "ox" %}</td><td>{% translate "oxen" %}</td></tr>
+                    <tr><td>{% translate "brother" %}</td><td>{% translate "brethren" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "No Change" %}</h4>
+        <p>{% translate "Some nouns have the same form for both singular and plural. These are often referred to as <a href=\"#\">zero plurals</a>." %}</p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "sheep" %}</td><td>{% translate "sheep" %}</td></tr>
+                    <tr><td>{% translate "fish" %}</td><td>{% translate "fish" %}</td></tr>
+                    <tr><td>{% translate "deer" %}</td><td>{% translate "deer" %}</td></tr>
+                    <tr><td>{% translate "series" %}</td><td>{% translate "series" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4>{% translate "Ending in -is or -on" %}</h4>
+        <p>{% translate "Some words of Greek or Latin origin follow their original pluralization rules." %}</p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Singular" %}</th>
+                        <th>{% translate "Plural" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>{% translate "analysis" %}</td><td>{% translate "analyses" %}</td></tr>
+                    <tr><td>{% translate "crisis" %}</td><td>{% translate "crises" %}</td></tr>
+                    <tr><td>{% translate "phenomenon" %}</td><td>{% translate "phenomena" %}</td></tr>
+                    <tr><td>{% translate "criterion" %}</td><td>{% translate "criteria" %}</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'noun_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Noun" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjective: Formation Rules" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Degrees of Comparison" %}</span> &raquo;
+            <span>{% translate "Formation Rules" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjective: Formation Rules" %}</h1>
+        <p>
+            {% translate "The way comparative and superlative degrees are formed depends on the number of syllables in the adjective. There are three main rules to follow." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. One-Syllable Adjectives" %}</h3>
+        <p>
+            {% translate "For most one-syllable adjectives, you form the comparative by adding <span class=\"code-highlight\">-er</span> and the superlative by adding <span class=\"code-highlight\">-est</span>." %}
+        </p>
+        
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Positive" %}</th>
+                        <th>{% translate "Comparative" %}</th>
+                        <th>{% translate "Superlative" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "tall" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "tall<span class=\"code-highlight\">er</span>" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "tall<span class=\"code-highlight\">est</span>" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "old" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "old<span class=\"code-highlight\">er</span>" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "old<span class=\"code-highlight\">est</span>" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "<strong>Spelling Rule:</strong> If the adjective ends in a single vowel + consonant, double the final consonant before adding the suffix (e.g., <span class=\"code-highlight\">big → bigg<span class=\"code-highlight\">er</span> → bigg<span class=\"code-highlight\">est</span></span>)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Two-Syllable Adjectives" %}</h3>
+        <p>
+            {% translate "For most two-syllable adjectives, you use <span class=\"code-highlight\">more</span> for the comparative and <span class=\"code-highlight\">most</span> for the superlative. However, some two-syllable adjectives can use both forms." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Positive" %}</th>
+                        <th>{% translate "Comparative" %}</th>
+                        <th>{% translate "Superlative" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "beautiful" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "more beautiful" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "most beautiful" %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"term-highlight\">{% translate "careful" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "more careful" %}</span></td>
+                        <td><span class=\"term-highlight\">{% translate "most careful" %}</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "<strong>Note:</strong> Adjectives ending in <span class=\"code-highlight\">-y</span> often follow the one-syllable rule, changing the <span class=\"code-highlight\">y</span> to <span class=\"code-highlight\">i</span> (e.g., <span class=\"code-highlight\">happy → happ<span class=\"code-highlight\">ier</span> → happ<span class=\"code-highlight\">iest</span></span>)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Three or More Syllable Adjectives" %}</h3>
+        <p>
+            {% translate "All adjectives with three or more syllables form the comparative and superlative degrees using <span class=\"code-highlight\">more</span> and <span class=\"code-highlight\">most</span>." %}
+        </p>
+        <ul class="styled-list">
+            <li>{% translate "expensive → <span class=\"term-highlight\">more expensive</span> → <span class=\"term-highlight\">most expensive</span>" %}</li>
+            <li>{% translate "interesting → <span class=\"term-highlight\">more interesting</span> → <span class=\"term-highlight\">most interesting</span>" %}</li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

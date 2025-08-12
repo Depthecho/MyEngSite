@@ -1,0 +1,311 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Ought to" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Ought to" %}</span>
+        </nav>
+        
+        <h1>{% translate "Ought to" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Ought to</span> is a semi-modal verb in English, primarily used to express <span class=\"term-highlight\">advice, recommendation, obligation, duty, or probability</span>. It is similar in meaning to \"should,\" but can sometimes imply a stronger sense of moral obligation or correctness. Unlike most modal verbs, it is always followed by \"to\" and then the base form of the main verb." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of Ought to" %}</h4>
+        <p>
+            {% translate "As a semi-modal, \"ought to\" has a relatively simple conjugation. It does not change form for different subjects and is always followed by the bare infinitive (base form) of the main verb." %}
+        </p>
+
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + ought to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought to study" %}</span> {% translate "harder." %}</span><br><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "ought to help" %}</span> {% translate "them." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + ought not to / oughtn't to + Base Verb" %}</td>
+                        <td><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought not to tell" %}</span> {% translate "anyone." %}</span><br><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "oughtn't to be" %}</span> {% translate "late." %}</span></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Interrogative" %}</span></td>
+                        <td>{% translate "Ought + Subject + to + Base Verb?" %} ({% translate "Formal/Less Common" %})</td>
+                        <td><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Ought I to tell" %}</span> {% translate "him?" %}</span><br><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Ought we to wait" %}</span>?</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>{% translate "Ought to have + Past Participle (Past Obligation/Regret)" %}</h5>
+        <p>
+            {% translate "This construction is used to express that something should have happened in the past but didn't, or to criticize a past action." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + ought to have + Past Participle" %}</td>
+                        <td><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought to have called" %}</span> {% translate "me." %}</span> ({% translate "You didn't call, but should have" %})</td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + ought not to have / oughtn't to have + Past Participle" %}</td>
+                        <td><span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "ought not to have left" %}</span> {% translate "so early." %}</span> ({% translate "They left, but shouldn't have" %})</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Use of Ought to" %}</h4>
+        <p>
+            {% translate "\"Ought to\" is used to convey advice, obligation, probability, or a sense of what is correct or appropriate." %}
+        </p>
+
+        <h5>{% translate "1. Expressing Advice or Recommendation" %}</h5>
+        <p>
+            {% translate "Similar to \"should,\" \"ought to\" is used to give advice or suggest the best course of action. It can sometimes carry a slightly stronger moral or logical implication than \"should.\"" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought to apologize" %}</span> {% translate "to her." %}</span> ({% translate "It's the right thing to do" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "ought to save" %}</span> {% translate "some money for a rainy day." %}</span> ({% translate "Good advice" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">{% translate "ought to see" %}</span> {% translate "a doctor about that cough." %}</span> ({% translate "Recommendation for her well-being" %})</li>
+        </ul>
+
+        <h5>{% translate "2. Expressing Obligation or Duty" %}</h5>
+        <p>
+            {% translate "It can express a sense of duty, responsibility, or what is generally expected." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "Children" %} <span class="auxiliary-highlight">{% translate "ought to obey" %}</span> {% translate "their parents." %}</span> ({% translate "Duty/Expected behavior" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">{% translate "ought to respect" %}</span> {% translate "our elders." %}</span> ({% translate "Moral obligation" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">{% translate "ought to be" %}</span> {% translate "more careful." %}</span> ({% translate "Duty to himself/others" %})</li>
+        </ul>
+
+        <h5>{% translate "3. Expressing Probability or Expectation" %}</h5>
+        <p>
+            {% translate "\"Ought to\" can indicate that something is likely or expected to happen, based on current knowledge or normal circumstances." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "The bus" %} <span class="auxiliary-highlight">{% translate "ought to be here" %}</span> {% translate "any minute." %}</span> ({% translate "Expected arrival" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "It" %} <span class="auxiliary-highlight">{% translate "ought to be" %}</span> {% translate "a nice day tomorrow." %}</span> ({% translate "Expected weather" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "ought to pass" %}</span> {% translate "the exam easily." %}</span> ({% translate "Expected outcome given their preparation" %})</li>
+        </ul>
+
+        <h5>{% translate "4. Referring to Unfulfilled Obligation or Regret (Ought to have + Past Participle)" %}</h5>
+        <p>
+            {% translate "This past form is used to express that something was expected or desirable in the past but did not happen. It often implies regret, criticism, or disappointment." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought to have told" %}</span> {% translate "me about the problem earlier." %}</span> ({% translate "You didn't, and you should have" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">{% translate "ought to have studied" %}</span> {% translate "harder for the test." %}</span> ({% translate "Regret about my past action" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "They" %} <span class="auxiliary-highlight">{% translate "ought not to have spent" %}</span> {% translate "so much money." %}</span> ({% translate "Criticism of their past action" %})</li>
+        </ul>
+
+        <h5>{% translate "5. Differences from \"Should\"" %}</h5>
+        <p>
+            {% translate "While \"ought to\" and \"should\" are often interchangeable, \"ought to\" can sometimes sound slightly more formal or carry a stronger implication of moral obligation or logical correctness. However, \"should\" is far more common in everyday spoken and written English." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "should recycle" %}</span>.</span> ({% translate "General advice" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">{% translate "ought to recycle" %}</span>.</span> ({% translate "Slightly stronger emphasis on it being the right thing to do" %})</li>
+        </ul>
+        <p><span class="example-highlight">{% translate "Note:" %}</span> {% translate "In negative and interrogative forms, \"should\" is overwhelmingly preferred due to the slightly awkward sound of \"ought not to\" and \"ought I to?\". In negative and interrogative forms, “should” is overwhelmingly preferred due to the slightly awkward sound of “ought not to” and “ought I to?”. " %}</p>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

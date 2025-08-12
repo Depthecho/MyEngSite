@@ -1,0 +1,409 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "The Imperative Mood" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        
+        .styled-list ol {
+            padding-left: 20px;
+        }
+
+        .styled-list ol li {
+            padding-left: 0;
+            list-style-type: decimal;
+            margin-left: 20px;
+        }
+
+        .styled-list ol li:before {
+            display: none;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "The Imperative Mood" %}</span>
+        </nav>
+        
+        <h1>{% translate "The Imperative Mood" %}</h1>
+        <p>
+            {% translate "The <b>Imperative Mood</b> is used to give <b>commands, instructions, requests, advice, or express prohibitions</b>. It's the mood you use when you want someone to <i>do</i> something." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Forms of the Imperative Mood" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Imperative Mood</span> is generally very simple to form in English, as it typically uses the base form of the verb without an explicit subject. The implied subject is always \"you\" (singular or plural)." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. Affirmative Imperatives (Commands/Requests)" %}</h4>
+        <p>
+            {% translate "To form an affirmative imperative, simply use the <span class=\"term-highlight\">base form of the verb</span> (the infinitive without \"to\"). No subject is usually included." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Come" %}</span> {% translate "here!" %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Listen" %}</span> {% translate "carefully." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Please" %} <span class="verb-highlight">{% translate "sit" %}</span> {% translate "down." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Wait" %}</span> {% translate "for me." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Help" %}</span> {% translate "yourself to some cake." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "Verb \"To Be\" in Affirmative Imperatives" %}</h5>
+        <p>
+            {% translate "For the verb \"to be\", the base form is always" %} <span class="term-highlight">"be"</span>.
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Be" %}</span> {% translate "quiet." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Be" %}</span> {% translate "careful." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. Negative Imperatives (Prohibitions)" %}</h4>
+        <p>
+            {% translate "To make an imperative negative, place" %} <span class="term-highlight">"Do not"</span> {% translate "or its common contraction" %} <span class="term-highlight">"Don't"</span> {% translate "before the base form of the verb." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Do not" %}</span> <span class="verb-highlight">{% translate "touch" %}</span> {% translate "that!" %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Don't" %}</span> <span class="verb-highlight">{% translate "worry" %}</span> {% translate "about it." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Do not" %}</span> <span class="verb-highlight">{% translate "open" %}</span> {% translate "the door." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Don't" %}</span> <span class="verb-highlight">{% translate "be" %}</span> {% translate "late." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "3. Imperatives with \"Let's\" / \"Let us\" (Suggestions/Inclusions)" %}</h4>
+        <p>
+            {% translate "To make a suggestion that includes yourself (the speaker) and others, use" %} <span class="term-highlight">"Let's"</span> ({% translate "a contraction of \"Let us\"" %}) {% translate "followed by the base form of the verb. For a negative suggestion, use \"Let's not\"." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Let's go" %}</span> {% translate "to the park." %}</span></i> ({% translate "Positive suggestion" %})</li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Let's begin" %}</span>.</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Let's not forget" %}</span> {% translate "the essentials." %}</span></i> ({% translate "Negative suggestion" %})</li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Let's not argue" %}</span> {% translate "about this." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "4. Emphasized Imperatives (with Explicit Subject)" %}</h4>
+        <p>
+            {% translate "Although rare, the subject" %} <span class="term-highlight">"you"</span> {% translate "can be included in an imperative for emphasis, contrast, or to direct the command to a specific person in a group. This is often used in more formal or frustrated tones." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "You" %}</span> <span class="verb-highlight">{% translate "go" %}</span> {% translate "and finish your work; I'll handle this." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="pronoun-highlight">{% translate "You" %}</span> <span class="verb-highlight">{% translate "be" %}</span> {% translate "quiet!" %}</span></i> ({% translate "Strong command, possibly out of exasperation" %})</li>
+                    <li><i><span class="code-highlight">{% translate "When the bell rings," %} <span class="pronoun-highlight">{% translate "you two" %}</span> <span class="verb-highlight">{% translate "wait" %}</span> {% translate "here, and" %} <span class="pronoun-highlight">{% translate "you, Jane," %}</span> <span class="verb-highlight">{% translate "go" %}</span> {% translate "to the principal's office." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Punctuation for Imperatives" %}</h4>
+        <p>
+            {% translate "Imperative sentences typically end with a <span class=\"term-highlight\">period (.)</span> if they are mild commands or polite requests, or an <span class=\"term-highlight\">exclamation mark (!)</span> if they convey strong emotion, urgency, or a forceful command." %}
+        </p>
+        <ul class="styled-list">
+            <li><i><span class="code-highlight">{% translate "Please" %} <span class="verb-highlight">{% translate "close" %}</span> {% translate "the door." %}</span></i> ({% translate "Mild request" %})</li>
+            <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Close" %}</span> {% translate "the door!" %}</span></i> ({% translate "Strong command" %})</li>
+            <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Stop" %}</span>!</span></i> ({% translate "Urgent command" %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Use of the Imperative Mood" %}</h3>
+        <p>
+            {% translate "The <span class=\"term-highlight\">Imperative Mood</span> is a direct and powerful way to communicate, as it allows speakers to explicitly tell someone what to do or not to do. It serves various communicative functions in English." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "1. Giving Commands or Orders" %}</h4>
+        <p>
+            {% translate "This is the most direct and common use of the imperative, conveying a forceful instruction." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Stop" %}</span>!</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Close" %}</span> {% translate "the door." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Hand" %}</span> {% translate "me that tool." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Report" %}</span> {% translate "to the commanding officer immediately." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "2. Providing Instructions or Directions" %}</h4>
+        <p>
+            {% translate "Imperatives are frequently used when guiding someone through a process or telling them how to get somewhere." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "First," %} <span class="verb-highlight">{% translate "take" %}</span> {% translate "a left, then" %} <span class="verb-highlight">{% translate "walk" %}</span> {% translate "straight." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Mix" %}</span> {% translate "the ingredients thoroughly before adding the water." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "To assemble," %} <span class="verb-highlight">{% translate "read" %}</span> {% translate "the manual and" %} <span class="verb-highlight">{% translate "follow" %}</span> {% translate "the steps." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "3. Making Requests (often with \"Please\")" %}</h4>
+        <p>
+            {% translate "While commands are direct, adding \"please\" or using a gentler tone transforms an imperative into a polite request." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Please pass" %}</span> {% translate "the salt." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Please be" %}</span> {% translate "quiet during the lecture." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could you please" %}</span> <span class="verb-highlight">{% translate "open" %}</span> {% translate "the window?" %}</span></i> ({% translate "Here, \"Could you\" frames it as a question, but \"open\" is the action requested." %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "4. Offering Advice or Suggestions" %}</h4>
+        <p>
+            {% translate "Imperatives can be used to give strong recommendations or gentle advice." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Try" %}</span> {% translate "to get some rest; you look tired." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Don't" %}</span> <span class="verb-highlight">{% translate "give up" %}</span>! {% translate "You're almost there." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Eat" %}</span> {% translate "your vegetables; they're good for you." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Consider" %}</span> {% translate "all your options before deciding." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "5. Expressing Prohibitions" %}</h4>
+        <p>
+            {% translate "Using negative imperative forms (e.g., \"Don't,\" \"Do not\") clearly states what is forbidden or discouraged." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Don't" %}</span> <span class="verb-highlight">{% translate "park" %}</span> {% translate "here; it's a no-parking zone." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Do not" %}</span> <span class="verb-highlight">{% translate "feed" %}</span> {% translate "the animals." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Don't" %}</span> <span class="verb-highlight">{% translate "forget" %}</span> {% translate "your keys." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "6. Extending Invitations or Making Offers" %}</h4>
+        <p>
+            {% translate "Imperatives are often used to welcome someone or offer something." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Examples:" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Come in" %}</span> {% translate "and make yourself comfortable." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Have" %}</span> {% translate "some more tea." %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="verb-highlight">{% translate "Join" %}</span> {% translate "us for dinner tonight." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

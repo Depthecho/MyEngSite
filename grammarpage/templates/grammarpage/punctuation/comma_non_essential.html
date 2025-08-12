@@ -1,0 +1,247 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Comma - Non-Essential Information" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .clause-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .comma-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Comma: Non-Essential Information" %}</span>
+        </nav>
+
+        <h1>{% translate "Commas for Non-Essential Information" %}</h1>
+        <p>
+            {% translate "Commas play a crucial role in setting off information that adds extra details to a sentence but isn't necessary for its core meaning. This is called <span class=\"term-highlight\">non-restrictive</span> or <span class=\"term-highlight\">non-essential</span> information." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Core Concept" %}</h3>
+            <p>
+                {% translate "Non-essential elements can be removed without changing the fundamental meaning of the sentence. These are always set off with commas." %}
+            </p>
+
+            <h4>{% translate "Key Characteristics:" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The information is <span class=\"term-highlight\">additional</span>, not required to identify the noun" %}</li>
+                <li>{% translate "The clause often begins with <span class=\"term-highlight\">who, which, whose, where, when</span>" %}</li>
+                <li>{% translate "The sentence would remain grammatically correct without it" %}</li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "Types of Non-Essential Elements" %}</h3>
+
+            <h4>1. {% translate "Non-Restrictive Relative Clauses" %}</h4>
+            <p>{% translate "These clauses provide extra information about a noun that's already clearly identified." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="example-highlight">{% translate "Example:" %}</span>
+                    <br><i><span class="code-highlight">{% translate "My car<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">which is parked outside</span><span class=\"comma-highlight\">,</span> needs washing." %}</span></i>
+                    <p>{% translate "(We know which car - the additional information about its location isn't necessary to identify it)" %}</p>
+                </li>
+            </ul>
+
+            <h4>2. {% translate "Appositives" %}</h4>
+            <p>{% translate "Noun phrases that rename or explain another noun right beside it." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="example-highlight">{% translate "Example:" %}</span>
+                    <br><i><span class="code-highlight">{% translate "Paris<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">the capital of France</span><span class=\"comma-highlight\">,</span> is beautiful in spring." %}</span></i>
+                </li>
+            </ul>
+
+            <h4>3. {% translate "Parenthetical Expressions" %}</h4>
+            <p>{% translate "Words or phrases that interrupt the flow of a sentence." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="example-highlight">{% translate "Example:" %}</span>
+                    <br><i><span class="code-highlight">{% translate "The solution<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">however</span><span class=\"comma-highlight\">,</span> was quite simple." %}</span></i>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Essential vs. Non-Essential Comparison" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Feature" %}</th>
+                    <th>{% translate "Non-Essential" %}</th>
+                    <th>{% translate "Essential" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Commas" %}</td>
+                    <td>{% translate "Required" %}</td>
+                    <td>{% translate "Not used" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Removability" %}</td>
+                    <td>{% translate "Can be removed without changing core meaning" %}</td>
+                    <td>{% translate "Cannot be removed - changes meaning" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Relative Pronouns" %}</td>
+                    <td>{% translate "Which, who(m), whose, where, when" %}</td>
+                    <td>{% translate "That, who(m), whose, where, when" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Example" %}</td>
+                    <td>{% translate "My doctor<span class=\"comma-highlight\">,</span> who graduated from Harvard<span class=\"comma-highlight\">,</span> is excellent." %}</td>
+                    <td>{% translate "The doctor who graduated from Harvard is excellent." %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Special Cases and Exceptions" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Which vs. That:</span> 'Which' typically introduces non-essential clauses, while 'that' introduces essential ones" %}
+                    <p class="code-highlight">{% translate "The book <span class=\"clause-highlight\">that</span> I borrowed is interesting. (essential)" %}</p>
+                    <p class="code-highlight">{% translate "The book<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">which</span> I borrowed yesterday<span class=\"comma-highlight\">,</span> is interesting. (non-essential)" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Proper Nouns:</span> Information following proper nouns is usually non-essential" %}
+                    <p class="code-highlight">{% translate "London<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">where I was born</span><span class=\"comma-highlight\">,</span> is crowded." %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Adjective Clauses:</span> When the information is clearly additional" %}
+                    <p class="code-highlight">{% translate "The elderly man<span class=\"comma-highlight\">,</span> <span class=\"clause-highlight\">who seemed lost</span><span class=\"comma-highlight\">,</span> asked for directions." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Identify whether these sentences need commas for non-essential information:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "My sister who lives in Boston is visiting." %}</li>
+            <li>{% translate "The Empire State Building which has 102 floors is in New York." %}</li>
+            <li>{% translate "Shakespeare's play Hamlet is his longest." %}</li>
+            <li>{% translate "The professor wearing the red tie is my advisor." %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

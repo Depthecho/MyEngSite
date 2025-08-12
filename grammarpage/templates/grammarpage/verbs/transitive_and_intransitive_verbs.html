@@ -1,0 +1,203 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Transitive and Intransitive Verbs" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        .main-container {
+            padding-top: 40px;
+        }
+
+        h3 {
+            color: #ff9e7d;
+            font-size: 24px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+        }
+
+        h4 {
+            color: #ff9e7d;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Transitive and Intransitive Verbs" %}</span>
+        </nav>
+
+        <h1>{% translate "Transitive and Intransitive Verbs" %}</h1>
+        <p>
+            {% translate "English verbs can be classified into two main categories based on whether they require a direct object to complete their meaning: <span class=\"term-highlight\">transitive</span> and <span class=\"term-highlight\">intransitive</span> verbs." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Transitive Verbs (Переходные глаголы)" %}</h4>
+        <p>
+            {% translate "<span class=\"term-highlight\">Transitive verbs</span> express an action that passes from the subject to a direct object. This object receives the action of the verb. If a transitive verb is used without a direct object, its meaning often seems incomplete or ambiguous." %}
+        </p>
+        <p>
+            {% translate "To identify a transitive verb, ask 'what?' or 'whom?' after the verb. If there's an answer, the verb is transitive." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="verb-highlight">reads</span> a book.</span></i> ({% translate "Reads what? – a book" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="verb-highlight">wrote</span> a letter.</span></i> ({% translate "Wrote what? – a letter" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">They <span class="verb-highlight">built</span> a house.</span></i> ({% translate "Built what? – a house" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="verb-highlight">saw</span> John.</span></i> ({% translate "Saw whom? – John" %})</li>
+        </ul>
+        <p>
+            {% translate "The direct object is typically a noun or pronoun that directly receives the action." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Intransitive Verbs (Непереходные глаголы)" %}</h4>
+        <p>
+            {% translate "<span class=\"term-highlight\">Intransitive verbs</span> express an action that does not pass to an object. The action is complete within itself, performed by the subject without affecting something or someone else directly." %}
+        </p>
+        <p>
+            {% translate "Intransitive verbs cannot have a direct object. Asking 'what?' or 'whom?' after an intransitive verb will not yield a direct answer about an object receiving the action." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">The baby <span class="verb-highlight">sleeps</span>.</span></i> ({% translate "Sleeps what? – no answer" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Birds <span class="verb-highlight">sing</span>.</span></i> ({% translate "Sing what? – no answer" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="verb-highlight">laughed</span> loudly.</span></i> ({% translate "Laughed what? – no answer" %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="verb-highlight">arrived</span> late.</span></i> ({% translate "Arrived what? – no answer" %})</li>
+        </ul>
+        <p>
+            {% translate "Intransitive verbs can be followed by adverbs or prepositional phrases, but these are not direct objects." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Verbs that can be Both Transitive and Intransitive" %}</h4>
+        <p>
+            {% translate "Some verbs can function as both transitive and intransitive depending on the context in which they are used. The key is whether a direct object is present." %}
+        </p>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Run:" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Transitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="verb-highlight">runs</span> a business.</span></i> ({% translate "Runs what? – a business" %})</li>
+                    <li>{% translate "Intransitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="verb-highlight">runs</span> every morning.</span></i> ({% translate "Runs what? – no answer" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Eat:" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Transitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="verb-highlight">eats</span> an apple.</span></i> ({% translate "Eats what? – an apple" %})</li>
+                    <li>{% translate "Intransitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="verb-highlight">eats</span> quickly.</span></i> ({% translate "Eats what? – no answer" %})</li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Read:" %}</span>
+                <ul class="styled-list">
+                    <li>{% translate "Transitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="verb-highlight">read</span> a book.</span></i> ({% translate "Read what? – a book" %})</li>
+                    <li>{% translate "Intransitive:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="verb-highlight">read</span> before bed.</span></i> ({% translate "Read what? – no answer" %})</li>
+                </ul>
+            </li>
+        </ul>
+        <p>
+            {% translate "Understanding the distinction between transitive and intransitive verbs helps in constructing grammatically correct sentences and correctly identifying sentence structure." %}
+        </p>
+
+        <div class="navigation-links">
+            <a href="{% url 'home' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Home" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

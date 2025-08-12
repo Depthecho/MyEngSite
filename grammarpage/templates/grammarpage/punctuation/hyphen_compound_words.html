@@ -1,0 +1,291 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Hyphen - Compound Words and More" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 28px;
+        }
+        h3 {
+            font-size: 24px;
+        }
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .hyphen-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Hyphen: Compound Words" %}</span>
+        </nav>
+
+        <h1>{% translate "The Hyphen: Usage and Rules" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">hyphen</span> <span class=\"hyphen-highlight\">-</span> is a punctuation mark used to join words and to separate syllables of a single word. It plays crucial roles in forming compound words, avoiding ambiguity, and ensuring proper word division." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "1. Compound Words with Hyphens" %}</h3>
+            <h4>{% translate "A. Compound Adjectives Before Nouns" %}</h4>
+            <p>{% translate "Hyphens connect words that work together to modify a noun that follows them." %}</p>
+
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "a <span class=\"term-highlight\">well-known</span> author" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "a <span class=\"term-highlight\">five-year-old</span> child" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "an <span class=\"term-highlight\">up-to-date</span> report" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Permanent Compound Words" %}</h4>
+            <p>{% translate "Some words are always hyphenated, regardless of their position in a sentence." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "mother-<span class=\"hyphen-highlight\">-</span>in-<span class=\"hyphen-highlight\">-</span>law" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "editor-<span class=\"hyphen-highlight\">-</span>in-<span class=\"hyphen-highlight\">-</span>chief" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "merry-<span class=\"hyphen-highlight\">-</span>go-<span class=\"hyphen-highlight\">-</span>round" %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h3>{% translate "2. Numbers and Fractions" %}</h3>
+            <h4>{% translate "A. Compound Numbers (21-99)" %}</h4>
+            <p>{% translate "Hyphens are used in written-out numbers between twenty-one and ninety-nine." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "thirty-<span class=\"hyphen-highlight\">-</span>two" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "one hundred twenty-<span class=\"hyphen-highlight\">-</span>five" %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Fractions" %}</h4>
+            <p>{% translate "Hyphens connect the numerator and denominator in written fractions." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "two-<span class=\"hyphen-highlight\">-</span>thirds" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "three-<span class=\"hyphen-highlight\">-</span>fourths" %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Hyphenation Rules" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Case" %}</th>
+                    <th>{% translate "Rule" %}</th>
+                    <th>{% translate "Example" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Prefixes with proper nouns" %}</td>
+                    <td>{% translate "Always use a hyphen" %}</td>
+                    <td><span class="code-highlight">{% translate "mid-<span class=\"hyphen-highlight\">-</span>August" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Prefixes before capitalized words" %}</td>
+                    <td>{% translate "Always use a hyphen" %}</td>
+                    <td><span class="code-highlight">{% translate "un-<span class=\"hyphen-highlight\">-</span>American" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Prefixes with numbers" %}</td>
+                    <td>{% translate "Always use a hyphen" %}</td>
+                    <td><span class="code-highlight">{% translate "pre-<span class=\"hyphen-highlight\">-</span>1950" %}</span></td>
+                </tr>
+                <tr>
+                    <td>{% translate "Avoiding ambiguity" %}</td>
+                    <td>{% translate "Use when meaning might be unclear" %}</td>
+                    <td><span class="code-highlight">{% translate "re-<span class=\"hyphen-highlight\">-</span>cover (vs. recover)" %}</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "3. Special Cases" %}</h3>
+            <h4>{% translate "A. Word Division" %}</h4>
+            <p>{% translate "Hyphens indicate where a word breaks at the end of a line." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "The document contained important infor-<br>mation about the project." %}</span>
+                </li>
+            </ul>
+
+            <h4>{% translate "B. Avoiding Confusion" %}</h4>
+            <p>{% translate "Hyphens can prevent misreading of words." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "a small-<span class=\"hyphen-highlight\">-</span>business owner" %}</span>
+                    <p>{% translate "(vs. a small business owner, which could imply the person is short)" %}</p>
+                </li>
+            </ul>
+
+            <h4>{% translate "C. Prefixes with the Same Letter" %}</h4>
+            <p>{% translate "Hyphens are used when a prefix ends with the same letter the root word begins with." %}</p>
+            <ul class="styled-list">
+                <li>
+                    <span class="code-highlight">{% translate "anti-<span class=\"hyphen-highlight\">-</span>inflammatory" %}</span>
+                </li>
+                <li>
+                    <span class="code-highlight">{% translate "re-<span class=\"hyphen-highlight\">-</span>elect" %}</span>
+                </li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Common Mistakes to Avoid" %}</h3>
+        <ul class="styled-list">
+            <li>{% translate "<span class=\"term-highlight\">Hyphen vs. dash:</span> Don't confuse hyphens (-) with en dashes (–) or em dashes (—)" %}
+                <p class="code-highlight">{% translate "Incorrect: 1990<span class=\"hyphen-highlight\">-</span>2000 (should be en dash)" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Over-hyphenation:</span> Many compound words don't need hyphens" %}
+                <p class="code-highlight">{% translate "Incorrect: e-<span class=\"hyphen-highlight\">-</span>mail (correct: email)" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Inconsistent hyphenation:</span> Be consistent within a document" %}
+                <p class="code-highlight">{% translate "Inconsistent: decision-making and decision making" %}</p>
+            </li>
+            <li>{% translate "<span class=\"term-highlight\">Hyphenating adverbs:</span> Don't hyphenate adverbs ending in -ly" %}
+                <p class="code-highlight">{% translate "Incorrect: a highly-<span class=\"hyphen-highlight\">-</span>paid executive" %}</p>
+                <p class="code-highlight">{% translate "Correct: a highly paid executive" %}</p>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

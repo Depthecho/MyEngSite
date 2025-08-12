@@ -1,0 +1,230 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Adjectives: Object Complement" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .capital-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'adjective_page' %}">{% translate "Adjective" %}</a></span> &raquo;
+            <span>{% translate "Functions of Adjectives" %}</span> &raquo;
+            <span>{% translate "Object Complement" %}</span>
+        </nav>
+
+        <h1>{% translate "Adjectives: Object Complement" %}</h1>
+        <p>
+            {% translate "In some sentences, an adjective can function as an object complement. This means the adjective follows a direct object and describes or renames that object, not the subject of the sentence. This structure is used with verbs that describe a state or change of state, such as <span class=\"code-highlight\">make</span>, <span class=\"code-highlight\">consider</span>, <span class=\"code-highlight\">find</span>, <span class=\"code-highlight\">call</span>, etc." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "1. The Basic Structure" %}</h3>
+        <p>
+            {% translate "The structure for an object complement is: <strong>Subject + Verb + Direct Object + Adjective</strong>." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Sentence Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Subject + Verb + Direct Object + Adjective" %}</td>
+                        <td>{% translate "He painted the wall <span class=\"term-highlight\">red</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Subject + Verb + Direct Object + Adjective" %}</td>
+                        <td>{% translate "They found the movie <span class=\"term-highlight\">boring</span>." %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Subject + Verb + Direct Object + Adjective" %}</td>
+                        <td>{% translate "She considers him <span class=\"term-highlight\">kind</span>." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p>
+            {% translate "In these examples, the adjectives <span class=\"code-highlight\">red</span>, <span class=\"code-highlight\">boring</span>, and <span class=\"code-highlight\">kind</span> are describing the direct objects (<span class=\"code-highlight\">the wall, the movie, him</span>), not the subjects of the sentences." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "2. Distinguishing from Other Functions" %}</h3>
+        <p>
+            {% translate "It's important to differentiate an object complement from a predicative adjective, which describes the subject. The position of the adjective and the verb used are key." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Function" %}</th>
+                        <th>{% translate "Example" %}</th>
+                        <th>{% translate "What the Adjective Describes" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Predicative" %}</span></td>
+                        <td>{% translate "The house is <span class=\"term-highlight\">white</span>." %}</td>
+                        <td>{% translate "The subject, 'house'." %}</td>
+                    </tr>
+                    <tr>
+                        <td><span class=\"code-highlight\">{% translate "Object Complement" %}</span></td>
+                        <td>{% translate "They painted the house <span class=\"term-highlight\">white</span>." %}</td>
+                        <td>{% translate "The direct object, 'house'." %}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "3. Common Verbs Used with Object Complements" %}</h3>
+        <p>
+            {% translate "Here is a list of some common verbs that can be used with an adjective as an object complement:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class=\"code-highlight\">{% translate "make" %}</span>: {% translate "The noise made me <span class=\"example-highlight\">angry</span>." %}</li>
+            <li><span class=\"code-highlight\">{% translate "consider" %}</span>: {% translate "I consider the project <span class=\"example-highlight\">complete</span>." %}</li>
+            <li><span class=\"code-highlight\">{% translate "find" %}</span>: {% translate "We find the story <span class=\"example-highlight\">interesting</span>." %}</li>
+            <li><span class=\"code-highlight\">{% translate "elect" %}</span>: {% translate "They elected him <span class=\"example-highlight\">president</span>." %}</li>
+            <li><span class=\"code-highlight\">{% translate "call" %}</span>: {% translate "You can call me <span class=\"example-highlight\">lucky</span>." %}</li>
+        </ul>
+        
+        <div class="navigation-links">
+            <a href="{% url 'adjective_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Adjectives" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

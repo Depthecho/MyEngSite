@@ -1,0 +1,348 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Prepositional Phrases: Structure and Function" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h1, h2, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        h2 {
+            font-size: 24px;
+        }
+
+        h3 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h4 {
+            font-size: 18px;
+            color: #4cc9f0;
+            border-bottom: none;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+
+        .prep-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+
+        .object-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .adj-phrase {
+            color: #4cc9f0;
+            font-weight: 600;
+        }
+
+        .adv-phrase {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        .structure-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+
+        .function-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+
+        .usage-card {
+            background: rgba(131, 232, 222, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #83e8de;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .structure-diagram {
+            background: rgba(179, 136, 255, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .phrase-diagram {
+            background: rgba(76, 201, 240, 0.1);
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'preposition_page' %}">{% translate "Preposition" %}</a></span> &raquo;
+            <span>{% translate "Prepositional Phrases" %}</span>
+        </nav>
+
+        <h1>{% translate "Mastering Prepositional Phrases" %}</h1>
+        <p>
+            {% translate "Prepositional phrases are essential building blocks in English grammar that add depth and detail to sentences by showing relationships between different elements." %}
+        </p>
+
+        <div class="structure-card">
+            <h2>{% translate "Anatomy of a Prepositional Phrase" %}</h2>
+            <div class="structure-diagram">
+                <span class="prep-highlight">[Preposition]</span> + <span class="object-highlight">[Object]</span> + <span class="term-highlight">[Optional Modifiers]</span>
+            </div>
+
+            <p>{% translate "Every prepositional phrase contains these core components:" %}</p>
+
+            <h3>{% translate "1. The Preposition" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always comes first in the phrase" %}</li>
+                <li>{% translate "Determines the type of relationship shown" %}</li>
+                <li>{% translate "Can be simple (in), compound (inside), or phrasal (in front of)" %}</li>
+            </ul>
+
+            <h3>{% translate "2. The Object" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Always a noun, pronoun, or noun equivalent" %}</li>
+                <li>{% translate "Cannot be a verb (except gerunds)" %}</li>
+                <li>{% translate "May include determiners (the, my) or adjectives" %}</li>
+            </ul>
+
+            <h3>{% translate "3. Modifiers (Optional)" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "Add descriptive detail to the object" %}</li>
+                <li>{% translate "Can include adjectives, adjective phrases, or other modifiers" %}</li>
+                <li>{% translate "Make the phrase more specific" %}</li>
+            </ul>
+
+            <h3>{% translate "Structural Examples" %}</h3>
+            <div class="phrase-diagram">
+                <p><span class="prep-highlight">in</span> <span class="object-highlight">the house</span></p>
+                <p><span class="prep-highlight">with</span> <span class="object-highlight">her best friend</span></p>
+                <p><span class="prep-highlight">under</span> <span class="object-highlight">the old wooden bridge</span></p>
+            </div>
+        </div>
+
+        <div class="function-card">
+            <h2>{% translate "Grammatical Functions" %}</h2>
+            <p>{% translate "Prepositional phrases serve two primary functions in sentences, each with distinct characteristics:" %}</p>
+
+            <h3><span class="adj-phrase">{% translate "1. Adjective Phrases" %}</span></h3>
+            <p>{% translate "When functioning as adjectives, prepositional phrases:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Modify nouns or pronouns" %}</li>
+                <li>{% translate "Answer the questions <span class=\"code-highlight\">which one?</span> or <span class=\"code-highlight\">what kind?</span>" %}</li>
+                <li>{% translate "Always appear immediately after the noun they modify" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "The book <span class=\"adj-phrase\">on the table</span> is mine." %}</li>
+                <li>{% translate "A woman <span class=\"adj-phrase\">with great determination</span> succeeded." %}</li>
+                <li>{% translate "The solution <span class=\"adj-phrase\">to the problem</span> was simple." %}</li>
+            </ul>
+
+            <h3><span class="adv-phrase">{% translate "2. Adverb Phrases" %}</span></h3>
+            <p>{% translate "When functioning as adverbs, prepositional phrases:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "Modify verbs, adjectives, or other adverbs" %}</li>
+                <li>{% translate "Answer questions like <span class=\"code-highlight\">where?</span>, <span class=\"code-highlight\">when?</span>, <span class=\"code-highlight\">how?</span>, or <span class=\"code-highlight\">why?</span>" %}</li>
+                <li>{% translate "Can appear in various positions in the sentence" %}</li>
+            </ul>
+
+            <h4>{% translate "Examples" %}</h4>
+            <ul class="styled-list">
+                <li>{% translate "She arrived <span class=\"adv-phrase\">at noon</span>." %}</li>
+                <li>{% translate "<span class=\"adv-phrase\">In the garden</span>, we planted flowers." %}</li>
+                <li>{% translate "He acted <span class=\"adv-phrase\">with great courage</span>." %}</li>
+            </ul>
+        </div>
+
+        <div class="usage-card">
+            <h2>{% translate "Advanced Usage Patterns" %}</h2>
+
+            <h3>{% translate "Multiple Prepositional Phrases" %}</h3>
+            <p>{% translate "Sentences often contain multiple prepositional phrases that work together:" %}</p>
+            <ul class="styled-list">
+                <li>{% translate "The book <span class=\"adj-phrase\">on the shelf</span> <span class=\"adj-phrase\">in the library</span> was valuable." %}</li>
+                <li>{% translate "We walked <span class=\"adv-phrase\">to the park</span> <span class=\"adv-phrase\">after breakfast</span>." %}</li>
+            </ul>
+
+            <h3>{% translate "Distinguishing Between Functions" %}</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Feature" %}</th>
+                        <th>{% translate "Adjective Phrase" %}</th>
+                        <th>{% translate "Adverb Phrase" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{% translate "Modifies" %}</td>
+                        <td>{% translate "Nouns/Pronouns" %}</td>
+                        <td>{% translate "Verbs/Adjectives/Adverbs" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Position" %}</td>
+                        <td>{% translate "Right after noun" %}</td>
+                        <td>{% translate "Flexible" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Questions Answered" %}</td>
+                        <td>{% translate "Which one? What kind?" %}</td>
+                        <td>{% translate "Where? When? How? Why?" %}</td>
+                    </tr>
+                    <tr>
+                        <td>{% translate "Example" %}</td>
+                        <td>{% translate "The house <span class=\"adj-phrase\">by the lake</span>" %}</td>
+                        <td>{% translate "She slept <span class=\"adv-phrase\">until noon</span>" %}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>{% translate "Common Errors to Avoid" %}</h3>
+            <ul class="styled-list">
+                <li>{% translate "<span class=\"term-highlight\">Dangling prepositions:</span> While acceptable in speech, avoid in formal writing" %}
+                    <p class="code-highlight">{% translate "Informal: Who are you going with?" %}</p>
+                    <p class="code-highlight">{% translate "Formal: With whom are you going?" %}</p>
+                </li>
+                <li>{% translate "<span class=\"term-highlight\">Misplaced phrases:</span> Keep adjective phrases close to the nouns they modify" %}
+                    <p class="code-highlight">{% translate "Unclear: The dog barked at the mailman with a loud voice." %}</p>
+                    <p class="code-highlight">{% translate "Clear: The dog with a loud voice barked at the mailman." %}</p>
+                </li>
+            </ul>
+        </div>
+
+        <div class="navigation-links">
+            <a href="{% url 'preposition_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Prepositions" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

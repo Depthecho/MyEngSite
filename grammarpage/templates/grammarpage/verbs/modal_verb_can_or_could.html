@@ -1,0 +1,375 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Can / Could" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container {
+            padding-top: 40px;
+        }
+
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+
+        h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 24px;
+        }
+
+        h4 {
+            font-size: 20px;
+            margin-top: 25px;
+        }
+
+        h5 {
+            font-size: 18px;
+            color: #83e8de;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .styled-list .styled-list li:before {
+            content: "-";
+        }
+        
+        .styled-list .styled-list .styled-list li:before {
+            content: "•";
+        }
+
+        .styled-list li ul.styled-list {
+            margin-top: 5px;
+        }
+
+        .styled-list li ul.styled-list li {
+            padding-left: 15px;
+            margin: 4px 0;
+        }
+
+        .term-highlight, .pronoun-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+
+        .grammar-table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .grammar-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        
+        @media (max-width: 600px) {
+            .grammar-detail-container {
+                padding: 10px;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Can / Could" %}</span>
+        </nav>
+        
+        <h1>{% translate "Can / Could" %}</h1>
+        <p>
+            {% translate "<span class=\"term-highlight\">Can</span> and <span class=\"term-highlight\">Could</span> are modal auxiliary verbs in English. They are used to express various meanings, including ability, permission, possibility, and requests. Like all modal verbs, they do not change their form based on the subject (e.g., \"I can,\" \"she can\") and are always followed by the base form of the main verb." %}
+        </p>
+        <p>
+            {% translate "While \"can\" generally refers to the present or future, \"could\" can refer to the past, or be used for more polite or hypothetical situations in the present/future." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Forms of Can / Could" %}</h4>
+        <p>
+            {% translate "The forms of \"can\" and \"could\" are simple, as they do not conjugate like regular verbs. They always precede the base form of the main verb." %}
+        </p>
+
+        <h5>{% translate "1. Can (Present / Future)" %}</h5>
+        <p>
+            {% translate "The verb \"can\" is used for present or future abilities, possibilities, or permissions." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + can + Base Verb" %}</td>
+                        <td><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "can swim" %}</span>.</span></i><br><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "can speak" %}</span> {% translate "French." %}</span></i></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + cannot / can't + Base Verb" %}</td>
+                        <td><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "can't run" %}</span> {% translate "very fast." %}</span></i><br><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "cannot come" %}</span>.</span></i></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Interrogative" %}</span></td>
+                        <td>{% translate "Can + Subject + Base Verb?" %}</td>
+                        <td><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Can you" %}</span> <span class="verb-highlight">{% translate "help" %}</span> {% translate "me?" %}</span></i><br><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Can she" %}</span> <span class="verb-highlight">{% translate "sing" %}</span>?</span></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>{% translate "2. Could (Past / Polite / Possibility)" %}</h5>
+        <p>
+            {% translate "The verb \"could\" is used to talk about past abilities, polite requests, or possibilities in the present or future." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + could + Base Verb" %}</td>
+                        <td><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "could play" %}</span> {% translate "the piano when I was young." %}</span></i><br><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "could go" %}</span> {% translate "to the cinema." %}</span></i></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + could not / couldn't + Base Verb" %}</td>
+                        <td><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "couldn't open" %}</span> {% translate "the jar." %}</span></i><br><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "could not find" %}</span> {% translate "it." %}</span></i></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Interrogative" %}</span></td>
+                        <td>{% translate "Could + Subject + Base Verb?" %}</td>
+                        <td><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could you please" %}</span> <span class="verb-highlight">{% translate "close" %}</span> {% translate "the window?" %}</span></i><br><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could she" %}</span> <span class="verb-highlight">{% translate "be" %}</span> {% translate "at home?" %}</span></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h5>{% translate "3. Could have + Past Participle (Unrealized Past Possibility)" %}</h5>
+        <p>
+            {% translate "This form is used to express possibilities that existed in the past but did not happen, or to express regret or criticism about a past action." %}
+        </p>
+        <div class="grammar-table-container">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th>{% translate "Form" %}</th>
+                        <th>{% translate "Structure" %}</th>
+                        <th>{% translate "Example" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Affirmative" %}</span></td>
+                        <td>{% translate "Subject + could have + Past Participle" %}</td>
+                        <td><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "could have gone" %}</span> {% translate "to university." %}</span></i><br><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "could have arrived" %}</span> {% translate "earlier." %}</span></i></td>
+                    </tr>
+                    <tr>
+                        <td><span class="term-highlight">{% translate "Negative" %}</span></td>
+                        <td>{% translate "Subject + could not have / couldn't have + Past Participle" %}</td>
+                        <td><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "couldn't have known" %}</span>.</span></i><br><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "could not have done" %}</span> {% translate "it without you." %}</span></i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Use of Can / Could" %}</h4>
+        <p>
+            {% translate "\"Can\" and \"could\" are versatile modal verbs with distinct and overlapping uses depending on the context." %}
+        </p>
+
+        <h5>{% translate "1. Expressing Ability" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Can (Present / General Ability):" %}</span> {% translate "Indicates capability or skill in the present." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "I" %} <span class="verb-highlight">{% translate "can run" %}</span> {% translate "a marathon." %}</span></i> ({% translate "Physical ability" %})</li>
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "can solve" %}</span> {% translate "complex math problems." %}</span></i> ({% translate "Mental ability" %})</li>
+                    <li><i><span class="code-highlight">{% translate "Birds" %} <span class="verb-highlight">{% translate "can fly" %}</span>.</span></i> ({% translate "General ability" %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Could (Past Ability):" %}</span> {% translate "Refers to an ability someone had in the past." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "When I was five, I" %} <span class="verb-highlight">{% translate "could speak" %}</span> {% translate "a little French." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "could lift" %}</span> {% translate "heavy weights in his youth." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Note:" %}</span> {% translate "For a single, specific achievement in the past, \"was/were able to\" is often preferred. Example:" %} <i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "was able to finish" %}</span> {% translate "the race despite his injury." %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "2. Expressing Possibility" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Can (General / Theoretical Possibility):" %}</span> {% translate "Used for things that are generally possible or allowed by rules/nature." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "It" %} <span class="verb-highlight">{% translate "can get" %}</span> {% translate "very cold here in winter." %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "Accidents" %} <span class="verb-highlight">{% translate "can happen" %}</span>.</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Could (Present / Future Possibility - less certain):" %}</span> {% translate "Suggests a less certain or more remote possibility than \"can\" or \"may/might\". Also used for suggestions." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "It" %} <span class="verb-highlight">{% translate "could rain" %}</span> {% translate "later." %}</span></i> ({% translate "It's possible, but not definite" %})</li>
+                    <li><i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">{% translate "could be" %}</span> {% translate "at the library right now." %}</span></i> ({% translate "It's a possibility" %})</li>
+                    <li><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "could try" %}</span> {% translate "a different approach." %}</span></i> ({% translate "Suggesting an option" %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Could have + Past Participle (Past Possibility / Unrealized Possibility):" %}</span> {% translate "Describes something that was possible but did not happen. It can also imply regret or criticism." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">{% translate "could have won" %}</span> {% translate "the game if they had played better." %}</span></i> ({% translate "It was possible, but they didn't" %})</li>
+                    <li><i><span class="code-highlight">{% translate "He" %} <span class="verb-highlight">{% translate "could have been" %}</span> {% translate "hurt in the accident." %}</span></i> ({% translate "It was possible for him to be hurt" %})</li>
+                    <li><i><span class="code-highlight">{% translate "You" %} <span class="verb-highlight">{% translate "could have told" %}</span> {% translate "me!" %}</span></i> ({% translate "Implies criticism or regret" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "3. Giving / Asking for Permission" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Can (Informal Permission):" %}</span> {% translate "Commonly used for giving and asking for permission in casual situations." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight">{% translate "You" %} <span class="verb-highlight">{% translate "can go" %}</span> {% translate "now." %}</span></i> ({% translate "Giving permission" %})</li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Can I" %}</span> <span class="verb-highlight">{% translate "use" %}</span> {% translate "your phone?" %}</span></i> ({% translate "Asking for permission" %})</li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Could (Polite Permission / Requests):" %}</span> {% translate "More formal or polite than \"can\" for asking for permission or making requests." %}
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could I" %}</span> <span class="verb-highlight">{% translate "borrow" %}</span> {% translate "your pen for a moment?" %}</span></i></li>
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could you please" %}</span> <span class="verb-highlight">{% translate "pass" %}</span> {% translate "the salt?" %}</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <h5>{% translate "4. Making Requests / Offers / Suggestions" %}</h5>
+        <ul class="styled-list">
+            <li><span class="term-highlight">{% translate "Can (Informal Request):" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Can you" %}</span> <span class="verb-highlight">{% translate "help" %}</span> {% translate "me with this box?" %}</span></i></li>
+                </ul>
+            </li>
+            <li><span class="term-highlight">{% translate "Could (Polite Request / Offering a suggestion):" %}</span>
+                <ul class="styled-list">
+                    <li><i><span class="code-highlight"><span class="auxiliary-highlight">{% translate "Could you" %}</span> <span class="verb-highlight">{% translate "open" %}</span> {% translate "the door for me, please?" %}</span></i></li>
+                    <li><i><span class="code-highlight">{% translate "We" %} <span class="verb-highlight">{% translate "could order" %}</span> {% translate "a pizza tonight." %}</span></i> ({% translate "Suggestion" %})</li>
+                    <li><i><span class="code-highlight">{% translate "You" %} <span class="verb-highlight">{% translate "could try" %}</span> {% translate "talking to him about it." %}</span></i> ({% translate "Suggestion/Advice" %})</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="navigation-links">
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}

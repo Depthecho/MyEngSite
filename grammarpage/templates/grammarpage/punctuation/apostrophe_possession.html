@@ -1,0 +1,249 @@
+{% extends 'grammarpage/grammar_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block grammar_title %}{% translate "Apostrophe - Showing Possession" %}{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'style/grammar_list.css' %}">
+    <style>
+        .main-container { padding-top: 40px; }
+        .grammar-detail-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #e0e0e0;
+        }
+        h1, h3, h4 {
+            color: #ff9e7d;
+            border-bottom: 2px solid #444;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h1 { font-size: 28px; }
+        h3 { font-size: 24px; }
+        h4 { font-size: 20px; margin-top: 25px; }
+        p { line-height: 1.6; margin-bottom: 15px; }
+        .grammar-divider {
+            border: 1px solid #444;
+            margin: 20px 0;
+        }
+        .styled-list {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+        .styled-list li {
+            margin: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        .styled-list li:before {
+            content: "•";
+            color: #4cc9f0;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .term-highlight {
+            color: #ff9e7d;
+            font-weight: 600;
+        }
+        .possessive-highlight {
+            color: #b388ff;
+            font-weight: 600;
+        }
+        .mark-highlight {
+            color: #83e8de;
+            font-weight: bold;
+        }
+        .example-highlight {
+            color: #4cc9f0;
+            font-weight: 500;
+        }
+        .code-highlight {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            margin: 5px 0;
+            padding: 2px 4px;
+            border-radius: 4px;
+            color: #83e8de;
+            white-space: nowrap;
+        }
+        .usage-card {
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #4cc9f0;
+        }
+        .rule-card {
+            background: rgba(179, 136, 255, 0.1);
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 3px solid #b388ff;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: rgba(0, 0, 0, 0.2);
+            color: #ff9e7d;
+        }
+        .back-to-list-btn {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #4cc9f0;
+            color: #1e1e1e;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .back-to-list-btn:hover {
+            background-color: #ff9e7d;
+        }
+        @media (max-width: 600px) {
+            .grammar-detail-container { padding: 10px; }
+        }
+    </style>
+{% endblock %}
+
+{% block grammar_content %}
+    <div class="grammar-detail-container">
+        <nav class="breadcrumbs">
+            <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
+            <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
+            <span><a href="{% url 'punctuation_page' %}">{% translate "Punctuation" %}</a></span> &raquo;
+            <span>{% translate "Apostrophe: Possession" %}</span>
+        </nav>
+
+        <h1>{% translate "Possessive Apostrophes in English" %}</h1>
+        <p>
+            {% translate "The <span class=\"term-highlight\">apostrophe</span> (') is used with 's' to indicate ownership or possession. Proper use clarifies relationships between nouns and their possessors." %}
+        </p>
+
+        <hr class="grammar-divider">
+
+        <div class="usage-card">
+            <h3>{% translate "Basic Rules" %}</h3>
+            <p>
+                {% translate "The apostrophe placement changes based on whether the noun is singular or plural:" %}
+            </p>
+
+            <h4>{% translate "Structure:" %}</h4>
+            <div class="code-highlight">
+                {% translate "Owner" %}<span class="mark-highlight">'s</span> {% translate "or" %} <span class="mark-highlight">s'</span> {% translate "+ possessed item" %}
+            </div>
+
+            <h4>{% translate "Examples:" %}</h4>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="possessive-highlight">The teacher</span><span class="mark-highlight">'s</span> desk</span></li>
+                <li><span class="code-highlight"><span class="possessive-highlight">The teachers</span><span class="mark-highlight">'</span> lounge</span></li>
+            </ul>
+        </div>
+
+        <div class="rule-card">
+            <h3>{% translate "Detailed Usage" %}</h3>
+
+            <h4>1. {% translate "Singular Nouns" %}</h4>
+            <p>{% translate "Add 's to all singular nouns, including those ending in s:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="possessive-highlight">The cat</span><span class="mark-highlight">'s</span> tail</span></li>
+                <li><span class="code-highlight"><span class="possessive-highlight">James</span><span class="mark-highlight">'s</span> car</span> ({% translate "or James'" %})</li>
+            </ul>
+
+            <h4>2. {% translate "Regular Plural Nouns" %}</h4>
+            <p>{% translate "Add only an apostrophe after the existing s:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="possessive-highlight">The students</span><span class="mark-highlight">'</span> projects</span></li>
+                <li><span class="code-highlight"><span class="possessive-highlight">The companies</span><span class="mark-highlight">'</span> policies</span></li>
+            </ul>
+
+            <h4>3. {% translate "Irregular Plural Nouns" %}</h4>
+            <p>{% translate "Add 's to plurals that don't end in s:" %}</p>
+            <ul class="styled-list">
+                <li><span class="code-highlight"><span class="possessive-highlight">The children</span><span class="mark-highlight">'s</span> toys</span></li>
+                <li><span class="code-highlight"><span class="possessive-highlight">The women</span><span class="mark-highlight">'s</span> rights</span></li>
+            </ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Special Cases" %}</h3>
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>{% translate "Case" %}</th>
+                    <th>{% translate "Example" %}</th>
+                    <th>{% translate "Rule" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{% translate "Joint Possession" %}</td>
+                 <td><span class="code-highlight">{% translate 'John and Mary<span class="mark-highlight">\'s</span> house' %}</span></td>
+                    <td>{% translate "Add 's only to last name" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Separate Possession" %}</td>
+<td><span class="code-highlight">{% translate 'John<span class="mark-highlight">\'s</span> and Mary<span class="mark-highlight">\'s</span> cars' %}</span></td>
+                    <td>{% translate "Add 's to each name" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Names Ending in S" %}</td>
+<td><span class="code-highlight">{% translate 'Charles<span class="mark-highlight">\'s</span> book' %} <br> {% translate 'or Charles\' book' %}</span></td>
+                    <td>{% translate "Both forms acceptable" %}</td>
+                </tr>
+                <tr>
+                    <td>{% translate "Time Expressions" %}</td>
+<td><span class="code-highlight">{% translate 'a week<span class="mark-highlight">\'s</span> vacation' %}</span></td>
+                    <td>{% translate "Treat time periods as possessors" %}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="usage-card">
+            <h3>{% translate "Common Mistakes" %}</h3>
+<ul class="styled-list">
+    <li>{% translate '<span class="term-highlight">Its vs. It\'s:</span> \'Its\' is possessive, \'it\'s\' means \'it is\'' %}
+        <p class="code-highlight">{% translate '<span class="term-highlight">Correct:</span> The dog wagged <span class="possessive-highlight">its</span> tail.' %}</p>
+        <p class="code-highlight">{% translate '<span class="term-highlight">Correct:</span> <span class="possessive-highlight">It\'s</span> (it is) raining.' %}</p>
+    </li>
+    <li>{% translate '<span class="term-highlight">Plural Nouns:</span> Don\'t use apostrophes for simple plurals' %}
+        <p class="code-highlight">{% translate '<span class="term-highlight">Incorrect:</span> banana\'s for sale' %}</p>
+    </li>
+    <li>{% translate '<span class="term-highlight">Pronouns:</span> Possessive pronouns (yours, hers, theirs) don\'t use apostrophes' %}</li>
+</ul>
+        </div>
+
+        <hr class="grammar-divider">
+
+        <h3>{% translate "Practice Examples" %}</h3>
+        <p>{% translate "Add apostrophes where needed:" %}</p>
+        <ol class="styled-list">
+            <li>{% translate "The childrens playground" %}</li>
+            <li>{% translate "My parents car" %} ({% translate "they share one car" %})</li>
+            <li>{% translate "The mens and womens changing rooms" %}</li>
+            <li>{% translate "A years salary" %}</li>
+        </ol>
+
+        <div class="navigation-links">
+            <a href="{% url 'punctuation_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Punctuation" %}
+            </a>
+        </div>
+    </div>
+{% endblock %}
