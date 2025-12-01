@@ -8,6 +8,7 @@ from profilepage.services import ProfileService, ProfileUpdateHandler, Achieveme
 from profilepage.forms import ProfileUpdateForm, CustomPasswordChangeForm
 from unittest.mock import MagicMock, patch
 
+# 1
 
 @pytest.fixture
 def test_user(db):
