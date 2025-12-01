@@ -1,0 +1,56 @@
+name: Django CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Django Tests
+        run: |
+          # Установите временные переменные окружения для тестов
+          export SECRET_KEY="dummy_key_for_tests"
+          export DATABASE_URL="sqlite:///db.sqlite3"
+          python manage.py test
+          
+      - name: Check Migrations (Optional)
+        run: python manage.py makemigrations --check --dry-run
+        
+  deploy:
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Production Server
+        uses: appleboy/ssh-action@v1.0.3 
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.HOST_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # 1. Переход в каталог проекта на VPS
+            cd ~/myengsite
+            
+            # 2. Пересоздание и запуск контейнеров Docker Compose
+            # --build гарантирует, что Dockerfile будет пересобран с новым кодом из репозитория
+            docker-compose up -d --build
+            
+            # Очистка старых образов после успешного развертывания
+            docker image prune -f
