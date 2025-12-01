@@ -234,43 +234,43 @@
                         <tr>
                             <td>one</td>
                             <td>first</td>
-                            <td>Complete change</td>
+                            <td>{% translate "Complete change" %}</td>
                             <td>{% translate "Not 'oneth'" %}</td>
                         </tr>
                         <tr>
                             <td>two</td>
                             <td>second</td>
-                            <td>Complete change</td>
+                            <td>{% translate "Complete change" %}</td>
                             <td>{% translate "Not 'twoth'" %}</td>
                         </tr>
                         <tr>
                             <td>three</td>
                             <td>third</td>
-                            <td>Drop -ee, add -ird</td>
+                            <td>{% translate "Drop -ee, add -ird" %}</td>
                             <td>{% translate "Not 'threeth'" %}</td>
                         </tr>
                         <tr>
                             <td>five</td>
                             <td>fifth</td>
-                            <td>ve → f, add -th</td>
+                            <td>{% translate "ve → f, add -th" %}</td>
                             <td>{% translate "Not 'fiveth'" %}</td>
                         </tr>
                         <tr>
                             <td>eight</td>
                             <td>eighth</td>
-                            <td>Add -h only</td>
+                            <td>{% translate "Add -h only" %}</td>
                             <td>{% translate "One 't' disappears" %}</td>
                         </tr>
                         <tr>
                             <td>nine</td>
                             <td>ninth</td>
-                            <td>Drop -e</td>
+                            <td>{% translate "Drop -e" %}</td>
                             <td>{% translate "Not 'nineth'" %}</td>
                         </tr>
                         <tr>
                             <td>twelve</td>
                             <td>twelfth</td>
-                            <td>ve → f, add -th</td>
+                            <td>{% translate "ve → f, add -th" %}</td>
                             <td>{% translate "Not 'twelveth'" %}</td>
                         </tr>
                     </tbody>
@@ -349,7 +349,7 @@
             <h4>{% translate "Writing Style Guidelines" %}</h4>
             <ul class="styled-list">
                 <li>{% translate "In formal writing, spell out ordinals under 10:" %}
-                    <p class="code-highlight">the <span class="example-highlight">third</span> chapter (not 3rd chapter)</p>
+                    <p class="code-highlight">the <span class="example-highlight">third</span> chapter ({% translate "not 3rd chapter" %})</p>
                 </li>
                 <li>{% translate "Use numerals with suffixes for dates and rankings:" %}
                     <p class="code-highlight">May <span class="example-highlight">15th</span><br>
@@ -366,19 +366,19 @@
         <div class="special-note">
             <h3>{% translate "4. Common Mistakes to Avoid" %}</h3>
             <ul class="styled-list">
-                <li>{% translate "<span class=\"exception-highlight\">Incorrect double ordinalization</span> in compounds:" %}
+                <li><span class="exception-highlight">{% translate "Incorrect double ordinalization" %}</span> {% translate "in compounds:" %}
                     <p class="code-highlight">Incorrect: twenty-oneth<br>
                     Correct: twenty-first</p>
                 </li>
-                <li>{% translate "<span class=\"exception-highlight\">Misspelling irregular forms</span>:" %}
+                <li><span class="exception-highlight">{% translate "Misspelling irregular forms" %}</span>:
                     <p class="code-highlight">Incorrect: nineth, twelveth, fiveth<br>
                     Correct: ninth, twelfth, fifth</p>
                 </li>
-                <li>{% translate "<span class=\"exception-highlight\">Incorrect abbreviations</span>:" %}
+                <li><span class="exception-highlight">{% translate "Incorrect abbreviations" %}</span>:
                     <p class="code-highlight">Incorrect: 22th, 43th<br>
                     Correct: 22nd, 43rd</p>
                 </li>
-                <li>{% translate "<span class=\"exception-highlight\">Wrong suffix after hundred/thousand</span>:" %}
+                <li><span class="exception-highlight">{% translate "Wrong suffix after hundred/thousand" %}</span>:
                     <p class="code-highlight">Incorrect: one hundredth first<br>
                     Correct: one hundred first</p>
                 </li>

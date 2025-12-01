@@ -99,6 +99,7 @@
         .styled-list li {
             margin: 8px 0;
             position: relative;
+            padding-left: 25px;
         }
 
         .styled-list li:before {
@@ -109,7 +110,7 @@
             width: 1em;
             margin-left: -1em;
         }
-        
+
         .back-to-list-btn {
             display: inline-block;
             margin-top: 30px;
@@ -149,10 +150,11 @@
         <p>
             {% translate "The standard structure is a simple noun phrase: <strong>Article + Adjective + Noun</strong>." %}
         </p>
+
         <ul class="styled-list">
-            <li><span class=\"example-highlight\">{% translate "a <span class=\"term-highlight\">red</span> car" %}</span></li>
-            <li><span class=\"example-highlight\">{% translate "the <span class=\"term-highlight\">tall</span> man" %}</span></li>
-            <li><span class=\"example-highlight\">{% translate "many <span class=\"term-highlight\">difficult</span> questions" %}</span></li>
+            <li><span class="example-highlight">a <span class="term-highlight">red</span> car</span></li>
+            <li><span class="example-highlight">the <span class="term-highlight">tall</span> man</span></li>
+            <li><span class="example-highlight">many <span class="term-highlight">difficult</span> questions</span></li>
         </ul>
         <p>
             {% translate "In these examples, the adjectives <span class=\"code-highlight\">red</span>, <span class=\"code-highlight\">tall</span>, and <span class=\"code-highlight\">difficult</span> are placed before the nouns they describe, acting as direct attributes of those nouns." %}
@@ -165,8 +167,8 @@
             {% translate "When multiple adjectives are used to describe a single noun, they are all placed before the noun and follow a specific order (e.g., Opinion, Size, Age, Color, etc.)." %}
         </p>
         <ul class="styled-list">
-            <li><span class=\"example-highlight\">{% translate "a <span class=\"term-highlight\">beautiful</span> <span class=\"capital-highlight\">old</span> <span class=\"example-highlight\">black</span> car" %}</span></li>
-            <li><span class=\"example-highlight\">{% translate "the <span class=\"term-highlight\">huge</span> <span class=\"capital-highlight\">round</span> <span class=\"example-highlight\">wooden</span> table" %}</span></li>
+            <li><span class="example-highlight">a <span class="term-highlight">beautiful</span> <span class="capital-highlight">old</span> <span class="example-highlight">black</span> car</span></li>
+            <li><span class="example-highlight">the <span class="term-highlight">huge</span> <span class="capital-highlight">round</span> <span class="example-highlight">wooden</span> table</span></li>
         </ul>
         <p>
             {% translate "This structure remains attributive, as all adjectives are part of the noun phrase that comes before the noun itself." %}
@@ -179,9 +181,9 @@
             {% translate "Some adjectives can only be used in an attributive position and cannot be used predicatively (after a verb). Common examples include:" %}
         </p>
         <ul class="styled-list">
-            <li><span class=\"code-highlight\">{% translate "main" %}</span>: {% translate "<span class=\"example-highlight\">the main reason</span>" %}, not <strike>the reason is main</strike></li>
-            <li><span class=\"code-highlight\">{% translate "chief" %}</span>: {% translate "<span class=\"example-highlight\">the chief complaint</span>" %}, not <strike>the complaint is chief</strike></li>
-            <li><span class=\"code-highlight\">{% translate "former" %}</span>: {% translate "<span class=\"example-highlight\">the former president</span>" %}, not <strike>the president is former</strike></li>
+            <li><span class="code-highlight">main</span>: <span class="example-highlight">the main reason</span>, not <strike>the reason is main</strike></li>
+            <li><span class="code-highlight">chief</span>: <span class="example-highlight">the chief complaint</span>, not <strike>the complaint is chief</strike></li>
+            <li><span class="code-highlight">former</span>: <span class="example-highlight">the former president</span>, not <strike>the president is former</strike></li>
         </ul>
         <p>
             {% translate "This is an important distinction to avoid grammatical errors when using these specific words." %}

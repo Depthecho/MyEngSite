@@ -159,57 +159,7 @@
     </div>
 </div>
 
-<div class="settings-section">
-    <h2 class="settings-section-title">
-        <i class="fas fa-key"></i> {% translate "Change Password" %}
-    </h2>
-
-    <form method="post" class="settings-form">
-        {% csrf_token %}
-
-        <div class="form-group">
-            <label for="{{ password_form.old_password.id_for_label }}">{% translate "Current Password" %}</label>
-            <div class="input-with-icon">
-                <i class="fas fa-lock"></i>
-                {{ password_form.old_password }}
-            </div>
-            {% if password_form.old_password.errors %}
-                <div class="form-error">{{ password_form.old_password.errors }}</div>
-            {% endif %}
-        </div>
-
-        <div class="form-group">
-            <label for="{{ password_form.new_password1.id_for_label }}">{% translate "New Password" %}</label>
-            <div class="input-with-icon">
-                <i class="fas fa-key"></i>
-                {{ password_form.new_password1 }}
-            </div>
-            {% if password_form.new_password1.errors %}
-                <div class="form-error">{{ password_form.new_password1.errors }}</div>
-            {% endif %}
-        </div>
-
-        <div class="form-group">
-            <label for="{{ password_form.new_password2.id_for_label }}">{% translate "Confirm New Password" %}</label>
-            <div class="input-with-icon">
-                <i class="fas fa-key"></i>
-                {{ password_form.new_password2 }}
-            </div>
-            {% if password_form.new_password2.errors %}
-                <div class="form-error">{{ password_form.new_password2.errors }}</div>
-            {% endif %}
-        </div>
-
-        <div class="form-actions">
-            <button type="submit" name="change_password" class="cta-button secondary">
-                <i class="fas fa-key"></i> {% translate "Change Password" %}
-            </button>
-        </div>
-    </form>
-</div>
-
 <script>
-    // Preview avatar before upload
     document.getElementById('id_avatar').addEventListener('change', function(event) {
         const file = event.target.files[0];
         if (file) {

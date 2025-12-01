@@ -1,0 +1,307 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-palette"></i> {% translate "Appearance Settings" %}
+    </h2>
+
+    <form method="post" class="settings-form">
+        {% csrf_token %}
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Theme" %}</h3>
+                <p class="setting-description">
+                    {% translate "Choose between light and dark theme" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <div class="theme-selector">
+                    <label class="theme-option {% if appearance_form.theme.value == 'light' %}active{% endif %}">
+                        <input type="radio" name="theme" value="light" {% if appearance_form.theme.value == 'light' %}checked{% endif %}>
+                        <div class="theme-preview light-theme">
+                            <i class="fas fa-sun"></i>
+                            <span>{% translate "Light" %}</span>
+                        </div>
+                    </label>
+                    <label class="theme-option {% if appearance_form.theme.value == 'dark' %}active{% endif %}">
+                        <input type="radio" name="theme" value="dark" {% if appearance_form.theme.value == 'dark' %}checked{% endif %}>
+                        <div class="theme-preview dark-theme">
+                            <i class="fas fa-moon"></i>
+                            <span>{% translate "Dark" %}</span>
+                        </div>
+                    </label>
+                    <label class="theme-option {% if appearance_form.theme.value == 'system' %}active{% endif %}">
+                        <input type="radio" name="theme" value="system" {% if appearance_form.theme.value == 'system' %}checked{% endif %}>
+                        <div class="theme-preview system-theme">
+                            <i class="fas fa-desktop"></i>
+                            <span>{% translate "System" %}</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Accent Color" %}</h3>
+                <p class="setting-description">
+                    {% translate "Choose your preferred accent color" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <div class="color-picker">
+                    {% for color in appearance_form.accent_color.field.choices %}
+                    <label class="color-option {% if appearance_form.accent_color.value == color.0 %}active{% endif %}" 
+                           style="background-color: {{ color.0 }};">
+                        <input type="radio" name="accent_color" value="{{ color.0 }}" 
+                               {% if appearance_form.accent_color.value == color.0 %}checked{% endif %}>
+                    </label>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Font Size" %}</h3>
+                <p class="setting-description">
+                    {% translate "Adjust the text size to your preference" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <div class="font-size-selector">
+                    <button type="button" class="font-size-btn decrease" onclick="changeFontSize(-1)">
+                        <i class="fas fa-font"></i> -
+                    </button>
+                    <input type="range" name="font_size" min="12" max="20" step="1" 
+                           value="{{ appearance_form.font_size.value|default:'16' }}" 
+                           id="fontSizeSlider" oninput="updateFontSizeValue(this.value)">
+                    <button type="button" class="font-size-btn increase" onclick="changeFontSize(1)">
+                        <i class="fas fa-font"></i> +
+                    </button>
+                    <span class="font-size-value" id="fontSizeValue">
+                        {{ appearance_form.font_size.value|default:"16" }}px
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Display Density" %}</h3>
+                <p class="setting-description">
+                    {% translate "Control the spacing and size of elements" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <select name="density" class="form-control">
+                    <option value="compact" {% if appearance_form.density.value == 'compact' %}selected{% endif %}>
+                        {% translate "Compact" %}
+                    </option>
+                    <option value="normal" {% if appearance_form.density.value == 'normal' %}selected{% endif %}>
+                        {% translate "Normal" %}
+                    </option>
+                    <option value="comfortable" {% if appearance_form.density.value == 'comfortable' %}selected{% endif %}>
+                        {% translate "Comfortable" %}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Animations" %}</h3>
+                <p class="setting-description">
+                    {% translate "Enable or disable interface animations" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ appearance_form.animations }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="update_appearance_settings" class="cta-button primary">
+                <i class="fas fa-save"></i> {% translate "Save Appearance Settings" %}
+            </button>
+            <button type="button" class="cta-button secondary" onclick="resetAppearanceSettings()">
+                <i class="fas fa-undo"></i> {% translate "Reset to Defaults" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Стили для страницы Appearance */
+    .theme-selector {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .theme-option {
+        cursor: pointer;
+        position: relative;
+    }
+    
+    .theme-option input {
+        position: absolute;
+        opacity: 0;
+    }
+    
+    .theme-preview {
+        width: 100px;
+        height: 80px;
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    
+    .light-theme {
+        background: #ffffff;
+        color: #333333;
+    }
+    
+    .dark-theme {
+        background: #2a2a3a;
+        color: #ffffff;
+    }
+    
+    .system-theme {
+        background: linear-gradient(135deg, #ffffff 50%, #2a2a3a 50%);
+        color: #333333;
+    }
+    
+    .theme-option.active .theme-preview {
+        border-color: #ffcc00;
+        box-shadow: 0 0 0 3px rgba(255, 204, 0, 0.2);
+    }
+    
+    .theme-preview i {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+    
+    .color-picker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .color-option {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: relative;
+        transition: transform 0.2s;
+    }
+    
+    .color-option:hover {
+        transform: scale(1.1);
+    }
+    
+    .color-option.active {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 3px white, 0 0 0 5px #ffcc00;
+    }
+    
+    .color-option input {
+        position: absolute;
+        opacity: 0;
+    }
+    
+    .font-size-selector {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .font-size-btn {
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+    
+    .font-size-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .font-size-value {
+        min-width: 50px;
+        text-align: center;
+    }
+    
+    input[type="range"] {
+        width: 150px;
+        height: 6px;
+        -webkit-appearance: none;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        outline: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        background: #ffcc00;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+</style>
+
+<script>
+    function changeFontSize(change) {
+        const slider = document.getElementById('fontSizeSlider');
+        let newValue = parseInt(slider.value) + change;
+        if (newValue >= parseInt(slider.min) && newValue <= parseInt(slider.max)) {
+            slider.value = newValue;
+            updateFontSizeValue(newValue);
+        }
+    }
+    
+    function updateFontSizeValue(value) {
+        document.getElementById('fontSizeValue').textContent = value + 'px';
+    }
+    
+    function resetAppearanceSettings() {
+        if (confirm('{% translate "Are you sure you want to reset all appearance settings to default values?" %}')) {
+            // Reset theme
+            document.querySelector('input[name="theme"][value="system"]').checked = true;
+            
+            // Reset accent color (assuming first color is default)
+            document.querySelector('.color-picker .color-option:first-child input').checked = true;
+            document.querySelector('.color-picker .color-option:first-child').classList.add('active');
+            
+            // Reset font size
+            document.getElementById('fontSizeSlider').value = 16;
+            updateFontSizeValue(16);
+            
+            // Reset density
+            document.querySelector('select[name="density"]').value = 'normal';
+            
+            // Reset animations
+            document.querySelector('input[name="animations"]').checked = true;
+        }
+    }
+</script>
+{% endblock %}

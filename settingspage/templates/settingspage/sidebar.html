@@ -14,13 +14,13 @@
                         <i class="fas fa-user"></i> {% translate "Profile Settings" %}
                     </a>
                 </li>
-                <li class="sidebar-menu-item {% if 'privacy' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
+                <li class="sidebar-menu-item {% if 'privacy_and_security' in request.resolver_match.url_name %}active{% endif %}">
+                    <a href="{% url 'privacy_and_security_settings' %}">
                         <i class="fas fa-lock"></i> {% translate "Privacy & Security" %}
                     </a>
                 </li>
                 <li class="sidebar-menu-item {% if 'notifications' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
+                    <a href="{% url 'notifications_settings' %}">
                         <i class="fas fa-bell"></i> {% translate "Notifications" %}
                     </a>
                 </li>
@@ -35,14 +35,9 @@
                         <i class="fas fa-language"></i> {% translate "Language & Region" %}
                     </a>
                 </li>
-                <li class="sidebar-menu-item {% if 'theme' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
+                <li class="sidebar-menu-item {% if 'appearance' in request.resolver_match.url_name %}active{% endif %}">
+                    <a href="{% url 'appearance_settings' %}">
                         <i class="fas fa-palette"></i> {% translate "Appearance" %}
-                    </a>
-                </li>
-                <li class="sidebar-menu-item {% if 'learning' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
-                        <i class="fas fa-graduation-cap"></i> {% translate "Learning Preferences" %}
                     </a>
                 </li>
             </ul>
@@ -52,17 +47,17 @@
             <h3 class="sidebar-section-title">{% translate "System" %}</h3>
             <ul class="sidebar-menu">
                 <li class="sidebar-menu-item {% if 'data' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="{#">
+                    <a href="{% url 'data_and_storage_settings' %}">
                         <i class="fas fa-database"></i> {% translate "Data & Storage" %}
                     </a>
                 </li>
                 <li class="sidebar-menu-item {% if 'help' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
+                    <a href="{% url 'help_and_support_settings' %}">
                         <i class="fas fa-question-circle"></i> {% translate "Help & Support" %}
                     </a>
                 </li>
                 <li class="sidebar-menu-item {% if 'about' in request.resolver_match.url_name %}active{% endif %}">
-                    <a href="#">
+                    <a href="{% url 'about_settings' %}">
                         <i class="fas fa-info-circle"></i> {% translate "About" %}
                     </a>
                 </li>
@@ -71,8 +66,8 @@
     </div>
 
     <div class="sidebar-footer">
-        <a href="#" class="footer-link">{% translate "Privacy Policy" %}</a>
-        <a href="#" class="footer-link">{% translate "Terms of Service" %}</a>
+        <a href="{% url 'privacy_policy' %}" class="footer-link">{% translate "Privacy Policy" %}</a>
+        <a href="{% url 'terms_of_service' %}" class="footer-link">{% translate "Terms of Service" %}</a>
         <p class="version-info">v1.0.0</p>
     </div>
 </div>

@@ -1,0 +1,430 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-question-circle"></i> {% translate "Help & Support" %}
+    </h2>
+
+    <!-- Help Resources Section -->
+    <div class="settings-subsection">
+        <h3 class="settings-subtitle">
+            <i class="fas fa-book"></i> {% translate "Help Resources" %}
+        </h3>
+
+        <div class="help-items">
+            <a href="#" class="help-item">
+                <div class="help-icon">
+                    <i class="fas fa-question"></i>
+                </div>
+                <div class="help-content">
+                    <h4>{% translate "FAQs" %}</h4>
+                    <p>{% translate "Find answers to common questions" %}</p>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <a href="#" class="help-item">
+                <div class="help-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="help-content">
+                    <h4>{% translate "User Guide" %}</h4>
+                    <p>{% translate "Complete guide to using our platform" %}</p>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <a href="#" class="help-item">
+                <div class="help-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="help-content">
+                    <h4>{% translate "Video Tutorials" %}</h4>
+                    <p>{% translate "Watch step-by-step tutorials" %}</p>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Contact Support Section -->
+    <div class="settings-subsection">
+        <h3 class="settings-subtitle">
+            <i class="fas fa-headset"></i> {% translate "Contact Support" %}
+        </h3>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Support Email" %}</h3>
+                <p class="setting-description">
+                    {% translate "Reach our support team via email" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <a href="mailto:support@example.com" class="cta-button secondary">
+                    <i class="fas fa-envelope"></i> {% translate "Email Us" %}
+                </a>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Live Chat" %}</h3>
+                <p class="setting-description">
+                    {% translate "Chat with our support team in real-time" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <button type="button" class="cta-button secondary" onclick="openLiveChat()">
+                    <i class="fas fa-comment-dots"></i> {% translate "Start Chat" %}
+                </button>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Phone Support" %}</h3>
+                <p class="setting-description">
+                    {% translate "Call us during business hours" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <a href="tel:+18005551234" class="cta-button secondary">
+                    <i class="fas fa-phone"></i> {% translate "Call Support" %}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Issues Section -->
+    <div class="settings-subsection">
+        <h3 class="settings-subtitle">
+            <i class="fas fa-bug"></i> {% translate "Report Issues" %}
+        </h3>
+
+        <form method="post" class="settings-form">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="issue_type">{% translate "Issue Type" %}</label>
+                <select id="issue_type" name="issue_type" class="form-control">
+                    <option value="bug">{% translate "Bug Report" %}</option>
+                    <option value="feature">{% translate "Feature Request" %}</option>
+                    <option value="account">{% translate "Account Issue" %}</option>
+                    <option value="other">{% translate "Other" %}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="issue_subject">{% translate "Subject" %}</label>
+                <input type="text" id="issue_subject" name="subject" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="issue_description">{% translate "Description" %}</label>
+                <textarea id="issue_description" name="description" class="form-control" rows="5" required
+                          placeholder="{% translate 'Please describe your issue in detail...' %}"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>{% translate "Attachments (optional)" %}</label>
+                <div class="file-upload">
+                    <label class="file-upload-label">
+                        <i class="fas fa-paperclip"></i> {% translate "Choose Files" %}
+                        <input type="file" name="attachments" multiple style="display: none;">
+                    </label>
+                    <span class="file-upload-text">{% translate "No files selected" %}</span>
+                </div>
+                <p class="file-upload-hint">{% translate "Screenshots help us understand your issue better" %}</p>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" name="submit_issue" class="cta-button primary">
+                    <i class="fas fa-paper-plane"></i> {% translate "Submit Report" %}
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- System Information Section -->
+    <div class="settings-subsection">
+        <h3 class="settings-subtitle">
+            <i class="fas fa-info-circle"></i> {% translate "System Information" %}
+        </h3>
+
+        <div class="system-info">
+            <div class="info-item">
+                <span class="info-label">{% translate "App Version" %}</span>
+                <span class="info-value">{{ app_version }}</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% translate "Browser" %}</span>
+                <span class="info-value" id="browser-info">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% translate "Operating System" %}</span>
+                <span class="info-value" id="os-info">Loading...</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">{% translate "Last Updated" %}</span>
+                <span class="info-value">{{ last_updated|date:"DATETIME_FORMAT" }}</span>
+            </div>
+        </div>
+
+        <div class="system-actions">
+            <button type="button" class="cta-button secondary" onclick="checkForUpdates()">
+                <i class="fas fa-sync-alt"></i> {% translate "Check for Updates" %}
+            </button>
+            <button type="button" class="cta-button secondary" onclick="copySystemInfo()">
+                <i class="fas fa-copy"></i> {% translate "Copy System Info" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Help & Support Specific Styles */
+    .help-items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .help-item {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        text-decoration: none;
+        color: white;
+        transition: all 0.3s ease;
+    }
+    
+    .help-item:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateX(5px);
+    }
+    
+    .help-icon {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 204, 0, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 15px;
+    }
+    
+    .help-icon i {
+        color: #ffcc00;
+        font-size: 1.2rem;
+    }
+    
+    .help-content {
+        flex: 1;
+    }
+    
+    .help-content h4 {
+        margin: 0 0 5px 0;
+        font-size: 1.1rem;
+    }
+    
+    .help-content p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+    }
+    
+    .help-item i.fa-chevron-right {
+        color: rgba(255, 255, 255, 0.5);
+    }
+    
+    /* File Upload Styles */
+    .file-upload {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+    }
+    
+    .file-upload-label {
+        padding: 8px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        transition: background 0.3s;
+    }
+    
+    .file-upload-label:hover {
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .file-upload-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+    }
+    
+    .file-upload-hint {
+        margin-top: 5px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.8rem;
+    }
+    
+    /* System Info Styles */
+    .system-info {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        padding: 15px;
+    }
+    
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .info-item:last-child {
+        border-bottom: none;
+    }
+    
+    .info-label {
+        color: rgba(255, 255, 255, 0.8);
+    }
+    
+    .info-value {
+        color: white;
+        font-weight: 500;
+    }
+    
+    .system-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .setting-item{
+        width: 95%;
+    }
+
+    .form-control{
+        width: 100%;
+    }
+
+    #issue_subject{
+        width: 95%;
+    }
+
+    #issue_description{
+        width: 95%;
+    }
+
+    .form-actions .cta-button{
+        margin-right: 0px;
+    }
+</style>
+
+<script>
+    // Detect browser and OS
+    function detectBrowserAndOS() {
+        const userAgent = navigator.userAgent;
+        let browser = "Unknown";
+        let os = "Unknown";
+        
+        // Detect Browser
+        if (userAgent.includes("Firefox")) {
+            browser = "Firefox";
+        } else if (userAgent.includes("Safari") && !userAgent.includes("Chrome")) {
+            browser = "Safari";
+        } else if (userAgent.includes("Chrome")) {
+            browser = "Chrome";
+        } else if (userAgent.includes("Edge")) {
+            browser = "Edge";
+        } else if (userAgent.includes("Opera")) {
+            browser = "Opera";
+        }
+        
+        // Detect OS
+        if (userAgent.includes("Windows")) {
+            os = "Windows";
+        } else if (userAgent.includes("Mac")) {
+            os = "Mac OS";
+        } else if (userAgent.includes("Linux")) {
+            os = "Linux";
+        } else if (userAgent.includes("Android")) {
+            os = "Android";
+        } else if (userAgent.includes("iOS")) {
+            os = "iOS";
+        }
+        
+        document.getElementById('browser-info').textContent = browser;
+        document.getElementById('os-info').textContent = os;
+    }
+    
+    // File upload display
+    document.querySelector('input[name="attachments"]').addEventListener('change', function(e) {
+        const files = e.target.files;
+        const fileText = document.querySelector('.file-upload-text');
+        
+        if (files.length > 0) {
+            if (files.length === 1) {
+                fileText.textContent = files[0].name;
+            } else {
+                fileText.textContent = files.length + ' {% translate "files selected" %}';
+            }
+        } else {
+            fileText.textContent = '{% translate "No files selected" %}';
+        }
+    });
+    
+    // Check for updates
+    function checkForUpdates() {
+        const button = event.target;
+        const originalText = button.innerHTML;
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> {% translate "Checking..." %}';
+        button.disabled = true;
+        
+        // Simulate update check
+        setTimeout(() => {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            alert('{% translate "You are using the latest version of the application." %}');
+        }, 1500);
+    }
+    
+    // Copy system info
+    function copySystemInfo() {
+        const infoItems = document.querySelectorAll('.info-item');
+        let infoText = '';
+        
+        infoItems.forEach(item => {
+            const label = item.querySelector('.info-label').textContent;
+            const value = item.querySelector('.info-value').textContent;
+            infoText += `${label}: ${value}\n`;
+        });
+        
+        navigator.clipboard.writeText(infoText).then(() => {
+            alert('{% translate "System information copied to clipboard!" %}');
+        });
+    }
+    
+    // Open live chat
+    function openLiveChat() {
+        alert('{% translate "Live chat will open in a new window. Please ensure pop-ups are allowed." %}');
+        // In a real implementation, this would open your chat widget
+    }
+    
+    // Run on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        detectBrowserAndOS();
+    });
+</script>
+{% endblock %}

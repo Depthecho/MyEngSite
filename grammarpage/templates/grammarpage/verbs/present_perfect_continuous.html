@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Definition and Structure of Compound Sentences" %}{% endblock %}
+{% block grammar_title %}{% translate "Present Perfect Continuous" %}{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -82,6 +82,16 @@
             font-weight: 600;
         }
 
+        .auxiliary-highlight {
+            color: #83e8de;
+            font-weight: 600;
+        }
+
+        .verb-highlight {
+            color: #ffda47;
+            font-weight: 600;
+        }
+
         .example-highlight {
             color: #4cc9f0;
             font-weight: 500;
@@ -127,22 +137,96 @@
         <nav class="breadcrumbs">
             <a href="{% url 'home' %}">{% translate "Home" %}</a> &raquo;
             <span><a href="{% url 'grammar_page' %}">{% translate "Grammar" %}</a></span> &raquo;
-            <span><a href="{% url 'complex_sentences_page' %}">{% translate "Complex Sentences" %}</a></span> &raquo;
-            <span>{% translate "Definition and Structure of Compound Sentences" %}</span>
+            <span><a href="{% url 'verbs_page' %}">{% translate "Verbs" %}</a></span> &raquo;
+            <span>{% translate "Present Perfect Continuous" %}</span>
         </nav>
 
-        <h1>{% translate "Definition and Structure of Compound Sentences" %}</h1>
+        <h1>{% translate "Present Perfect Continuous" %}</h1>
         <p>
-            {% translate "A <span class=\"term-highlight\">compound sentence</span> consists of two or more independent clauses joined together. Each independent clause can stand alone as a complete sentence." %}
+            {% translate "The <span class=\"term-highlight\">Present Perfect Continuous</span> tense is used to describe an action that started in the past and is still continuing in the present, or an action that has just finished but whose results are visible now." %}
         </p>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Structure (Формула образования)" %}</h4>
         <p>
-            {% translate "Example: <span class=\"code-highlight\">I love pizza, and she loves pasta.</span>" %}
-            <br>{% translate "In this example, both 'I love pizza' and 'she loves pasta' are independent clauses." %}
+            {% translate "This tense is formed using the auxiliary verb 'to have' in the Present Simple, the Past Participle of 'to be' (<span class=\"auxiliary-highlight\">been</span>), and the main verb with the <span class=\"verb-highlight\">-ing</span> ending (Present Participle)." %}
+        </p>
+        <p class="term-highlight">
+            {% translate "Formula: Subject + <span class=\"auxiliary-highlight\">have/has</span> + <span class=\"auxiliary-highlight\">been</span> + Verb-ing" %}
+        </p>
+
+        <h5 class="term-highlight">{% translate "Conjugation Examples (Примеры спряжения):" %}</h5>
+        <ul class="styled-list">
+            <li>
+                <span class="term-highlight">{% translate "Affirmative Sentence (Утверждение):" %}</span>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">I / You / We / They:</span> <i><span class="code-highlight">We <span class="auxiliary-highlight">have been</span> <span class="verb-highlight">waiting</span> for an hour.</span></i></li>
+                    <li><span class="example-highlight">He / She / It:</span> <i><span class="code-highlight">She <span class="auxiliary-highlight">has been</span> <span class="verb-highlight">studying</span> all night.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Negative Sentence (Отрицание):" %}</span>
+                <p>{% translate "Formed by placing 'not' between <span class=\"auxiliary-highlight\">have/has</span> and <span class=\"auxiliary-highlight\">been</span>." %}</p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="auxiliary-highlight">haven't been</span> <span class="verb-highlight">sleeping</span> well recently.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="auxiliary-highlight">has not been</span> <span class="verb-highlight">working</span> here long.</span></i></li>
+                </ul>
+            </li>
+            <li>
+                <span class="term-highlight">{% translate "Interrogative Sentence (Вопрос):" %}</span>
+                <p>{% translate "Formed by placing <span class=\"auxiliary-highlight\">have/has</span> before the subject." %}</p>
+                <ul class="styled-list">
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Have</span> you <span class="auxiliary-highlight">been</span> <span class="verb-highlight">reading</span> this book?</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Has</span> it <span class="auxiliary-highlight">been</span> <span class="verb-highlight">raining</span> since morning?</span></i></li>
+                </ul>
+            </li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Usage Rules (Правила употребления)" %}</h4>
+        <p>
+            {% translate "Present Perfect Continuous is used primarily in two situations:" %}
+        </p>
+
+        <h5 class="term-highlight">1. {% translate "Action from the past continuing up to the present" %}</h5>
+        <p>
+            {% translate "To describe an action that began at some point in the past and is still ongoing now. The focus is on the <span class=\"term-highlight\">duration</span> of the activity." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">They <span class="auxiliary-highlight">have been</span> <span class="verb-highlight">living</span> here <span class="term-highlight">for ten years</span>.</span></i> ({% translate "They started ten years ago and still live here." %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="auxiliary-highlight">have been</span> <span class="verb-highlight">trying</span> to call him <span class="term-highlight">since 9 a.m.</span></span></i> ({% translate "The action (trying to call) is still happening or has just stopped." %})</li>
+        </ul>
+
+        <h5 class="term-highlight">2. {% translate "Recent action with visible result in the present" %}</h5>
+        <p>
+            {% translate "To describe an action that has recently finished, but the evidence or result of that action is clear in the present." %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Her eyes are red because she <span class="auxiliary-highlight">has been</span> <span class="verb-highlight">crying</span>.</span></i> ({% translate "Crying (the action) is over, but red eyes (the result) are visible." %})</li>
+            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">The street is wet. It <span class="auxiliary-highlight">must have been</span> <span class="verb-highlight">raining</span>.</span></i> ({% translate "The rain has stopped, but the wet street is the result." %})</li>
+        </ul>
+
+        <hr class="grammar-divider">
+
+        <h4>{% translate "Time Markers (Слова-маркеры)" %}</h4>
+        <p>
+            {% translate "This tense is commonly used with the following time expressions, emphasizing the duration:" %}
+        </p>
+        <ul class="styled-list">
+            <li><span class="term-highlight">For</span> ({% translate "в течение какого-то времени" %})</li>
+            <li><span class="term-highlight">Since</span> ({% translate "с какого-то момента" %})</li>
+            <li><span class="term-highlight">All day/week/year</span> ({% translate "весь день/неделю/год" %})</li>
+            <li><span class="term-highlight">Lately / Recently</span> ({% translate "в последнее время" %})</li>
+        </ul>
+        <p>
+            {% translate "Note: If the focus is on the <span class=\"term-highlight\">quantity or number of actions completed</span>, the Present Perfect Simple is used instead (e.g., <span class=\"code-highlight\">I have read five books this month.</span>)." %}
         </p>
 
         <div class="navigation-links">
-            <a href="{% url 'complex_sentences_page' %}" class="back-to-list-btn">
-                <i class="fas fa-arrow-left"></i> {% translate "Back to Complex Sentences" %}
+            <a href="{% url 'verbs_page' %}" class="back-to-list-btn">
+                <i class="fas fa-arrow-left"></i> {% translate "Back to Verbs" %}
             </a>
         </div>
     </div>

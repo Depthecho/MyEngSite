@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Numerals: Reading Mixed Numbers" %}{% endblock %}
+{% block grammar_title %{% translate "Numerals: Reading Mixed Numbers" %}}{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -203,25 +203,25 @@
                             <td>1½</td>
                             <td>one and a half</td>
                             <td>1 + 1/2</td>
-                            <td>Special term for half</td>
+                            <td>{% translate "Special term for half" %}</td>
                         </tr>
                         <tr>
                             <td>2¾</td>
                             <td>two and three quarters</td>
                             <td>2 + 3/4</td>
-                            <td>Quarter preferred over fourth</td>
+                            <td>{% translate "Quarter preferred over fourth" %}</td>
                         </tr>
                         <tr>
                             <td>5⅔</td>
                             <td>five and two thirds</td>
                             <td>5 + 2/3</td>
-                            <td>Regular fraction form</td>
+                            <td>{% translate "Regular fraction form" %}</td>
                         </tr>
                         <tr>
                             <td>10⅛</td>
                             <td>ten and one eighth</td>
                             <td>10 + 1/8</td>
-                            <td>Hyphen optional</td>
+                            <td>{% translate "Hyphen optional" %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -248,25 +248,25 @@
                             <td>{% translate "Cooking/Recipes" %}</td>
                             <td>1½ cups</td>
                             <td>one and a half cups</td>
-                            <td>"a half cup" also acceptable</td>
+                            <td>"a half cup" {% translate "also acceptable" %}</td>
                         </tr>
                         <tr>
                             <td>{% translate "Construction" %}</td>
                             <td>3¾ inches</td>
                             <td>three and three quarter inches</td>
-                            <td>No "s" on quarter</td>
+                            <td>{% translate "No 's' on quarter" %}</td>
                         </tr>
                         <tr>
                             <td>{% translate "Time" %}</td>
                             <td>2½ hours</td>
                             <td>two and a half hours</td>
-                            <td>"two hours and thirty minutes" alternative</td>
+                            <td>"two hours and thirty minutes" {% translate "alternative" %}</td>
                         </tr>
                         <tr>
                             <td>{% translate "Sports" %}</td>
                             <td>9⅔ innings</td>
                             <td>nine and two thirds innings</td>
-                            <td>Formal reporting only</td>
+                            <td>{% translate "Formal reporting only" %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -328,22 +328,22 @@
                     <tr>
                         <td>one an half</td>
                         <td>one and a half</td>
-                        <td>Use "and", not "an"</td>
+                        <td>{% translate "Use 'and', not 'an'" %}</td>
                     </tr>
                     <tr>
                         <td>two and half</td>
                         <td>two and a half</td>
-                        <td>Include article "a"</td>
+                        <td>{% translate "Include article 'a'" %}</td>
                     </tr>
                     <tr>
                         <td>three and three fourth</td>
                         <td>three and three fourths</td>
-                        <td>Pluralize denominator</td>
+                        <td>{% translate "Pluralize denominator" %}</td>
                     </tr>
                     <tr>
                         <td>one and one second</td>
                         <td>one and a half</td>
-                        <td>Special term for 1/2</td>
+                        <td>{% translate "Special term for 1/2" %}</td>
                     </tr>
                 </tbody>
             </table>

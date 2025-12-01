@@ -6,34 +6,51 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: Ex_di3212223!
     volumes:
+      # Сохранение данных базы данных на диске
       - postgres_data:/var/lib/postgresql/data
-    ports:
-      - "5432:5432"
+    # Порт 5432 открыт только для других контейнеров (не наружу)
+    # Если вам нужно подключаться извне для отладки, раскомментируйте:
+    # ports:
+    #   - "5432:5432"
     restart: unless-stopped
 
   redis:
     image: redis:7-alpine
-    ports:
-      - "6379:6379"
+    # Порт 6379 открыт только для других контейнеров (не наружу)
+    # ports:
+    #   - "6379:6379"
     volumes:
       - redis_data:/data
     restart: unless-stopped
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
+    # Команда запуска uWSGI берется из CMD в Dockerfile
+    # command: ["uwsgi", "--ini", "mysite_uwsgi.ini"] # Не нужно, так как есть в Dockerfile
+    
+    # ВНИМАНИЕ: Убрана строка volumes: - .:/app (не используется в продакшене)
+    
+    # Маппинг портов: 8000 контейнера на 8000 хоста (или измените на 80:8000)
     ports:
       - "8000:8000"
+      
     environment:
-      DEBUG: 'True'
+      # КРИТИЧЕСКИ ВАЖНО: Добавьте длинный и сложный ключ!
+      SECRET_KEY: 'ВАШ_СЕКРЕТНЫЙ_КЛЮЧ_ДЛЯ_ПРОДАКШЕНА'
+      # Укажите домен, с которого будет доступен сайт (например, ваш IP или myengsite.ru)
+      ALLOWED_HOSTS: 'localhost,127.0.0.1,ВАШ_IP_ИЛИ_ДОМЕН' 
+      
+      # Переменные для подключения к базе данных и Redis (имена сервисов 'db' и 'redis')
       DATABASE_NAME: myengsite_db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: Ex_di3212223!
       DATABASE_HOST: db
       DATABASE_PORT: 5432
       REDIS_URL: redis://redis:6379/1
+      
+      # Переменные Django (предполагаем, что DEBUG = False по умолчанию в settings.py)
+      DJANGO_ENV: production
+
     depends_on:
       - db
       - redis

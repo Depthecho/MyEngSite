@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Adjective: Syntactic Functions" %}{% endblock %}
+{% block grammar_title %}{% translate "Adjective: Syntactic Functions" %{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -55,7 +55,7 @@
             color: #4cc9f0;
             font-weight: 500;
         }
-        
+
         .code-highlight {
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.2);
@@ -109,7 +109,7 @@
             width: 1em;
             margin-left: -1em;
         }
-        
+
         .back-to-list-btn {
             display: inline-block;
             margin-top: 30px;
@@ -142,6 +142,7 @@
             {% translate "In a sentence, adjectives primarily perform one of two syntactic functions: they can either describe a noun directly within a noun phrase (attributive function) or serve as the complement of a verb (predicative function)." %}
         </p>
 
+
         <hr class="grammar-divider">
 
         <h3>{% translate "1. Attributive Function" %}</h3>
@@ -149,22 +150,22 @@
             {% translate "An adjective used attributively modifies a noun or pronoun directly. It typically comes right before the noun it describes." %}
         </p>
         <ul class="styled-list">
-            <li><span class=\"example-highlight\">{% translate "This is a <span class=\"term-highlight\">beautiful</span> flower." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">beautiful</span>' is part of the noun phrase '<span class=\"term-highlight\">a beautiful flower</span>' and describes 'flower'." %}</li>
-            <li><span class=\"example-highlight\">{% translate "He saw an <span class=\"term-highlight\">old</span> house." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">old</span>' modifies the noun 'house'." %}</li>
+            <li><span class="example-highlight">This is a <span class="term-highlight">beautiful</span> flower.</span><br>{% translate "The adjective '" %}<span class="term-highlight">beautiful</span>{% translate "' is part of the noun phrase '" %}<span class="term-highlight">a beautiful flower</span>{% translate "' and describes 'flower'." %}</li>
+            <li><span class="example-highlight">He saw an <span class="term-highlight">old</span> house.</span><br>{% translate "The adjective '" %}<span class="term-highlight">old</span>{% translate "' modifies the noun 'house'." %}</li>
         </ul>
         <p>
-            {% translate "<strong>Note:</strong> In some cases, usually with multi-word adjectives or for emphasis, the adjective can come after the noun (e.g., <span class=\"code-highlight\">'a man <span class=\"term-highlight\">brave and true</span>'</span>)." %}
+            {% translate "<strong>Note:</strong> In some cases, usually with multi-word adjectives or for emphasis, the adjective can come after the noun (e.g., " %}<span class="code-highlight">'a man <span class="term-highlight">brave and true</span>'</span>{% translate ")." %}
         </p>
 
         <hr class="grammar-divider">
 
         <h3>{% translate "2. Predicative Function" %}</h3>
         <p>
-            {% translate "An adjective used predicatively describes the subject of a sentence, but it is separated from the subject by a verb, typically a linking verb like <span class=\"code-highlight\">'to be'</span>, <span class=\"code-highlight\">'to seem'</span>, <span class=\"code-highlight\">'to become'</span>, etc." %}
+            {% translate "An adjective used predicatively describes the subject of a sentence, but it is separated from the subject by a verb, typically a linking verb like " %}<span class="code-highlight">'to be'</span>, <span class="code-highlight">'to seem'</span>, <span class="code-highlight">'to become'</span>{% translate ", etc." %}
         </p>
         <ul class="styled-list">
-            <li><span class=\"example-highlight\">{% translate "The flower is <span class=\"term-highlight\">beautiful</span>." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">beautiful</span>' follows the verb 'is' and describes the subject 'flower'." %}</li>
-            <li><span class=\"example-highlight\">{% translate "The soup tastes <span class=\"term-highlight\">delicious</span>." %}</span><br>{% translate "The adjective '<span class=\"term-highlight\">delicious</span>' follows the linking verb 'tastes' and describes the subject 'soup'." %}</li>
+            <li><span class="example-highlight">The flower is <span class="term-highlight">beautiful</span>.</span><br>{% translate "The adjective '" %}<span class="term-highlight">beautiful</span>{% translate "' follows the verb 'is' and describes the subject 'flower'." %}</li>
+            <li><span class="example-highlight">The soup tastes <span class="term-highlight">delicious</span>.</span><br>{% translate "The adjective '" %}<span class="term-highlight">delicious</span>{% translate "' follows the linking verb 'tastes' and describes the subject 'soup'." %}</li>
         </ul>
 
         <hr class="grammar-divider">
@@ -184,14 +185,14 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><span class=\"code-highlight\">{% translate "Attributive" %}</span></td>
+                        <td><span class="code-highlight">Attributive</span></td>
                         <td>{% translate "Before the noun." %}</td>
-                        <td>{% translate "a <span class=\"term-highlight\">cold</span> day" %}</td>
+                        <td>a <span class="term-highlight">cold</span> day</td>
                     </tr>
                     <tr>
-                        <td><span class=\"code-highlight\">{% translate "Predicative" %}</span></td>
+                        <td><span class="code-highlight">Predicative</span></td>
                         <td>{% translate "After a linking verb." %}</td>
-                        <td>{% translate "The day is <span class=\"term-highlight\">cold</span>." %}</td>
+                        <td>The day is <span class="term-highlight">cold</span>.</td>
                     </tr>
                 </tbody>
             </table>

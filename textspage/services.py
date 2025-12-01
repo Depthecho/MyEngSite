@@ -71,7 +71,12 @@ class TextService:
     def mark_as_read(text_id, user):
         try:
             text = Text.objects.get(pk=text_id)
-            text.read_by.add(user)
-            return True
+            if not text.read_by.filter(id=user.id).exists():
+                text.read_by.add(user)
+                profile = user.profile
+                profile.texts_read = Text.objects.filter(read_by=user).count()
+                profile.save()
+                return True
+            return False
         except Text.DoesNotExist:
             return False

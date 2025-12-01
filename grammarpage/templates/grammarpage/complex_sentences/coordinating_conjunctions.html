@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Using Coordinating Conjunctions (FANBOYS)" %}{% endblock %}
+{% block grammar_title %}{% translate "Using Coordinating Conjunctions (FANBOYS)" %{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -207,12 +207,12 @@
         <ul class="styled-list">
             <li>{% translate "Use a <span class=\"term-highlight\">comma before the conjunction</span> when connecting two independent clauses" %}
                 <ul class="styled-list">
-                    <li><span class="code-highlight">{% translate "She wanted to go to the party, but she had too much work." %}</span></li>
+                    <li><span class="code-highlight">She wanted to go to the party, but she had too much work.</span></li>
                 </ul>
             </li>
             <li>{% translate "No comma is needed when connecting words or phrases" %}
                 <ul class="styled-list">
-                    <li><span class="code-highlight">{% translate "I like tea and coffee." %}</span></li>
+                    <li><span class="code-highlight">I like tea and coffee.</span></li>
                 </ul>
             </li>
             <li>{% translate "Each conjunction expresses a specific relationship between ideas:" %}
@@ -234,33 +234,33 @@
 
         <h4><span class="conjunction-highlight">{% translate "For" %}</span></h4>
         <p>{% translate "Indicates reason or cause (similar to 'because'). More formal and less common in spoken English." %}</p>
-        <p class="code-highlight">{% translate "I stayed home, for I was feeling ill." %}</p>
+        <p class="code-highlight">I stayed home, for I was feeling ill.</p>
 
         <h4><span class="conjunction-highlight">{% translate "And" %}</span></h4>
         <p>{% translate "Adds information or connects similar ideas." %}</p>
-        <p class="code-highlight">{% translate "She opened the door and walked inside." %}</p>
-        <p class="code-highlight">{% translate "He likes swimming, and she prefers running." %}</p>
+        <p class="code-highlight">She opened the door and walked inside.</p>
+        <p class="code-highlight">He likes swimming, and she prefers running.</p>
 
         <h4><span class="conjunction-highlight">{% translate "Nor" %}</span></h4>
         <p>{% translate "Connects two negative alternatives. Note that verb comes before subject after 'nor'." %}</p>
-        <p class="code-highlight">{% translate "He didn't call, nor did he send a message." %}</p>
-        <p class="code-highlight">{% translate "I don't like coffee, nor do I enjoy tea." %}</p>
+        <p class="code-highlight">He didn't call, nor did he send a message.</p>
+        <p class="code-highlight">I don't like coffee, nor do I enjoy tea.</p>
 
         <h4><span class="conjunction-highlight">{% translate "But" %}</span></h4>
         <p>{% translate "Shows contrast between two different ideas." %}</p>
-        <p class="code-highlight">{% translate "I wanted to go to the beach, but it started raining." %}</p>
+        <p class="code-highlight">I wanted to go to the beach, but it started raining.</p>
 
         <h4><span class="conjunction-highlight">{% translate "Or" %}</span></h4>
         <p>{% translate "Presents alternatives or possibilities." %}</p>
-        <p class="code-highlight">{% translate "We can go by train, or we can drive." %}</p>
+        <p class="code-highlight">We can go by train, or we can drive.</p>
 
         <h4><span class="conjunction-highlight">{% translate "Yet" %}</span></h4>
         <p>{% translate "Shows unexpected contrast (similar to 'but')." %}</p>
-        <p class="code-highlight">{% translate "She studied hard, yet she failed the exam." %}</p>
+        <p class="code-highlight">She studied hard, yet she failed the exam.</p>
 
         <h4><span class="conjunction-highlight">{% translate "So" %}</span></h4>
         <p>{% translate "Indicates result or consequence." %}</p>
-        <p class="code-highlight">{% translate "It was getting late, so we decided to leave." %}</p>
+        <p class="code-highlight">It was getting late, so we decided to leave.</p>
 
         <hr class="grammar-divider">
 
@@ -268,20 +268,20 @@
         <ul class="styled-list">
             <li>{% translate "<span class=\"term-highlight\">Comma splice:</span> Using just a comma without a conjunction" %}
                 <ul class="styled-list">
-                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I love reading, it relaxes me." %}</li>
-                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I love reading, for it relaxes me." %}</li>
+                    <li><span class="code-highlight">Incorrect:</span> I love reading, it relaxes me.</li>
+                    <li><span class="code-highlight">Correct:</span> I love reading, for it relaxes me.</li>
                 </ul>
             </li>
             <li>{% translate "<span class=\"term-highlight\">Missing comma:</span> Forgetting the comma before the conjunction" %}
                 <ul class="styled-list">
-                    <li><span class="code-highlight">{% translate "Incorrect:" %}</span> {% translate "I wanted to go but I was too tired." %}</li>
-                    <li><span class="code-highlight">{% translate "Correct:" %}</span> {% translate "I wanted to go, but I was too tired." %}</li>
+                    <li><span class="code-highlight">Incorrect:</span> I wanted to go but I was too tired.</li>
+                    <li><span class="code-highlight">Correct:</span> I wanted to go, but I was too tired.</li>
                 </ul>
             </li>
             <li>{% translate "<span class=\"term-highlight\">Overuse of 'and':</span> Creating run-on sentences" %}
                 <ul class="styled-list">
-                    <li><span class="code-highlight">{% translate "Poor style:" %}</span> {% translate "I woke up and I brushed my teeth and I had breakfast and I went to work." %}</li>
-                    <li><span class="code-highlight">{% translate "Better:" %}</span> {% translate "I woke up, brushed my teeth, had breakfast, and went to work." %}</li>
+                    <li><span class="code-highlight">Poor style:</span> I woke up and I brushed my teeth and I had breakfast and I went to work.</li>
+                    <li><span class="code-highlight">Better:</span> I woke up, brushed my teeth, had breakfast, and went to work.</li>
                 </ul>
             </li>
         </ul>

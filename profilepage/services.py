@@ -11,6 +11,7 @@ from typing import Any, Dict, Optional, Type, Union, List
 from django.db import models
 from .models import Profile, Achievement, Friendship, Notification
 from .forms import ProfileUpdateForm, CustomPasswordChangeForm, UserUpdateForm
+from textspage.models import Text
 
 User = get_user_model()
 
@@ -110,10 +111,10 @@ class ProfileService:
             user=self.user,
             defaults={
                 'friends_count': 0,
-                'followers_count': 0
+                'followers_count': 0,
+                'texts_read': Text.objects.filter(read_by=self.user).count()
             }
         )
-
         if created:
             FriendshipService.update_friends_count(self.user)
             FriendshipService.update_followers_count(self.user)
@@ -124,6 +125,12 @@ class ProfileService:
         profile: Profile = self.get_or_create_profile()
         AchievementChecker.check_achievements(self.user, profile)
         return True
+
+    def update_texts_count(self):
+        count = Text.objects.filter(read_by=self.user).count()
+        self.user.profile.texts_read = count
+        self.user.profile.save()
+        return count
 
 
 class FriendshipService:

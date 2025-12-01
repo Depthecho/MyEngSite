@@ -65,7 +65,7 @@
             left: 0;
             top: 0;
         }
-        
+
         .styled-list ol {
             padding-left: 20px;
         }
@@ -97,7 +97,7 @@
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .auxiliary-highlight, .ending-highlight {
             color: #83e8de;
             font-weight: 600;
@@ -107,7 +107,7 @@
             color: #ffda47;
             font-weight: 600;
         }
-        
+
         .code-highlight {
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.2);
@@ -139,7 +139,7 @@
         .back-to-list-btn:hover {
             background-color: #ff9e7d;
         }
-        
+
         @media (max-width: 600px) {
             .grammar-detail-container {
                 padding: 10px;
@@ -172,8 +172,8 @@
             <li>
                 <span class="term-highlight">{% translate "Present Simple:" %}</span>
                 <ul class="styled-list">
-                    <li><span class="pronoun-highlight">{% translate "I / You / We / They" %}</span> <span class="auxiliary-highlight">do</span></li>
-                    <li><span class="pronoun-highlight">{% translate "He / She / It" %}</span> <span class="auxiliary-highlight">does</span></li>
+                    <li><span class="pronoun-highlight">I / You / We / They</span> <span class="auxiliary-highlight">do</span></li>
+                    <li><span class="pronoun-highlight">He / She / It</span> <span class="auxiliary-highlight">does</span></li>
                 </ul>
             </li>
             <li>
@@ -184,7 +184,7 @@
             </li>
             <li><span class="term-highlight">{% translate "Present Participle (V-ing form):" %}</span> <span class="verb-highlight">doing</span></li>
             <li><span class="term-highlight">{% translate "Past Participle (V3 form):" %}</span> <span class="verb-highlight">done</span></li>
-            <li><span class="term-highlight">{% translate "Infinitive:" %}</span> ({% translate "to" %}) <span class="verb-highlight">do</span></li>
+            <li><span class="term-highlight">{% translate "Infinitive:" %}</span> (to) <span class="verb-highlight">do</span></li>
         </ul>
 
         <hr class="grammar-divider">
@@ -200,10 +200,10 @@
                     {% translate "When \"to do\" is used as a main verb, it means \"to perform an action\" or \"to accomplish something.\"" %}
                 </p>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I always" %} <span class="verb-highlight">do</span> {% translate "my homework." %}</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="verb-highlight">does</span> {% translate "a great job." %}</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They" %} <span class="verb-highlight">did</span> {% translate "their best." %}</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "What are you" %} <span class="verb-highlight">doing</span>?</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I always <span class="verb-highlight">do</span> my homework.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="verb-highlight">does</span> a great job.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">They <span class="verb-highlight">did</span> their best.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">What are you <span class="verb-highlight">doing</span>?</span></i></li>
                 </ul>
                 <p>
                     {% translate "In this role, it can be used in all tenses, just like any other main verb." %}
@@ -218,32 +218,32 @@
                     <li>
                         <span class="term-highlight">{% translate "To form Questions:" %}</span> {% translate "In the Present Simple and Past Simple, \"do,\" \"does,\" or \"did\" are placed before the subject to form interrogative sentences (questions), and the main verb remains in its base form." %}
                         <ul class="styled-list">
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Do</span> {% translate "you like coffee?" %}</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Does</span> {% translate "he live here?" %}</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "What" %} <span class="auxiliary-highlight">did</span> {% translate "they say?" %}</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Do</span> you like coffee?</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="auxiliary-highlight">Does</span> he live here?</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">What <span class="auxiliary-highlight">did</span> they say?</span></i></li>
                         </ul>
                     </li>
                     <li>
                         <span class="term-highlight">{% translate "To form Negative Sentences:" %}</span> {% translate "In the Present Simple and Past Simple, \"do,\" \"does,\" or \"did\" are followed by \"not\" (or contracted forms like \"don't,\" \"doesn't,\" \"didn't\") and the main verb in its base form." %}
                         <ul class="styled-list">
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">do not</span> (don't) {% translate "understand." %}</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">does not</span> (doesn't) {% translate "speak French." %}</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "We" %} <span class="auxiliary-highlight">did not</span> (didn't) {% translate "see anything." %}</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="auxiliary-highlight">do not</span> (don't) understand.</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="auxiliary-highlight">does not</span> (doesn't) speak French.</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">We <span class="auxiliary-highlight">did not</span> (didn't) see anything.</span></i></li>
                         </ul>
                     </li>
                     <li>
                         <span class="term-highlight">{% translate "For Emphasis:" %}</span> {% translate "\"Do,\" \"does,\" or \"did\" can be used before the main verb (in its base form) to add emphasis, especially in affirmative sentences, or to contradict a previous statement." %}
                         <ul class="styled-list">
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">do</span> {% translate "believe you." %}</span></i> ({% translate "Emphasizes belief" %})</li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He" %} <span class="auxiliary-highlight">does</span> {% translate "work hard, despite what you think." %}</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I know you said I didn't come, but I" %} <span class="auxiliary-highlight">did</span> {% translate "come!" %}</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="auxiliary-highlight">do</span> believe you.</span></i> ({% translate "Emphasizes belief" %})</li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He <span class="auxiliary-highlight">does</span> work hard, despite what you think.</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I know you said I didn't come, but I <span class="auxiliary-highlight">did</span> come!</span></i></li>
                         </ul>
                     </li>
                     <li>
                         <span class="term-highlight">{% translate "In Short Answers:" %}</span> {% translate "Used to avoid repeating the main verb in short answers." %}
                         <ul class="styled-list">
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Do you like pizza? Yes, I" %} <span class="auxiliary-highlight">do</span>.</span></i></li>
-                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Did she finish? No, she" %} <span class="auxiliary-highlight">didn't</span>.</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Do you like pizza? Yes, I <span class="auxiliary-highlight">do</span>.</span></i></li>
+                            <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Did she finish? No, she <span class="auxiliary-highlight">didn't</span>.</span></i></li>
                         </ul>
                     </li>
                 </ul>
@@ -254,8 +254,8 @@
                     {% translate "\"To do\" can substitute for a previously mentioned main verb or verb phrase to avoid repetition." %}
                 </p>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He drives faster than I" %} <span class="auxiliary-highlight">do</span>.</span></i> ({% translate "instead of \"than I drive\"" %})</li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She reads a lot, and so" %} <span class="auxiliary-highlight">do</span> {% translate "I." %}</span></i> ({% translate "instead of \"and so I read a lot\"" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He drives faster than I <span class="auxiliary-highlight">do</span>.</span></i> ({% translate "instead of \"than I drive\"" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She reads a lot, and so <span class="auxiliary-highlight">do</span> I.</span></i> ({% translate "instead of \"and so I read a lot\"" %})</li>
                 </ul>
             </li>
         </ol>
@@ -267,9 +267,9 @@
             {% translate "In informal speech and writing, \"to do\" often forms contractions with \"not\":" %}
         </p>
         <ul class="styled-list">
-            <li><span class="code-highlight">don't</span> ({% translate "do not" %})</li>
-            <li><span class="code-highlight">doesn't</span> ({% translate "does not" %})</li>
-            <li><span class="code-highlight">didn't</span> ({% translate "did not" %})</li>
+            <li><span class="code-highlight">don't</span> (do not)</li>
+            <li><span class="code-highlight">doesn't</span> (does not)</li>
+            <li><span class="code-highlight">didn't</span> (did not)</li>
         </ul>
         <p>
             {% translate "Understanding the dual role of \"to do\" as both a main verb and a crucial auxiliary verb is fundamental to mastering English sentence construction, especially in questions and negatives." %}

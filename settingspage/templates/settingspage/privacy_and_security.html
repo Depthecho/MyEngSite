@@ -1,0 +1,340 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-user-shield"></i> {% translate "Privacy Settings" %}
+    </h2>
+
+    <form method="post" class="settings-form">
+        {% csrf_token %}
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Hide First Name" %}</h3>
+                <p class="setting-description">
+                    {% translate "Your first name will not be visible to other users" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ profile_form.hide_first_name }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Hide Last Name" %}</h3>
+                <p class="setting-description">
+                    {% translate "Your last name will not be visible to other users" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ profile_form.hide_last_name }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Hide Birth Date" %}</h3>
+                <p class="setting-description">
+                    {% translate "Your birth date will not be visible to other users" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ profile_form.hide_birth_date }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Hide Email" %}</h3>
+                <p class="setting-description">
+                    {% translate "Your email address will not be visible to other users" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ profile_form.hide_email }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Profile Visibility" %}</h3>
+                <p class="setting-description">
+                    {% translate "Control who can see your profile" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <select name="profile_visibility" class="form-control">
+                    <option value="public" {% if profile.profile_visibility == 'public' %}selected{% endif %}>
+                        {% translate "Public" %}
+                    </option>
+                    <option value="friends" {% if profile.profile_visibility == 'friends' %}selected{% endif %}>
+                        {% translate "Friends only" %}
+                    </option>
+                    <option value="private" {% if profile.profile_visibility == 'private' %}selected{% endif %}>
+                        {% translate "Private" %}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="update_privacy_settings" class="cta-button primary">
+                <i class="fas fa-save"></i> {% translate "Save Privacy Settings" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-key"></i> {% translate "Password & Authentication" %}
+    </h2>
+
+    <form method="post" class="settings-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_old_password">{% translate "Current Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="old_password" id="id_old_password" class="form-control" required>
+            </div>
+            {% if password_form.old_password.errors %}
+                <div class="form-error">{{ password_form.old_password.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="id_new_password1">{% translate "New Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-key"></i>
+                <input type="password" name="new_password1" id="id_new_password1" class="form-control" required>
+            </div>
+            {% if password_form.new_password1.errors %}
+                <div class="form-error">{{ password_form.new_password1.errors }}</div>
+            {% endif %}
+            <div class="password-requirements">
+                <p>{% translate "Password must contain:" %}</p>
+                <ul>
+                    <li>{% translate "At least 8 characters" %}</li>
+                    <li>{% translate "At least one uppercase letter" %}</li>
+                    <li>{% translate "At least one lowercase letter" %}</li>
+                    <li>{% translate "At least one number" %}</li>
+                    <li>{% translate "At least one special character" %}</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_new_password2">{% translate "Confirm New Password" %}</label>
+            <div class="input-with-icon">
+                <i class="fas fa-key"></i>
+                <input type="password" name="new_password2" id="id_new_password2" class="form-control" required>
+            </div>
+            {% if password_form.new_password2.errors %}
+                <div class="form-error">{{ password_form.new_password2.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="change_password" class="cta-button primary">
+                <i class="fas fa-key"></i> {% translate "Change Password" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-trash-alt"></i> {% translate "Account Deletion" %}
+    </h2>
+
+    <div class="danger-zone">
+        <h3 class="danger-zone-title">{% translate "Danger Zone" %}</h3>
+        <p class="danger-zone-description">
+            {% translate "Once you delete your account, there is no going back. Please be certain." %}
+        </p>
+
+        <button type="button" class="cta-button danger" onclick="showDeleteAccountModal()">
+            <i class="fas fa-exclamation-triangle"></i> {% translate "Delete Account" %}
+        </button>
+    </div>
+</div>
+
+<!-- Delete Account Modal -->
+<div id="deleteAccountModal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{% translate "Confirm Account Deletion" %}</h3>
+            <button class="modal-close" onclick="hideDeleteAccountModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <p>{% translate "Are you sure you want to delete your account? This action cannot be undone." %}</p>
+            <p>{% translate "All your data will be permanently removed from our servers." %}</p>
+
+            <form method="post" id="deleteAccountForm">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="confirmPassword">{% translate "Enter your password to confirm:" %}</label>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirm_password" required>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="cta-button secondary" onclick="hideDeleteAccountModal()">
+                {% translate "Cancel" %}
+            </button>
+            <button type="submit" form="deleteAccountForm" name="delete_account" class="cta-button danger">
+                {% translate "Delete Account Permanently" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Дополнительные стили для страницы Privacy & Security */
+    .danger-zone {
+        display: block;
+        padding: 20px;
+        background: rgba(255, 0, 0, 0.1);
+        border: 1px solid rgba(255, 0, 0, 0.2);
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    .danger-zone-title {
+        color: #ff4444;
+        margin-bottom: 10px;
+    }
+
+    .danger-zone-description {
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 20px;
+    }
+
+    .password-requirements {
+        width: 90%;
+        margin-top: 10px;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .password-requirements ul {
+        margin: 5px 0 0 20px;
+        padding: 0;
+    }
+
+    .password-requirements li {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Стили для модального окна */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background: #2a2a3a;
+        border-radius: 10px;
+        width: 500px;
+        max-width: 90%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        animation: modalFadeIn 0.3s ease-out;
+    }
+
+    .modal-header {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        color: white;
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-body p {
+        margin-bottom: 15px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    // Функции для управления модальным окном
+    function showDeleteAccountModal() {
+        document.getElementById('deleteAccountModal').style.display = 'flex';
+        document.getElementById('confirmPassword').focus();
+    }
+
+    function hideDeleteAccountModal() {
+        document.getElementById('deleteAccountModal').style.display = 'none';
+    }
+
+    // Закрытие модального окна при клике вне его
+    document.getElementById('deleteAccountModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hideDeleteAccountModal();
+        }
+    });
+</script>
+{% endblock %}

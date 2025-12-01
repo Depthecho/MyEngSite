@@ -1,0 +1,229 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-info-circle"></i> {% translate "About MyEngSite" %}
+    </h2>
+
+    <div class="about-content">
+        <div class="about-header">
+            <div class="app-logo">
+                <a href="{% url 'home' %}"><img src="{% static 'favicon/logo.svg' %}" id="logo-img"></a>
+            </div>
+            <div class="app-info">
+                <h3>MyEngSite</h3>
+                <p class="version">Version {{ app_version }}</p>
+                <p class="tagline">{% translate "Your personal English learning companion" %}</p>
+            </div>
+        </div>
+
+        <div class="about-description">
+            <p>{% translate "MyEngSite is a modern platform for self-learning English, designed to help you track your progress, work with texts, memorize vocabulary, and test your knowledge through interactive exercises." %}</p>
+            
+            <div class="feature-highlights">
+                <h4><i class="fas fa-star"></i> {% translate "Key Features" %}</h4>
+                <ul>
+                    <li><i class="fas fa-user-circle"></i> {% translate "Personal account with progress tracking" %}</li>
+                    <li><i class="fas fa-book-open"></i> {% translate "Extensive library of texts filtered by difficulty level (A0-C2)" %}</li>
+                    <li><i class="fas fa-layer-group"></i> {% translate "Flashcard system for vocabulary memorization" %}</li>
+                    <li><i class="fas fa-tasks"></i> {% translate "Interactive tests and exercises" %}</li>
+                    <li><i class="fas fa-mobile-alt"></i> {% translate "Responsive design for all devices" %}</li>
+                </ul>
+            </div>
+
+            <div class="development-info">
+                <h4><i class="fas fa-code-branch"></i> {% translate "Development" %}</h4>
+                <p>{% translate "MyEngSite is continuously being improved with new features and enhancements based on user feedback." %}</p>
+                <p>{% translate "We're committed to providing the best English learning experience through technology." %}</p>
+            </div>
+
+            <div class="community-section">
+                <h4><i class="fas fa-users"></i> {% translate "Join Our Community" %}</h4>
+                <p>{% translate "Connect with other learners and share your experience:" %}</p>
+                <div class="community-links">
+                    <a href="#" class="community-link"><i class="fab fa-telegram"></i> Telegram</a>
+                    <a href="#" class="community-link"><i class="fab fa-discord"></i> Discord</a>
+                    <a href="#" class="community-link"><i class="fab fa-facebook"></i> Facebook</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-footer">
+            <div class="footer-item">
+                <i class="fas fa-copyright"></i>
+                <span>{% translate "MyEngSite" %} {{ current_year }}</span>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-envelope"></i>
+                <a href="mailto:support@myengsite.com">51miha7@gmail.com</a>
+            </div>
+            <div class="footer-item">
+                <i class="fas fa-globe"></i>
+                <a href="https://www.myengsite.com" target="_blank">www.myengsite.com</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* About Settings Styles */
+    .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    
+    .about-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .app-logo {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+    }
+    
+    .app-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .app-info h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.8rem;
+        color: #ffcc00;
+    }
+    
+    .version {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 0 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .tagline {
+        margin: 0;
+        font-size: 1.1rem;
+        font-style: italic;
+    }
+    
+    .about-description {
+        margin-bottom: 30px;
+    }
+    
+    .about-description p {
+        line-height: 1.6;
+    }
+    
+    .feature-highlights,
+    .development-info,
+    .community-section {
+        margin: 25px 0;
+    }
+    
+    .feature-highlights h4,
+    .development-info h4,
+    .community-section h4 {
+        color: #ffcc00;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .feature-highlights ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .feature-highlights li {
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .feature-highlights li i {
+        color: #ffcc00;
+        width: 20px;
+    }
+    
+    .community-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .community-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 15px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s;
+    }
+    
+    .community-link:hover {
+        background: rgba(255, 204, 0, 0.2);
+    }
+    
+    .community-link i {
+        font-size: 1.2rem;
+    }
+    
+    .about-footer {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .footer-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .footer-item i {
+        color: #ffcc00;
+    }
+    
+    .footer-item a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .footer-item a:hover {
+        color: #ffcc00;
+    }
+</style>
+
+<script>
+    // Set current year in footer
+    document.addEventListener('DOMContentLoaded', function() {
+        const yearElement = document.querySelector('.about-footer .footer-item span');
+        if (yearElement) {
+            const currentYear = new Date().getFullYear();
+            yearElement.textContent = yearElement.textContent.replace('{{ current_year }}', currentYear);
+        }
+    });
+</script>
+{% endblock %}

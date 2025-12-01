@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Semicolon - Complex Lists" %}{% endblock %}
+{% block grammar_title %}{% translate "Semicolon - Complex Lists" %{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -161,19 +161,19 @@
             <h4>1. {% translate "Geographical Lists" %}</h4>
             <p>{% translate "Cities with their countries or states:" %}</p>
             <ul class="styled-list">
-         <li><span class="code-highlight">{% translate 'We visited Paris, France<span class="mark-highlight">;</span> Rome, Italy<span class="mark-highlight">;</span> and Barcelona, Spain.' %}</span></li>
+         <li><span class="code-highlight">We visited Paris, France<span class="mark-highlight">;</span> Rome, Italy<span class="mark-highlight">;</span> and Barcelona, Spain.</span></li>
             </ul>
 
             <h4>2. {% translate "Professional Titles" %}</h4>
             <p>{% translate "Names with titles or positions:" %}</p>
             <ul class="styled-list">
-<li><span class="code-highlight">{% translate 'The team includes Dr. Smith, cardiologist<span class="mark-highlight">;</span> Prof. Johnson, researcher<span class="mark-highlight"></span>.' %}</span></li>
+<li><span class="code-highlight">The team includes Dr. Smith, cardiologist<span class="mark-highlight">;</span> Prof. Johnson, researcher<span class="mark-highlight"></span>.</span></li>
             </ul>
 
             <h4>3. {% translate "Complex Descriptions" %}</h4>
             <p>{% translate "Items with multiple descriptors:" %}</p>
             <ul class="styled-list">
-<li><span class="code-highlight">{% translate 'For the project we need: heavy-duty paper, 80gsm<span class="mark-highlight">;</span> archival-quality ink, black only<span class="mark-highlight"></span>.' %}</span></li>
+<li><span class="code-highlight">For the project we need: heavy-duty paper, 80gsm<span class="mark-highlight">;</span> archival-quality ink, black only<span class="mark-highlight"></span>.</span></li>
             </ul>
         </div>
 
@@ -191,17 +191,17 @@
             <tbody>
                 <tr>
                     <td>{% translate "Simple" %}</td>
-                    <td><span class="code-highlight">{% translate "apples, oranges, and bananas" %}</span></td>
+                    <td><span class="code-highlight">apples, oranges, and bananas</span></td>
                     <td>{% translate "Commas" %}</td>
                 </tr>
                 <tr>
                     <td>{% translate "Complex" %}</td>
-      <td><span class="code-highlight">{% translate 'apples, preferably red<span class="mark-highlight">;</span> oranges, from Florida<span class="mark-highlight">;</span> and bananas, not too ripe' %}</span></td>
+      <td><span class="code-highlight">apples, preferably red<span class="mark-highlight">;</span> oranges, from Florida<span class="mark-highlight">;</span> and bananas, not too ripe</span></td>
                     <td>{% translate "Semicolons" %}</td>
                 </tr>
                 <tr>
                     <td>{% translate "Mixed" %}</td>
-                    <td><span class="code-highlight">{% translate "apples" %}<span class="mark-highlight">;</span> {% translate "oranges, both navel and Valencia" %}<span class="mark-highlight">;</span> {% translate "and bananas" %}</span></td>
+                    <td><span class="code-highlight">apples<span class="mark-highlight">;</span> oranges, both navel and Valencia<span class="mark-highlight">;</span> and bananas</span></td>
                     <td>{% translate "Semicolons when needed" %}</td>
                 </tr>
             </tbody>
@@ -211,11 +211,11 @@
             <h3>{% translate "Special Considerations" %}</h3>
             <ul class="styled-list">
                 <li>{% translate "<span class=\"term-highlight\">Oxford comma:</span> Still used before the final 'and' in semicolon lists" %}
-                  <p class="code-highlight">{% translate 'Paris, France<span class="mark-highlight">;</span> London, England<span class="mark-highlight">;</span> and Dublin, Ireland' %}</p>
+                  <p class="code-highlight">Paris, France<span class="mark-highlight">;</span> London, England<span class="mark-highlight">;</span> and Dublin, Ireland</p>
                 </li>
                 <li>{% translate "<span class=\"term-highlight\">Parallel structure:</span> Maintain consistent formatting for all items" %}
-<p class="code-highlight"><span class="term-highlight">{% translate "Good:" %}</span> {% translate "red, bright" %}<span class="mark-highlight">;</span> {% translate "blue, dark" %}<span class="mark-highlight">;</span> {% translate "green, pale" %}</p>
-<p class="code-highlight"><span class="term-highlight">{% translate "Avoid:" %}</span> {% translate "red, bright" %}<span class="mark-highlight">;</span> {% translate "dark blue" %}<span class="mark-highlight">;</span> {% translate "pale in color" %}</p>
+<p class="code-highlight"><span class="term-highlight">Good:</span> red, bright<span class="mark-highlight">;</span> blue, dark<span class="mark-highlight">;</span> green, pale</p>
+<p class="code-highlight"><span class="term-highlight">Avoid:</span> red, bright<span class="mark-highlight">;</span> dark blue<span class="mark-highlight">;</span> pale in color</p>
                 </li>
                 <li>{% translate "<span class=\"term-highlight\">Capitalization:</span> Don't capitalize after semicolons in lists" %}</li>
             </ul>
@@ -226,9 +226,9 @@
         <h3>{% translate "Practice Examples" %}</h3>
         <p>{% translate "Add semicolons to these complex lists:" %}</p>
         <ol class="styled-list">
-            <li>{% translate "The conference featured speakers from Boston, Massachusetts Chicago, Illinois and Seattle, Washington" %}</li>
-            <li>{% translate "Please bring your passport, valid for six months a recent photograph, 2x2 inches and the application fee, in cash or check" %}</li>
-            <li>{% translate "Our departments include Marketing, headed by J. Smith Accounting, supervised by L. Jones and IT, managed by R. Brown" %}</li>
+            <li>The conference featured speakers from Boston, Massachusetts Chicago, Illinois and Seattle, Washington</li>
+            <li>Please bring your passport, valid for six months a recent photograph, 2x2 inches and the application fee, in cash or check</li>
+            <li>Our departments include Marketing, headed by J. Smith Accounting, supervised by L. Jones and IT, managed by R. Brown</li>
         </ol>
 
         <div class="navigation-links">

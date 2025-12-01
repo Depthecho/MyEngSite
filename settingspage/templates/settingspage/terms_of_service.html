@@ -1,0 +1,141 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-file-contract"></i> {% translate "Terms of Service" %}
+    </h2>
+
+    <div class="legal-document">
+        <p class="last-updated">{% translate "Last updated:" %} {{ last_updated|date:"F j, Y" }}</p>
+
+        <div class="document-section">
+            <h3>1. {% translate "Acceptance of Terms" %}</h3>
+            <p>{% translate "By using MyEngSite, you agree to these Terms of Service and our Privacy Policy. If you don't agree, please don't use our services." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>2. {% translate "Account Responsibilities" %}</h3>
+            <p>{% translate "You agree to:" %}</p>
+            <ul>
+                <li>{% translate "Provide accurate account information" %}</li>
+                <li>{% translate "Keep your login credentials secure" %}</li>
+                <li>{% translate "Not share your account with others" %}</li>
+                <li>{% translate "Be responsible for all activities under your account" %}</li>
+            </ul>
+        </div>
+
+        <div class="document-section">
+            <h3>3. {% translate "User Conduct" %}</h3>
+            <p>{% translate "You agree not to:" %}</p>
+            <ul>
+                <li>{% translate "Use MyEngSite for any illegal purpose" %}</li>
+                <li>{% translate "Upload harmful or offensive content" %}</li>
+                <li>{% translate "Attempt to disrupt or hack our services" %}</li>
+                <li>{% translate "Copy or redistribute our content without permission" %}</li>
+            </ul>
+        </div>
+
+        <div class="document-section">
+            <h3>4. {% translate "Content Ownership" %}</h3>
+            <p>{% translate "All learning materials on MyEngSite are protected by copyright. You may use them for personal learning only." %}</p>
+            <p>{% translate "Content you create (notes, flashcards) remains yours, but you grant us a license to display and store it." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>5. {% translate "Payments and Subscriptions" %}</h3>
+            <p>{% translate "For premium features:" %}</p>
+            <ul>
+                <li>{% translate "You agree to pay all applicable fees" %}</li>
+                <li>{% translate "Subscriptions automatically renew unless canceled" %}</li>
+                <li>{% translate "We may change prices with 30 days notice" %}</li>
+                <li>{% translate "Refunds are at our discretion" %}</li>
+            </ul>
+        </div>
+
+        <div class="document-section">
+            <h3>6. {% translate "Termination" %}</h3>
+            <p>{% translate "We may suspend or terminate your account if you violate these terms. You may delete your account at any time." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>7. {% translate "Disclaimers" %}</h3>
+            <p>{% translate "MyEngSite is provided 'as is' without warranties. We don't guarantee:" %}</p>
+            <ul>
+                <li>{% translate "Uninterrupted or error-free service" %}</li>
+                <li>{% translate "Specific learning outcomes" %}</li>
+                <li>{% translate "Accuracy of all learning materials" %}</li>
+            </ul>
+        </div>
+
+        <div class="document-section">
+            <h3>8. {% translate "Limitation of Liability" %}</h3>
+            <p>{% translate "To the extent permitted by law, we won't be liable for any indirect or consequential damages arising from your use of MyEngSite." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>9. {% translate "Changes to Terms" %}</h3>
+            <p>{% translate "We may update these terms periodically. Continued use after changes constitutes acceptance." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>10. {% translate "Governing Law" %}</h3>
+            <p>{% translate "These terms are governed by the laws of [Your Country/State]. Any disputes will be resolved in [Your Jurisdiction] courts." %}</p>
+        </div>
+
+        <div class="document-section">
+            <h3>11. {% translate "Contact Us" %}</h3>
+            <p>{% translate "For questions about these terms, contact us at:" %}</p>
+            <p><a href="mailto:legal@myengsite.com">51miha7@gmail.com</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .legal-document {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 30px;
+        line-height: 1.6;
+    }
+    
+    .last-updated {
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+        margin-bottom: 30px;
+    }
+    
+    .document-section {
+        margin-bottom: 30px;
+    }
+    
+    .document-section h3 {
+        color: #ffcc00;
+        margin-bottom: 15px;
+    }
+    
+    .document-section p {
+        margin-bottom: 10px;
+    }
+    
+    .document-section ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .document-section li {
+        margin-bottom: 8px;
+    }
+    
+    .document-section a {
+        color: #ffcc00;
+        text-decoration: none;
+    }
+    
+    .document-section a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

@@ -26,7 +26,6 @@
                 <button class="sidebar-toggle" id="sidebarToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-                {# Исправлено: Передача user_name в blocktrans для правильного перевода с подстановкой #}
                 <h1>
                     {% with user_name=profile.user.username %}
                         {% blocktrans %}{{ user_name }}'s profile{% endblocktrans %}

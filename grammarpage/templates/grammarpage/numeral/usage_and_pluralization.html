@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Cardinal Numerals: Usage and Pluralization" %}{% endblock %}
+{% block grammar_title %}{% translate "Cardinal Numerals: Usage and Pluralization" %{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -183,13 +183,13 @@
             <h4>{% translate "As Determiners (Most Common)" %}</h4>
             <ul class="styled-list">
                 <li>{% translate "Modify nouns directly" %}
-                    <p class="code-highlight">{% translate "She has <span class=\"example-highlight\">three</span> cats." %}</p>
+                    <p class="code-highlight">She has <span class="example-highlight">three</span> cats.</p>
                 </li>
                 <li>{% translate "Always precede the noun they modify" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Five</span> students arrived late." %}</p>
+                    <p class="code-highlight"><span class="example-highlight">Five</span> students arrived late.</p>
                 </li>
                 <li>{% translate "Never take plural form in this role" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Seven</span> days (not sevens days)" %}</p>
+                    <p class="code-highlight"><span class="example-highlight">Seven</span> days ({% translate "not sevens days" %})</p>
                 </li>
             </ul>
 
@@ -266,27 +266,27 @@
             <h4>{% translate "With Units of Measurement" %}</h4>
             <ul class="styled-list">
                 <li>{% translate "Hyphenated compound adjectives" %}
-                    <p class="code-highlight">{% translate "a <span class=\"example-highlight\">five-liter</span> container" %}</p>
+                    <p class="code-highlight">a <span class="example-highlight">five-liter</span> container</p>
                 </li>
                 <li>{% translate "Non-hyphenated when not modifying a noun" %}
-                    <p class="code-highlight">{% translate "The container holds <span class=\"example-highlight\">five liters</span>." %}</p>
+                    <p class="code-highlight">The container holds <span class="example-highlight">five liters</span>.</p>
                 </li>
                 <li>{% translate "Special cases with foot/feet" %}
-                    <p class="code-highlight">{% translate "a <span class=\"example-highlight\">six-foot</span> tall man (adjective)<br>
-                    The man is <span class=\"example-highlight\">six feet</span> tall (noun)" %}</p>
+                    <p class="code-highlight">a <span class="example-highlight">six-foot</span> tall man ({% translate "adjective" %})<br>
+                    The man is <span class="example-highlight">six feet</span> tall ({% translate "noun" %})</p>
                 </li>
             </ul>
 
             <h4>{% translate "With Money and Currency" %}</h4>
             <ul class="styled-list">
                 <li>{% translate "Singular form for exact amounts" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">fifty dollars</span> (not fifties dollars)" %}</p>
+                    <p class="code-highlight"><span class="example-highlight">fifty dollars</span> ({% translate "not fifties dollars" %})</p>
                 </li>
                 <li>{% translate "Plural for approximate amounts" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">hundreds of dollars</span>" %}</p>
+                    <p class="code-highlight"><span class="example-highlight">hundreds of dollars</span></p>
                 </li>
                 <li>{% translate "Special forms for some currencies" %}
-                    <p class="code-highlight">{% translate "five <span class=\"example-highlight\">pence</span> (not pences)" %}</p>
+                    <p class="code-highlight">five <span class="example-highlight">pence</span> ({% translate "not pences" %})</p>
                 </li>
             </ul>
         </div>
@@ -296,21 +296,21 @@
         <div class="special-note">
             <h3>{% translate "Common Mistakes and Exceptions" %}</h3>
             <ul class="styled-list">
-                <li>{% translate "<span class=\"term-highlight\">One</span> is never pluralized" %}
-                    <p class="code-highlight">{% translate "Correct: the number one<br>
-                    Incorrect: the number ones" %}</p>
+                <li><span class="term-highlight">{% translate "One" %}</span> {% translate "is never pluralized" %}
+                    <p class="code-highlight">{% translate "Correct: the number one" %}<br>
+                    {% translate "Incorrect: the number ones" %}</p>
                 </li>
-                <li>{% translate "<span class=\"term-highlight\">Zero</span> has two plural forms" %}
-                    <p class="code-highlight">{% translate "zeros (mathematics)<br>
-                    zeroes (general usage)" %}</p>
+                <li><span class="term-highlight">{% translate "Zero" %}</span> {% translate "has two plural forms" %}
+                    <p class="code-highlight">zeros ({% translate "mathematics" %})<br>
+                    zeroes ({% translate "general usage" %})</p>
                 </li>
                 <li>{% translate "Collective numbers have fixed forms" %}
-                    <p class="code-highlight">{% translate "a dozen eggs (not dozens eggs)<br>
-                    dozens of eggs (when approximate)" %}</p>
+                    <p class="code-highlight">a dozen eggs ({% translate "not dozens eggs" %})<br>
+                    dozens of eggs ({% translate "when approximate" %})</p>
                 </li>
                 <li>{% translate "Avoid double pluralization" %}
-                    <p class="code-highlight">{% translate "Correct: five million people<br>
-                    Incorrect: five millions people" %}</p>
+                    <p class="code-highlight">{% translate "Correct: five million people" %}<br>
+                    {% translate "Incorrect: five millions people" %}</p>
                 </li>
             </ul>
         </div>

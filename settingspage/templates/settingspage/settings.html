@@ -1,10 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
 
-</body>
-</html>
+{% block settings_content %}
+<div class="settings-dashboard">
+    <!-- Персональная карточка пользователя -->
+    <div class="user-profile-card">
+        <div class="profile-header">
+            <div class="avatar-container">
+                {% if profile.avatar %}
+                    <img src="{{ profile.avatar.url }}" alt="User Avatar" class="profile-avatar">
+                {% else %}
+                    <div class="default-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="profile-info">
+                <h2>{{ user.username }}</h2>
+                <p class="member-since">{% translate "Member since" %} {{ user.date_joined|date:"F Y" }}</p>
+            </div>
+        </div>
+        <div class="profile-stats">
+            <div class="stat-item">
+                <span class="stat-value">{{ profile.words_learned }}</span>
+                <span class="stat-label">{% translate "Cards" %}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ profile.texts_read }}</span>
+                <span class="stat-label">{% translate "Texts Read" %}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">{{ profile.friends_count }}</span>
+                <span class="stat-label">{% translate "Friends" %}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-settings-section">
+        <h3 class="section-title">
+            <i class="fas fa-bolt"></i> {% translate "Quick Settings" %}
+        </h3>
+        <div class="quick-settings-grid">
+            <div class="quick-setting dark-mode-toggle">
+                <div class="setting-content">
+                    <i class="fas fa-moon"></i>
+                    <span>{% translate "Dark Mode" %}</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" {% if request.session.dark_mode %}checked{% endif %}>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <a href="{% url 'language_settings' %}" class="quick-setting">
+                <div class="setting-content">
+                    <i class="fas fa-language"></i>
+                    <span>{% translate "Language" %}</span>
+                    <span class="current-value">{{ request.LANGUAGE_CODE|upper }}</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+
+            <div class="quick-setting notification-toggle">
+                <div class="setting-content">
+                    <i class="fas fa-bell"></i>
+                    <span>{% translate "Notifications" %}</span>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="notificationToggle" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <a href="{% url 'profile_settings' %}" class="quick-setting">
+                <div class="setting-content">
+                    <i class="fas fa-user-edit"></i>
+                    <span>{% translate "Edit Profile" %}</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="settings-sections">
+        <div class="settings-category">
+            <h3 class="category-title">
+                <i class="fas fa-user-shield"></i> {% translate "Account & Privacy" %}
+            </h3>
+            <div class="category-items">
+                <a href="#" class="settings-item">
+                    <div class="item-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-title">{% translate "Password & Security" %}</span>
+                        <span class="item-desc">{% translate "Change password and security settings" %}</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+
+                <a href="#" class="settings-item">
+                    <div class="item-icon">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-title">{% translate "Privacy Controls" %}</span>
+                        <span class="item-desc">{% translate "Manage what others see" %}</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="settings-category">
+            <h3 class="category-title">
+                <i class="fas fa-graduation-cap"></i> {% translate "System" %}
+            </h3>
+            <div class="category-items">
+                <a href="{% url 'data_and_storage_settings' %}" class="settings-item">
+                    <div class="item-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-title">{% translate "Data and Storage" %}</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+
+                <a href="{% url 'help_and_support_settings' %}" class="settings-item">
+                    <div class="item-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="item-info">
+                        <span class="item-title">{% translate "Help and Support" %}</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Обработка переключения темной темы
+    document.getElementById('darkModeToggle').addEventListener('change', function() {
+        fetch('/toggle-dark-mode/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                dark_mode: this.checked
+            })
+        }).then(response => {
+            if (response.ok) {
+                location.reload();
+            }
+        });
+    });
+</script>
+{% endblock %}

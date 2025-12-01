@@ -189,8 +189,8 @@
                     <p class="code-highlight">3 (third), 4 (fourth), 5 (fifth)</p>
                 </li>
                 <li>{% translate "Special cases:" %}
-                    <p class="code-highlight">2 → half (not second)<br>
-                    4 → quarter (common alternative to fourth)</p>
+                    <p class="code-highlight">2 → half ({% translate "not second" %})<br>
+                    4 → quarter ({% translate "common alternative to fourth" %})</p>
                 </li>
             </ul>
 
@@ -207,32 +207,32 @@
                         <tr>
                             <td>1/2</td>
                             <td>one half</td>
-                            <td>Special case (never "one second")</td>
+                            <td>{% translate "Special case (never \"one second\")" %}</td>
                         </tr>
                         <tr>
                             <td>1/3</td>
                             <td>one third</td>
-                            <td>Standard formation</td>
+                            <td>{% translate "Standard formation" %}</td>
                         </tr>
                         <tr>
                             <td>2/3</td>
                             <td>two thirds</td>
-                            <td>Plural denominator</td>
+                            <td>{% translate "Plural denominator" %}</td>
                         </tr>
                         <tr>
                             <td>1/4</td>
                             <td>one quarter/fourth</td>
-                            <td>Alternative forms</td>
+                            <td>{% translate "Alternative forms" %}</td>
                         </tr>
                         <tr>
                             <td>3/4</td>
                             <td>three quarters/fourths</td>
-                            <td>Plural alternatives</td>
+                            <td>{% translate "Plural alternatives" %}</td>
                         </tr>
                         <tr>
                             <td>5/8</td>
                             <td>five eighths</td>
-                            <td>Irregular plural</td>
+                            <td>{% translate "Irregular plural" %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -291,19 +291,19 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Adjective</td>
+                            <td>{% translate "Adjective" %}</td>
                             <td>a two-thirds majority</td>
-                            <td>Hyphenate when modifying a noun</td>
+                            <td>{% translate "Hyphenate when modifying a noun" %}</td>
                         </tr>
                         <tr>
-                            <td>Noun</td>
+                            <td>{% translate "Noun" %}</td>
                             <td>two thirds of the students</td>
-                            <td>No hyphen when standalone</td>
+                            <td>{% translate "No hyphen when standalone" %}</td>
                         </tr>
                         <tr>
-                            <td>Mixed numbers</td>
+                            <td>{% translate "Mixed numbers" %}</td>
                             <td>1½ cups (one and a half cups)</td>
-                            <td>No space between whole number and fraction</td>
+                            <td>{% translate "No space between whole number and fraction" %}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -312,10 +312,10 @@
             <h4>{% translate "Verb Agreement" %}</h4>
             <ul class="styled-list">
                 <li>{% translate "Singular verb when referring to a single quantity:" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Half</span> of the cake <span class=\"term-highlight\">is</span> gone." %}</p>
+                    <p class="code-highlight"><span class="example-highlight">Half</span> of the cake <span class="term-highlight">is</span> gone.</p>
                 </li>
                 <li>{% translate "Plural verb when referring to multiple items:" %}
-                    <p class="code-highlight">{% translate "<span class=\"example-highlight\">Two thirds</span> of the students <span class=\"term-highlight\">are</span> present." %}</p>
+                    <p class="code-highlight"><span class="example-highlight">Two thirds</span> of the students <span class="term-highlight">are</span> present.</p>
                 </li>
             </ul>
         </div>
@@ -325,19 +325,19 @@
         <div class="special-card">
             <h3>{% translate "4. Common Mistakes to Avoid" %}</h3>
             <ul class="styled-list">
-                <li>{% translate "<span class=\"term-highlight\">Incorrect denominator forms</span>:" %}
+                <li><span class="term-highlight">{% translate "Incorrect denominator forms" %}</span>:
                     <p class="code-highlight">Incorrect: two third<br>
                     Correct: two thirds</p>
                 </li>
-                <li>{% translate "<span class=\"term-highlight\">Misusing 'half'</span>:" %}
+                <li><span class="term-highlight">{% translate "Misusing 'half'" %}</span>:
                     <p class="code-highlight">Incorrect: one second<br>
                     Correct: one half</p>
                 </li>
-                <li>{% translate "<span class=\"term-highlight\">Wrong hyphenation</span>:" %}
+                <li><span class="term-highlight">{% translate "Wrong hyphenation" %}</span>:
                     <p class="code-highlight">Incorrect: a two thirds majority<br>
                     Correct: a two-thirds majority</p>
                 </li>
-                <li>{% translate "<span class=\"term-highlight\">Incorrect verb agreement</span>:" %}
+                <li><span class="term-highlight">{% translate "Incorrect verb agreement" %}</span>:
                     <p class="code-highlight">Incorrect: Two-thirds of the water are gone.<br>
                     Correct: Two-thirds of the water is gone.</p>
                 </li>

@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "The Infinitive" %}{% endblock %}
+{% block grammar_title %}{% translate "The Infinitive" %{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -65,7 +65,7 @@
             left: 0;
             top: 0;
         }
-        
+
         .styled-list ol {
             padding-left: 20px;
         }
@@ -83,7 +83,7 @@
         .styled-list .styled-list li:before {
             content: "-";
         }
-        
+
         .styled-list .styled-list .styled-list li:before {
             content: "•";
         }
@@ -101,7 +101,7 @@
             color: #ff9e7d;
             font-weight: 600;
         }
-        
+
         .auxiliary-highlight, .ending-highlight {
             color: #83e8de;
             font-weight: 600;
@@ -111,7 +111,7 @@
             color: #ffda47;
             font-weight: 600;
         }
-        
+
         .code-highlight {
             font-family: 'Courier New', monospace;
             background: rgba(0, 0, 0, 0.2);
@@ -143,7 +143,7 @@
         .back-to-list-btn:hover {
             background-color: #ff9e7d;
         }
-        
+
         @media (max-width: 600px) {
             .grammar-detail-container {
                 padding: 10px;
@@ -176,37 +176,37 @@
             <li>
                 <span class="term-highlight">{% translate "Simple Infinitive:" %}</span> {% translate "(to) + base form (e.g., to do, to write)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I want" %} <span class="verb-highlight">to go</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I want <span class="verb-highlight">to go</span>.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "Continuous Infinitive:" %}</span> {% translate "(to) be + V-ing (e.g., to be doing, to be writing)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He seems" %} <span class="verb-highlight">to be working</span> {% translate "hard." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He seems <span class="verb-highlight">to be working</span> hard.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "Perfect Infinitive:" %}</span> {% translate "(to) have + Past Participle (V3) (e.g., to have done, to have written)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She claims" %} <span class="verb-highlight">to have seen</span> {% translate "a ghost." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She claims <span class="verb-highlight">to have seen</span> a ghost.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "Perfect Continuous Infinitive:" %}</span> {% translate "(to) have been + V-ing (e.g., to have been doing, to have been writing)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "You must be tired" %} <span class="verb-highlight">to have been studying</span> {% translate "all night." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">You must be tired <span class="verb-highlight">to have been studying</span> all night.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "Passive Infinitive (Simple):" %}</span> {% translate "(to) be + Past Participle (V3) (e.g., to be done, to be written)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The work needs" %} <span class="verb-highlight">to be finished</span> {% translate "by Monday." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">The work needs <span class="verb-highlight">to be finished</span> by Monday.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "Passive Infinitive (Perfect):" %}</span> {% translate "(to) have been + Past Participle (V3) (e.g., to have been done, to have been written)" %}
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "The decision seems" %} <span class="verb-highlight">to have been made</span> {% translate "already." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">The decision seems <span class="verb-highlight">to have been made</span> already.</span></i></li>
                 </ul>
             </li>
         </ul>
@@ -221,53 +221,53 @@
             <li>
                 <span class="term-highlight">{% translate "As a Noun (Subject or Object):" %}</span>
                 <ul class="styled-list">
-                    <li>{% translate "Subject:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">To learn</span> {% translate "is important." %}</span></i></li>
-                    <li>{% translate "Object:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I like" %} <span class="verb-highlight">to read</span>.</span></i></li>
+                    <li>{% translate "Subject:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight"><span class="verb-highlight">To learn</span> is important.</span></i></li>
+                    <li>{% translate "Object:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I like <span class="verb-highlight">to read</span>.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "As an Adjective (modifying a noun or pronoun):" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I have a lot of work" %} <span class="verb-highlight">to do</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He needs someone" %} <span class="verb-highlight">to talk to</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I have a lot of work <span class="verb-highlight">to do</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He needs someone <span class="verb-highlight">to talk to</span>.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "As an Adverb (expressing purpose, result, or reason):" %}</span>
                 <ul class="styled-list">
-                    <li>{% translate "Purpose:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She came here" %} <span class="verb-highlight">to study</span>.</span></i> ({% translate "Why did she come?" %})</li>
-                    <li>{% translate "Result:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He grew up" %} <span class="verb-highlight">to be</span> {% translate "a doctor." %}</span></i></li>
-                    <li>{% translate "Reason/Cause (often after adjectives):" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I'm happy" %} <span class="verb-highlight">to see</span> {% translate "you." %}</span></i></li>
+                    <li>{% translate "Purpose:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She came here <span class="verb-highlight">to study</span>.</span></i> ({% translate "Why did she come?" %})</li>
+                    <li>{% translate "Result:" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He grew up <span class="verb-highlight">to be</span> a doctor.</span></i></li>
+                    <li>{% translate "Reason/Cause (often after adjectives):" %} <span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I'm happy <span class="verb-highlight">to see</span> you.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After certain verbs:" %}</span> {% translate "Many verbs are typically followed by a to-infinitive." %}
                 <p>
-                    <span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">agree, decide, hope, promise, refuse, want, would like, afford, learn, manage, seem, tend</span>, etc.</i>
+                    <span class="example-highlight">{% translate "Examples:" %}</span> <i><span class="code-highlight">agree, decide, hope, promise, refuse, want, would like, afford, learn, manage, seem, tend, etc.</span></i>
                 </p>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "They decided" %} <span class="verb-highlight">to leave</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He hopes" %} <span class="verb-highlight">to find</span> {% translate "a new job." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">They decided <span class="verb-highlight">to leave</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He hopes <span class="verb-highlight">to find</span> a new job.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After adjectives:" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "It's difficult" %} <span class="verb-highlight">to explain</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I was surprised" %} <span class="verb-highlight">to hear</span> {% translate "the news." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">It's difficult <span class="verb-highlight">to explain</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I was surprised <span class="verb-highlight">to hear</span> the news.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After question words (how, what, when, where, which, who, why):" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I don't know" %} <span class="verb-highlight">what to do</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Can you tell me" %} <span class="verb-highlight">how to get</span> {% translate "there?" %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I don't know <span class="verb-highlight">what to do</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Can you tell me <span class="verb-highlight">how to get</span> there?</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "As a substitute for a clause (e.g., in relative clauses):" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "He is the first person" %} <span class="verb-highlight">to arrive</span>.</span></i> ({% translate "instead of 'who arrived'" %})</li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">He is the first person <span class="verb-highlight">to arrive</span>.</span></i> ({% translate "instead of 'who arrived'" %})</li>
                 </ul>
             </li>
         </ol>
@@ -282,29 +282,29 @@
             <li>
                 <span class="term-highlight">{% translate "After Modal Verbs:" %}</span> ({% translate "can, could, may, might, must, shall, should, will, would" %})
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">must</span> <span class="verb-highlight">go</span> {% translate "now." %}</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She" %} <span class="auxiliary-highlight">can</span> <span class="verb-highlight">swim</span> {% translate "very well." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">You <span class="auxiliary-highlight">must</span> <span class="verb-highlight">go</span> now.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She <span class="auxiliary-highlight">can</span> <span class="verb-highlight">swim</span> very well.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After Verbs of Perception (see, hear, feel, watch, notice) + Object:" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I saw him" %} <span class="verb-highlight">leave</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "She heard the birds" %} <span class="verb-highlight">sing</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I saw him <span class="verb-highlight">leave</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">She heard the birds <span class="verb-highlight">sing</span>.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After \"make\" and \"let\" + Object:" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "My parents made me" %} <span class="verb-highlight">study</span>.</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "Let me" %} <span class="verb-highlight">help</span> {% translate "you." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">My parents made me <span class="verb-highlight">study</span>.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">Let me <span class="verb-highlight">help</span> you.</span></i></li>
                 </ul>
             </li>
             <li>
                 <span class="term-highlight">{% translate "After \"had better\" and \"would rather\":" %}</span>
                 <ul class="styled-list">
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "You" %} <span class="auxiliary-highlight">had better</span> <span class="verb-highlight">leave</span> {% translate "now." %}</span></i></li>
-                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">{% translate "I" %} <span class="auxiliary-highlight">would rather</span> <span class="verb-highlight">stay</span> {% translate "home." %}</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">You <span class="auxiliary-highlight">had better</span> <span class="verb-highlight">leave</span> now.</span></i></li>
+                    <li><span class="example-highlight">{% translate "Example:" %}</span> <i><span class="code-highlight">I <span class="auxiliary-highlight">would rather</span> <span class="verb-highlight">stay</span> home.</span></i></li>
                 </ul>
             </li>
         </ol>

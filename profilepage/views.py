@@ -14,6 +14,7 @@ from django.views.decorators.http import require_POST
 from .services import ProfileService, ProfileUpdateHandler, FriendshipService, NotificationService
 from .models import Profile, UserModel, Friendship, Notification
 from django.db.models import Q
+from textspage.models import Text
 
 User = get_user_model()
 
@@ -24,10 +25,15 @@ def profile_page(request: HttpRequest) -> HttpResponse:
     user_profile: Profile = profile_service.get_or_create_profile()
     profile_service.check_achievements()
 
+    texts_read = Text.objects.filter(read_by=request.user).count()
+    user_profile.texts_read = texts_read
+    user_profile.save()
+
     return render(request, 'profilepage/profile_page.html', {
         'profile': user_profile,
         'achievements': user_profile.get_achievements(),
         'LANGUAGES': settings.LANGUAGES,
+        'texts_read': texts_read,
     })
 
 @login_required

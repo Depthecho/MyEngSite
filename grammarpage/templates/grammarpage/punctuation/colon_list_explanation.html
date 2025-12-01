@@ -2,7 +2,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block grammar_title %}{% translate "Colon - Introducing a List or Explanation" %}{% endblock %}
+{% block grammar_title %{% translate "Colon - Introducing a List or Explanation" %}{% endblock %}
 
 {% block extra_css %}
     {{ block.super }}
@@ -191,21 +191,21 @@
             <tbody>
                 <tr>
                     <td>{% translate "Colon" %}</td>
-<td><span class="code-highlight">{% translate 'She had one rule<span class="mark-highlight">:</span> be on time.' %}</span></td>
+<td><span class="code-highlight">She had one rule<span class="mark-highlight">:</span> be on time.</span></td>
                     <td>{% translate "Formal introduction of explanation" %}</td>
                 </tr>
                 <tr>
                     <td>{% translate "Dash" %}</td>
-<td><span class="code-highlight">{% translate 'She had one rule — be on time.' %}</span></td><td><span class="code-highlight">{% translate "She had one rule — be on time." %}</span></td>
+<td><span class="code-highlight">She had one rule — be on time.</span></td><td><span class="code-highlight">She had one rule — be on time.</span></td>
                 </tr>
                 <tr>
                     <td>{% translate "Semicolon" %}</td>
-<td><span class="code-highlight">{% translate "She had one rule" %}<span class="mark-highlight">;</span> {% translate "it was about punctuality." %}</span></td>
+<td><span class="code-highlight">She had one rule<span class="mark-highlight">;</span> it was about punctuality.</span></td>
                     <td>{% translate "Connecting independent clauses" %}</td>
                 </tr>
                 <tr>
                     <td>{% translate "Comma" %}</td>
-                    <td><span class="code-highlight">{% translate "Her rule, to be on time, was strict." %}</span></td>
+                    <td><span class="code-highlight">Her rule, to be on time, was strict.</span></td>
                     <td>{% translate "Non-essential information" %}</td>
                 </tr>
             </tbody>
@@ -215,14 +215,14 @@
             <h3>{% translate "Special Cases and Rules" %}</h3>
 <ul class="styled-list">
     <li>{% translate '<span class="term-highlight">Capitalization:</span> Capitalize the first word after a colon if it begins a complete sentence or is a proper noun' %}
-        <p class="code-highlight">{% translate 'Remember<span class="mark-highlight">:</span> <span class="term-highlight">P</span>ractice makes perfect.' %}</p>
+        <p class="code-highlight">Remember<span class="mark-highlight">:</span> <span class="term-highlight">P</span>ractice makes perfect.</p>
     </li>
     <li>{% translate '<span class="term-highlight">Spacing:</span> No space before, one space after in English' %}</li>
     <li>{% translate '<span class="term-highlight">Lists:</span> Don\'t use a colon after \'including\' or \'such as\'' %}
-        <p class="code-highlight">{% translate '<span class="term-highlight">Incorrect:</span> We sell many fruits, including<span class="mark-highlight">:</span> apples and oranges.' %}</p>
+        <p class="code-highlight"><span class="term-highlight">Incorrect:</span> We sell many fruits, including<span class="mark-highlight">:</span> apples and oranges.</p>
     </li>
     <li>{% translate '<span class="term-highlight">Titles:</span> Often used in titles and subtitles' %}
-        <p class="code-highlight">{% translate 'Grammar<span class="mark-highlight">:</span> A Comprehensive Guide' %}</p>
+        <p class="code-highlight">Grammar<span class="mark-highlight">:</span> A Comprehensive Guide</p>
     </li>
 </ul>
         </div>
@@ -232,10 +232,10 @@
         <h3>{% translate "Practice Examples" %}</h3>
         <p>{% translate "Add colons where appropriate:" %}</p>
         <ol class="styled-list">
-            <li>{% translate "The recipe requires three ingredients flour, water, and salt" %}</li>
-            <li>{% translate "She left an important message call me back immediately" %}</li>
-            <li>{% translate "The results were clear the experiment failed" %}</li>
-            <li>{% translate 'He quoted Shakespeare "To be or not to be"' %}</li>
+            <li>The recipe requires three ingredients flour, water, and salt</li>
+            <li>She left an important message call me back immediately</li>
+            <li>The results were clear the experiment failed</li>
+            <li>He quoted Shakespeare "To be or not to be"</li>
         </ol>
 
         <div class="navigation-links">

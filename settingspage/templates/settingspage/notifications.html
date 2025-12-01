@@ -1,0 +1,191 @@
+{% extends 'settingspage/settings_base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block settings_content %}
+<div class="settings-section">
+    <h2 class="settings-section-title">
+        <i class="fas fa-bell"></i> {% translate "Notification Preferences" %}
+    </h2>
+
+    <form method="post" class="settings-form">
+        {% csrf_token %}
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Email Notifications" %}</h3>
+                <p class="setting-description">
+                    {% translate "Receive important notifications via email" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ notification_form.email_notifications }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "Push Notifications" %}</h3>
+                <p class="setting-description">
+                    {% translate "Get instant notifications on your device" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ notification_form.push_notifications }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="setting-item">
+            <div class="setting-info">
+                <h3 class="setting-title">{% translate "In-App Notifications" %}</h3>
+                <p class="setting-description">
+                    {% translate "See notifications when you're using the app" %}
+                </p>
+            </div>
+            <div class="setting-control">
+                <label class="switch">
+                    {{ notification_form.in_app_notifications }}
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-subsection">
+            <h3 class="settings-subtitle">
+                <i class="fas fa-envelope"></i> {% translate "Email Notification Types" %}
+            </h3>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "New Messages" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me when I receive new messages" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.email_message_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "Friend Requests" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me when I receive friend requests" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.email_friend_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "Event Reminders" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me about upcoming events" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.email_event_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="settings-subsection">
+            <h3 class="settings-subtitle">
+                <i class="fas fa-mobile-alt"></i> {% translate "Push Notification Types" %}
+            </h3>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "New Likes" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me when someone likes my posts" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.push_like_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "Comments" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me about new comments" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.push_comment_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="setting-item">
+                <div class="setting-info">
+                    <h3 class="setting-title">{% translate "Mentions" %}</h3>
+                    <p class="setting-description">
+                        {% translate "Notify me when someone mentions me" %}
+                    </p>
+                </div>
+                <div class="setting-control">
+                    <label class="switch">
+                        {{ notification_form.push_mention_notifications }}
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" name="update_notification_settings" class="cta-button primary">
+                <i class="fas fa-save"></i> {% translate "Save Notification Settings" %}
+            </button>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Дополнительные стили для страницы уведомлений */
+    .settings-subsection {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .settings-subtitle {
+        color: white;
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .settings-subtitle i {
+        color: #ffcc00;
+    }
+</style>
+{% endblock %}
