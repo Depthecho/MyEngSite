@@ -22,17 +22,20 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
+        run: pip install -r requirements.txt && pip install pytest
+        
       - name: Run Django Tests
         run: |
+          cd EnglishSite 
           # Установите временные переменные окружения для тестов
           export SECRET_KEY="dummy_key_for_tests"
           export DATABASE_URL="sqlite:///db.sqlite3"
-          python manage.py test
+          python ../manage.py test
           
       - name: Check Migrations (Optional)
-        run: python manage.py makemigrations --check --dry-run
+        run: |
+          cd EnglishSite
+          python ../manage.py makemigrations --check --dry-run
         
   deploy:
     needs: ci
@@ -48,9 +51,6 @@ jobs:
             # 1. Переход в каталог проекта на VPS
             cd ~/myengsite
             
-            # 2. Пересоздание и запуск контейнеров Docker Compose
-            # --build гарантирует, что Dockerfile будет пересобран с новым кодом из репозитория
             docker-compose up -d --build
-            
-            # Очистка старых образов после успешного развертывания
+
             docker image prune -f
